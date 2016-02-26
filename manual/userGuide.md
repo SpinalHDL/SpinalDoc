@@ -5,6 +5,7 @@ This document is about understanding how to use Spinal, but also to understand h
 The language contain 5 base types and 2 composite types that could be used by the user. 
 - Base types :          Bool, Bits, UInt, SInt,Enum.
 - Composite types : Bundle, Vec.
+
 ### Bool/Bits/UInt/SInt
 There is the instantiation syntax of them ([x] mean that x is optional)
 | Type     | Instance| Literal|
