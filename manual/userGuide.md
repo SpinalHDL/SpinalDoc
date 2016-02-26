@@ -8,6 +8,7 @@ The language contain 5 base types and 2 composite types that could be used by th
 
 ### Bool/Bits/UInt/SInt
 There is the instantiation syntax of them ([x] mean that x is optional)
+
 | Type     | Instance| Literal|
 | ------- | ---- | --- |
 | Bool| Bool[()] |  True, False <br> Bool(value : Boolean)    |
@@ -86,6 +87,7 @@ val coreArea = new ClockingArea(coreClockDomain){
 }
 ```
 Additionaly, following elements of each clock domain are configurable via a ClockDomainConfig class :
+
 | Property | possibilites|
 | ------- | ---- |
 | clockEdge | RISING, FALLING |
@@ -100,11 +102,13 @@ By default, a ClockDomain is applyed to the whole design. The configuration of t
 
 ## Assignements
 There is multiple assignement operator :
+
 | Symbole| Description |
 | ------- | ---- |
 | := | Standard assignement, equivalent to '<=' in VHDL/Verilog <br> last assignement win, value updated at next delta cycle  |
 | /= | Equivalent to := in VHDL and = in Verilog <br> value updated instantly |
 | <> |Automatic connection between 2 signals. Direction is inferred by using signal direction (in/out) <br> Similar behavioral than :=  |
+
 ```scala
 //Because of hardware concurrency is always read with the value '1' by b and c
 val a,b,c = UInt(4 bit)
