@@ -16,7 +16,7 @@ The language contain 5 base types and 2 composite types that could be used by th
 
 ```scala
 val myBool = Bool()
-myBool := False         // := is the assignement operator
+myBool := False         // := is the assignment operator
 myBool := Bool(false)   // Use a Scala Boolean to create a literal
 
 val myUInt = UInt(8 bit)
@@ -70,7 +70,7 @@ vgaOut.color.green := 0    //Fix the green to zero
 | x & y |  Bitwise AND | T(max(w(x), w(y) bit) |
 | x \| y |  Bitwise OR  | T(max(w(x), w(y) bit) |
 | x ^ y |  Bitwise XOR | T(max(w(x), w(y) bit) |
-| x(y) |  Extract bit, y : Int|UInt | Bool |
+| x(y) |  Extract bit, y : Int/UInt | Bool |
 | x(hi,lo) |  Extract bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
 | x(offset,width) |  Extract bitfield, offset: UInt, width: Int | T(width bit) |
 | x.toBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
@@ -161,28 +161,28 @@ val coreArea = new ClockingArea(coreClockDomain){
   val coreClockedRegister = Reg(UInt(4 bit))
 }
 ```
-Additionaly, following elements of each clock domain are configurable via a ClockDomainConfig class :
+Additionally, following elements of each clock domain are configurable via a ClockDomainConfig class :
 
-| Property | possibilites|
+| Property | possibilities |
 | ------- | ---- |
 | clockEdge | RISING, FALLING |
 | ResetKind | ASYNC, SYNC |
 | resetActiveHigh | true, false |
 | clockEnableActiveHigh| true, false |
 
-By default, a ClockDomain is applyed to the whole design. The configuration of this one is :
+By default, a ClockDomain is applied to the whole design. The configuration of this one is :
 - clock : rising edge
-- reset: asyncronous, active high
+- reset: asynchronous, active high
 - no enable signal
 
 ## Assignements
-There is multiple assignement operator :
+There is multiple assignment operator :
 
 | Symbole| Description |
 | ------- | ---- |
-| := | Standard assignement, equivalent to '<=' in VHDL/Verilog <br> last assignement win, value updated at next delta cycle  |
+| := | Standard assignment, equivalent to '<=' in VHDL/Verilog <br> last assignment win, value updated at next delta cycle  |
 | /= | Equivalent to := in VHDL and = in Verilog <br> value updated instantly |
-| <> |Automatic connection between 2 signals. Direction is inferred by using signal direction (in/out) <br> Similar behavioral than :=  |
+| <> |Automatic connection between 2 signals. Direction is inferred by using signal direction (in/out) <br> Similar behavioural than :=  |
 
 ```scala
 //Because of hardware concurrency is always read with the value '1' by b and c
@@ -199,15 +199,15 @@ y := x      //y read x with the value 0
 x \= x + 1
 z := x      //z read x with the value 1
 ```
-Spinal check that bitcount of left and right assignement hand side match. There is multiple ways to adapte bitcount of BitVector (Bits, UInt, SInt) :
+Spinal check that bitcount of left and right assignment side match. There is multiple ways to adapt bitcount of BitVector (Bits, UInt, SInt) :
 
 | Way | Description|
 | ------- | ---- |
-| x := y.resized | Assign x wit a resized copy of y, resize value is automaticly infered to match x  |
-| x := y.resize(newWidth) | Assign x with a resized copy of y, size is manualy calculated |
+| x := y.resized | Assign x wit a resized copy of y, resize value is automatically inferred to match x  |
+| x := y.resize(newWidth) | Assign x with a resized copy of y, size is manually calculated |
 
-### Conditional assignement
-As VHDL and Verilog, wire and register can be conditionaly assigned by using when and switch syntaxes
+### Conditional assignment
+As VHDL and Verilog, wire and register can be conditionally assigned by using when and switch syntaxes
 ```scala
 when(cond1){
   //execute when      cond1 is true
@@ -255,7 +255,7 @@ class Adder(width: Int) extends Component {
 }
 ```
 ##Area
-Sometime, creating a component to define some logic is overkill and to mutch verbose. For this kind of cases you can use Area :
+Sometime, creating a component to define some logic is overkill and to much verbose. For this kind of cases you can use Area :
 
 ```scala
 class UartCtrl extends Component {
