@@ -130,7 +130,7 @@ myUInt := U(7 -> true,(3 downto 0) -> true,default -> false)
 | x > y |  Greater than  | Bool  |
 | x >= y |  Greater than or equal | Bool  |
 | x > y |  Less than  | Bool |
-| x >= y |  Less than or equa | Bool  |
+| x >= y |  Less than or equal | Bool  |
 | x >> y |  Arithmetic shift right, y : Int | T(w(x) - y bit) |
 | x >> y |  Arithmetic shift right, y : UInt | T(w(x) bit) |
 | x << y |  Arithmetic shift left, y : Int | T(w(x) + y bit) |
@@ -416,8 +416,8 @@ The Spinal core contain some utils :
 
 | Syntax | Description| Return |
 | ------- | ---- | --- |
-| log2Up(x : BigInt) |  | Int |
-| isPow2(x : BigInt) |  | Boolean|
+| log2Up(x : BigInt) | Return the number of bit needed to represent x states | Int |
+| isPow2(x : BigInt) | Return true if x is a power of two | Boolean|
 
 Much more tool and utils are present in spinal.lib
 
@@ -474,9 +474,9 @@ object CarryAdderProject {
 ##Stream interface
 The Stream interface is a simple handshake protocol to carry payload. They could be used for example to push and pop elements into a FIFO, send requests to a UART controller, etc.
  
-| Syntax | Description| Return | Latency
-| ------- | ---- | --- |
-| Stream(type : Data) | Create a Stream of a given type | Stream[T] |
+| Syntax | Description| Return | Latency |
+| ------- | ---- | --- |  --- |
+| Stream(type : Data) | Create a Stream of a given type | Stream[T] | |
 | master/slave Stream(type : Data) | Create a Stream of a given type <br> Initialized with corresponding in/out setup | Stream[T] |
 | x.queue(size:Int) | Return a Stream connected to x through a FIFO | Stream[T] | 2 |
 | x.m2sPipe() | Return a Stream drived by x <br>through a register stage that cut valid/data paths | Stream[T] |  1 |
