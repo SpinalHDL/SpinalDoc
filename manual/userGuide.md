@@ -1,3 +1,6 @@
+* auto-gen TOC:
+{:toc}
+
 This document is about understanding how to use Spinal, but also to understand how it works.
 
 #spinal.core
@@ -423,8 +426,8 @@ The Spinal core contain some utils :
 Much more tool and utils are present in spinal.lib
 
 ##Some example
-```
 
+```scala
 class Counter(width : Int) extend Component{
   val io = new Bundle{
     val clear = in Bool
@@ -437,9 +440,6 @@ class Counter(width : Int) extend Component{
   }
   io.value := register
 }
-
-
-
 ```
 
 ```scala
