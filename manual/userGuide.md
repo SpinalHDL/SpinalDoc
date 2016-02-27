@@ -7,15 +7,13 @@ The language contain 5 base types and 2 composite types that could be used by th
 - Composite types : Bundle, Vec.
 
 ### Bool/Bits/UInt/SInt
-There is the instantiation syntax of them ([x] mean that x is optional)
 
-| Type     | Instance| Literal|
+| Type     | Instance | Literal|
 | ------- | ---- | --- |
 | Bool| Bool[()] |  True, False <br> Bool(value : Boolean)    |
 | Bits/UInt/SInt| Bits/UInt/SInt([X bit])   |  B/U/S(value : Int[,width : BitCount]) <br> B/U/S"[[size]base]value"|
-[^Comment]: | Vec | Vec(dataType : Data, size : Int)    |  Vec[T <: Data](elements: T*)  |
 
-Examples :
+
 ```scala
 val myBool = Bool()
 myBool := False         // := is the assignement operator
@@ -53,6 +51,70 @@ val vgaOut = VGA(8)
 vgaOut := vgaIn            //Assign the whole bundle
 vgaOut.color.green := 0    //Fix the green to zero
 ```
+### Operators
+
+#### Bool
+
+| Operator | Description | Return |
+| ------- | ---- | --- |
+| !x  |  Logical NOT | Bool |
+| x && y |  Logical AND | Bool |
+| x \|\| y |  Logical OR  | Bool |
+| x ^ y  |  Logical XOR | Bool |
+
+#### BitVector (Bits, UInt, SInt )
+
+| Operator | Description | Return |
+| ------- | ---- | --- |
+| ~x |  Bitwise NOT | T(w(x) bit) |
+| x & y |  Bitwise AND | T(max(w(x), w(y) bit) |
+| x \| y |  Bitwise OR  | T(max(w(x), w(y) bit) |
+| x ^ y |  Bitwise XOR | T(max(w(x), w(y) bit) |
+| x(y) |  Extract bit, y : Int|UInt | Bool |
+| x(hi,lo) |  Extract bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
+| x(offset,width) |  Extract bitfield, offset: UInt, width: Int | T(width bit) |
+| x.toBools |  Cast into a array of Bool] | Vec(Bool,width(x)) |
+#### Bits
+
+| Operator | Description | Return |
+| ------- | ---- | --- |
+| x >> y |  Logical shift right, y : Int | T(w(x) - y bit) |
+| x >> y |  Logical shift right, y : UInt | T(w(x) bit) |
+| x << y |  Logical shift left, y : Int | T(w(x) + y bit) |
+| x << y |  Logical shift left, y : UInt | T(w(x) + max(y) bit) |
+
+#### UInt, SInt
+
+| Operator | Description | Return |
+| ------- | ---- | --- |
+| x + y |  Addition | T(max(w(x), w(y) bit) |
+| x - y |  Subtraction  | T(max(w(x), w(y) bit) |
+| x * y |  Multiplication | T(w(x) + w(y) bit) |
+| x > y |  Greater than  | Bool  |
+| x >= y |  Greater than or equal | Bool  |
+| x > y |  Less than  | Bool |
+| x >= y |  Less than or equa | Bool  |
+| x >> y |  Arithmetic shift right, y : Int | T(w(x) - y bit) |
+| x >> y |  Arithmetic shift right, y : UInt | T(w(x) bit) |
+| x << y |  Arithmetic shift left, y : Int | T(w(x) + y bit) |
+| x << y |  Arithmetic shift left, y : UInt | T(w(x) + max(y) bit) |
+
+#### Data (Bool, Bits, UInt, SInt, Enum, Bundle, Vec)
+
+| Operator | Description | Return |
+| ------- | ---- | --- |
+| x === y  |  Equality | Bool |
+| x =/= y  |  Inequality | Bool |
+| x.asBits  |  Cast in Bits | Bits(width(x) bit)|
+| x.assignFromBits(bits) |  Assign from Bits | |
+| x.assignFromBits(bits,hi,lo) |  Assign bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
+| x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int | T(width bit) |
+| x.getZero |  Get equivalent type assigned with zero | T |
+| x ## y |  Concatenate, x->high, y->low  | Bits(width(x) + width(y) bit)|
+| Cat(x, ..) |  Concatenate, x->high, y->low  | Bits(sumOfWidth bit)|
+| Mux(cond,x,y) |  if cond ? x : y  | T(max(w(x), w(y) bit)|
+
+
 ## Register
 Creating register is very different than VHDL/Verilog.
 
