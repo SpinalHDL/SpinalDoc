@@ -73,7 +73,7 @@ vgaOut.color.green := 0    //Fix the green to zero
 | x(y) |  Extract bit, y : Int|UInt | Bool |
 | x(hi,lo) |  Extract bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
 | x(offset,width) |  Extract bitfield, offset: UInt, width: Int | T(width bit) |
-| x.toBools |  Cast into a array of Bool] | Vec(Bool,width(x)) |
+| x.toBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
 #### Bits
 
 | Operator | Description | Return |
@@ -82,6 +82,7 @@ vgaOut.color.green := 0    //Fix the green to zero
 | x >> y |  Logical shift right, y : UInt | T(w(x) bit) |
 | x << y |  Logical shift left, y : Int | T(w(x) + y bit) |
 | x << y |  Logical shift left, y : UInt | T(w(x) + max(y) bit) |
+| x.resize(y) |  Return a resized copy of x, filled with zero, y : Int  | T(y bit) |
 
 #### UInt, SInt
 
@@ -98,6 +99,16 @@ vgaOut.color.green := 0    //Fix the green to zero
 | x >> y |  Arithmetic shift right, y : UInt | T(w(x) bit) |
 | x << y |  Arithmetic shift left, y : Int | T(w(x) + y bit) |
 | x << y |  Arithmetic shift left, y : UInt | T(w(x) + max(y) bit) |
+| x.resize(y) |  Return an arithmetic resized copy of x, y : Int  | T(y bit) |
+
+#### Bool, Bits, UInt, SInt
+
+| Operator | Description | Return |
+| ------- | ---- | --- |
+| x.asBool |  Cast in Bool, True if x bit 0 is set | Bool) |
+| x.asBits |  Cast in Bits | Bits(w(x) bit) |
+| x.asUInt |  Cast in UInt | UInt(w(x) bit) |
+| x.asSInt |  Cast in SInt | SInt(w(x) bit) |
 
 #### Data (Bool, Bits, UInt, SInt, Enum, Bundle, Vec)
 
@@ -105,14 +116,15 @@ vgaOut.color.green := 0    //Fix the green to zero
 | ------- | ---- | --- |
 | x === y  |  Equality | Bool |
 | x =/= y  |  Inequality | Bool |
+| x.getWidth  |  return bitcount | Int |
+| x ## y |  Concatenate, x->high, y->low  | Bits(width(x) + width(y) bit)|
+| Cat(x) |  Concatenate list, first element on lsb, x : Array[Data]  | Bits(sumOfWidth bit)|
+| Mux(cond,x,y) |  if cond ? x : y  | T(max(w(x), w(y) bit)|
 | x.asBits  |  Cast in Bits | Bits(width(x) bit)|
 | x.assignFromBits(bits) |  Assign from Bits | |
 | x.assignFromBits(bits,hi,lo) |  Assign bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
 | x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int | T(width bit) |
 | x.getZero |  Get equivalent type assigned with zero | T |
-| x ## y |  Concatenate, x->high, y->low  | Bits(width(x) + width(y) bit)|
-| Cat(x, ..) |  Concatenate, x->high, y->low  | Bits(sumOfWidth bit)|
-| Mux(cond,x,y) |  if cond ? x : y  | T(max(w(x), w(y) bit)|
 
 
 ## Register
@@ -135,7 +147,8 @@ counter := counter + 1
 val registerStage = RegNext(counter)   //counter delayed by one cycle
 ```
 ##Clock Domain
-In Spinal, clock and reset signals can be combined to create a clock domain. Clock domain could be applied to some area of the design, then synchronous elements instantiated into this area will then use this implicit clock domain.
+In Spinal, clock and reset signals can be combined to create a clock domain. Clock domain could be applied to some area of the design, then synchronous elements instantiated into this area will then use this clock domain implicitly.
+It's permitted to have inner clock domain area.
 
 ClockDomain(clock : Bool[,reset : Bool[,enable : Bool]]])
 
@@ -186,6 +199,13 @@ y := x      //y read x with the value 0
 x \= x + 1
 z := x      //z read x with the value 1
 ```
+Spinal check that bitcount of left and right assignement hand side match. There is multiple ways to adapte bitcount of BitVector (Bits, UInt, SInt) :
+
+| Way | Description|
+| ------- | ---- |
+| x := y.resized | Assign x wit a resized copy of y, resize value is automaticly infered to match x  |
+| x := y.resize(newWidth) | Assign x with a resized copy of y, size is manualy calculated |
+
 ### Conditional assignement
 As VHDL and Verilog, wire and register can be conditionaly assigned by using when and switch syntaxes
 ```scala
@@ -232,5 +252,62 @@ class Adder(width: Int) extends Component {
   ...
   val cellArray = Array.fill(width)(new AdderCell) 
   ...
+}
+```
+##Area
+Sometime, creating a component to define some logic is overkill and to mutch verbose. For this kind of cases you can use Area :
+
+```scala
+class UartCtrl extends Component {
+  ...
+  val timer = new Area {
+    val counter = Reg(UInt(8 bit))
+    val tick = counter === 0
+    counter := counter - 1
+    when(tick) {
+      counter := 100
+    }
+  }
+  val tickCounter = new Area {
+    val value = Reg(UInt(3 bit))
+    val reset = False
+	when(timer.tick) {          // Refer to the tick from timer area
+      value := value + 1
+    }
+    when(reset) {
+      value := 0
+    }
+  }
+  val stateMachine = new Area {
+    ...
+  }
+}
+```
+
+## Compile
+
+```scala
+// spinal.core contain all basics (Bool, UInt, Bundle, Reg, Component, ..)
+import spinal.core._
+
+//A simple component definition
+class MyTopLevel extends Component {
+  //Define some input/output. Bundle like a VHDL record or a verilog struct.
+  val io = new Bundle {
+    val a = in Bool
+    val b = in Bool
+    val c = out Bool
+  }
+
+  //Define some asynchronous logic
+  io.c := io.a & io.b
+}
+
+//This is the main of the project. It create a instance of MyTopLevel and
+//call the SpinalHDL library to flush it into a VHDL file.
+object MyMain {
+  def main(args: Array[String]) {
+    SpinalVhdl(new MyTopLevel)
+  }
 }
 ```
