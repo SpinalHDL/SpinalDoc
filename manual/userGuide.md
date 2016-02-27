@@ -294,6 +294,7 @@ class Adder(width: Int) extends Component {
 ```
 
 Syntax to define in/out is the following :
+
 | Syntax | Description| Return
 | ------- | ---- | --- |
 | in/out(x : Data) | Set x an input/output | x |
