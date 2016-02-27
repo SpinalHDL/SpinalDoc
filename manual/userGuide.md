@@ -1,5 +1,5 @@
-* auto-gen TOC:
-{:toc}
+Spinal User guide
+===================
 
 This document is about understanding how to use Spinal, but also to understand how it works.
 
@@ -12,13 +12,14 @@ The language contain 5 base types and 2 composite types that could be used by th
 - Base types :          Bool, Bits, UInt, SInt,Enum.
 - Composite types : Bundle, Vec.
 
+<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/master/asset/picture/types.svg"  align="middle" width="300">
+
 ### Bool/Bits/UInt/SInt
 
 | Type     | Instance | Literal|
 | ------- | ---- | --- |
 | Bool| Bool[()] |  True, False <br> Bool(value : Boolean)    |
 | Bits/UInt/SInt| Bits/UInt/SInt([X bit])   |  B/U/S(value : Int[,width : BitCount]) <br> B/U/S"[[size]base]value"|
-
 
 ```scala
 val myBool = Bool()
