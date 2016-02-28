@@ -14,59 +14,21 @@ The language contain 5 base types and 2 composite types that could be used by th
 
 <img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/master/asset/picture/types.svg"  align="middle" width="300">
 
-### Bool/Bits/UInt/SInt
 
-| Type     | Instance | Literal|
+### Bool
+
+| Syntax | Description | Return |
 | ------- | ---- | --- |
-| Bool| Bool[()] |  True, False <br> Bool(value : Boolean)    |
-| Bits/UInt/SInt| Bits/UInt/SInt([X bit])   |  B/U/S(value : Int[,width : BitCount]) <br> B/U/S"[[size]base]value"|
+| Bool [()]|  Create a Bool| Bool |
+| True | Create a Bool assigned with true | Bool |
+| False  | Create a Bool assigned with false| Bool |
+| Bool(value : Boolean) | Create a Bool assigned with a scala Boolean | Bool |
 
 ```scala
 val myBool = Bool()
 myBool := False         // := is the assignment operator
 myBool := Bool(false)   // Use a Scala Boolean to create a literal
-
-val myUInt = UInt(8 bit)
-myUInt := U(2,8 bit)
-myUInt := U(2)
-myUInt := U"0000_0101"  // Base per default is binary => 5
-myUInt := U"h1A"        // Base could be x (base 16)
-                        //               h (base 16)
-                        //               d (base 10)
-                        //               o (base 8)
-                        //               b (base 2)                       
-myUInt := U"8h1A"       
-myUInt := 2             // You can use scala Int as literal value
 ```
-
-###Bundle
-```scala
-case class RGB(channelWidth : Int) extend Bundle{
-  val red   = UInt(channelWidth bit)
-  val green = UInt(channelWidth bit)
-  val blue  = UInt(channelWidth bit)
-  
-  def isBlack : Bool = red === 0 && green == 0 && blue === 0
-  def isWhite : Bool = {
-    val max = U(channelWidth-1 downto 0 => True)
-    return red === max && green == max && blue === max
-  }
-}
-
-case class VGA(channelWidth : Int) extend Bundle{
-  val hsync = Bool
-  val vsync = Bool
-  val color = RGB(channelWidth)
-}
-
-val vgaIn  = VGA(8)         //Create a RGB instance
-val vgaOut = VGA(8)
-vgaOut := vgaIn            //Assign the whole bundle
-vgaOut.color.green := 0    //Fix the green to zero
-```
-### Operators
-
-#### Bool
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -75,20 +37,18 @@ vgaOut.color.green := 0    //Fix the green to zero
 | x \|\| y |  Logical OR  | Bool |
 | x ^ y  |  Logical XOR | Bool |
 
-#### BitVector (Bits, UInt, SInt )
 
-| Operator | Description | Return |
+
+### BitVector (Bits, UInt, SInt )
+
+| Syntax     | Description| Return|
 | ------- | ---- | --- |
-| ~x |  Bitwise NOT | T(w(x) bit) |
-| x & y |  Bitwise AND | T(max(w(x), w(y) bit) |
-| x \| y |  Bitwise OR  | T(max(w(x), w(y) bit) |
-| x ^ y |  Bitwise XOR | T(max(w(x), w(y) bit) |
-| x(y) |  Extract bit, y : Int/UInt | Bool |
-| x(hi,lo) |  Extract bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
-| x(offset,width) |  Extract bitfield, offset: UInt, width: Int | T(width bit) |
-| x.toBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
+| Bits/UInt/SInt [()] |  Create a BitVector, bit count is inferred| Bits/UInt/SInt |
+| Bits/UInt/SInt(x bit) |  Create a BitVector with x bit| Bits/UInt/SInt |
+| B/U/S(value : Int[,width : BitCount]) |  Create a BitVector assigned with 'value' | Bits/UInt/SInt |
+| B/U/S"[[size]base]value" |  Create a BitVector assigned with 'value' | Bits/UInt/SInt |
+| B/U/S([x bit], element, ...) |  Create a BitVector assigned with the value specified by elements (see bellow table) | Bits/UInt/SInt |
 
-You can as well create Bit Vector with an aggregate syntax close the the VHDL one. In Spinal the syntax is the following :  B/U/S(element, ...) 
 Elements could be defined as following :
 
 | Element syntax| Description |
@@ -110,11 +70,39 @@ You can define a Range values
 
 ```scala
 val myUInt = UInt(8 bit)
-//Assign myUInt with "10001111"
-myUInt := U(7 -> true,(3 downto 0) -> true,default -> false)
+myUInt := U(2,8 bit)
+myUInt := U(2)
+myUInt := U"0000_0101"  // Base per default is binary => 5
+myUInt := U"h1A"        // Base could be x (base 16)
+                        //               h (base 16)
+                        //               d (base 10)
+                        //               o (base 8)
+                        //               b (base 2)                       
+myUInt := U"8h1A"       
+myUInt := 2             // You can use scala Int as literal value
+
+myUInt := U(default -> true) // Assign myUInt with "11111111"
+myUInt := U(myUInt.range -> true) // Assign myUInt with "11111111"
+myUInt := U(7 -> true,default -> false) //Assign myUInt with "10000000"
+myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "00011110"
 ```
 
-#### Bits
+| Operator | Description | Return |
+| ------- | ---- | --- |
+| ~x |  Bitwise NOT | T(w(x) bit) |
+| x & y |  Bitwise AND | T(max(w(x), w(y) bit) |
+| x \| y |  Bitwise OR  | T(max(w(x), w(y) bit) |
+| x ^ y |  Bitwise XOR | T(max(w(x), w(y) bit) |
+| x(y) |  Readbit, y : Int/UInt | Bool |
+| x(hi,lo) |  Read bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
+| x(offset,width) |  Read bitfield, offset: UInt, width: Int | T(width bit) |
+| x(y) := z |  Assign bit, y : Int/UInt | Bool |
+| x(hi,lo) := z |  Assign bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
+| x(offset,width) := z |  Assign bitfield, offset: UInt, width: Int | T(width bit) |
+| x.toBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
+
+
+### Bits
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -124,7 +112,7 @@ myUInt := U(7 -> true,(3 downto 0) -> true,default -> false)
 | x << y |  Logical shift left, y : UInt | T(w(x) + max(y) bit) |
 | x.resize(y) |  Return a resized copy of x, filled with zero, y : Int  | T(y bit) |
 
-#### UInt, SInt
+### UInt, SInt
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -141,7 +129,7 @@ myUInt := U(7 -> true,(3 downto 0) -> true,default -> false)
 | x << y |  Arithmetic shift left, y : UInt | T(w(x) + max(y) bit) |
 | x.resize(y) |  Return an arithmetic resized copy of x, y : Int  | T(y bit) |
 
-#### Bool, Bits, UInt, SInt
+### Bool, Bits, UInt, SInt
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -150,7 +138,60 @@ myUInt := U(7 -> true,(3 downto 0) -> true,default -> false)
 | x.asUInt |  Binary cast in UInt | UInt(w(x) bit) |
 | x.asSInt |  Binary cast in SInt | SInt(w(x) bit) |
 
-#### Data (Bool, Bits, UInt, SInt, Enum, Bundle, Vec)
+### Vec
+
+| Declaration| Description|
+| ------- | ---- | 
+| Vec(type : Data, size : Int) | Create a vector of size time the given type | 
+| Vec(x,y,..)  | Create a vector where indexes point to given elements. <br> this construct support mixed element width
+
+| Operator | Description | Return |
+| ------- | ---- | --- |
+| x(y) |  Read element y, y : Int/UInt | T|
+| x(y) := z | Assign element y with z, y : Int/UInt | |
+
+```scala
+val myVecOfSInt = Vec(SInt(8 bit),2)
+myVecOfSInt(0) := 2
+myVecOfSInt(1) := myVecOfSInt(0) + 3
+
+val myVecOfMixedUInt = Vec(UInt(3 bit), UInt(5 bit), UInt(8 bit))
+
+val x,y,z = UInt(8 bit)
+val myVecOf_xyz_ref = Vec(x,y,z)
+for(element <- myVecOf_xyz_ref){
+  element := 0   //Assign x,y,z with the value 0
+}
+myVecOf_xyz_ref(1) := 3    //Assign y with the value 3
+```
+
+###Bundle
+```scala
+case class RGB(channelWidth : Int) extends Bundle{
+  val red   = UInt(channelWidth bit)
+  val green = UInt(channelWidth bit)
+  val blue  = UInt(channelWidth bit)
+
+  def isBlack : Bool = red === 0 && green === 0 && blue === 0
+  def isWhite : Bool = {
+    val max = U((channelWidth-1 downto 0) -> True)
+    return red === max && green === max && blue === max
+  }
+}
+
+case class VGA(channelWidth : Int) extends Bundle{
+  val hsync = Bool
+  val vsync = Bool
+  val color = RGB(channelWidth)
+}
+
+val vgaIn  = VGA(8)         //Create a RGB instance
+val vgaOut = VGA(8)
+vgaOut := vgaIn            //Assign the whole bundle
+vgaOut.color.green := 0    //Fix the green to zero
+```
+
+### Data (Bool, Bits, UInt, SInt, Enum, Bundle, Vec)
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -201,9 +242,10 @@ val coreArea = new ClockingArea(coreClockDomain){
   val coreClockedRegister = Reg(UInt(4 bit))
 }
 ```
+###Clock configuration
 Additionally, following elements of each clock domain are configurable via a ClockDomainConfig class :
 
-| Property | possibilities |
+| Property | Possibilities |
 | ------- | ---- |
 | clockEdge | RISING, FALLING |
 | ResetKind | ASYNC, SYNC |
@@ -214,6 +256,22 @@ By default, a ClockDomain is applied to the whole design. The configuration of t
 - clock : rising edge
 - reset: asynchronous, active high
 - no enable signal
+
+###Cross Clock Domain
+Spinal check that there is no unwanted/unspecified cross clock domain read. If you want to read a signals that is emited by another ClockDomain area, you should add the `crossClockDomain` tag to the destination signal.
+
+```scala
+val asynchronousSignal = UInt(8 bit)
+...
+val buffer0 = Reg(UInt(8 bit)).addTag(crossClockDomain)
+val buffer1 = Reg(UInt(8 bit))
+buffer0 := asynchronousSignal
+buffer1 := buffer0   //Second register stage to be metastability safe
+
+//Or in less lines :
+val buffer0 = RegNext(asynchronousSignal).addTag(crossClockDomain)
+val buffer1 = RegNext(buffer0) 
+```	
 
 ## Assignements
 There is multiple assignment operator :
