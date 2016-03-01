@@ -14,7 +14,6 @@ The language contain 5 base types and 2 composite types that could be used by th
 
 <img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/master/asset/picture/types.svg"  align="middle" width="300">
 
-
 ### Bool
 
 | Syntax | Description | Return |
@@ -191,6 +190,18 @@ vgaOut := vgaIn            //Assign the whole bundle
 vgaOut.color.green := 0    //Fix the green to zero
 ```
 
+### Enum
+TODO
+```scala
+object UartCtrlTxState extends SpinalEnum {
+  val sIdle, sStart, sData, sParity, sStop = newElement()
+}
+
+import UartCtrlTxState._
+val stateNext = UartCtrlTxState()
+stateNext := sIdle
+```
+
 ### Data (Bool, Bits, UInt, SInt, Enum, Bundle, Vec)
 
 | Operator | Description | Return |
@@ -299,10 +310,16 @@ z := x      //z read x with the value 1
 ```
 Spinal check that bitcount of left and right assignment side match. There is multiple ways to adapt bitcount of BitVector (Bits, UInt, SInt) :
 
-| Way | Description|
+| Resizing ways | Description|
 | ------- | ---- |
 | x := y.resized | Assign x wit a resized copy of y, resize value is automatically inferred to match x  |
 | x := y.resize(newWidth) | Assign x with a resized copy of y, size is manually calculated |
+
+There are 2 cases where spinal automaticly resize things :
+| Assignement | Problem | Spinal action|
+| ------- | ---- |
+| myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don't match with left side  | Because  U(3) is a "weak" bit inferred signal, Spinal resize it automatically |
+| myUIntOf_8bit := U(2 -> False default -> true) | The right part infer a 3 bit UInt, which doesn't match with the left part | Spinal reapply the default value to bit that are missing |
 
 ## Conditional assignment
 As VHDL and Verilog, wire and register can be conditionally assigned by using when and switch syntaxes
@@ -533,7 +550,13 @@ object CarryAdderProject {
 
 ##Stream interface
 The Stream interface is a simple handshake protocol to carry payload. They could be used for example to push and pop elements into a FIFO, send requests to a UART controller, etc.
- 
+
+| Signal | Driver| Description | Don't care when
+| ------- | ---- | --- |  --- |
+| valid | Master | When high => payload present on the interface  | |
+| payload| Master | Content of the transaction | valid is low |
+| ready| Slave | When low => transaction are not consumed by the slave | valid is low |
+
 | Syntax | Description| Return | Latency |
 | ------- | ---- | --- |  --- |
 | Stream(type : Data) | Create a Stream of a given type | Stream[T] | |
@@ -541,13 +564,48 @@ The Stream interface is a simple handshake protocol to carry payload. They could
 | x.queue(size:Int) | Return a Stream connected to x through a FIFO | Stream[T] | 2 |
 | x.m2sPipe() | Return a Stream drived by x <br>through a register stage that cut valid/data paths | Stream[T] |  1 |
 | x.s2mPipe() | Return a Stream drived by x <br> ready paths is cut by a register stage | Stream[T] |  0 |
-| x << y | Connect y to x | | 0 |
-| x <-< y | Connect y to x through a m2sPipe  |   | 1 |
-| x `</<` y | Connect y to x through a s2mPipe|   | 0 |
-| x <-/< y | Connect y to x through s2mPipe().m2sPipe() <br> => no combinatorial path between x and y |  | 1 |
+| x << y <br> y >> x | Connect y to x | | 0 |
+| x <-< y <br> y >-> x | Connect y to x through a m2sPipe  |   | 1 |
+| x <&#47;< y <br> y >&#47;> x | Connect y to x through a s2mPipe|   | 0 |
+| x <-/< y <br> y >&#47;-> x | Connect y to x through s2mPipe().m2sPipe() <br> => no combinatorial path between x and y |  | 1 |
 | x.haltWhen(cond : Bool) | Return a Stream connected to x <br> Halted when cond is true | Stream[T] | 0 |
 | x.throwWhen(cond : Bool) | Return a Stream connected to x <br> When cond is true, transaction are dropped | Stream[T] | 0 |
 
+Examples :
+```scala
+class StreamFifo[T <: Data](dataType: T, depth: Int) extends Component {
+  val io = new Bundle {
+    val push = slave Stream (dataType)
+    val pop = master Stream (dataType)
+  }
+  ...
+}
+
+class StreamArbiter[T <: Data](dataType: T,portCount: Int) extends Component {
+  val io = new Bundle {
+    val inputs = Vec(slave Stream (dataType),portCount)
+    val output = master Stream (dataType)
+  }
+  ...
+}
+```
+
+The following code will create this logic :
+<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/master/asset/picture/stream_throw_m2spipe.svg"   align="middle" width="300">
+
+```scala
+case class RGB(channelWidth : Int) extends Bundle{
+  val red   = UInt(channelWidth bit)
+  val green = UInt(channelWidth bit)
+  val blue  = UInt(channelWidth bit)
+
+  def isBlack : Bool = red === 0 && green === 0 && blue === 0
+}
+
+val source = Stream(RGB(8))
+val sink   = Stream(RGB(8))
+sink <-< source.throwWhen(source.payload.isBlack)
+```
 
 
 ##Flow interface
