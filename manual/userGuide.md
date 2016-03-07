@@ -45,7 +45,7 @@ myBool := Bool(false)   // Use a Scala Boolean to create a literal
 | Bits/UInt/SInt [()] |  Create a BitVector, bit count is inferred| Bits/UInt/SInt |
 | Bits/UInt/SInt(x bit) |  Create a BitVector with x bit| Bits/UInt/SInt |
 | B/U/S(value : Int[,width : BitCount]) |  Create a BitVector assigned with 'value' | Bits/UInt/SInt |
-| B/U/S"[[size]base]value" |  Create a BitVector assigned with 'value' | Bits/UInt/SInt |
+| B/U/S"[[size']base]value" |  Create a BitVector assigned with 'value' | Bits/UInt/SInt |
 | B/U/S([x bit], element, ...) |  Create a BitVector assigned with the value specified by elements (see bellow table) | Bits/UInt/SInt |
 
 Elements could be defined as following :
@@ -77,7 +77,7 @@ myUInt := U"h1A"        // Base could be x (base 16)
                         //               d (base 10)
                         //               o (base 8)
                         //               b (base 2)                       
-myUInt := U"8h1A"       
+myUInt := U"8'h1A"       
 myUInt := 2             // You can use scala Int as literal value
 
 myUInt := U(default -> true) // Assign myUInt with "11111111"
