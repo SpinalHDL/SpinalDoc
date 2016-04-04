@@ -1,11 +1,15 @@
 Spinal User guide
 ===================
 
-This document is about understanding how to use Spinal, but also to understand how it works.
+## Document purpose
+This document presents how to use Spinal and how it is implemented. 
+
+## What is Spinal
+Spinal is a high-level hardware language description language. It is fully interoperable with standard EDA tools based on VhDL
 
 #spinal.core
-Bases of the laguage are described in this chapiter.
-If you want to try in a scala file, you will need to`import spinal.core._` 
+Bases of the language are described in this chapier.
+If you want to try in a Scala file, you will need to`import spinal.core._` 
 
 ## Types
 The language contain 5 base types and 2 composite types that could be used by the user. 
