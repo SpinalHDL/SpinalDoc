@@ -1,7 +1,7 @@
 ## Types
 The language provides 5 base types and 2 composite types that can be used.
 
-- Base types : ´Bool´, ´Bits´, ´UInt´ for unsigned integers, ´SInt´ for signed integers, ´Enum´.
+- Base types : `Bool`, `Bits`, `UInt` for unsigned integers, `SInt` for signed integers, `Enum`.
 - Composite types : Bundle, Vec.
 
 <img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/master/asset/picture/types.svg"  align="middle" width="300">
@@ -18,8 +18,8 @@ The syntax to declare such as value is as follows:
 | Syntax | Description | Return |
 | ------- | ---- | --- |
 | Bool or Bool()|  Create a Bool| Bool |
-| True | Create a Bool assigned with ´true´ | Bool |
-| False  | Create a Bool assigned with ´false´| Bool |
+| True | Create a Bool assigned with `true` | Bool |
+| False  | Create a Bool assigned with `false`| Bool |
 | Bool(value : Boolean) | Create a Bool assigned with a Scala Boolean | Bool |
 
 Using this type into Spinal yields:
@@ -31,7 +31,7 @@ myBool := Bool(false)   // Use a Scala Boolean to create a literal
 ```
 
 #### Operators
-The following operators are available for the ´Bool´ type
+The following operators are available for the `Bool` type
 
 | Operator | Description | Return type |
 | ------- | ---- | --- |
@@ -40,8 +40,8 @@ The following operators are available for the ´Bool´ type
 | x \|\| y |  Logical OR  | Bool |
 | x ^ y  |  Logical XOR | Bool |
 
-### The BitVector family - (´Bits´, ´UInt´, ´SInt´)
-´BitVector´ is a family of types for storing multiple bits of information in a single value. This type has three subtypes that can be used to model different behaviours: ´Bits´ do not convey any sign information whereas the ´UInt´ (unsigned integer) and ´SInt´ (signed integer) provide the required operations to compute correct results if signed / unsigned arithmetics is used.
+### The BitVector family - (`Bits`, `UInt`, `SInt`)
+`BitVector` is a family of types for storing multiple bits of information in a single value. This type has three subtypes that can be used to model different behaviours: `Bits` do not convey any sign information whereas the `UInt` (unsigned integer) and `SInt` (signed integer) provide the required operations to compute correct results if signed / unsigned arithmetics is used.
 
 #### Declaration syntax
 @TODO mettre un lien sur syntaxe EBNF
