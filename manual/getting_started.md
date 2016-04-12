@@ -1,3 +1,11 @@
+---
+layout: page
+title: Getting started
+description: "This pages describes the main types usable in Spinal"
+tags: [getting started]
+categories: [intro]
+---
+
 Getting started with Spinal
 ===========================
 

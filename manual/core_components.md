@@ -1,3 +1,12 @@
+---
+layout: page
+title: Spinal main components
+description: "This pages describes the main components of Spinal"
+tags: [components]
+categories: [intro]
+---
+
+
 # `spinal.core` components
 The core components of the language are described in this document. It is part of the general [Spinal user guide](userGuide.md).
 

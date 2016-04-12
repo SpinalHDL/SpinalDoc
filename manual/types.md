@@ -1,3 +1,11 @@
+---
+layout: page
+title: Types in Spinal
+description: "This pages describes the main types usable in Spinal"
+tags: [types]
+categories: [intro]
+---
+
 ## Types
 The language provides 5 base types and 2 composite types that can be used.
 
