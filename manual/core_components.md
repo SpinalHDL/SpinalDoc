@@ -11,17 +11,17 @@ The core components of the language are described in this document. It is part o
 
 The core language components are as follows:
 
-- *Clock domains*, which allow to define and interoperate multiple clock domains within a design
+- [*Clock domains*](#clock_domains), which allow to define and interoperate multiple clock domains within a design
 - *Memory instantiation*, which permit the automatic instantiation of RAM and ROM memories.
 - *IP instantiation*, using either existing VHDL or Verilog component.
-- Assigments
+- Assignments
 - Component hierarchy
 - Area
 - Functions
 - Compile, @TODO what is this ?
 - Utility functions
 
-##Clock domains definitions
+## <a href name="clock_domains"></a>Clock domains definitions
 In *Spinal*, clock and reset signals can be combined to create a __clock domain__. Clock domains could be applied to some area of the design and then the synchronous elements instantiated into this area will then __implicitly__ use this clock domain.
 
 It is also permitted to create __nested__ clock domains that have inner clock domain areas. @TODO Is the previous sentence really correct ?
