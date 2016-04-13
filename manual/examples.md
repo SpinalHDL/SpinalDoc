@@ -1,3 +1,11 @@
+---
+layout: page
+title: Examples
+description: "This pages gives some examples Spinal"
+tags: [getting started, examples]
+categories: [intro]
+---
+
 ## Some Spinal code examples
 
 ### A simple counter
