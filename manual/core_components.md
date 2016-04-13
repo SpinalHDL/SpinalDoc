@@ -6,34 +6,64 @@ tags: [components]
 categories: [intro]
 ---
 
-
-# `spinal.core` components
+#  The `spinal.core` components
 The core components of the language are described in this document. It is part of the general [Spinal user guide](userGuide.md).
 
-##Clock Domain
-In Spinal, clock and reset signals can be combined to create a clock domain. Clock domain could be applied to some area of the design, then synchronous elements instantiated into this area will then use this clock domain implicitly.
-It's permitted to have inner clock domain area.
+The core language components are as follows:
 
-ClockDomain(clock : Bool[,reset : Bool[,enable : Bool]]])
+- *Clock domains*, which allow to define and interoperate multiple clock domains within a design
+- *Memory instantiation*, which permit the automatic instantiation of RAM and ROM memories.
+- *IP instantiation*, using either existing VHDL or Verilog component.
+- Assigments
+- Component hierarchy
+- Area
+- Functions
+- Compile, @TODO what is this ?
+- Utility functions
+
+##Clock domains definitions
+In *Spinal*, clock and reset signals can be combined to create a __clock domain__. Clock domains could be applied to some area of the design and then the synchronous elements instantiated into this area will then __implicitly__ use this clock domain.
+
+It is also permitted to create __nested__ clock domains that have inner clock domain areas. @TODO Is the previous sentence really correct ?
+
+### Clock domain syntax
+The syntax to define a clock domain is as follows (using EBNF syntax):
+
+<a name="clock_constructor"></a>
+`ClockDomain(clock : Bool[,reset : Bool[,enable : Bool]]])`
+
+This definition takes three parameters:
+1. The clock signal that defines the domain
+1. An optional `reset`signal @TODO what will happen to register when no reset is given ?
+1. An optional `enable` signal @TODO the purpose of this signal is to latch the clock ?
+
+An applied example to define a specific clock domain within the design is as follows:
 
 ```scala
 val coreClock = Bool
 val coreReset = Bool
+
+// Define a new clock domain
 val coreClockDomain = ClockDomain(coreClock,coreReset)
+
 ...
+
+// Use this domain in an area of the design
 val coreArea = new ClockingArea(coreClockDomain){
   val coreClockedRegister = Reg(UInt(4 bit))
 }
 ```
 ###Clock configuration
-Additionally, following elements of each clock domain are configurable via a ClockDomainConfig class :
+In addition to the constructor parameters given [here](#clock_constructor), the following elements of each clock domain are configurable via a `ClockDomainConfig`class :
 
-| Property | Possibilities |
+| Property | Valid values|
 | ------- | ---- |
-| clockEdge | RISING, FALLING |
-| ResetKind | ASYNC, SYNC |
-| resetActiveHigh | true, false |
-| clockEnableActiveHigh| true, false |
+| `clockEdge` | `RISING`, `FALLING` |
+| `ResetKind`| `ASYNC`, `SYNC` |
+| `resetActiveHigh`| `true`, `false` |
+| `clockEnableActiveHigh`| `true`, `false` |
+
+@TODO @dolu you should give an example how to create a specific config for an area
 
 By default, a ClockDomain is applied to the whole design. The configuration of this one is :
 - clock : rising edge
@@ -41,7 +71,7 @@ By default, a ClockDomain is applied to the whole design. The configuration of t
 - no enable signal
 
 ###Cross Clock Domain
-Spinal check that there is no unwanted/unspecified cross clock domain read. If you want to read a signals that is emited by another ClockDomain area, you should add the `crossClockDomain` tag to the destination signal.
+Spinal checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another `ClockDomain` area, you should add the `crossClockDomain` tag to the destination signal as depicted in the following example:
 
 ```scala
 val asynchronousSignal = UInt(8 bit)
@@ -49,15 +79,17 @@ val asynchronousSignal = UInt(8 bit)
 val buffer0 = Reg(UInt(8 bit)).addTag(crossClockDomain)
 val buffer1 = Reg(UInt(8 bit))
 buffer0 := asynchronousSignal
-buffer1 := buffer0   //Second register stage to be metastability safe
+buffer1 := buffer0   // Second register stage to be avoid metastability issues
+```
 
-//Or in less lines :
+```scala
+// Or in less lines:
 val buffer0 = RegNext(asynchronousSignal).addTag(crossClockDomain)
 val buffer1 = RegNext(buffer0) 
-```	
+```
 
-## Assignements
-There is multiple assignment operator :
+## Assignments
+There are multiple assignment operator :
 
 | Symbole| Description |
 | ------- | ---- |
@@ -187,11 +219,12 @@ class UartCtrl extends Component {
 }
 ```
 ##Function
-The ways how you can use scala function to generate hardware are radically different than VHDL/Verilog for some reason :
+The ways you can use Scala functions to generate hardware are radically different than VHDL/Verilog for many reasons:
 - You can instanciate register, combinatorial and component inside them.
-- You don't have to play with process/@alwas that limit the scope of assignement of signals
-- Everything work by reference, which allow many manipulation.
+- You don't have to play with `process`/`@always` that limit the scope of assignment of signals
+- Everything work by reference, which allow many manipulation. @TODO for instance what ?
 
+@TODO Give some examples
 
 
 ## Compile
