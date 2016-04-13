@@ -77,7 +77,9 @@ As you can see, the first lin e you have to write in Spinal is `import spinal.co
 @TODO change the example in the SpinalBaseProject file to reflect what we have here.)
 
 ### Generated code
-Once you have successfully compiled your code, the compiler should have emit the ""
+Once you have successfully compiled your code, the compiler should have emit the following VHDL code :
+
+@TODO Complete this
 
 ## What to do next ?
 It's up to you, but why not have a look at what the [types](types.md) are in Spinal or discover what [primitives]() the language provides to describe hardware components? You could also have a look at our [examples](examples.md) to see some samples of what you could do next.

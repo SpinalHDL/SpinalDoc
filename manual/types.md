@@ -17,7 +17,9 @@ The language provides 5 base types and 2 composite types that can be used.
 Those types and their usage (with examples) are explained hereafter.
 
 ### Bool
-This is the standard *boolean* type that correspond to a bit. @TODO is there a any way / sense to assign values such as U or X, does it correspond in reality to std_logic ?
+This is the standard *boolean* type that correspond to a bit.
+
+@TODO is there a any way / sense to assign values such as U or X, does it correspond in reality to std_logic ?
 
 #### Declaration
 
@@ -52,6 +54,7 @@ The following operators are available for the `Bool` type
 `BitVector` is a family of types for storing multiple bits of information in a single value. This type has three subtypes that can be used to model different behaviours: `Bits` do not convey any sign information whereas the `UInt` (unsigned integer) and `SInt` (signed integer) provide the required operations to compute correct results if signed / unsigned arithmetics is used.
 
 #### Declaration syntax
+
 @TODO mettre un lien sur syntaxe EBNF
 
 | Syntax (using EBNF syntax) | Description| Return|
