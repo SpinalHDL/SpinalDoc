@@ -14,6 +14,7 @@ Spinal is a high-level hardware language description language. It can be used as
 
 ### Advantages of using Spinal over VHDL / Verilog
 As Spinal is based on a high-level language, it provides several advantages to improve your hardware coding:
+
 1. *No more endless wiring* - Create and connect complex buses like AXI in one single line.
 1. *Evolving capabilities* - Create your own buses definition and abstraction layer.
 1. *Reduce code size* - by a high factor, especially for wiring. This enables you to have a better overview of your code base, increase your productivity and create fewer headaches.
