@@ -18,7 +18,7 @@ Before you download the Spinal tools, you need to install :
 - A Scala distribution, which can be downloaded [here](http://scala-lang.org/download/).
 - The SBT build tool, which can be downloaded [here](http://www.scala-sbt.org/download.html).
 
-Optionally, if you need an IDE (which is not compulsory) we advise you to get IntelliJ.
+Optionally, if you need an IDE (which is not compulsory) we advise you to get IntelliJ 14.1.3.
 
 ### How to start programming with Spinal
 Once you have downloaded all the requirements, there are two ways to get started with Spinal programming.
