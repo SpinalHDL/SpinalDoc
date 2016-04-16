@@ -1,4 +1,4 @@
-Idées de choses à faire
+Things that could be done
 ========================
 
 # Documentation
