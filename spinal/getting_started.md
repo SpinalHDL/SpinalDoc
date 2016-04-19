@@ -1,18 +1,15 @@
 ---
 layout: page
-title: Getting started
+title: Getting started with Spinal
 description: "This pages describes the main types usable in Spinal"
 tags: [getting started]
 sidebar: spinal_sidebar
 permalink: /spinal_getting_started/
 ---
 
-Getting started with Spinal
-===========================
-
 *Spinal* is an hardware description language written in [Scala](http://scala-lang.org/), a static-type functional language using the Java virtual machine (JVM). In order to start programming with *Spinal*, you must have a JVM as well as the Scala compiler. In the next section, we will explain how to download those tools if you don't have them already.
 
-## <a name="requirements"></a>Requirements / Things to download to get started
+# Requirements / Things to download to get started {#requirements}
 Before you download the Spinal tools, you need to install :
 
 - A Java JDK, which can be downloaded for instance [here](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
@@ -21,13 +18,13 @@ Before you download the Spinal tools, you need to install :
 
 Optionally, if you need an IDE (which is not compulsory) we advise you to get IntelliJ.
 
-### How to start programming with Spinal
+## How to start programming with Spinal
 Once you have downloaded all the requirements, there are two ways to get started with Spinal programming.
 
 1. [*The simple way*](#simple) : get a project already setup for you in an IDE and start programming right away.
 1. [*The most flexible way*](#flexible) : if you already are familiar with the SBT build system and/or if you don't need an IDE.
 
-### <a name="simple"></a>The simple way, with IntelliJ IDEA and its Scala plugin
+### The simple way, with IntelliJ IDEA and its Scala plugin {#simple}
 In addition to the aforementioned [requirements](#requirements), you also need to download the IntelliJ IDEA (the free *Community edition* is enough). When you have installed IntelliJ, also check that you have enabled its Scala plugin ([install information](https://www.jetbrains.com/help/idea/2016.1/enabling-and-disabling-plugins.html?origin=old_help) can be found here).
 
 And do the following :
@@ -37,17 +34,17 @@ And do the following :
 - In addition, you might need to specify some path like where you installed the JDK to *IntelliJ*.
 - In the project (Intellij project GUI), right click on `src/main/scala/MyCode/TopLevel.scala` and select "Run MyTopLevel"
 
-Normally, this must generate the output file `MyTopLevel.vhd` in the project directory which corresponds to the most [most simple Spinal example](#simple).
+Normally, this must generate the output file `MyTopLevel.vhd` in the project directory which corresponds to the most [most simple Spinal example](#example).
 
-### <a name="flexible"></a>The flexible way
+### The flexible way {#flexible}
 We have prepared a ready to go project for you on Github.
 
 - Either clone or [download](https://github.com/SpinalHDL/SpinalBaseProject/archive/master.zip) the ["getting started" repository](https://github.com/SpinalHDL/SpinalBaseProject.git).
 - Open a terminal in the root of it and run `sbt run`. When you execute it for the first time, the process could take some time as it will download all the dependencies required to run *Spinal*.
 
-Normally, this command must generate an output file `MyTopLevel.vhd` which corresponds to the top level *Spinal* code defined in `src\main\scala\MyCode.scala` which corresponds to the [most simple Spinal example](#simple).
+Normally, this command must generate an output file `MyTopLevel.vhd` which corresponds to the top level *Spinal* code defined in `src\main\scala\MyCode.scala` which corresponds to the [most simple Spinal example](#example).
 
-## <a name=simple></a>A very simple Spinal example
+## A very simple Spinal example {#example}
 The following code generates an `and` gate between two one bit inputs.
 
 ```scala
