@@ -1,11 +1,12 @@
 ---
+type: homepage
 title: "Spinal user guide"
 tags: [user guide]
 keywords: spinal, user guide
 last_updated: Apr 19, 2016 
 summary: "This page presents the *Spinal* language"
 sidebar: spinal_sidebar
-permalink: /spinal_landing_page/
+permalink: /
 ---
 
 Spinal user guide

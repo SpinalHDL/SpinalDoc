@@ -3,19 +3,19 @@
   
   
   <url>
-    <loc>http://localhost//samplepost/</loc>
+    <loc>http://pmudry.github.io/SpinalDoc/samplepost/</loc>
   </url>
   
   
   
   <url>
-    <loc>http://localhost//myupdate/</loc>
+    <loc>http://pmudry.github.io/SpinalDoc/myupdate/</loc>
   </url>
   
   
   
   <url>
-    <loc>http://localhost//test-post-from-last-year/</loc>
+    <loc>http://pmudry.github.io/SpinalDoc/test-post-from-last-year/</loc>
   </url>
   
   
@@ -26,383 +26,13 @@
   
   
   <url>
-    <loc>http://localhost//spinal_core_components/</loc>
+    <loc>http://pmudry.github.io/SpinalDoc/spinal_core_components/</loc>
   </url>
   
   
   
   <url>
-    <loc>http://localhost//spinal_basic_examples/</loc>
-  </url>
-  
-  
-  
-  
-  
-  <url>
-    <loc>http://localhost//spinal_getting_started/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_about/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_about_ruby_gems_etc/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_adding_tooltips/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_alerts/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_build_arguments/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_build_scripts/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_collections/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_commenting_on_files/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_conditional_logic/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_content_reuse/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_exluding_files/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_faq_layout/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_generating_pdfs/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_glossary/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_help_api/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_hyperlinks/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_icons/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_images/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_install_jekyll_on_mac/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_install_jekyll_on_windows/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_introduction/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_iterm_profiles/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_kb_layout/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_labels/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_navtabs/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_no_password_prompts_scp/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_pages/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_posts/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_publishing_github_pages/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_push_build_to_server/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_release_notes_50/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_search_configuration/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_series/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_seriesdemo1/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_seriesdemo2/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_seriesdemo3/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_seriesdemo4/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_sidebar_navigation/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_special_layouts/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_support/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_supported_features/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_syntax_highlighting/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_tables/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_tag_archives_overview/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_tags/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_themes/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_title_checker/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_troubleshooting/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_webstorm_text_editor/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//mydoc_yaml_tutorial/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//news/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//news_archive/</loc>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <url>
-    <loc>http://localhost//spinal_types/</loc>
+    <loc>http://pmudry.github.io/SpinalDoc/spinal_basic_examples/</loc>
   </url>
   
   
@@ -410,8 +40,372 @@
   
   
   <url>
-    <loc>http://localhost//spinal_landing_page/</loc>
+    <loc>http://pmudry.github.io/SpinalDoc/spinal_getting_started/</loc>
   </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_about/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_about_ruby_gems_etc/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_adding_tooltips/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_alerts/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_build_arguments/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_build_scripts/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_collections/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_commenting_on_files/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_conditional_logic/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_content_reuse/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_exluding_files/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_faq_layout/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_generating_pdfs/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_glossary/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_help_api/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_hyperlinks/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_icons/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_images/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_install_jekyll_on_mac/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_install_jekyll_on_windows/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_introduction/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_iterm_profiles/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_kb_layout/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_labels/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_navtabs/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_no_password_prompts_scp/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_pages/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_posts/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_publishing_github_pages/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_push_build_to_server/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_release_notes_50/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_search_configuration/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_series/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_seriesdemo1/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_seriesdemo2/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_seriesdemo3/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_seriesdemo4/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_sidebar_navigation/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_special_layouts/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_support/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_supported_features/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_syntax_highlighting/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_tables/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_tag_archives_overview/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_tags/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_themes/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_title_checker/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_troubleshooting/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_webstorm_text_editor/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/mydoc_yaml_tutorial/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/news/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/news_archive/</loc>
+  </url>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <url>
+    <loc>http://pmudry.github.io/SpinalDoc/spinal_types/</loc>
+  </url>
+  
+  
   
   
 </urlset>

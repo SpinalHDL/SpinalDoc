@@ -24,12 +24,12 @@ topnav_dropdowns:
 #          external_url: http://idratherbewriting.com/category-jekyll/
     - title: Products
       folderitems:
+        - title: Spinal 
+          url: /
         - title: Jekyll Documentation Theme
           url: /mydoc_introduction/
 #        - title: Product 1
 #          url: /p1_landing_page/
-        - title: Spinal 
-          url: /spinal_landing_page/
 
 
 
