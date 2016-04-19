@@ -3,6 +3,36 @@
 
 
 
+{
+"title": "Spinal main components",
+"tags": "components",
+"keywords": "",
+"url": "/spinal/core_components/",
+"summary": ""
+},
+
+
+
+{
+"title": "Examples",
+"tags": "getting startedexamples",
+"keywords": "",
+"url": "/spinal/examples/",
+"summary": ""
+},
+
+
+
+
+
+{
+"title": "Getting started",
+"tags": "getting started",
+"keywords": "",
+"url": "/spinal/getting_started/",
+"summary": ""
+},
+
 
 
 {
@@ -536,16 +566,6 @@
 
 
 {
-"title": "Product 1",
-"tags": "",
-"keywords": "mydoc",
-"url": "/p1_landing_page/",
-"summary": ""
-},
-
-
-
-{
 "title": "Sample 1 Topic (Product 1)",
 "tags": "",
 "keywords": "sample",
@@ -615,123 +635,73 @@
 
 
 
+
+
+
+
+
+
 {
-"title": "Product 2",
+"title": "Spinal",
 "tags": "",
 "keywords": "mydoc",
-"url": "/p2_landing_page/",
+"url": "/spinal_landing_page/",
 "summary": ""
 },
 
 
 
-{
-"title": "Sample 1 Topic",
-"tags": "",
-"keywords": "sample",
-"url": "/p2_sample1/",
-"summary": "This is just a sample topic..."
-},
 
 
 
-{
-"title": "Sample 2 Topic",
-"tags": "",
-"keywords": "sample",
-"url": "/p2_sample2/",
-"summary": "This is just a sample topic..."
-},
 
 
 
-{
-"title": "Sample 3 Topic",
-"tags": "",
-"keywords": "sample",
-"url": "/p2_sample3/",
-"summary": "This is just a sample topic..."
-},
 
 
 
-{
-"title": "Sample 4 Topic",
-"tags": "",
-"keywords": "sample",
-"url": "/p2_sample4/",
-"summary": "This is just a sample topic..."
-},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 {
-"title": "Sample 5 Topic",
-"tags": "",
-"keywords": "sample",
-"url": "/p2_sample5/",
-"summary": "This is just a sample topic..."
-},
-
-
-
-{
-"title": "Sample 6 Topic",
-"tags": "",
-"keywords": "sample",
-"url": "/p2_sample6/",
-"summary": "This is just a sample topic..."
-},
-
-
-
-{
-"title": "Sample 7 Topic",
-"tags": "",
-"keywords": "sample",
-"url": "/p2_sample7/",
-"summary": "This is just a sample topic..."
+"title": "Types in Spinal",
+"tags": "types",
+"keywords": "",
+"url": "/spinal/types/",
+"summary": ""
 },
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{
+"title": "Spinal user guide",
+"tags": "user guide",
+"keywords": "spinal, user guide",
+"url": "/yoururl/",
+"summary": "optional summary here"
+},
 
 
 

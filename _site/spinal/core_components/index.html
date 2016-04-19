@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content="components,  ">
+<title>Spinal main components  | SpinalHDL documentation</title>
+<link rel="stylesheet" href="/css/syntax.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="/css/modern-business.css">
+<link rel="stylesheet" href="/css/lavish-bootstrap.css">
+<link rel="stylesheet" href="/css/customstyles.css">
+<link rel="stylesheet" href="/css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="/js/jquery.navgoco.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="/images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost//feed.xml">
+
+
+
+
+ 
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="/">&nbsp;<span class="projectTitle"> SpinalHDL documentation</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- entries without drop-downs appear here -->
+                
+                
+                
+                <li><a href="/news/">News</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="/mydoc_introduction/">Jekyll Documentation Theme</a></li>
+                        
+                        
+                        
+                        <li><a href="/spinal_landing_page/">Spinal</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+			<!-- Send feedback function -->
+<script>
+function SendLinkByMail(href) {
+var subject= "SpinalHDL documentation feedback";
+var body = "I have some feedback about the Spinal main components page: ";
+body += window.location.href;
+body += "";
+var uri = "mailto:tomjohnson1492@gmail.com?subject=";
+uri += encodeURIComponent(subject);
+uri += "&body=";
+uri += encodeURIComponent(body);
+window.location.href = uri;
+}
+</script>
+
+<li><a href="javascript:(function()%7BSendLinkByMail()%3B%7D)()%3B" target="_blank"><i class="fa fa-envelope-o"></i> Feedback</a></li>
+
+		
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="/js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: '/search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="Spinal main components">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+<!-- Page Content -->
+<div class="container">
+    <div class="col-lg-12">&nbsp;</div>
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Sidebar Column -->
+        <div class="col-md-3">
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<ul id="mysidebar" class="nav">
+    <li class="sidebarTitle"> </li>
+    
+    
+    
+    <li>
+        <a href="#">Products</a>
+        <ul>
+            
+            
+            
+            <li><a href="/">Home</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/news/">News</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/mydoc_introduction/">Theme instructions</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/p1_landing_page/">Product 1</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="/p2_landing_page/">Product 2</a></li>
+            
+            
+            
+            
+        </ul>
+        
+        
+        
+        <!-- if you aren't using the accordion, uncomment this block:
+           <p class="external">
+               <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+           </p>
+           -->
+    </li>
+</ul>
+</div>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+    <!-- Content Column -->
+    <div class="col-md-9">
+        <div class="post-header">
+   <h1 class="post-title-main">Spinal main components</h1>
+</div>
+
+<div class="post-content">
+
+   
+
+    
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+    
+
+    
+
+    
+
+    <a target="_blank" href="https://github.com/tomjohnson1492/documentation-theme-jekyll/edit/reviews/spinal/core_components/" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+    
+
+    
+
+  <h1 id="the-spinalcore-components">The <code class="highlighter-rouge">spinal.core</code> components</h1>
+<p>The core components of the language are described in this document. It is part of the general <a href="userGuide.md">Spinal user guide</a>.</p>
+
+<p>The core language components are as follows:</p>
+
+<ul>
+  <li><a href="#clock_domains"><em>Clock domains</em></a>, which allow to define and interoperate multiple clock domains within a design</li>
+  <li><em>Memory instantiation</em>, which permit the automatic instantiation of RAM and ROM memories.</li>
+  <li><em>IP instantiation</em>, using either existing VHDL or Verilog component.</li>
+  <li>Assignments</li>
+  <li>Component hierarchy</li>
+  <li>Area</li>
+  <li>Functions</li>
+  <li>Compile, @TODO what is this ?</li>
+  <li>Utility functions</li>
+</ul>
+
+<h2 id="a-href-nameclockdomainsaclock-domains-definitions"><a href="" name="clock_domains"></a>Clock domains definitions</h2>
+<p>In <em>Spinal</em>, clock and reset signals can be combined to create a <strong>clock domain</strong>. Clock domains could be applied to some area of the design and then the synchronous elements instantiated into this area will then <strong>implicitly</strong> use this clock domain.</p>
+
+<p>It is also permitted to create <strong>nested</strong> clock domains that have inner clock domain areas. @TODO Is the previous sentence really correct ?</p>
+
+<h3 id="clock-domain-syntax">Clock domain syntax</h3>
+<p>The syntax to define a clock domain is as follows (using EBNF syntax):</p>
+
+<p><a name="clock_constructor"></a>
+<code class="highlighter-rouge">ClockDomain(clock : Bool[,reset : Bool[,enable : Bool]]])</code></p>
+
+<p>This definition takes three parameters:
+1. The clock signal that defines the domain
+1. An optional <code class="highlighter-rouge">reset</code>signal @TODO what will happen to register when no reset is given ?
+1. An optional <code class="highlighter-rouge">enable</code> signal @TODO the purpose of this signal is to latch the clock ?</p>
+
+<p>An applied example to define a specific clock domain within the design is as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">val</span> <span class="n">coreClock</span> <span class="k">=</span> <span class="nc">Bool</span>
+<span class="k">val</span> <span class="n">coreReset</span> <span class="k">=</span> <span class="nc">Bool</span>
+
+<span class="c1">// Define a new clock domain
+</span><span class="k">val</span> <span class="n">coreClockDomain</span> <span class="k">=</span> <span class="nc">ClockDomain</span><span class="o">(</span><span class="n">coreClock</span><span class="o">,</span><span class="n">coreReset</span><span class="o">)</span>
+
+<span class="o">...</span>
+
+<span class="c1">// Use this domain in an area of the design
+</span><span class="k">val</span> <span class="n">coreArea</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">ClockingArea</span><span class="o">(</span><span class="n">coreClockDomain</span><span class="o">){</span>
+  <span class="k">val</span> <span class="n">coreClockedRegister</span> <span class="k">=</span> <span class="nc">Reg</span><span class="o">(</span><span class="nc">UInt</span><span class="o">(</span><span class="mi">4</span> <span class="n">bit</span><span class="o">))</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+<p>###Clock configuration
+In addition to the constructor parameters given <a href="#clock_constructor">here</a>, the following elements of each clock domain are configurable via a <code class="highlighter-rouge">ClockDomainConfig</code>class :</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Valid values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">clockEdge</code></td>
+      <td><code class="highlighter-rouge">RISING</code>, <code class="highlighter-rouge">FALLING</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ResetKind</code></td>
+      <td><code class="highlighter-rouge">ASYNC</code>, <code class="highlighter-rouge">SYNC</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">resetActiveHigh</code></td>
+      <td><code class="highlighter-rouge">true</code>, <code class="highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">clockEnableActiveHigh</code></td>
+      <td><code class="highlighter-rouge">true</code>, <code class="highlighter-rouge">false</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>@TODO @dolu you should give an example how to create a specific config for an area</p>
+
+<p>By default, a ClockDomain is applied to the whole design. The configuration of this one is :
+- clock : rising edge
+- reset: asynchronous, active high
+- no enable signal</p>
+
+<p>###Cross Clock Domain
+Spinal checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another <code class="highlighter-rouge">ClockDomain</code> area, you should add the <code class="highlighter-rouge">crossClockDomain</code> tag to the destination signal as depicted in the following example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">val</span> <span class="n">asynchronousSignal</span> <span class="k">=</span> <span class="nc">UInt</span><span class="o">(</span><span class="mi">8</span> <span class="n">bit</span><span class="o">)</span>
+<span class="o">...</span>
+<span class="k">val</span> <span class="n">buffer0</span> <span class="k">=</span> <span class="nc">Reg</span><span class="o">(</span><span class="nc">UInt</span><span class="o">(</span><span class="mi">8</span> <span class="n">bit</span><span class="o">)).</span><span class="n">addTag</span><span class="o">(</span><span class="n">crossClockDomain</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">buffer1</span> <span class="k">=</span> <span class="nc">Reg</span><span class="o">(</span><span class="nc">UInt</span><span class="o">(</span><span class="mi">8</span> <span class="n">bit</span><span class="o">))</span>
+<span class="n">buffer0</span> <span class="o">:=</span> <span class="n">asynchronousSignal</span>
+<span class="n">buffer1</span> <span class="o">:=</span> <span class="n">buffer0</span>   <span class="c1">// Second register stage to be avoid metastability issues
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// Or in less lines:
+</span><span class="k">val</span> <span class="n">buffer0</span> <span class="k">=</span> <span class="nc">RegNext</span><span class="o">(</span><span class="n">asynchronousSignal</span><span class="o">).</span><span class="n">addTag</span><span class="o">(</span><span class="n">crossClockDomain</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">buffer1</span> <span class="k">=</span> <span class="nc">RegNext</span><span class="o">(</span><span class="n">buffer0</span><span class="o">)</span> 
+</code></pre>
+</div>
+
+<h2 id="assignments">Assignments</h2>
+<p>There are multiple assignment operator :</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Symbole</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>:=</td>
+      <td>Standard assignment, equivalent to ‘&lt;=’ in VHDL/Verilog <br /> last assignment win, value updated at next delta cycle</td>
+    </tr>
+    <tr>
+      <td>/=</td>
+      <td>Equivalent to := in VHDL and = in Verilog <br /> value updated instantly</td>
+    </tr>
+    <tr>
+      <td>&lt;&gt;</td>
+      <td>Automatic connection between 2 signals. Direction is inferred by using signal direction (in/out) <br /> Similar behavioural than :=</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//Because of hardware concurrency is always read with the value '1' by b and c
+</span><span class="k">val</span> <span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">,</span><span class="n">c</span> <span class="k">=</span> <span class="nc">UInt</span><span class="o">(</span><span class="mi">4</span> <span class="n">bit</span><span class="o">)</span>
+<span class="n">a</span> <span class="o">:=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">:=</span> <span class="n">a</span>
+<span class="n">a</span> <span class="o">:=</span> <span class="mi">1</span>  <span class="c1">//a := 1 win
+</span><span class="n">c</span> <span class="o">:=</span> <span class="n">a</span>  
+
+<span class="k">var</span> <span class="n">x</span> <span class="k">=</span> <span class="nc">UInt</span><span class="o">(</span><span class="mi">4</span> <span class="n">bit</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">y</span><span class="o">,</span><span class="n">z</span> <span class="k">=</span> <span class="nc">UInt</span><span class="o">(</span><span class="mi">4</span> <span class="n">bit</span><span class="o">)</span>
+<span class="n">x</span> <span class="o">:=</span> <span class="mi">0</span>
+<span class="n">y</span> <span class="o">:=</span> <span class="n">x</span>      <span class="c1">//y read x with the value 0
+</span><span class="n">x</span> <span class="o">\=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">z</span> <span class="o">:=</span> <span class="n">x</span>      <span class="c1">//z read x with the value 1
+</span></code></pre>
+</div>
+<p>Spinal check that bitcount of left and right assignment side match. There is multiple ways to adapt bitcount of BitVector (Bits, UInt, SInt) :</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Resizing ways</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>x := y.resized</td>
+      <td>Assign x wit a resized copy of y, resize value is automatically inferred to match x</td>
+    </tr>
+    <tr>
+      <td>x := y.resize(newWidth)</td>
+      <td>Assign x with a resized copy of y, size is manually calculated</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>There are 2 cases where spinal automaticly resize things :
+| Assignement | Problem | Spinal action|
+| ——- | —- |
+| myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don’t match with left side  | Because  U(3) is a “weak” bit inferred signal, Spinal resize it automatically |
+| myUIntOf_8bit := U(2 -&gt; False default -&gt; true) | The right part infer a 3 bit UInt, which doesn’t match with the left part | Spinal reapply the default value to bit that are missing |</p>
+
+<h2 id="conditional-assignment">Conditional assignment</h2>
+<p>As VHDL and Verilog, wire and register can be conditionally assigned by using when and switch syntaxes
+```scala
+when(cond1){
+  //execute when      cond1 is true
+}.elsewhen(cond2){
+  //execute when (not cond1) and cond2
+}.otherwise{
+  //execute when (not cond1) and (not cond2)
+}</p>
+
+<p>switch(x){
+  is(value1){
+    //execute when x === value1
+  }
+  is(value2){
+    //execute when x === value2
+  }
+  default{
+    //execute if none of precedent condition meet
+  }
+}
+```</p>
+
+<h2 id="componenthierarchy">Component/Hierarchy</h2>
+<p>Like in VHDL and Verilog, you can define components that could be used to build a design hierarchy.  But unlike them, you don’t need to bind them at instantiation.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AdderCell</span> <span class="k">extends</span> <span class="nc">Component</span> <span class="o">{</span>
+  <span class="c1">//Declaring all in/out in an io Bundle is probably a good practice
+</span>  <span class="k">val</span> <span class="n">io</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Bundle</span> <span class="o">{</span> 
+    <span class="k">val</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">cin</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">Bool</span>
+    <span class="k">val</span> <span class="n">sum</span><span class="o">,</span> <span class="n">cout</span> <span class="k">=</span> <span class="n">out</span> <span class="nc">Bool</span>
+  <span class="o">}</span>
+  <span class="c1">//Do some logic
+</span>  <span class="n">io</span><span class="o">.</span><span class="n">sum</span> <span class="o">:=</span> <span class="n">io</span><span class="o">.</span><span class="n">a</span> <span class="o">^</span> <span class="n">io</span><span class="o">.</span><span class="n">b</span> <span class="o">^</span> <span class="n">io</span><span class="o">.</span><span class="n">cin</span>
+  <span class="n">io</span><span class="o">.</span><span class="n">cout</span> <span class="o">:=</span> <span class="o">(</span><span class="n">io</span><span class="o">.</span><span class="n">a</span> <span class="o">&amp;</span> <span class="n">io</span><span class="o">.</span><span class="n">b</span><span class="o">)</span> <span class="o">|</span> <span class="o">(</span><span class="n">io</span><span class="o">.</span><span class="n">a</span> <span class="o">&amp;</span> <span class="n">io</span><span class="o">.</span><span class="n">cin</span><span class="o">)</span> <span class="o">|</span> <span class="o">(</span><span class="n">io</span><span class="o">.</span><span class="n">b</span> <span class="o">&amp;</span> <span class="n">io</span><span class="o">.</span><span class="n">cin</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="k">class</span> <span class="nc">Adder</span><span class="o">(</span><span class="n">width</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Component</span> <span class="o">{</span>
+  <span class="o">...</span>
+  <span class="c1">//Create 2 AdderCell
+</span>  <span class="k">val</span> <span class="n">cell0</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">AdderCell</span>
+  <span class="k">val</span> <span class="n">cell1</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">AdderCell</span>
+  <span class="n">cell1</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">cin</span> <span class="o">:=</span> <span class="n">cell0</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">cout</span> <span class="c1">//Connect carrys
+</span>  <span class="o">...</span>
+  <span class="k">val</span> <span class="n">cellArray</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">.</span><span class="n">fill</span><span class="o">(</span><span class="n">width</span><span class="o">)(</span><span class="k">new</span> <span class="nc">AdderCell</span><span class="o">)</span> 
+  <span class="o">...</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Syntax to define in/out is the following :</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Syntax</th>
+      <th>Description</th>
+      <th>Return</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>in/out(x : Data)</td>
+      <td>Set x an input/output</td>
+      <td>x</td>
+    </tr>
+    <tr>
+      <td>in/out Bool</td>
+      <td>Create an input/output Bool</td>
+      <td>Bool</td>
+    </tr>
+    <tr>
+      <td>in/out Bits/UInt/SInt[(x bit)]</td>
+      <td>Create an input/output of the corresponding type</td>
+      <td>T</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>There is some rules about component interconnection :
+- Components can only read outputs/inputs signals of children components
+- Components can read outputs/inputs ports values
+- If for some reason, you need to read a signals from far away in the hierarchy (debug, temporal patch) you can do it by using the value returned by some.where.else.theSignal.pull().</p>
+
+<p>##Area
+Sometime, creating a component to define some logic is overkill and to much verbose. For this kind of cases you can use Area :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UartCtrl</span> <span class="k">extends</span> <span class="nc">Component</span> <span class="o">{</span>
+  <span class="o">...</span>
+  <span class="k">val</span> <span class="n">timer</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Area</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">counter</span> <span class="k">=</span> <span class="nc">Reg</span><span class="o">(</span><span class="nc">UInt</span><span class="o">(</span><span class="mi">8</span> <span class="n">bit</span><span class="o">))</span>
+    <span class="k">val</span> <span class="n">tick</span> <span class="k">=</span> <span class="n">counter</span> <span class="o">===</span> <span class="mi">0</span>
+    <span class="n">counter</span> <span class="o">:=</span> <span class="n">counter</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">when</span><span class="o">(</span><span class="n">tick</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">counter</span> <span class="o">:=</span> <span class="mi">100</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">val</span> <span class="n">tickCounter</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Area</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">value</span> <span class="k">=</span> <span class="nc">Reg</span><span class="o">(</span><span class="nc">UInt</span><span class="o">(</span><span class="mi">3</span> <span class="n">bit</span><span class="o">))</span>
+    <span class="k">val</span> <span class="n">reset</span> <span class="k">=</span> <span class="nc">False</span>
+	<span class="n">when</span><span class="o">(</span><span class="n">timer</span><span class="o">.</span><span class="n">tick</span><span class="o">)</span> <span class="o">{</span>          <span class="c1">// Refer to the tick from timer area
+</span>      <span class="n">value</span> <span class="o">:=</span> <span class="n">value</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="o">}</span>
+    <span class="n">when</span><span class="o">(</span><span class="n">reset</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">value</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">val</span> <span class="n">stateMachine</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Area</span> <span class="o">{</span>
+    <span class="o">...</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+<p>##Function
+The ways you can use Scala functions to generate hardware are radically different than VHDL/Verilog for many reasons:
+- You can instanciate register, combinatorial and component inside them.
+- You don’t have to play with <code class="highlighter-rouge">process</code>/<code class="highlighter-rouge">@always</code> that limit the scope of assignment of signals
+- Everything work by reference, which allow many manipulation. @TODO for instance what ?</p>
+
+<p>@TODO Give some examples</p>
+
+<h2 id="compile">Compile</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// spinal.core contain all basics (Bool, UInt, Bundle, Reg, Component, ..)
+</span><span class="k">import</span> <span class="nn">spinal.core._</span>
+
+<span class="c1">//A simple component definition
+</span><span class="k">class</span> <span class="nc">MyTopLevel</span> <span class="k">extends</span> <span class="nc">Component</span> <span class="o">{</span>
+  <span class="c1">//Define some input/output. Bundle like a VHDL record or a verilog struct.
+</span>  <span class="k">val</span> <span class="n">io</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Bundle</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">a</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">Bool</span>
+    <span class="k">val</span> <span class="n">b</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">Bool</span>
+    <span class="k">val</span> <span class="n">c</span> <span class="k">=</span> <span class="n">out</span> <span class="nc">Bool</span>
+  <span class="o">}</span>
+
+  <span class="c1">//Define some asynchronous logic
+</span>  <span class="n">io</span><span class="o">.</span><span class="n">c</span> <span class="o">:=</span> <span class="n">io</span><span class="o">.</span><span class="n">a</span> <span class="o">&amp;</span> <span class="n">io</span><span class="o">.</span><span class="n">b</span>
+<span class="o">}</span>
+
+<span class="c1">//This is the main of the project. It create a instance of MyTopLevel and
+//call the SpinalHDL library to flush it into a VHDL file.
+</span><span class="k">object</span> <span class="nc">MyMain</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="o">{</span>
+    <span class="nc">SpinalVhdl</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyTopLevel</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>##Memory</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Syntax</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mem(type : Data,size : Int)</td>
+      <td>Create a RAM</td>
+    </tr>
+    <tr>
+      <td>Mem(type : Data,initialContent : Array[Data])</td>
+      <td>Create a ROM</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Syntax</th>
+      <th>Description</th>
+      <th>Return</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mem(x)</td>
+      <td>Asynchronous read</td>
+      <td>T</td>
+    </tr>
+    <tr>
+      <td>mem(x) := y</td>
+      <td>Synchronous write</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>mem.readSync(address,enable)</td>
+      <td>Synchronous read</td>
+      <td>T</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>##Instanciate VHDL and Verilog IP
+ In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a Spinal design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Ram_1w_1r</span><span class="o">(</span><span class="nc">_wordWidth</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="nc">_wordCount</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">BlackBox</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">generic</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Generic</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">wordCount</span> <span class="k">=</span> <span class="nc">_wordCount</span>
+    <span class="k">val</span> <span class="n">wordWidth</span> <span class="k">=</span> <span class="nc">_wordWidth</span>
+  <span class="o">}</span>
+
+  <span class="k">val</span> <span class="n">io</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Bundle</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">clk</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">Bool</span>
+
+    <span class="k">val</span> <span class="n">wr</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Bundle</span> <span class="o">{</span>
+      <span class="k">val</span> <span class="n">en</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">Bool</span>
+      <span class="k">val</span> <span class="n">addr</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">UInt</span> <span class="o">(</span><span class="n">log2Up</span><span class="o">(</span><span class="nc">_wordCount</span><span class="o">)</span> <span class="n">bit</span><span class="o">)</span>
+      <span class="k">val</span> <span class="n">data</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">Bits</span> <span class="o">(</span><span class="nc">_wordWidth</span> <span class="n">bit</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="k">val</span> <span class="n">rd</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Bundle</span> <span class="o">{</span>
+      <span class="k">val</span> <span class="n">en</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">Bool</span>
+      <span class="k">val</span> <span class="n">addr</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">UInt</span> <span class="o">(</span><span class="n">log2Up</span><span class="o">(</span><span class="nc">_wordCount</span><span class="o">)</span> <span class="n">bit</span><span class="o">)</span>
+      <span class="k">val</span> <span class="n">data</span> <span class="k">=</span> <span class="n">out</span> <span class="nc">Bits</span> <span class="o">(</span><span class="nc">_wordWidth</span> <span class="n">bit</span><span class="o">)</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="n">mapClockDomain</span><span class="o">(</span><span class="n">clock</span><span class="k">=</span><span class="n">io</span><span class="o">.</span><span class="n">clk</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+<p>##Utils
+The Spinal core contain some utils :</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Syntax</th>
+      <th>Description</th>
+      <th>Return</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>log2Up(x : BigInt)</td>
+      <td>Return the number of bit needed to represent x states</td>
+      <td>Int</td>
+    </tr>
+    <tr>
+      <td>isPow2(x : BigInt)</td>
+      <td>Return true if x is a power of two</td>
+      <td>Boolean</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Much more tool and utils are present in spinal.lib</p>
+
+<p>#spinal.lib</p>
+
+<p>##Stream interface
+The Stream interface is a simple handshake protocol to carry payload. They could be used for example to push and pop elements into a FIFO, send requests to a UART controller, etc.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Signal</th>
+      <th>Driver</th>
+      <th>Description</th>
+      <th>Don’t care when</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>valid</td>
+      <td>Master</td>
+      <td>When high =&gt; payload present on the interface</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>payload</td>
+      <td>Master</td>
+      <td>Content of the transaction</td>
+      <td>valid is low</td>
+    </tr>
+    <tr>
+      <td>ready</td>
+      <td>Slave</td>
+      <td>When low =&gt; transaction are not consumed by the slave</td>
+      <td>valid is low</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Syntax</th>
+      <th>Description</th>
+      <th>Return</th>
+      <th>Latency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Stream(type : Data)</td>
+      <td>Create a Stream of a given type</td>
+      <td>Stream[T]</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>master/slave Stream(type : Data)</td>
+      <td>Create a Stream of a given type <br /> Initialized with corresponding in/out setup</td>
+      <td>Stream[T]</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>x.queue(size:Int)</td>
+      <td>Return a Stream connected to x through a FIFO</td>
+      <td>Stream[T]</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>x.m2sPipe()</td>
+      <td>Return a Stream drived by x <br />through a register stage that cut valid/data paths</td>
+      <td>Stream[T]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>x.s2mPipe()</td>
+      <td>Return a Stream drived by x <br /> ready paths is cut by a register stage</td>
+      <td>Stream[T]</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>x « y <br /> y » x</td>
+      <td>Connect y to x</td>
+      <td> </td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>x &lt;-&lt; y <br /> y &gt;-&gt; x</td>
+      <td>Connect y to x through a m2sPipe</td>
+      <td> </td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>x &lt;/&lt; y <br /> y &gt;/&gt; x</td>
+      <td>Connect y to x through a s2mPipe</td>
+      <td> </td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>x &lt;-/&lt; y <br /> y &gt;/-&gt; x</td>
+      <td>Connect y to x through s2mPipe().m2sPipe() <br /> =&gt; no combinatorial path between x and y</td>
+      <td> </td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>x.haltWhen(cond : Bool)</td>
+      <td>Return a Stream connected to x <br /> Halted when cond is true</td>
+      <td>Stream[T]</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>x.throwWhen(cond : Bool)</td>
+      <td>Return a Stream connected to x <br /> When cond is true, transaction are dropped</td>
+      <td>Stream[T]</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Examples :
+```scala
+class StreamFifo<a href="dataType: T, depth: Int">T &lt;: Data</a> extends Component {
+  val io = new Bundle {
+    val push = slave Stream (dataType)
+    val pop = master Stream (dataType)
+  }
+  …
+}</p>
+
+<p>class StreamArbiter<a href="dataType: T,portCount: Int">T &lt;: Data</a> extends Component {
+  val io = new Bundle {
+    val inputs = Vec(slave Stream (dataType),portCount)
+    val output = master Stream (dataType)
+  }
+  …
+}
+```</p>
+
+<p>The following code will create this logic :
+<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/master/asset/picture/stream_throw_m2spipe.svg" align="middle" width="300" /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">case</span> <span class="k">class</span> <span class="nc">RGB</span><span class="o">(</span><span class="n">channelWidth</span> <span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Bundle</span><span class="o">{</span>
+  <span class="k">val</span> <span class="n">red</span>   <span class="k">=</span> <span class="nc">UInt</span><span class="o">(</span><span class="n">channelWidth</span> <span class="n">bit</span><span class="o">)</span>
+  <span class="k">val</span> <span class="n">green</span> <span class="k">=</span> <span class="nc">UInt</span><span class="o">(</span><span class="n">channelWidth</span> <span class="n">bit</span><span class="o">)</span>
+  <span class="k">val</span> <span class="n">blue</span>  <span class="k">=</span> <span class="nc">UInt</span><span class="o">(</span><span class="n">channelWidth</span> <span class="n">bit</span><span class="o">)</span>
+
+  <span class="k">def</span> <span class="n">isBlack</span> <span class="k">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="n">red</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">green</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">blue</span> <span class="o">===</span> <span class="mi">0</span>
+<span class="o">}</span>
+
+<span class="k">val</span> <span class="n">source</span> <span class="k">=</span> <span class="nc">Stream</span><span class="o">(</span><span class="nc">RGB</span><span class="o">(</span><span class="mi">8</span><span class="o">))</span>
+<span class="k">val</span> <span class="n">sink</span>   <span class="k">=</span> <span class="nc">Stream</span><span class="o">(</span><span class="nc">RGB</span><span class="o">(</span><span class="mi">8</span><span class="o">))</span>
+<span class="n">sink</span> <span class="o">&lt;-&lt;</span> <span class="n">source</span><span class="o">.</span><span class="n">throwWhen</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">isBlack</span><span class="o">)</span>
+</code></pre>
+</div>
+
+<p>##Flow interface</p>
+
+
+<div class="tags">
+    
+    <b>Tags: </b>
+    
+    
+    
+    
+    
+</div>
+
+    
+
+</div>
+
+<hr class="shaded"/>
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2016 SpinalHDL. All rights reserved. <br />
+ Site last generated: Apr 19, 2016 <br />
+<p><img src="/images/company_logo.png" alt="Company logo"/></p>
+                </div>
+            </div>
+</footer>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+    </div>
+</body>
+
+</html>

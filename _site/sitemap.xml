@@ -25,6 +25,24 @@
   
   
   
+  <url>
+    <loc>http://localhost//spinal/core_components/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost//spinal/examples/</loc>
+  </url>
+  
+  
+  
+  
+  
+  <url>
+    <loc>http://localhost//spinal/getting_started/</loc>
+  </url>
+  
   
   
   <url>
@@ -346,12 +364,6 @@
   
   
   <url>
-    <loc>http://localhost//p1_landing_page/</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://localhost//p1_sample1/</loc>
   </url>
   
@@ -393,50 +405,14 @@
   
   
   
-  <url>
-    <loc>http://localhost//p2_landing_page/</loc>
-  </url>
+  
+  
+  
   
   
   
   <url>
-    <loc>http://localhost//p2_sample1/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p2_sample2/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p2_sample3/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p2_sample4/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p2_sample5/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p2_sample6/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p2_sample7/</loc>
+    <loc>http://localhost//spinal_landing_page/</loc>
   </url>
   
   
@@ -473,11 +449,17 @@
   
   
   
+  <url>
+    <loc>http://localhost//spinal/types/</loc>
+  </url>
   
   
   
   
   
+  <url>
+    <loc>http://localhost//yoururl/</loc>
+  </url>
   
   
 </urlset>

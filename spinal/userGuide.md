@@ -1,3 +1,13 @@
+---
+title: "Spinal user guide"
+tags: [user guide]
+keywords: spinal, user guide
+last_updated: Month day, year
+summary: "optional summary here"
+sidebar: spinal_sidebar
+permalink: /yoururl/
+---
+
 Spinal user guide
 =================
 

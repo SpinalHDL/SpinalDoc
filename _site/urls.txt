@@ -386,68 +386,6 @@ tag_troubleshooting:
 
 
 
- 
-
- 
-
-
-
- 
-p1_landing_page:
-  title: "Product 1 home"
-  url: /p1_landing_page/
-  link: <a href="/p1_landing_page/">Product 1 home</a>
-
-
- 
-p1_sample1:
-  title: "Sample 1"
-  url: /p1_sample1/
-  link: <a href="/p1_sample1/">Sample 1</a>
-
-
- 
-p1_sample2:
-  title: "Sample 2"
-  url: /p1_sample2/
-  link: <a href="/p1_sample2/">Sample 2</a>
-
-
- 
-p1_sample3:
-  title: "Sample 3"
-  url: /p1_sample3/
-  link: <a href="/p1_sample3/">Sample 3</a>
-
-
-
-
- 
-p1_sample4:
-  title: "Sample 4"
-  url: /p1_sample4/
-  link: <a href="/p1_sample4/">Sample 4</a>
-
-
- 
-p1_sample5:
-  title: "Sample 5"
-  url: /p1_sample5/
-  link: <a href="/p1_sample5/">Sample 5</a>
-
-
- 
-p1_sample6:
-  title: "Sample 6"
-  url: /p1_sample6/
-  link: <a href="/p1_sample6/">Sample 6</a>
-
-
- 
-p1_sample7:
-  title: "Sample 7"
-  url: /p1_sample7/
-  link: <a href="/p1_sample7/">Sample 7</a>
 
 
 
@@ -458,70 +396,30 @@ p1_sample7:
 
 
 
- 
 
- 
-
-
-
- 
-p2_landing_page:
-  title: "Product 2 home"
-  url: /p2_landing_page/
-  link: <a href="/p2_landing_page/">Product 2 home</a>
-
-
- 
-p2_sample1:
-  title: "Sample 1"
-  url: /p2_sample1/
-  link: <a href="/p2_sample1/">Sample 1</a>
-
-
- 
-p2_sample2:
-  title: "Sample 2"
-  url: /p2_sample2/
-  link: <a href="/p2_sample2/">Sample 2</a>
+news:
+  title: "News"
+  url: "news"
+  link: "<a href='/news/'>News</a>"
 
 
 
 
- 
-p2_sample3:
-  title: "Sample 3"
-  url: /p2_sample3/
-  link: <a href="/p2_sample3/">Sample 3</a>
-
-
- 
-p2_sample4:
-  title: "Sample 4"
-  url: /p2_sample4/
-  link: <a href="/p2_sample4/">Sample 4</a>
 
 
 
 
- 
-p2_sample5:
-  title: "Sample 5"
-  url: /p2_sample5/
-  link: <a href="/p2_sample5/">Sample 5</a>
+mydoc_introduction:
+  title: "Jekyll Documentation Theme"
+  url: "mydoc_introduction"
+  link: "<a href='/mydoc_introduction/'>Jekyll Documentation Theme</a>"
 
 
- 
-p2_sample6:
-  title: "Sample 6"
-  url: /p2_sample6/
-  link: <a href="/p2_sample6/">Sample 6</a>
 
-
- 
-p2_sample7:
-  title: "Sample 7"
-  url: /p2_sample7/
-  link: <a href="/p2_sample7/">Sample 7</a>
+spinal_landing_page:
+  title: "Spinal"
+  url: "spinal_landing_page"
+  link: "<a href='/spinal_landing_page/'>Spinal</a>"
 
 
 
@@ -547,18 +445,6 @@ news:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 mydoc_introduction:
   title: "Jekyll Documentation Theme"
   url: "mydoc_introduction"
@@ -566,72 +452,10 @@ mydoc_introduction:
 
 
 
-p1_landing_page:
-  title: "Product 1"
-  url: "p1_landing_page"
-  link: "<a href='/p1_landing_page/'>Product 1</a>"
-
-
-
-p2_landing_page:
-  title: "Product 2"
-  url: "p2_landing_page"
-  link: "<a href='/p2_landing_page/'>Product 2</a>"
-
-
-
-
-
-
-
-
-
-
-
-
-
-news:
-  title: "News"
-  url: "news"
-  link: "<a href='/news/'>News</a>"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-mydoc_introduction:
-  title: "Jekyll Documentation Theme"
-  url: "mydoc_introduction"
-  link: "<a href='/mydoc_introduction/'>Jekyll Documentation Theme</a>"
-
-
-
-p1_landing_page:
-  title: "Product 1"
-  url: "p1_landing_page"
-  link: "<a href='/p1_landing_page/'>Product 1</a>"
-
-
-
-p2_landing_page:
-  title: "Product 2"
-  url: "p2_landing_page"
-  link: "<a href='/p2_landing_page/'>Product 2</a>"
+spinal_landing_page:
+  title: "Spinal"
+  url: "spinal_landing_page"
+  link: "<a href='/spinal_landing_page/'>Spinal</a>"
 
 
 
