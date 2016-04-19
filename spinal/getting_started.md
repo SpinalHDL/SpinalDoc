@@ -3,7 +3,8 @@ layout: page
 title: Getting started
 description: "This pages describes the main types usable in Spinal"
 tags: [getting started]
-categories: [intro]
+sidebar: spinal_sidebar
+permalink: /spinal_getting_started/
 ---
 
 Getting started with Spinal

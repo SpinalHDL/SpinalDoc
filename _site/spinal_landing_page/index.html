@@ -3,9 +3,9 @@
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="keywords" content=" mydoc">
-<title>Spinal  | SpinalHDL documentation</title>
+<meta name="description" content="This page presents the *Spinal* language">
+<meta name="keywords" content="user guide,  spinal, user guide">
+<title>Spinal user guide  | SpinalHDL documentation</title>
 <link rel="stylesheet" href="/css/syntax.css">
 
 
@@ -128,7 +128,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "SpinalHDL documentation feedback";
-var body = "I have some feedback about the Spinal page: ";
+var body = "I have some feedback about the Spinal user guide page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:tomjohnson1492@gmail.com?subject=";
@@ -155,7 +155,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: '/search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="Spinal">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="Spinal user guide">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -190,7 +190,7 @@ window.location.href = uri;
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">spinal 0.1</li>
+    <li class="sidebarTitle">Spinal 0.1</li>
     
     
     
@@ -202,7 +202,7 @@ window.location.href = uri;
             
             
             
-            <li><a href="/getting_started/">Getting started</a></li>
+            <li><a href="/spinal_getting_started/">Getting started</a></li>
             
             
             
@@ -290,12 +290,37 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">Spinal</h1>
+   <h1 class="post-title-main">Spinal user guide</h1>
 </div>
 
 <div class="post-content">
 
    
+    <div class="summary">This page presents the *Spinal* language</div>
+   
+
+    
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
 
     
 
@@ -308,240 +333,87 @@ window.location.href = uri;
 
     
 
-  <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Services Panels</h2>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <span class="fa-stack fa-5x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-tree fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="panel-body">
-                    <h4>Service One</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <span class="fa-stack fa-5x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-car fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="panel-body">
-                    <h4>Service Two</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <span class="fa-stack fa-5x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-support fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="panel-body">
-                    <h4>Service Three</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="panel panel-default text-center">
-                <div class="panel-heading">
-                    <span class="fa-stack fa-5x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-database fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="panel-body">
-                    <h4>Service Four</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </div>
+  <h1 id="spinal-user-guide">Spinal user guide</h1>
 
-    <!-- Service Tabs -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Service Tabs</h2>
-        </div>
-        <div class="col-lg-12">
+<h2 id="document-purpose-and-structure">Document purpose and structure</h2>
+<p>This document presents the <em>Spinal</em> language and how to use it on concrete examples. This documentation also explains how the language is implemented. The documentation is split into different sections:</p>
 
-            <ul id="myTab" class="nav nav-tabs nav-justified">
-                <li class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-tree"></i> Service One</a>
-                </li>
-                <li class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-car"></i> Service Two</a>
-                </li>
-                <li class=""><a href="#service-three" data-toggle="tab"><i class="fa fa-support"></i> Service Three</a>
-                </li>
-                <li class=""><a href="#service-four" data-toggle="tab"><i class="fa fa-database"></i> Service Four</a>
-                </li>
-            </ul>
+<ol>
+  <li><a href="userGuide.md">Languages principles</a> (this document)</li>
+  <li><a href="getting_started.md">Getting started</a></li>
+  <li><a href="types.md">Languages types</a></li>
+  <li><a href="core_components.md">Language principles and primitives</a></li>
+</ol>
 
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade active in" id="service-one">
-                    <h4>Service One</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                </div>
-                <div class="tab-pane fade" id="service-two">
-                    <h4>Service Two</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                </div>
-                <div class="tab-pane fade" id="service-three">
-                    <h4>Service Three</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                </div>
-                <div class="tab-pane fade" id="service-four">
-                    <h4>Service Four</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                </div>
-            </div>
+<h2 id="what-is-spinal-">What is Spinal ?</h2>
+<p>Spinal is a high-level hardware language description language. It can be used as an alternative to VHDL or Verilog and has several advantages over those. However, it is <em>fully interoperable</em> with standard VHDL-based EDA tools (simulators and synthetizers) as the output generated by the toolchain is VHDL. It also enables mixed designs where Spinal components interoperate with VHDL or Verilog IPs.</p>
 
-        </div>
-    </div>
+<h3 id="advantages-of-using-spinal-over-vhdl--verilog">Advantages of using Spinal over VHDL / Verilog</h3>
+<p>As Spinal is based on a high-level language, it provides several advantages to improve your hardware coding:</p>
 
-    <!-- Service List -->
-    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Service List</h2>
-        </div>
-        <div class="col-md-4">
-            <div class="media">
-                <div class="pull-left">
-                    <span class="fa-stack fa-2x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-tree fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Service One</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                </div>
-            </div>
-            <div class="media">
-                <div class="pull-left">
-                    <span class="fa-stack fa-2x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-car fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Service Two</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                </div>
-            </div>
-            <div class="media">
-                <div class="pull-left">
-                    <span class="fa-stack fa-2x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-support fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Service Three</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="media">
-                <div class="pull-left">
-                    <span class="fa-stack fa-2x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-database fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Service Four</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                </div>
-            </div>
-            <div class="media">
-                <div class="pull-left">
-                    <span class="fa-stack fa-2x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-bomb fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Service Five</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                </div>
-            </div>
-            <div class="media">
-                <div class="pull-left">
-                    <span class="fa-stack fa-2x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-bank fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Service Six</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="media">
-                <div class="pull-left">
-                    <span class="fa-stack fa-2x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-paper-plane fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Service Seven</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                </div>
-            </div>
-            <div class="media">
-                <div class="pull-left">
-                    <span class="fa-stack fa-2x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-space-shuttle fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Service Eight</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                </div>
-            </div>
-            <div class="media">
-                <div class="pull-left">
-                    <span class="fa-stack fa-2x">
-                          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                          <i class="fa fa-recycle fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Service Nine</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<ol>
+  <li><em>No more endless wiring</em> - Create and connect complex buses like AXI in one single line.</li>
+  <li><em>Evolving capabilities</em> - Create your own buses definition and abstraction layer.</li>
+  <li><em>Reduce code size</em> - by a high factor, especially for wiring. This enables you to have a better overview of your code base, increase your productivity and create fewer headaches.</li>
+  <li><em>Free and user friendly IDE</em> - Thanks to scala world for auto-completion, error highlight, navigation shortcut and many others.</li>
+  <li><em>Detailed information about your design</em> - Directly extract information from your digital design and generate reports that contain information about latency and addresses.</li>
+  <li><em>Powerful and easy type conversions</em> - Bidirectional translation between any data type and bits. Useful to load a complex data structure from a CPU interface.</li>
+  <li><em>Loop detection</em> - Tools check for you that there is no combinatorial loop / latch.</li>
+  <li><em>Clock domains safety</em> - The tools inform you that there is no user unintentional cross clock domain.</li>
+  <li><em>Generic design</em> - There are no restrictions to the genericity of your hardware description by using Scala constructs.</li>
+</ol>
+
+<h3 id="what-are-the-differences-between-chisel-vs-spinal-">What are the differences between Chisel VS Spinal ?</h3>
+<p>It is a very good question ! Why develop a new language when there Chisel has been released 3 years ago ?</p>
+
+<p><a href="https://chisel.eecs.berkeley.edu/">Chisel</a> is the project at the origin of Spinal and Chisel it represents a big step forward compared to common HDL. However, it has several drawbacks for large designs that mix multiple clock domain and external IP (black-boxes). In fact, Chisel show some serious conception issue :</p>
+
+<h4 id="multiple-clock-support-is-awkward">Multiple clock support is awkward:</h4>
+<ul>
+  <li>Working into a single block with multiple clock is difficult, you can’t define “ClockingArea”, only creating a module allow it.</li>
+  <li>Reset wire is not really integrated into the clock domain notion, sub module loose reset of parent, which is really annoying.</li>
+  <li>No support of falling edge clock or active low reset.</li>
+  <li>No clock enable support.</li>
+  <li>Chisel makes the assumption that every clock wire come from the top level inputs, you don’t have access to clock signal.</li>
+</ul>
+
+<h4 id="black-box-support-is-far-from-perfect">Black box support is far from perfect:</h4>
+<ul>
+  <li>Generics/Parameters are not really supported.</li>
+  <li>Specifying clock inputs for a black box is not supported. You have to use a workaround and you don’t have any control on clock signal name that change against your will.</li>
+</ul>
+
+<h4 id="syntax-could-be-better">Syntax could be better:</h4>
+<ul>
+  <li>Not pretty literal value syntax, No implicit conversion between Scala and Chisel types.</li>
+  <li>Not pretty input/output definition.</li>
+  <li>Assignment operator is only checked when you generate the code, the IDE can’t check it for you. Bundle assignment operator is weak typed.</li>
+  <li>Switch statement doesn’t have default case.</li>
+  <li>No “Area” notion to give a better structure to the user code.</li>
+</ul>
+
+<h4 id="various-issue-">Various issue :</h4>
+<ul>
+  <li>You can’t define function without argument into <code class="highlighter-rouge">Bundles</code>.</li>
+  <li>There is no notion of “Area”.</li>
+  <li>Using <code class="highlighter-rouge">when</code>/<code class="highlighter-rouge">otherwise</code> is not strict in all case. This allows you to generate an asynchronous signal that is not assigned in every case.</li>
+  <li>You can’t really write a given range of bit into a bit vector.</li>
+  <li>The library that is integrated into Chisel and that provides you some utils and useful bus definition is a good intention, but could be so better and more complete</li>
+</ul>
+
+<p>For a lot of the issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (3 years at the time of writing) of Chisel, this is a very serious issue and it’s why SpinalHDL was created.</p>
+
+<h2 id="getting-started">Getting started</h2>
+<p>Want to try it for yourself? Then jump to the <a href="getting_started.md">getting started section</a> and have fun!</p>
 
 
 <div class="tags">
+    
+    <b>Tags: </b>
+    
+    
+    
+    
     
 </div>
 
@@ -555,7 +427,7 @@ window.location.href = uri;
             <div class="row">
                 <div class="col-lg-12 footer">
                &copy;2016 SpinalHDL. All rights reserved. <br />
- Site last generated: Apr 19, 2016 <br />
+<p>Page last updated:</span> Apr 19, 2016<br/> Site last generated: Apr 19, 2016 <br />
 <p><img src="/images/company_logo.png" alt="Company logo"/></p>
                 </div>
             </div>

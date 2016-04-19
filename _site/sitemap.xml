@@ -40,7 +40,7 @@
   
   
   <url>
-    <loc>http://localhost//spinal/getting_started/</loc>
+    <loc>http://localhost//spinal_getting_started/</loc>
   </url>
   
   
@@ -363,57 +363,9 @@
   
   
   
-  <url>
-    <loc>http://localhost//p1_sample1/</loc>
-  </url>
   
   
   
-  <url>
-    <loc>http://localhost//p1_sample2/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p1_sample3/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p1_sample4/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p1_sample5/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p1_sample6/</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost//p1_sample7/</loc>
-  </url>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <url>
-    <loc>http://localhost//spinal_landing_page/</loc>
-  </url>
   
   
   
@@ -458,7 +410,7 @@
   
   
   <url>
-    <loc>http://localhost//yoururl/</loc>
+    <loc>http://localhost//spinal_landing_page/</loc>
   </url>
   
   

@@ -4,6 +4,7 @@ title: Examples
 description: "This pages gives some examples Spinal"
 tags: [getting started, examples]
 categories: [intro]
+sidebar: spinal_sidebar
 ---
 
 ## Some Spinal code examples

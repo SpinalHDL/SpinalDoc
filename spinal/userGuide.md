@@ -2,10 +2,10 @@
 title: "Spinal user guide"
 tags: [user guide]
 keywords: spinal, user guide
-last_updated: Month day, year
-summary: "optional summary here"
+last_updated: Apr 19, 2016 
+summary: "This page presents the *Spinal* language"
 sidebar: spinal_sidebar
-permalink: /yoururl/
+permalink: /spinal_landing_page/
 ---
 
 Spinal user guide

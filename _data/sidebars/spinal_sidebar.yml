@@ -1,8 +1,8 @@
 # This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
 
 entries:
-- title: SpinalHDL
-  product: spinal
+- title: Sidebar 
+  product: Spinal
   version: 0.1
   folders: 
   - title:
@@ -24,7 +24,7 @@ entries:
     folderitems:
 
     - title: Getting started
-      url: /getting_started/
+      url: /spinal_getting_started/
       output: web
 
     - title: Sample 1
