@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content="getting started,  ">
-<title>Getting started  | SpinalHDL documentation</title>
+<title>Getting started with Spinal  | SpinalHDL documentation</title>
 <link rel="stylesheet" href="/css/syntax.css">
 
 
@@ -128,7 +128,7 @@
 <script>
 function SendLinkByMail(href) {
 var subject= "SpinalHDL documentation feedback";
-var body = "I have some feedback about the Getting started page: ";
+var body = "I have some feedback about the Getting started with Spinal page: ";
 body += window.location.href;
 body += "";
 var uri = "mailto:tomjohnson1492@gmail.com?subject=";
@@ -155,7 +155,7 @@ window.location.href = uri;
                                 searchInput: document.getElementById('search-input'),
                                 resultsContainer: document.getElementById('results-container'),
                                 dataSource: '/search.json',
-                                searchResultTemplate: '<li><a href="{url}" title="Getting started">{title}</a></li>',
+                                searchResultTemplate: '<li><a href="{url}" title="Getting started with Spinal">{title}</a></li>',
                     noResultsText: 'No results found.',
                             limit: 10,
                             fuzzy: true,
@@ -190,7 +190,7 @@ window.location.href = uri;
 
 
 <ul id="mysidebar" class="nav">
-    <li class="sidebarTitle">Spinal 0.1</li>
+    <li class="sidebarTitle">Spinal documentation 0.2</li>
     
     
     
@@ -207,16 +207,24 @@ window.location.href = uri;
             
             
             
+        </ul>
+        
+        
+    
+    <li>
+        <a href="#">Language principles</a>
+        <ul>
             
             
-            <li><a href="/spinal/getting_started/">Sample 1</a></li>
+            
+            <li><a href="/spinal_types/">Types</a></li>
             
             
             
             
             
             
-            <li><a href="/p2_sample2/">Sample 2</a></li>
+            <li><a href="/spinal_core_components/">Language primitives</a></li>
             
             
             
@@ -226,48 +234,12 @@ window.location.href = uri;
         
     
     <li>
-        <a href="#">Another heading</a>
+        <a href="#">Examples</a>
         <ul>
             
             
             
-            <li><a href="/p2_sample3/">Sample 3</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/p2_sample4/">Sample 4</a></li>
-            
-            
-            
-            
-        </ul>
-        
-        
-    
-    <li>
-        <a href="#">Another heading</a>
-        <ul>
-            
-            
-            
-            <li><a href="/p2_sample5/">Sample 5</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/p2_sample6/">Sample 6</a></li>
-            
-            
-            
-            
-            
-            
-            <li><a href="/p2_sample7/">Sample 7</a></li>
+            <li><a href="/spinal_basic_examples/">Basic examples</a></li>
             
             
             
@@ -290,7 +262,7 @@ window.location.href = uri;
     <!-- Content Column -->
     <div class="col-md-9">
         <div class="post-header">
-   <h1 class="post-title-main">Getting started</h1>
+   <h1 class="post-title-main">Getting started with Spinal</h1>
 </div>
 
 <div class="post-content">
@@ -331,11 +303,9 @@ $('#toc').on('click', 'a', function() {
 
     
 
-  <h1 id="getting-started-with-spinal">Getting started with Spinal</h1>
+  <p><em>Spinal</em> is an hardware description language written in <a href="http://scala-lang.org/">Scala</a>, a static-type functional language using the Java virtual machine (JVM). In order to start programming with <em>Spinal</em>, you must have a JVM as well as the Scala compiler. In the next section, we will explain how to download those tools if you don’t have them already.</p>
 
-<p><em>Spinal</em> is an hardware description language written in <a href="http://scala-lang.org/">Scala</a>, a static-type functional language using the Java virtual machine (JVM). In order to start programming with <em>Spinal</em>, you must have a JVM as well as the Scala compiler. In the next section, we will explain how to download those tools if you don’t have them already.</p>
-
-<h2 id="a-namerequirementsarequirements--things-to-download-to-get-started"><a name="requirements"></a>Requirements / Things to download to get started</h2>
+<h1 id="requirements">Requirements / Things to download to get started</h1>
 <p>Before you download the Spinal tools, you need to install :</p>
 
 <ul>
@@ -346,7 +316,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>Optionally, if you need an IDE (which is not compulsory) we advise you to get IntelliJ.</p>
 
-<h3 id="how-to-start-programming-with-spinal">How to start programming with Spinal</h3>
+<h2 id="how-to-start-programming-with-spinal">How to start programming with Spinal</h2>
 <p>Once you have downloaded all the requirements, there are two ways to get started with Spinal programming.</p>
 
 <ol>
@@ -354,7 +324,7 @@ $('#toc').on('click', 'a', function() {
   <li><a href="#flexible"><em>The most flexible way</em></a> : if you already are familiar with the SBT build system and/or if you don’t need an IDE.</li>
 </ol>
 
-<h3 id="a-namesimpleathe-simple-way-with-intellij-idea-and-its-scala-plugin"><a name="simple"></a>The simple way, with IntelliJ IDEA and its Scala plugin</h3>
+<h3 id="simple">The simple way, with IntelliJ IDEA and its Scala plugin</h3>
 <p>In addition to the aforementioned <a href="#requirements">requirements</a>, you also need to download the IntelliJ IDEA (the free <em>Community edition</em> is enough). When you have installed IntelliJ, also check that you have enabled its Scala plugin (<a href="https://www.jetbrains.com/help/idea/2016.1/enabling-and-disabling-plugins.html?origin=old_help">install information</a> can be found here).</p>
 
 <p>And do the following :</p>
@@ -366,9 +336,9 @@ $('#toc').on('click', 'a', function() {
   <li>In the project (Intellij project GUI), right click on <code class="highlighter-rouge">src/main/scala/MyCode/TopLevel.scala</code> and select “Run MyTopLevel”</li>
 </ul>
 
-<p>Normally, this must generate the output file <code class="highlighter-rouge">MyTopLevel.vhd</code> in the project directory which corresponds to the most <a href="#simple">most simple Spinal example</a>.</p>
+<p>Normally, this must generate the output file <code class="highlighter-rouge">MyTopLevel.vhd</code> in the project directory which corresponds to the most <a href="#example">most simple Spinal example</a>.</p>
 
-<h3 id="a-nameflexibleathe-flexible-way"><a name="flexible"></a>The flexible way</h3>
+<h3 id="flexible">The flexible way</h3>
 <p>We have prepared a ready to go project for you on Github.</p>
 
 <ul>
@@ -376,38 +346,37 @@ $('#toc').on('click', 'a', function() {
   <li>Open a terminal in the root of it and run <code class="highlighter-rouge">sbt run</code>. When you execute it for the first time, the process could take some time as it will download all the dependencies required to run <em>Spinal</em>.</li>
 </ul>
 
-<p>Normally, this command must generate an output file <code class="highlighter-rouge">MyTopLevel.vhd</code> which corresponds to the top level <em>Spinal</em> code defined in <code class="highlighter-rouge">src\main\scala\MyCode.scala</code> which corresponds to the <a href="#simple">most simple Spinal example</a>.</p>
+<p>Normally, this command must generate an output file <code class="highlighter-rouge">MyTopLevel.vhd</code> which corresponds to the top level <em>Spinal</em> code defined in <code class="highlighter-rouge">src\main\scala\MyCode.scala</code> which corresponds to the <a href="#example">most simple Spinal example</a>.</p>
 
-<h2 id="a-namesimpleaa-very-simple-spinal-example">&lt;a name=simple&gt;&lt;/a&gt;A very simple Spinal example</h2>
+<h2 id="example">A very simple Spinal example</h2>
 <p>The following code generates an <code class="highlighter-rouge">and</code> gate between two one bit inputs.</p>
 
-<p>```scala
- import spinal.core._</p>
+<div class="highlighter-rouge"><pre class="highlight"><code> <span class="k">import</span> <span class="nn">spinal.core._</span>
 
-<p>class AND_Gate extends Component {</p>
+ <span class="k">class</span> <span class="nc">AND_Gate</span> <span class="k">extends</span> <span class="nc">Component</span> <span class="o">{</span>
 
-<p>/**
+   <span class="cm">/**
      * This is the component definition that corresponds to
      * the VHDL entity of the component
-     */
-   val io = new Bundle {
-     val a = in Bool
-     val b = in Bool
-     val c = out Bool
-   }</p>
+     */</span>
+   <span class="k">val</span> <span class="n">io</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Bundle</span> <span class="o">{</span>
+     <span class="k">val</span> <span class="n">a</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">Bool</span>
+     <span class="k">val</span> <span class="n">b</span> <span class="k">=</span> <span class="n">in</span> <span class="nc">Bool</span>
+     <span class="k">val</span> <span class="n">c</span> <span class="k">=</span> <span class="n">out</span> <span class="nc">Bool</span>
+   <span class="o">}</span>
 
-<p>// Here we define some asynchronous logic
-   io.c := io.a &amp; io.b
- }</p>
+   <span class="c1">// Here we define some asynchronous logic
+</span>   <span class="n">io</span><span class="o">.</span><span class="n">c</span> <span class="o">:=</span> <span class="n">io</span><span class="o">.</span><span class="n">a</span> <span class="o">&amp;</span> <span class="n">io</span><span class="o">.</span><span class="n">b</span>
+ <span class="o">}</span>
 
-<p>object AND_Gate {
-   // Let’s go
-   def main(args: Array[String]) {
-     SpinalVhdl(new AND_Gate)
-   }
- }</p>
-
-<p>```</p>
+ <span class="k">object</span> <span class="nc">AND_Gate</span> <span class="o">{</span>
+   <span class="c1">// Let's go
+</span>   <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="o">{</span>
+     <span class="nc">SpinalVhdl</span><span class="o">(</span><span class="k">new</span> <span class="nc">AND_Gate</span><span class="o">)</span>
+   <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre>
+</div>
 
 <p>As you can see, the first lin e you have to write in Spinal is <code class="highlighter-rouge">import spinal.core._</code> which indicates that we are using the <em>Spinal</em> components in the file.</p>
 

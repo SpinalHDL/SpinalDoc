@@ -5,9 +5,9 @@
 
 {
 "title": "Spinal main components",
-"tags": "components",
+"tags": "componentsintro",
 "keywords": "",
-"url": "/spinal/core_components/",
+"url": "/spinal_core_components/",
 "summary": ""
 },
 
@@ -17,7 +17,7 @@
 "title": "Examples",
 "tags": "getting startedexamples",
 "keywords": "",
-"url": "/spinal/examples/",
+"url": "/spinal_basic_examples/",
 "summary": ""
 },
 
@@ -26,7 +26,7 @@
 
 
 {
-"title": "Getting started",
+"title": "Getting started with Spinal",
 "tags": "getting started",
 "keywords": "",
 "url": "/spinal_getting_started/",
@@ -607,7 +607,7 @@
 "title": "Types in Spinal",
 "tags": "types",
 "keywords": "",
-"url": "/spinal/types/",
+"url": "/spinal_types/",
 "summary": ""
 },
 

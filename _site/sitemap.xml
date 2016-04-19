@@ -26,13 +26,13 @@
   
   
   <url>
-    <loc>http://localhost//spinal/core_components/</loc>
+    <loc>http://localhost//spinal_core_components/</loc>
   </url>
   
   
   
   <url>
-    <loc>http://localhost//spinal/examples/</loc>
+    <loc>http://localhost//spinal_basic_examples/</loc>
   </url>
   
   
@@ -402,7 +402,7 @@
   
   
   <url>
-    <loc>http://localhost//spinal/types/</loc>
+    <loc>http://localhost//spinal_types/</loc>
   </url>
   
   
