@@ -27,7 +27,7 @@ exclude:
   - .idea/
 # these are the files and directories that jekyll will exclude from the build
 
-feedback_email: tomjohnson1492@gmail.com
+feedback_email: spinalhdl@gmail.com
 # used as a contact email for the Feedback link in the top navigation bar
 
 #feedback_disable: true
@@ -84,7 +84,7 @@ defaults:
 # these are defaults used for the frontmatter for these file types
 
 
-description: "Intended as a documentation theme based on Jekyll for technical writers documenting software and other technical products, this theme has all the elements you would need to handle multiple products with both multi-level sidebar navigation, tags, and other documentation features."
+description: "This is the host site for the Spinal programming language documentation. Spinal is a high-level hardware description language that can be used as an alternative to HVDL or Verilog whislt being compatible with standard EDA tools because it generates syntheizable VHDL.."
 # the description is used in the feed.xml file
 
 #gems:
