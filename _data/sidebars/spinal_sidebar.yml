@@ -2,8 +2,8 @@
 
 entries:
 - title: Sidebar 
-  product: Spinal documentation
-  version: 0.2
+  product: Spinal doc 
+  version: 0.21
   folders: 
   - title:
     output: pdf
