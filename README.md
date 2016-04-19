@@ -1,7 +1,4 @@
 # Spinal user guide
-Welcome to the *Spinal* user guide which describes the language and how to use it on concrete examples. This documentation also explains how the language is implemented. The documentation is split into different sections:
+This is the host of the documentation for the [*SpinalHDL* language](https://github.com/SpinalHDL) user guide. 
 
-1. [Languages principles](manual/userGuide.md)
-1. [Getting started](manual/getting_started.md)
-1. [Languages types](manual/types.md)
-1. [Language principles and primitives](manual/core_components.md)
+# [Head for the documentation website](https://pmudry.github.io/SpinalDoc)
