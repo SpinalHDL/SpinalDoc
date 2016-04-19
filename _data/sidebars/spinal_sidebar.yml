@@ -2,8 +2,8 @@
 
 entries:
 - title: Sidebar 
-  product: Spinal
-  version: 0.1
+  product: Spinal documentation
+  version: 0.2
   folders: 
   - title:
     output: pdf
@@ -27,38 +27,22 @@ entries:
       url: /spinal_getting_started/
       output: web
 
-    - title: Sample 1
-      url: /spinal/getting_started/
-      output: web, pdf
-
-    - title: Sample 2
-      url: /p2_sample2/
-      output: web, pdf
-
-  - title: Another heading
+  - title: Language principles
     output: web, pdf
     folderitems:
 
-    - title: Sample 3
-      url: /p2_sample3/
+    - title:  Types
+      url: /spinal_types/
       output: web, pdf
 
-    - title: Sample 4
-      url: /p2_sample4/
+    - title: Language primitives
+      url: /spinal_core_components/
       output: web, pdf
 
-  - title: Another heading
+  - title: Examples
     output: web, pdf
     folderitems:
 
-    - title: Sample 5
-      url: /p2_sample5/
-      output: web, pdf
-
-    - title: Sample 6
-      url: /p2_sample6/
-      output: web, pdf
-
-    - title: Sample 7
-      url: /p2_sample7/
-      output: web, pdf
+    - title: Basic examples
+      url: /spinal_basic_examples/
+      output: web,pdf

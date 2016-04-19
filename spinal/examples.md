@@ -5,6 +5,7 @@ description: "This pages gives some examples Spinal"
 tags: [getting started, examples]
 categories: [intro]
 sidebar: spinal_sidebar
+permalink: /spinal_basic_examples/
 ---
 
 ## Some Spinal code examples

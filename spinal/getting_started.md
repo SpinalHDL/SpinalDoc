@@ -50,7 +50,7 @@ Normally, this command must generate an output file `MyTopLevel.vhd` which corre
 ## <a name=simple></a>A very simple Spinal example
 The following code generates an `and` gate between two one bit inputs.
 
- ```scala
+```scala
  import spinal.core._
 
  class AND_Gate extends Component {
@@ -75,9 +75,7 @@ The following code generates an `and` gate between two one bit inputs.
      SpinalVhdl(new AND_Gate)
    }
  }
-
-
- ```
+```
 
 As you can see, the first lin e you have to write in Spinal is `import spinal.core._` which indicates that we are using the *Spinal* components in the file.
 

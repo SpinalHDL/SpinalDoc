@@ -2,9 +2,10 @@
 layout: page
 title: Spinal main components
 description: "This pages describes the main components of Spinal"
-tags: [components]
+tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
+permalink: /spinal_core_components/
 ---
 
 #  The `spinal.core` components
