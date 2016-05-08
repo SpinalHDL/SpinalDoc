@@ -34,6 +34,7 @@ It is a very good question ! Why develop a new language when there Chisel has be
 - Working into a single block with multiple clock is difficult, you can't define "ClockingArea", only creating a module allow it.
 - Reset wire is not integrated into the clock domain notion, sub module loose reset of parent, which is really annoying.
 - No support of falling edge clock or active low reset.
+- Synchronous reset only
 - No clock enable support.
 - Chisel makes the assumption that every clock wire come from the top level inputs, you don't have access to clock signal.
 
