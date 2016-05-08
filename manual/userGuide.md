@@ -32,14 +32,10 @@ It is a very good question ! Why develop a new language when there Chisel has be
 
 #### Multiple clock support is awkward:
 - Working into a single block with multiple clock is difficult, you can't define "ClockingArea", only creating a module allow it.
-- Reset wire is not really integrated into the clock domain notion, sub module loose reset of parent, which is really annoying.
+- Reset wire is not integrated into the clock domain notion, sub module loose reset of parent, which is really annoying.
 - No support of falling edge clock or active low reset.
 - No clock enable support.
 - Chisel makes the assumption that every clock wire come from the top level inputs, you don't have access to clock signal.
-
-#### Black box support is far from perfect:
-- Generics/Parameters are not really supported.
-- Specifying clock inputs for a black box is not supported. You have to use a workaround and you don't have any control on clock signal name that change against your will.
 
 #### Syntax could be better:
 - Not pretty literal value syntax, No implicit conversion between Scala and Chisel types.
@@ -52,10 +48,12 @@ It is a very good question ! Why develop a new language when there Chisel has be
 - You can't define function without argument into `Bundles`.
 - There is no notion of "Area".
 - Using `when`/`otherwise` is not strict in all case. This allows you to generate an asynchronous signal that is not assigned in every case.
-- You can't really write a given range of bit into a bit vector.
+- You can't assign a given range of bit into a bit vector. (or in some limited cases)
 - The library that is integrated into Chisel and that provides you some utils and useful bus definition is a good intention, but could be so better and more complete
+- Bit width are not checked
+- No cross clock domain checking
 
-For a lot of the issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (3 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
+For a lot of the issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (4 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
 
 ## Getting started 
 Want to try it for yourself? Then jump to the [getting started section](getting_started.md) and have fun!
