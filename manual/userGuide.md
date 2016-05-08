@@ -26,9 +26,9 @@ As Spinal is based on a high-level language, it provides several advantages to i
 1. *Generic design* - There are no restrictions to the genericity of your hardware description by using Scala constructs.
 
 ### What are the differences between Chisel and Spinal ?
-It is a very good question ! Why develop a new language when there Chisel has been released 3 years ago ?
+It is a very good question ! Why develop a new language when there Chisel has been released 4 years ago ?
 
-[Chisel](https://chisel.eecs.berkeley.edu/) is the project at the origin of Spinal and Chisel it represents a big step forward compared to common HDL. However, it has several drawbacks for large designs that mix multiple clock domain and external IP (black-boxes). In fact, Chisel show some serious conception issue : 
+[Chisel](https://chisel.eecs.berkeley.edu/) is the project at the origin of Spinal and Chisel it represents a big step forward compared to common HDL. However, it has several drawbacks for large designs that mix multiple clock domain. In fact, Chisel show some serious conception issue : 
 
 #### Multiple clock support is awkward:
 - Working into a single block with multiple clock is difficult, you can't define "ClockingArea", only creating a module allow it.
@@ -52,6 +52,7 @@ It is a very good question ! Why develop a new language when there Chisel has be
 - The library that is integrated into Chisel and that provides you some utils and useful bus definition is a good intention, but could be so better and more complete
 - Bit width are not checked
 - No cross clock domain checking
+- They are now moving to Chisel (3.0) which change the syntax again and remove the possibility to analyse the netlist (latency, delay, connections) during the scala generation phase.
 
 For a lot of the issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (4 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
 
