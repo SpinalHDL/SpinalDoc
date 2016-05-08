@@ -53,6 +53,7 @@ It is a very good question ! Why develop a new language when there Chisel has be
 - Bit width are not checked
 - No cross clock domain checking
 - They are now moving to FIRRTL (Chisel 3.0) which change the syntax again and remove the possibility to analyse the netlist (latency, delay, connections) during the scala generation phase.
+- No verilog attribute possibilities.
 
 For a lot of the issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (4 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
 
