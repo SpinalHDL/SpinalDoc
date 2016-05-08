@@ -25,7 +25,7 @@ As Spinal is based on a high-level language, it provides several advantages to i
 1. *Clock domains safety* - The tools inform you that there is no user unintentional cross clock domain.
 1. *Generic design* - There are no restrictions to the genericity of your hardware description by using Scala constructs.
 
-### What are the differences between Chisel VS Spinal ?
+### What are the differences between Chisel and Spinal ?
 It is a very good question ! Why develop a new language when there Chisel has been released 3 years ago ?
 
 [Chisel](https://chisel.eecs.berkeley.edu/) is the project at the origin of Spinal and Chisel it represents a big step forward compared to common HDL. However, it has several drawbacks for large designs that mix multiple clock domain and external IP (black-boxes). In fact, Chisel show some serious conception issue : 
