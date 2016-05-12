@@ -8,10 +8,19 @@ sidebar: spinal_sidebar
 permalink: /spinal_examples_vga/
 ---
 
+VGA interfaces are probably endangered, but implementing a VGA controller is still a good exercise.
+
+A explanation about VGA protocol can be find here : 
+http://www.xess.com/blog/vga-the-rest-of-the-story/
+http://www.xess.com/static/media/uploads/blog/devbisme/2011-06-11/app001_2.png
 
 ## Data structures
 
+Before implementing the controller itself we need to define some data structures
+
 ### RGB color
+
+First, we need a tree channel color structure (Red, Green, Blue). This data structure will be used to feed the controller with pixels and also use by the VGA bus.
 
 ```scala
 case class RgbConfig(rWidth : Int,gWidth : Int,bWidth : Int){
@@ -27,6 +36,15 @@ case class Rgb(c: RgbConfig) extends Bundle{
 
 ### VGA bus
 
+| io name  | Driver | Description |
+| ------- | ---- |
+| vSync | master | Vertical syncro, indicate the beginning of a new frame |
+| hSync | master | Horizontal syncro, indicate the beggining of a new line |
+| colorEn | master | High when the interface is in the visible part |
+| color | master | Carry the color, don't care when colorEn is low |
+
+
+
 ```scala
 case class Vga (rgbConfig: RgbConfig) extends Bundle with IMasterSlave{
   val vSync = Bool
@@ -39,11 +57,13 @@ case class Vga (rgbConfig: RgbConfig) extends Bundle with IMasterSlave{
   override def asSlave() = this.asInput()
 }
 ```
-
-
+This Vga bundle is with IMasterSlave. That allow to create master/slave VGA interface by this way : <br>
+master(Vga(...)) <br>
+slave(Vga(...)) <br>
 
 ### VGA timings
 
+The VGA interface is driven by using 8 differents timings. There is one simple example of a Bundle able to carry them.
 
 ```scala
 case class VgaTimings(timingsWidth: Int) extends Bundle {
@@ -58,6 +78,10 @@ case class VgaTimings(timingsWidth: Int) extends Bundle {
 }
 ```
 
+But this not a very good way to specify it, because it's redondante for Vertical and Horizontal timings.
+
+Let's write it by a clearer way :
+
 ```scala
 case class VgaTimingsHV(timingsWidth: Int) extends Bundle {
   val colorStart = UInt(timingsWidth bit)
@@ -71,6 +95,8 @@ case class VgaTimings(timingsWidth: Int) extends Bundle {
   val v = VgaTimingsHV(timingsWidth)
 }
 ```
+
+Then we could add some some function to set these timing with a specific resolution/frame rate :
 
 ```scala
 case class VgaTimingsHV(timingsWidth: Int) extends Bundle {
@@ -121,7 +147,11 @@ case class VgaTimings(timingsWidth: Int) extends Bundle {
 | frameStart | out | High when a new frame start |
 | vga | master | VGA interface |
 
-### Implementation
+The controller didn't integrate any pixels buffering, it directly take them from the `pixels` and put them on the `vga.color` at the right time. If the `pixels` is not valid then `error` pulse high one cycle. 
+
+### Component and io definition
+
+Let's define a new VgaCtrl component, which take as parameter an RgbConfig and a timings bits counts. Let's give the this bits counts a default value of 12.
 
 ```scala
 class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
@@ -134,17 +164,19 @@ class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
 	val frameStart = out Bool
     val vga = master(Vga(rgbConfig))
   }
-  //TODO logic
+  ...
 }
 ```
 
+### Horizontal and vertical logic
 
+The logic that generate horizontal and vertical syncro is quite the same. It's kind of ~PWM~. The horizontal one count up each cycle, while the vertical one use the horizontal syncro has count up event. 
+
+Let's define a HVArea which represent one ~PWM~ and then instanciate it two time, one for the horizontal syncro, and then one for the vertical syncro.
 
 ```scala
 class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
-  val io = new Bundle {
-    ...
-  }
+  val io = new Bundle {...}
 
   case class HVArea(timingsHV: VgaTimingsHV, enable: Bool) extends Area {
     val counter = Reg(UInt(timingsWidth bit)) init(0)
@@ -175,15 +207,18 @@ class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
 }
 ```
 
+As you can see, it's done by using `Area`. It's avoid the creation of a new `Component` which would have been much more verbose.
+
+### Interconnections
+
+Now that we have timings generators for horizontal and vertical syncro, we need to drive outputs.
+
 ```scala
 class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
-  val io = new Bundle {
-    ...
-  }
+  val io = new Bundle {...}
 
-  case class HVArea(timingsHV: VgaTimingsHV, enable: Bool) extends Area {
-    ...
-  }
+  case class HVArea(timingsHV: VgaTimingsHV, enable: Bool) extends Area {...
+}
   val h = HVArea(io.timings.h, True)
   val v = HVArea(io.timings.v, h.syncEnd)
 
@@ -200,16 +235,17 @@ class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
 }
 ```
 
+### Bonus
+
+The VgaCtrl that was defined on the top is neutral (not application specific).
+We can imagine a case where the system provide a Stream of Fragment of RGB. Which mean the system transmit pixels with start/end of picture indication.
+
+In this case we can manage automaticly the `softReset` input by rising it when a `error` occure, then waiting the end of the current `pixels` picture to falling `error`.
+
+Let's add to the VgaCtrl a function that can be called from the parent component to feed the VgaCtrl by using this Stream of Fragment of RGB.
+
 ```scala
 class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
-  val io = new Bundle {
-    ...
-  }
-  case class HVArea(timingsHV: VgaTimingsHV, enable: Bool) extends Area {
-    ...
-  }
-  val h = HVArea(io.timings.h, True)
-  val v = HVArea(io.timings.v, h.syncEnd)
   ...
   def feedWith(that : Stream[Fragment[Rgb]]): Unit ={
     io.pixels << that.toStreamOfFragment
