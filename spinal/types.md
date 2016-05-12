@@ -186,6 +186,7 @@ myVecOf_xyz_ref(1) := 3    //Assign y with the value 3
 ```
 
 ###Bundle
+
 ```scala
 case class RGB(channelWidth : Int) extends Bundle{
   val red   = UInt(channelWidth bit)
@@ -213,6 +214,7 @@ vgaOut.color.green := 0    //Fix the green to zero
 
 ### Enum
 TODO
+
 ```scala
 object UartCtrlTxState extends SpinalEnum {
   val sIdle, sStart, sData, sParity, sStop = newElement()
@@ -250,6 +252,7 @@ Creating register is very different than VHDL/Verilog.
 | RegNext(value : Data) | Register that sample the given value each cycle |
 
 You can also set the reset value of a register by calling the `init(value : Data)` function
+
 ```scala
 val counter = Reg(UInt(4 bit)) init(0) //Register of 4 bit initialized with 0
 counter := counter + 1

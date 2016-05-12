@@ -30,6 +30,7 @@ class Counter(width : Int) extend Component{
 
 ### A carry adder
 @TODO Describe what is done
+
 ```scala
 class CarryAdder(size : Int) extends Component{
   val io = new Bundle{

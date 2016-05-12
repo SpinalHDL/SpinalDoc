@@ -46,3 +46,7 @@ entries:
     - title: Basic examples
       url: /spinal_basic_examples/
       output: web,pdf
+
+    - title: VGA
+      url: /spinal_examples_vga/
+      output: web,pdf
