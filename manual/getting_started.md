@@ -52,29 +52,33 @@ The following code generates an `and` gate between two one bit inputs.
  ```scala
  import spinal.core._
 
- class CarryAdder extends Component {
-   // Define some input/output. Bundle like a VHDL record.
+ class AND_Gate extends Component {
+
+   /**
+     * This is the component definition that corresponds to
+     * the VHDL entity of the component
+     */
    val io = new Bundle {
      val a = in Bool
      val b = in Bool
      val c = out Bool
    }
 
-   //Define some asynchronous logic
+   // Here we define some asynchronous logic
    io.c := io.a & io.b
  }
 
- object CarryAdder {
+ object AND_Gate {
    // Let's go
    def main(args: Array[String]) {
-     SpinalVhdl(new CarryAdder)
+     SpinalVhdl(new AND_Gate)
    }
  }
+
+
  ```
 
 As you can see, the first lin e you have to write in Spinal is `import spinal.core._` which indicates that we are using the *Spinal* components in the file.
-
-@TODO change the example in the SpinalBaseProject file to reflect what we have here.)
 
 ### Generated code
 Once you have successfully compiled your code, the compiler should have emit the following VHDL code :
