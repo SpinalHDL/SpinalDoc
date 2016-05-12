@@ -12,7 +12,7 @@ site_title: SpinalHDL documentation
 # this appears in the html browser tab for the site title (seen mostly by search engines, not users)
 company_name: SpinalHDL
 # this appears in the footer
-github_editme_path: tomjohnson1492/documentation-theme-jekyll/edit/reviews
+github_editme_path: SpinalHDL/SpinalDoc/edit/gh-pages
 # if you're using Github, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
 disqus_shortname: idrbwjekyll
 # if you're using disqus for comments, add the shortname here. if not, leave this value blank.

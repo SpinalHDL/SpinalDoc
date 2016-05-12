@@ -5,14 +5,14 @@ description: "VGA controller implementation example"
 tags: [getting started, examples]
 categories: [documentation, VGA]
 sidebar: spinal_sidebar
-permalink: /spinal_examples_vga/
+permalink: /spinal/vga.md
 ---
 
 VGA interfaces are probably endangered, but implementing a VGA controller is still a good exercise.
 
-A explanation about VGA protocol can be find here : 
-http://www.xess.com/blog/vga-the-rest-of-the-story/
-http://www.xess.com/static/media/uploads/blog/devbisme/2011-06-11/app001_2.png
+A explanation about VGA protocol can be find here : <br>
+http://www.xess.com/blog/vga-the-rest-of-the-story/ <br>
+http://www.xess.com/static/media/uploads/blog/devbisme/2011-06-11/app001_2.png <br>
 
 ## Data structures
 

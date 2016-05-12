@@ -44,9 +44,9 @@ entries:
     folderitems:
 
     - title: Basic examples
-      url: /spinal_basic_examples/
+      url: /spinal/examples.md
       output: web,pdf
 
-    - title: VGA
-      url: /spinal_examples_vga/
+    - title: VGA controller
+      url: /spinal/vga.md
       output: web,pdf
