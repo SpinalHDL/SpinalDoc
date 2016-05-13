@@ -31,12 +31,16 @@ entries:
     output: web, pdf
     folderitems:
 
-    - title:  Types
+    - title:  Types system
       url: /spinal_types/
       output: web, pdf
 
-    - title: Language primitives
+    - title: Core primitives
       url: /spinal_core_components/
+      output: web, pdf
+      
+    - title: Lib primitives
+      url: /spinal/lib_components.md
       output: web, pdf
 
   - title: Examples

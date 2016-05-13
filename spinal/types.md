@@ -50,10 +50,14 @@ The following operators are available for the `Bool` type
 | !x  |  Logical NOT | Bool |
 | x && y |  Logical AND | Bool |
 | x \|\| y |  Logical OR  | Bool |
-| x ^ y  |  Logical XOR | Bool |
+| x.rise | Return True when x was low at the last cycle and is now high | Bool |
+| x.fall | Return False when x was high at the last cycle and is now low | Bool |
+| x.setWhen(cond)  | Set x when cond is True | Bool |
+| x.clearWhen(cond)  |  Clear x when cond is True | Bool |
 
 ### The BitVector family - (`Bits`, `UInt`, `SInt`)
-`BitVector` is a family of types for storing multiple bits of information in a single value. This type has three subtypes that can be used to model different behaviours: `Bits` do not convey any sign information whereas the `UInt` (unsigned integer) and `SInt` (signed integer) provide the required operations to compute correct results if signed / unsigned arithmetics is used.
+`BitVector` is a family of types for storing multiple bits of information in a single value. This type has three subtypes that can be used to model different behaviours: <br>
+`Bits` do not convey any sign information whereas the `UInt` (unsigned integer) and `SInt` (signed integer) provide the required operations to compute correct results if signed / unsigned arithmetics is used.
 
 #### Declaration syntax
 
@@ -276,4 +280,24 @@ val counter = RegInit(U"0000")
 counter := counter + 1
 
 val registerStage = RegNext(counter)   //counter delayed by one cycle
+```
+
+## Literals
+
+Literals are generally use as a constant value. But you can also use them to do two things in a single one :
+
+- Define a wire which is assigned with a constant value
+
+There is an example :
+
+```scala
+val cond = in Bool
+val red = in UInt(4 bits)
+...
+val valid = False          //Bool wire which is by default assigned with False
+val value = U"0100"        //UInt wire of 4 bits which is by default assigned with 4
+when(cond){
+  valid := True
+  value := red
+}
 ```

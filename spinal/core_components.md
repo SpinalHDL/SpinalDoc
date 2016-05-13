@@ -17,6 +17,7 @@ The core language components are as follows:
 - *Memory instantiation*, which permit the automatic instantiation of RAM and ROM memories.
 - *IP instantiation*, using either existing VHDL or Verilog component.
 - Assignments
+- When / Switch
 - Component hierarchy
 - Area
 - Functions
@@ -169,7 +170,7 @@ There are 2 cases where spinal automaticly resize things :
 | myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don't match with left side  | Because  U(3) is a "weak" bit inferred signal, Spinal resize it automatically |
 | myUIntOf_8bit := U(2 -> False default -> true) | The right part infer a 3 bit UInt, which doesn't match with the left part | Spinal reapply the default value to bit that are missing |
 
-## Conditional assignment
+## When / Switch
 As VHDL and Verilog, wire and register can be conditionally assigned by using when and switch syntaxes
 
 ```scala
@@ -191,6 +192,22 @@ switch(x){
   default{
     //execute if none of precedent condition meet
   }
+}
+```
+
+You can also define new signals into a when/switch statement. It's useful if you want to calculate an intermediate value.
+
+```scala
+val toto,titi = UInt(4 bits)
+val a,b = UInt(4 bits)
+
+when(cond){
+  val tmp = a + b
+  toto := tmp
+  titi := tmp + 1
+} otherwise {
+  toto := 0
+  titi := 0
 }
 ```
 
@@ -394,69 +411,3 @@ The Spinal core contain some utils :
 | isPow2(x : BigInt) | Return true if x is a power of two | Boolean|
 
 Much more tool and utils are present in spinal.lib
-
-# spinal.lib
-
-
-## Stream interface
-The Stream interface is a simple handshake protocol to carry payload. They could be used for example to push and pop elements into a FIFO, send requests to a UART controller, etc.
-
-| Signal | Driver| Description | Don't care when
-| ------- | ---- | --- |  --- |
-| valid | Master | When high => payload present on the interface  | |
-| payload| Master | Content of the transaction | valid is low |
-| ready| Slave | When low => transaction are not consumed by the slave | valid is low |
-
-| Syntax | Description| Return | Latency |
-| ------- | ---- | --- |  --- |
-| Stream(type : Data) | Create a Stream of a given type | Stream[T] | |
-| master/slave Stream(type : Data) | Create a Stream of a given type <br> Initialized with corresponding in/out setup | Stream[T] |
-| x.queue(size:Int) | Return a Stream connected to x through a FIFO | Stream[T] | 2 |
-| x.m2sPipe() | Return a Stream drived by x <br>through a register stage that cut valid/data paths | Stream[T] |  1 |
-| x.s2mPipe() | Return a Stream drived by x <br> ready paths is cut by a register stage | Stream[T] |  0 |
-| x << y <br> y >> x | Connect y to x | | 0 |
-| x <-< y <br> y >-> x | Connect y to x through a m2sPipe  |   | 1 |
-| x <&#47;< y <br> y >&#47;> x | Connect y to x through a s2mPipe|   | 0 |
-| x <-/< y <br> y >&#47;-> x | Connect y to x through s2mPipe().m2sPipe() <br> => no combinatorial path between x and y |  | 1 |
-| x.haltWhen(cond : Bool) | Return a Stream connected to x <br> Halted when cond is true | Stream[T] | 0 |
-| x.throwWhen(cond : Bool) | Return a Stream connected to x <br> When cond is true, transaction are dropped | Stream[T] | 0 |
-
-Examples :
-
-```scala
-class StreamFifo[T <: Data](dataType: T, depth: Int) extends Component {
-  val io = new Bundle {
-    val push = slave Stream (dataType)
-    val pop = master Stream (dataType)
-  }
-  ...
-}
-
-class StreamArbiter[T <: Data](dataType: T,portCount: Int) extends Component {
-  val io = new Bundle {
-    val inputs = Vec(slave Stream (dataType),portCount)
-    val output = master Stream (dataType)
-  }
-  ...
-}
-```
-
-The following code will create this logic :
-<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/master/asset/picture/stream_throw_m2spipe.svg"   align="middle" width="300">
-
-```scala
-case class RGB(channelWidth : Int) extends Bundle{
-  val red   = UInt(channelWidth bit)
-  val green = UInt(channelWidth bit)
-  val blue  = UInt(channelWidth bit)
-
-  def isBlack : Bool = red === 0 && green === 0 && blue === 0
-}
-
-val source = Stream(RGB(8))
-val sink   = Stream(RGB(8))
-sink <-< source.throwWhen(source.payload.isBlack)
-```
-
-
-## Flow interface

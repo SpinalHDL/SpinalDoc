@@ -1,4 +1,4 @@
-body {
+﻿body {
     font-size:15px;
 }
 
@@ -129,7 +129,7 @@ th {
     text-align: left;
 }
 table {
-    max-width: 90%;
+    max-width: 100%;
     margin-bottom: 20px;
     border: 1px solid #dedede;
 }
@@ -142,11 +142,11 @@ table > tbody > tr > td,
 table > tfoot > tr > td {
     padding: 8px;
     line-height: 1.42857143;
-    vertical-align: top;
+    vertical-align: middle;
     border-top: 1px solid #ddd;
 }
 table > thead > tr > th {
-    vertical-align: bottom;
+    vertical-align: middle
     border-bottom: 2px solid #ddd;
     text-transform: none;
     background-color: #777;
@@ -182,7 +182,8 @@ table th[class*="col-"] {
 
 
 table td:first-child {
-    width: 150px;
+	border-collapse: collapse;
+    /*width: 300px;*/
     /*font-weight:bold;*/
 }
 

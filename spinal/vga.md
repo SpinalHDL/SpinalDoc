@@ -51,10 +51,10 @@ case class Vga (rgbConfig: RgbConfig) extends Bundle with IMasterSlave{
   val hSync = Bool
 
   val colorEn = Bool
-  val color = Rgb(rgbConfig)
+  val color   = Rgb(rgbConfig)
 
   override def asMaster() = this.asOutput()
-  override def asSlave() = this.asInput()
+  override def asSlave()  = this.asInput()
 }
 ```
 This Vga bundle is with IMasterSlave. That allow to create master/slave VGA interface by this way : <br>
@@ -161,7 +161,7 @@ class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
     val colorStream = slave Stream (Rgb(rgbConfig))
 
     val error = out Bool    
-	val frameStart = out Bool
+    val frameStart = out Bool
     val vga = master(Vga(rgbConfig))
   }
   ...
@@ -181,10 +181,10 @@ class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
   case class HVArea(timingsHV: VgaTimingsHV, enable: Bool) extends Area {
     val counter = Reg(UInt(timingsWidth bit)) init(0)
 
-    val syncStart = counter === timingsHV.syncStart
-    val syncEnd = counter === timingsHV.syncEnd
+    val syncStart  = counter === timingsHV.syncStart
+    val syncEnd    = counter === timingsHV.syncEnd
     val colorStart = counter === timingsHV.colorStart
-    val colorEnd = counter === timingsHV.colorEnd
+    val colorEnd   = counter === timingsHV.colorEnd
 
     when(enable) {
       counter := counter + 1
@@ -193,12 +193,12 @@ class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
       }
     }
 
-    val sync = RegInit(False) setWhen(syncStart) clearWhen(syncEnd)
+    val sync    = RegInit(False) setWhen(syncStart) clearWhen(syncEnd)
     val colorEn = RegInit(False) setWhen(colorStart) clearWhen(colorEnd)
 
     when(io.softReset) {
       counter := 0
-      sync := False
+      sync    := False
       colorEn := False
     }
   }
