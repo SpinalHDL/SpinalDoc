@@ -41,6 +41,7 @@ It is a very good question ! Why develop a new language when there Chisel has be
 [Chisel](https://chisel.eecs.berkeley.edu/) is the project at the origin of Spinal and Chisel it represents a big step forward compared to common HDL. However, it has several drawbacks for large designs that mix multiple clock domain and external IP (black-boxes). In fact, Chisel show some serious conception issue : 
 
 #### Multiple clock support is awkward:
+
 - Working into a single block with multiple clock is difficult, you can't define "ClockingArea", only creating a module allow it.
 - Reset wire is not really integrated into the clock domain notion, sub module loose reset of parent, which is really annoying.
 - No support of falling edge clock or active low reset.
@@ -57,15 +58,16 @@ It is a very good question ! Why develop a new language when there Chisel has be
 - Assignment operator is only checked when you generate the code, the IDE can't check it for you. Bundle assignment operator is weak typed.
 - Switch statement doesn't have default case.
 - No "Area" notion to give a better structure to the user code.
+- No enumeration support
 
 #### Various issue :
 - You can't define function without argument into `Bundles`.
 - There is no notion of "Area".
 - Using `when`/`otherwise` is not strict in all case. This allows you to generate an asynchronous signal that is not assigned in every case.
-- You can't really write a given range of bit into a bit vector.
+- You can't write a given range of bit into a bit vector.
 - The library that is integrated into Chisel and that provides you some utils and useful bus definition is a good intention, but could be so better and more complete
 
-For a lot of the issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (3 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
+For a lot of the issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (4 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
 
 ## Getting started 
 Want to try it for yourself? Then jump to the [getting started section](getting_started.md) and have fun!

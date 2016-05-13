@@ -8,7 +8,7 @@ sidebar: spinal_sidebar
 permalink: /spinal_core_components/
 ---
 
-#  The `spinal.core` components
+# The `spinal.core` components
 The core components of the language are described in this document. It is part of the general [Spinal user guide](userGuide.md).
 
 The core language components are as follows:
@@ -24,9 +24,9 @@ The core language components are as follows:
 - Utility functions
 
 ## <a href name="clock_domains"></a>Clock domains definitions
-In *Spinal*, clock and reset signals can be combined to create a __clock domain__. Clock domains could be applied to some area of the design and then the synchronous elements instantiated into this area will then __implicitly__ use this clock domain.
+In *Spinal*, clock and reset signals can be combined to create a __clock domain__. Clock domains could be applied to some area of the design and then all synchronous elements instantiated into this area will then __implicitly__ use this clock domain.
 
-It is also permitted to create __nested__ clock domains that have inner clock domain areas. @TODO Is the previous sentence really correct ?
+Clock domain application work like a stack, which mean, if you are in a given clock domain, you can still apply another clock domain locally.
 
 ### Clock domain syntax
 The syntax to define a clock domain is as follows (using EBNF syntax):
@@ -35,9 +35,10 @@ The syntax to define a clock domain is as follows (using EBNF syntax):
 `ClockDomain(clock : Bool[,reset : Bool[,enable : Bool]]])`
 
 This definition takes three parameters:
+
 1. The clock signal that defines the domain
-1. An optional `reset`signal @TODO what will happen to register when no reset is given ?
-1. An optional `enable` signal @TODO the purpose of this signal is to latch the clock ?
+1. An optional `reset`signal. If a register which need a reset and his clock domain didn't provide one, an error message happen
+1. An optional `enable` signal. The goal of this signal is to disable the clock on the whole clock domain without having to  manually implement that on each synchronous element.
 
 An applied example to define a specific clock domain within the design is as follows:
 
@@ -55,7 +56,8 @@ val coreArea = new ClockingArea(coreClockDomain){
   val coreClockedRegister = Reg(UInt(4 bit))
 }
 ```
-###Clock configuration
+
+### Clock configuration
 In addition to the constructor parameters given [here](#clock_constructor), the following elements of each clock domain are configurable via a `ClockDomainConfig`class :
 
 | Property | Valid values|
@@ -65,14 +67,53 @@ In addition to the constructor parameters given [here](#clock_constructor), the 
 | `resetActiveHigh`| `true`, `false` |
 | `clockEnableActiveHigh`| `true`, `false` |
 
-@TODO @dolu you should give an example how to create a specific config for an area
+```scala
+class CustomClockExample extends Component {
+  val io = new Bundle {
+    val clk = in Bool
+    val resetn = in Bool
+    val result = out UInt (4 bits)
+  }
+  val myClockDomainConfig = ClockDomainConfig(
+    clockEdge = RISING,
+    resetKind = ASYNC,
+    resetActiveLevel = LOW
+  )
+  val myClockDomain = ClockDomain(io.clk,io.resetn,config = myClockDomainConfig)
+  val myArea = new ClockingArea(myClockDomain){
+    val myReg = Reg(UInt(4 bits)) init(7)
+    myReg := myReg + 1
+
+    io.result := myReg
+  }
+}
+```
 
 By default, a ClockDomain is applied to the whole design. The configuration of this one is :
+
 - clock : rising edge
 - reset: asynchronous, active high
 - no enable signal
 
-###Cross Clock Domain
+### External clock
+You can define everywhere a clock domain which is driven by the outside. It will then automatically add clock and reset wire from the top level inputs to all synchronous elements.
+
+```scala
+class ExternalClockExample extends Component {
+  val io = new Bundle {
+    val result = out UInt (4 bits)
+  }
+  val myClockDomain = ClockDomain.external("myClockName")
+  val myArea = new ClockingArea(myClockDomain){
+    val myReg = Reg(UInt(4 bits)) init(7)
+    myReg := myReg + 1
+
+    io.result := myReg
+  }
+}
+```
+
+### Cross Clock Domain
 Spinal checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another `ClockDomain` area, you should add the `crossClockDomain` tag to the destination signal as depicted in the following example:
 
 ```scala
@@ -122,6 +163,7 @@ Spinal check that bitcount of left and right assignment side match. There is mul
 | x := y.resize(newWidth) | Assign x with a resized copy of y, size is manually calculated |
 
 There are 2 cases where spinal automaticly resize things :
+
 | Assignement | Problem | Spinal action|
 | ------- | ---- |
 | myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don't match with left side  | Because  U(3) is a "weak" bit inferred signal, Spinal resize it automatically |
@@ -129,6 +171,7 @@ There are 2 cases where spinal automaticly resize things :
 
 ## Conditional assignment
 As VHDL and Verilog, wire and register can be conditionally assigned by using when and switch syntaxes
+
 ```scala
 when(cond1){
   //execute when      cond1 is true
@@ -187,11 +230,12 @@ Syntax to define in/out is the following :
 | in/out Bits/UInt/SInt[(x bit)]| Create an input/output of the corresponding type | T|
 
 There is some rules about component interconnection :
+
 - Components can only read outputs/inputs signals of children components
 - Components can read outputs/inputs ports values
 - If for some reason, you need to read a signals from far away in the hierarchy (debug, temporal patch) you can do it by using the value returned by some.where.else.theSignal.pull().
 
-##Area
+## Area
 Sometime, creating a component to define some logic is overkill and to much verbose. For this kind of cases you can use Area :
 
 ```scala
@@ -220,14 +264,56 @@ class UartCtrl extends Component {
   }
 }
 ```
-##Function
+
+## Function
 The ways you can use Scala functions to generate hardware are radically different than VHDL/Verilog for many reasons:
-- You can instanciate register, combinatorial and component inside them.
+
+- You can instantiate register, combinatorial logic and component inside them.
 - You don't have to play with `process`/`@always` that limit the scope of assignment of signals
-- Everything work by reference, which allow many manipulation. @TODO for instance what ?
+- Everything work by reference, which allow many manipulation.<br> For example you can give to a function an bus as argument, then the function can internaly read/write it.<br>You can also return a Component, a Bus, are anything else from scala the scala world.
 
-@TODO Give some examples
+### RGB to gray
 
+For example if you want to convert a Red/Green/Blue color into a gray one by using coefficient, you can use functions to apply them :
+
+```scala
+// Input RGB color
+val r,g,b = UInt(8 bits) 
+
+// Define a function to multiply a UInt by a scala Float value.
+def coef(value : UInt,by : Float) : UInt = (value * U((255*by).toInt,8 bits) >> 8)
+
+//Calculate the gray level
+val gray = coef(r,0.3f) +
+           coef(g,0.4f) +
+           coef(b,0.3f)
+```
+
+### Valid Ready Payload bus
+
+For instance if you define a simple Valid Ready Payload bus, you can then define usefull function inside it.
+
+```scala
+class MyBus(payloadWidth:  Int) extends Bundle {
+  val valid = Bool
+  val ready = Bool
+  val payload = Bits(payloadWidth bits)
+  
+  //connect that to this
+  def <<(that: MyBus) : Unit = {
+    this.valid := that.valid
+    that.ready := this.ready
+    this.payload := that.payload
+  }
+  
+  // Connect this to the FIFO input, return the fifo output
+  def queue(size: Int): MyBus = {
+    val fifo = new Fifo(payloadWidth, size)
+    fifo.io.push << this
+    return fifo.io.pop
+  }
+}
+```  
 
 ## Compile
 
@@ -257,7 +343,7 @@ object MyMain {
 }
 ```
 
-##Memory
+## Memory
 
 | Syntax | Description|
 | ------- | ---- |
@@ -270,7 +356,7 @@ object MyMain {
 | mem(x) := y |  Synchronous write | |
 | mem.readSync(address,enable) | Synchronous read | T|
  
-##Instanciate VHDL and Verilog IP
+## Instanciate VHDL and Verilog IP
  In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a Spinal design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.
  
 ```scala
@@ -298,7 +384,7 @@ class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
   mapClockDomain(clock=io.clk)
 }
 ```
-##Utils
+## Utils
 The Spinal core contain some utils :
 
 | Syntax | Description| Return |
@@ -308,10 +394,10 @@ The Spinal core contain some utils :
 
 Much more tool and utils are present in spinal.lib
 
-#spinal.lib
+# spinal.lib
 
 
-##Stream interface
+## Stream interface
 The Stream interface is a simple handshake protocol to carry payload. They could be used for example to push and pop elements into a FIFO, send requests to a UART controller, etc.
 
 | Signal | Driver| Description | Don't care when
@@ -335,6 +421,7 @@ The Stream interface is a simple handshake protocol to carry payload. They could
 | x.throwWhen(cond : Bool) | Return a Stream connected to x <br> When cond is true, transaction are dropped | Stream[T] | 0 |
 
 Examples :
+
 ```scala
 class StreamFifo[T <: Data](dataType: T, depth: Int) extends Component {
   val io = new Bundle {
@@ -371,4 +458,4 @@ sink <-< source.throwWhen(source.payload.isBlack)
 ```
 
 
-##Flow interface
+## Flow interface

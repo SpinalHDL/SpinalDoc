@@ -185,7 +185,7 @@ for(element <- myVecOf_xyz_ref){
 myVecOf_xyz_ref(1) := 3    //Assign y with the value 3
 ```
 
-###Bundle
+### Bundle
 
 ```scala
 case class RGB(channelWidth : Int) extends Bundle{
@@ -213,15 +213,30 @@ vgaOut.color.green := 0    //Fix the green to zero
 ```
 
 ### Enum
-TODO
+
+Spinal support enumeration with some encodings :
+| Encoding | Bit width | Description | 
+| ------- | ---- | --- |
+| native | ? | Use the VHDL enumeration system, this is the default encoding |
+| sequancial | log2Up(stateCount) | Use a Bits to encode states in declaration order |
+| oneHot | stateCount | Use a Bits to encode state. Each bit correspond to one state |
+
+Define a enumeration type:
 
 ```scala
-object UartCtrlTxState extends SpinalEnum {
+object UartCtrlTxState extends SpinalEnum { // Or SpinalEnum(defaultEncoding=encodingOfYouChoice)
   val sIdle, sStart, sData, sParity, sStop = newElement()
 }
+```
 
+Instantiate a enumeration signal and assign it :
+
+```scala
+val stateNext = UartCtrlTxState() // Or UartCtrlTxState(encoding=encodingOfYouChoice)
+stateNext := UartCtrlTxState.sIdle
+
+//You can also import the enumeration to have the visibility on its elements
 import UartCtrlTxState._
-val stateNext = UartCtrlTxState()
 stateNext := sIdle
 ```
 

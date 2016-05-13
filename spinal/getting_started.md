@@ -16,7 +16,7 @@ Before you download the Spinal tools, you need to install :
 - A Scala distribution, which can be downloaded [here](http://scala-lang.org/download/).
 - The SBT build tool, which can be downloaded [here](http://www.scala-sbt.org/download.html).
 
-Optionally, if you need an IDE (which is not compulsory) we advise you to get IntelliJ.
+Optionally, if you need an IDE (which is not compulsory) we advise you to get IntelliJ 14.1.
 
 ## How to start programming with Spinal
 Once you have downloaded all the requirements, there are two ways to get started with Spinal programming.
@@ -79,7 +79,39 @@ As you can see, the first lin e you have to write in Spinal is `import spinal.co
 ### Generated code
 Once you have successfully compiled your code, the compiler should have emit the following VHDL code :
 
-@TODO Complete this
+```vhdl
+package pkg_enum is
+  ...
+end pkg_enum;
+
+package pkg_scala2hdl is
+  ...
+end  pkg_scala2hdl;
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+library work;
+use work.pkg_scala2hdl.all;
+use work.all;
+use work.pkg_enum.all;
+
+
+entity AND_Gate is
+  port(
+    io_a : in std_logic;
+    io_b : in std_logic;
+    io_c : out std_logic 
+  );
+end AND_Gate;
+
+architecture arch of AND_Gate is
+
+begin
+  io_c <= (io_a and io_b);
+end arch;
+```
 
 ## What to do next ?
 It's up to you, but why not have a look at what the [types](types.md) are in Spinal or discover what [primitives]() the language provides to describe hardware components? You could also have a look at our [examples](examples.md) to see some samples of what you could do next.

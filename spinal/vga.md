@@ -217,8 +217,7 @@ Now that we have timings generators for horizontal and vertical syncro, we need 
 class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
   val io = new Bundle {...}
 
-  case class HVArea(timingsHV: VgaTimingsHV, enable: Bool) extends Area {...
-}
+  case class HVArea(timingsHV: VgaTimingsHV, enable: Bool) extends Area {...}
   val h = HVArea(io.timings.h, True)
   val v = HVArea(io.timings.v, h.syncEnd)
 
