@@ -20,8 +20,8 @@ The core language components are as follows:
 - Component hierarchy
 - Area
 - Functions
-- Compile, @TODO what is this ?
 - Utility functions
+- VHDL generator
 
 ## <a href name="clock_domains"></a>Clock domains definitions
 In *Spinal*, clock and reset signals can be combined to create a __clock domain__. Clock domains could be applied to some area of the design and then all synchronous elements instantiated into this area will then __implicitly__ use this clock domain.
@@ -315,7 +315,8 @@ class MyBus(payloadWidth:  Int) extends Bundle {
 }
 ```  
 
-## Compile
+## VHDL generation
+There is a small component and a `main` that generate the corresponding VHDL.
 
 ```scala
 // spinal.core contain all basics (Bool, UInt, Bundle, Reg, Component, ..)
