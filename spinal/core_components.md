@@ -402,6 +402,7 @@ class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
   mapClockDomain(clock=io.clk)
 }
 ```
+
 ## Utils
 The Spinal core contain some utils :
 
