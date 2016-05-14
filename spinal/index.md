@@ -12,10 +12,9 @@ permalink: /
 ## Document purpose and structure
 This site presents the *Spinal* language and how to use it on concrete examples. This documentation also explains how the language is implemented. The documentation is split into different sections:
 
-1. [Languages principles](/) (this document)
+1. [Languages principles](/SpinalDoc/) (this document)
 1. [Getting started](/SpinalDoc/spinal_getting_started)
-1. [Languages types](/SpinalDoc/spinal_types)
-1. [Language principles and primitives](/SpinalDoc/spinal_components)
+1. [Language principles and primitives](/SpinalDoc/spinal/core/introduction.md)
 
 ## What is Spinal ?
 Spinal is a high-level hardware description language. It can be used as an alternative to VHDL or Verilog and has several advantages over those. 
@@ -70,4 +69,4 @@ It is a very good question ! Why develop a new language when there Chisel has be
 For a lot of the issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (4 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
 
 ## Getting started 
-Want to try it for yourself? Then jump to the [getting started section](getting_started.md) and have fun!
+Want to try it for yourself? Then jump to the [getting started section](/SpinalDoc/spinal_getting_started) and have fun!

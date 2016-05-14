@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Examples
+title: Simple examples
 description: "This pages gives some examples Spinal"
 tags: [getting started, examples]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/examples.md
+permalink: /spinal/examples/simple_ones.md
 ---
 
 ## Some Spinal code examples

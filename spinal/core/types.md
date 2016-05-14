@@ -4,11 +4,11 @@ title: Types in Spinal
 description: "This pages describes the main types usable in Spinal"
 tags: [types]
 categories: [documentation, types]
-permalink: /spinal_types/
+permalink: /spinal/core/types.md
 sidebar: spinal_sidebar
 ---
 
-## Types
+## Introduction
 The language provides 5 base types and 2 composite types that can be used.
 
 - Base types : `Bool`, `Bits`, `UInt` for unsigned integers, `SInt` for signed integers, `Enum`.
@@ -18,12 +18,12 @@ The language provides 5 base types and 2 composite types that can be used.
 
 Those types and their usage (with examples) are explained hereafter.
 
-### Bool
+## Bool
 This is the standard *boolean* type that correspond to a bit.
 
 @TODO is there a any way / sense to assign values such as U or X, does it correspond in reality to std_logic ?
 
-#### Declaration
+### Declaration
 
 The syntax to declare such as value is as follows:
 
@@ -42,7 +42,7 @@ myBool := False         // := is the assignment operator
 myBool := Bool(false)   // Use a Scala Boolean to create a literal
 ```
 
-#### Operators
+### Operators
 The following operators are available for the `Bool` type
 
 | Operator | Description | Return type |
@@ -55,11 +55,11 @@ The following operators are available for the `Bool` type
 | x.setWhen(cond)  | Set x when cond is True | Bool |
 | x.clearWhen(cond)  |  Clear x when cond is True | Bool |
 
-### The BitVector family - (`Bits`, `UInt`, `SInt`)
+## The BitVector family - (`Bits`, `UInt`, `SInt`)
 `BitVector` is a family of types for storing multiple bits of information in a single value. This type has three subtypes that can be used to model different behaviours: <br>
 `Bits` do not convey any sign information whereas the `UInt` (unsigned integer) and `SInt` (signed integer) provide the required operations to compute correct results if signed / unsigned arithmetics is used.
 
-#### Declaration syntax
+### Declaration syntax
 
 @TODO mettre un lien sur syntaxe EBNF
 
@@ -109,7 +109,7 @@ myUInt := U(7 -> true,default -> false) //Assign myUInt with "10000000"
 myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "00011110"
 ```
 
-#### Valid operators
+### Valid operators
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -126,7 +126,7 @@ myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "0001111
 | x.toBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
 
 
-### Bits
+## Bits
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -136,7 +136,7 @@ myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "0001111
 | x << y |  Logical shift left, y : UInt | T(w(x) + max(y) bit) |
 | x.resize(y) |  Return a resized copy of x, filled with zero, y : Int  | T(y bit) |
 
-### UInt, SInt
+## UInt, SInt
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -153,7 +153,7 @@ myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "0001111
 | x << y |  Arithmetic shift left, y : UInt | T(w(x) + max(y) bit) |
 | x.resize(y) |  Return an arithmetic resized copy of x, y : Int  | T(y bit) |
 
-### Bool, Bits, UInt, SInt
+## Bool, Bits, UInt, SInt
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -162,7 +162,7 @@ myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "0001111
 | x.asUInt |  Binary cast in UInt | UInt(w(x) bit) |
 | x.asSInt |  Binary cast in SInt | SInt(w(x) bit) |
 
-### Vec
+## Vec
 
 | Declaration| Description|
 | ------- | ---- | 
@@ -189,7 +189,7 @@ for(element <- myVecOf_xyz_ref){
 myVecOf_xyz_ref(1) := 3    //Assign y with the value 3
 ```
 
-### Bundle
+## Bundle
 
 ```scala
 case class RGB(channelWidth : Int) extends Bundle{
@@ -216,7 +216,7 @@ vgaOut := vgaIn            //Assign the whole bundle
 vgaOut.color.green := 0    //Fix the green to zero
 ```
 
-### Enum
+## Enum
 
 Spinal support enumeration with some encodings :
 | Encoding | Bit width | Description | 
@@ -244,7 +244,7 @@ import UartCtrlTxState._
 stateNext := sIdle
 ```
 
-### Data (Bool, Bits, UInt, SInt, Enum, Bundle, Vec)
+## Data (Bool, Bits, UInt, SInt, Enum, Bundle, Vec)
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -260,27 +260,6 @@ stateNext := sIdle
 | x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int | T(width bit) |
 | x.getZero |  Get equivalent type assigned with zero | T |
 
-
-## Register
-Creating register is very different than VHDL/Verilog.
-
-| Syntax | Description |
-| ------- | ---- |
-| Reg(type : Data) | Register of the given type |
-| RegInit(value : Data) | Register with the given value when a reset occur |
-| RegNext(value : Data) | Register that sample the given value each cycle |
-
-You can also set the reset value of a register by calling the `init(value : Data)` function
-
-```scala
-val counter = Reg(UInt(4 bit)) init(0) //Register of 4 bit initialized with 0
-counter := counter + 1
-
-val counter = RegInit(U"0000")
-counter := counter + 1
-
-val registerStage = RegNext(counter)   //counter delayed by one cycle
-```
 
 ## Literals
 
@@ -301,3 +280,4 @@ when(cond){
   value := red
 }
 ```
+

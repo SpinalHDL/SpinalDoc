@@ -1,6 +1,6 @@
 # This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
 
-entries:
+entries: 
 - title: Sidebar 
   product: Spinal doc 
   version: 0.21
@@ -18,39 +18,92 @@ entries:
       url: /tocpage/
       output: pdf
       type: frontmatter
-
-  - title: User guide 
-    output: web, pdf
+      
+  - title: Spinal
+    output: web
     folderitems:
-
     - title: Getting started
       url: /spinal_getting_started/
       output: web
 
-  - title: Language principles
-    output: web, pdf
-    folderitems:
+      subfolders:
+      - title: spinal.core
+        output: web
+        subfolderitems:
+        
+        - title: Types and literals
+          url: /spinal/core/types.md
+          output: web
+          
+        - title: Registers
+          url: /spinal/core/registers.md
+          output: web
+          
+        - title: Clock domains
+          url: /spinal/core/clock_domain.md
+          output: web
 
-    - title:  Types system
-      url: /spinal_types/
-      output: web, pdf
+        - title: Assignements
+          url: /spinal/core/assignements.md
+          output: web
 
-    - title: Core primitives
-      url: /spinal_core_components/
-      output: web, pdf
-      
-    - title: Lib primitives
-      url: /spinal/lib_components.md
-      output: web, pdf
+        - title: When / Switch
+          url: /spinal/core/when_switch.md
+          output: web
 
-  - title: Examples
-    output: web, pdf
-    folderitems:
+        - title: Components / Hierarchy
+          url: /spinal/core/components_hierarchy.md
+          output: web
 
-    - title: Basic examples
-      url: /spinal/examples.md
-      output: web,pdf
+        - title: Area
+          url: /spinal/core/area.md
+          output: web
 
-    - title: VGA controller
-      url: /spinal/vga.md
-      output: web,pdf
+        - title: Function
+          url: /spinal/core/function.md
+          output: web
+
+        - title: VHDL generation
+          url: /spinal/core/vhdl_generation.md
+          output: web
+
+        - title: Memory
+          url: /spinal/core/memory.md
+          output: web
+
+        - title: Instanciate VHDL and Verilog IP
+          url: /spinal/core/blackbox.md
+          output: web
+          
+      - title: spinal.lib
+        output: web
+        subfolderitems:
+        
+        - title: Introduction
+          url: /spinal/lib/introduction.md
+          output: web
+          
+        - title: Utils
+          url: /spinal/lib/utils.md
+          output: web
+          
+        - title: Stream
+          url: /spinal/lib/stream.md
+          output: web
+          
+        - title: Flow
+          url: /spinal/lib/flow.md
+          output: web
+                    
+      - title: Examples
+        output: web
+        subfolderitems:
+        
+        - title: Simple ones
+          url: /spinal/examples/simple_ones.md
+          output: web
+          
+        - title: VGA
+          url: /spinal/examples/vga.md
+          output: web
+                              

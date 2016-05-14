@@ -5,7 +5,7 @@ description: "VGA controller implementation example"
 tags: [getting started, examples]
 categories: [documentation, VGA]
 sidebar: spinal_sidebar
-permalink: /spinal/vga.md
+permalink: /spinal/examples/vga.md
 ---
 
 VGA interfaces are probably endangered, but implementing a VGA controller is still a good exercise.

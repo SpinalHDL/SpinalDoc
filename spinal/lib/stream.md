@@ -5,28 +5,10 @@ description: "This pages describes the lib components of Spinal"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/lib_components.md
+permalink: /spinal/lib/stream.md
 ---
 
-# The `spinal.lib` components
-The lib components of the language are described in this document.
-
-## General utils
-
-| Syntax | Return | Description |
-| ------------------------------- | ---- | --- |
-| Delay(that: T, cycleCount: Int) | T | Return `that` delayed by `cycleCount` cycles |
-| Delays(that: T, delayMax: Int) | List[T] | Return a Vec of delayMax + 1 elements <br> The first element is `that`, the last one is `that` delayed by `delayMax`   |
-| toGray(x : UInt) | Bits | Return the gray value converted from `x` (UInt) |
-| fromGray(x : Bits) | UInt | Return the UInt value converted value from `x` (gray) |
-| Reverse(x : T) | T | Flip all bits (lsb + n -> msb - n) |
-| OHToUInt(x : Seq[Bool]) <br> OHToUInt(x : BitVector) | UInt | Return the index of the single bit set (one hot) in `x` |
-| CountOne(x : Seq[Bool]) <br> CountOne(x : BitVector) | UInt | Return the number of bit set in `x` |
-| MajorityVote(x : Seq[Bool]) <br> MajorityVote(x : BitVector) | Bool | Return True if the number of bit set is > x.size / 2 |
-| BufferCC(input : T) | T | Return the input signal synchronised with the current clock domain by using 2 flip flop |
-| LatencyAnalysis(paths : Node*) | Int | Return the shortest path,in therm of cycle, that travel through all nodes, <br> from the first one to the last one |
-
-## Stream interface
+## Specification
 The Stream interface is a simple handshake protocol to carry payload.<br> 
 It could be used for example to push and pop elements into a FIFO, send requests to a UART controller, etc.
 
@@ -41,7 +23,7 @@ It could be used for example to push and pop elements into a FIFO, send requests
 - An UART controller could directly use the write port to drive UART pins and only consume the transaction at the end of the transmission. <br>
  Be careful with that." %}
  
- ```scala
+```scala
 class StreamFifo[T <: Data](dataType: T, depth: Int) extends Component {
   val io = new Bundle {
     val push = slave Stream (dataType)
@@ -59,7 +41,7 @@ class StreamArbiter[T <: Data](dataType: T,portCount: Int) extends Component {
 }
 ```
 
-### Stream functions
+## Functions
 
 | Syntax | Description| Return | Latency |
 | ------- | ---- | --- |  --- |
@@ -92,6 +74,8 @@ val source = Stream(RGB(8))
 val sink   = Stream(RGB(8))
 sink <-< source.throwWhen(source.payload.isBlack)
 ```
+
+## Components
 
 ### StreamFifo
 
@@ -149,23 +133,3 @@ val streamInClockB = StreamCCByToggle(
   popClock  = clockB
 )
 ```
-
-## Flow interface
-The Flow interface is a simple valid/payload protocol which mean the slave can't halt the bus.<br> 
-It could be used, for example, to represent data coming from an UART controller, requests to write an on-chip memory, etc.
-
-| Signal | Driver| Description | Don't care when
-| ------- | ---- | --- |  --- |
-| valid | Master | When high => payload present on the interface  | |
-| payload| Master | Content of the transaction | valid is low |
-
-
-| Syntax | Description| Return | Latency |
-| ------- | ---- | --- |  --- |
-| Flow(type : Data) | Create a Flow of a given type | Flow[T] | |
-| master/slave Flow(type : Data) | Create a Flow of a given type <br> Initialized with corresponding in/out setup | Flow[T] |
-| x.m2sPipe() | Return a Flow drived by x <br>through a register stage that cut valid/payload paths | Flow[T] |  1 |
-| x << y <br> y >> x | Connect y to x | | 0 |
-| x <-< y <br> y >-> x | Connect y to x through a m2sPipe  |   | 1 |
-| x.throwWhen(cond : Bool) | Return a Flow connected to x <br> When cond is high, transaction are dropped | Flow[T] | 0 |
-| x.toReg() | Return a register which is loaded with `payload` when valid is high | T | |
