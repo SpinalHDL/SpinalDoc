@@ -22,6 +22,10 @@ entries:
   - title: Spinal
     output: web
     folderitems:
+    - title: Index
+      url: /
+      output: web
+
     - title: Getting started
       url: /spinal_getting_started/
       output: web
