@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TODO
+title: BlackBox in Spinal
 description: "TODO"
 tags: [components, intro]
 categories: [intro]
@@ -8,9 +8,9 @@ sidebar: spinal_sidebar
 permalink: /spinal/core/blackbox.md
 ---
 
-## Instanciate VHDL and Verilog IP
+## Instanciate VHDL and Verilog IP inside Spinal
  In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a Spinal design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.
- 
+
 ```scala
 class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
   val generic = new Generic {

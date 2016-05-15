@@ -19,13 +19,14 @@ Clock domain application work like a stack, which mean, if you are in a given cl
 The syntax to define a clock domain is as follows (using EBNF syntax):
 
 <a name="clock_constructor"></a>
-`ClockDomain(clock : Bool[,reset : Bool[,enable : Bool]]])`
+`ClockDomain(clock : Bool[,reset : Bool][,enable : Bool][,enable : Bool][,config : ClockDomainConfig])`
 
 This definition takes three parameters:
 
 1. The clock signal that defines the domain
 1. An optional `reset`signal. If a register which need a reset and his clock domain didn't provide one, an error message happen
 1. An optional `enable` signal. The goal of this signal is to disable the clock on the whole clock domain without having to  manually implement that on each synchronous element.
+1. An optional `config` class. Which specify polarity of signals and the nature of the reset.
 
 An applied example to define a specific clock domain within the design is as follows:
 
@@ -35,8 +36,6 @@ val coreReset = Bool
 
 // Define a new clock domain
 val coreClockDomain = ClockDomain(coreClock,coreReset)
-
-...
 
 // Use this domain in an area of the design
 val coreArea = new ClockingArea(coreClockDomain){
@@ -51,8 +50,8 @@ In addition to the constructor parameters given [here](#clock_constructor), the 
 | ------- | ---- |
 | `clockEdge` | `RISING`, `FALLING` |
 | `ResetKind`| `ASYNC`, `SYNC` |
-| `resetActiveHigh`| `true`, `false` |
-| `clockEnableActiveHigh`| `true`, `false` |
+| `resetActiveLevel`| `HIGH`, `LOW` |
+| `clockEnableActiveLevel`| `HIGH`, `LOW` |
 
 ```scala
 class CustomClockExample extends Component {
@@ -105,15 +104,16 @@ Spinal checks at compile time that there is no unwanted/unspecified cross clock 
 
 ```scala
 val asynchronousSignal = UInt(8 bit)
-... 
+...
 val buffer0 = Reg(UInt(8 bit)).addTag(crossClockDomain)
 val buffer1 = Reg(UInt(8 bit))
 buffer0 := asynchronousSignal
 buffer1 := buffer0   // Second register stage to be avoid metastability issues
 ```
 
+Or in short:
+
 ```scala
-// Or in less lines:
 val buffer0 = RegNext(asynchronousSignal).addTag(crossClockDomain)
-val buffer1 = RegNext(buffer0) 
+val buffer1 = RegNext(buffer0)
 ```

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 
+title: RAM / ROM in Spinal
 description: "TODO"
 tags: [components, intro]
 categories: [intro]
@@ -9,7 +9,7 @@ permalink: /spinal/core/memory.md
 ---
 
 
-## Memory
+## Syntax
 
 | Syntax | Description|
 | ------- | ---- |
@@ -21,4 +21,5 @@ permalink: /spinal/core/memory.md
 | mem(x) |  Asynchronous read | T |
 | mem(x) := y |  Synchronous write | |
 | mem.readSync(address,enable) | Synchronous read | T|
- 
+
+@TODO more doc

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TODO
+title: Area in Spinal
 description: "TODO"
 tags: [components, intro]
 categories: [intro]
@@ -10,7 +10,12 @@ permalink: /spinal/core/area.md
 
 
 ## Area
-Sometime, creating a component to define some logic is overkill and to much verbose. For this kind of cases you can use Area :
+Sometime, creating a `Component` to define some logic is overkill :
+
+- Need to define all construction parameters and IO (verbosity, duplication)
+- Split your code (more than needed)
+
+For this kind of cases you can use `Area` to define a group of signals/logic.
 
 ```scala
 class UartCtrl extends Component {
@@ -26,7 +31,7 @@ class UartCtrl extends Component {
   val tickCounter = new Area {
     val value = Reg(UInt(3 bit))
     val reset = False
-	when(timer.tick) {          // Refer to the tick from timer area
+    when(timer.tick) {          // Refer to the tick from timer area
       value := value + 1
     }
     when(reset) {
@@ -38,3 +43,6 @@ class UartCtrl extends Component {
   }
 }
 ```
+
+
+{% include tip.html content="Abuse of area !<br> No more toto_a, toto_b, toto_c as it so often done in common HDL, any `Component`'s internal module could be an `Area`" %}

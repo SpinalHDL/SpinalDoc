@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TODO
+title: When and Switch in Spinal
 description: "TODO"
 tags: [components, intro]
 categories: [intro]
@@ -34,6 +34,8 @@ switch(x){
 }
 ```
 
+## Local declaration
+
 You can also define new signals into a when/switch statement. It's useful if you want to calculate an intermediate value.
 
 ```scala
@@ -48,4 +50,28 @@ when(cond){
   toto := 0
   titi := 0
 }
+```
+
+{% include note.html content="Spinal check that signals defined into a scope are only assigned inside this one." %}
+
+## Mux
+
+If you just need a mux with a Bool selection signal, you can use the following :
+
+```scala
+val cond = Bool
+val whenTrue,whenFalse = UInt(8 bits)
+val muxOutput = Mux(cond,whenTrue,whenFalse)
+```
+
+Sometime we need kind of "switch mux", like you can do with the VHDL `when` syntax. Spinal offer something similar by using the `mux` function :
+
+```scala
+val bitwiseSelect = UInt(2 bits)
+val bitwiseResult = bitwiseSelect.mux(
+  0 -> (io.src0 & io.src1),
+  1 -> (io.src0 | io.src1),
+  2 -> (io.src0 ^ io.src1),
+  default -> (io.src0)
+)
 ```

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TODO
+title: Components and hierarchy in Spinal
 description: "TODO"
 tags: [components, intro]
 categories: [intro]
@@ -9,13 +9,13 @@ permalink: /spinal/core/components_hierarchy.md
 ---
 
 
-## Component/Hierarchy
+## Introduction
 Like in VHDL and Verilog, you can define components that could be used to build a design hierarchy.  But unlike them, you don't need to bind them at instantiation.
 
 ```scala
 class AdderCell extends Component {
   //Declaring all in/out in an io Bundle is probably a good practice
-  val io = new Bundle { 
+  val io = new Bundle {
     val a, b, cin = in Bool
     val sum, cout = out Bool
   }
@@ -31,10 +31,12 @@ class Adder(width: Int) extends Component {
   val cell1 = new AdderCell
   cell1.io.cin := cell0.io.cout //Connect carrys
   ...
-  val cellArray = Array.fill(width)(new AdderCell) 
+  val cellArray = Array.fill(width)(new AdderCell)
   ...
 }
 ```
+
+## Input / output definition
 
 Syntax to define in/out is the following :
 
@@ -47,5 +49,6 @@ Syntax to define in/out is the following :
 There is some rules about component interconnection :
 
 - Components can only read outputs/inputs signals of children components
-- Components can read outputs/inputs ports values
-- If for some reason, you need to read a signals from far away in the hierarchy (debug, temporal patch) you can do it by using the value returned by some.where.else.theSignal.pull().
+- Components can read their own outputs ports values (unlike VHDL)
+
+{% include tip.html content="If for some reason, you need to read a signals from far away in the hierarchy (debug, temporal patch) you can do it by using the value returned by some.where.else.theSignal.pull()." %}

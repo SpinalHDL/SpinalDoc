@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TODO
+title: Assignments in Spinal
 description: "TODO"
 tags: [components, intro]
 categories: [intro]
@@ -19,7 +19,7 @@ There are multiple assignment operator :
 | <> |Automatic connection between 2 signals. Direction is inferred by using signal direction (in/out) <br> Similar behavioural than :=  |
 
 ```scala
-//Because of hardware concurrency is always read with the value '1' by b and c
+//Because of hardware concurrency, `a` is always read with the value '1' by b and c
 val a,b,c = UInt(4 bit)
 a := 0
 b := a
@@ -33,16 +33,23 @@ y := x      //y read x with the value 0
 x \= x + 1
 z := x      //z read x with the value 1
 ```
-Spinal check that bitcount of left and right assignment side match. There is multiple ways to adapt bitcount of BitVector (Bits, UInt, SInt) :
+
+## Width checking
+
+Spinal check that bitcount of left and right assignment side match. There is multiple ways to adapt the width of a given BitVector (Bits, UInt, SInt) :
 
 | Resizing ways | Description|
 | ------- | ---- |
 | x := y.resized | Assign x wit a resized copy of y, resize value is automatically inferred to match x  |
 | x := y.resize(newWidth) | Assign x with a resized copy of y, size is manually calculated |
 
-There are 2 cases where spinal automaticly resize things :
+There are 2 cases where spinal automatically resize things :
 
-| Assignement | Problem | Spinal action|
+| Assignement | Problem | Spinal action |
 | ------- | ---- |
 | myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don't match with left side  | Because  U(3) is a "weak" bit inferred signal, Spinal resize it automatically |
-| myUIntOf_8bit := U(2 -> False default -> true) | The right part infer a 3 bit UInt, which doesn't match with the left part | Spinal reapply the default value to bit that are missing |
+| myUIntOf_8bit := U(2 -> false default -> true) | The right part infer a 3 bit UInt, which doesn't match with the left part | Spinal reapply the default value to bit that are missing |
+
+## Combinatorial loops
+
+Spinal check that there is no combinatorial loops (latch) in your design. If one is detected, it rise an error and Spinal will print you the path of the loop.

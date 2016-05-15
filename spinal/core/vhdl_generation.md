@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TODO
+title: VHDL generation
 description: "TODO"
 tags: [components, intro]
 categories: [intro]
@@ -9,7 +9,7 @@ permalink: /spinal/core/vhdl_generation.md
 ---
 
 
-## VHDL generation
+## Example
 There is a small component and a `main` that generate the corresponding VHDL.
 
 ```scala
@@ -37,3 +37,5 @@ object MyMain {
   }
 }
 ```
+
+@TODO parametrization
