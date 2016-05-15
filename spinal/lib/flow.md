@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Spinal lib components
+title: Flow bus
 description: "This pages describes the lib components of Spinal"
 tags: [components, intro]
 categories: [intro]
@@ -9,7 +9,7 @@ permalink: /spinal/lib/flow.md
 ---
 
 ## Specification
-The Flow interface is a simple valid/payload protocol which mean the slave can't halt the bus.<br> 
+The Flow interface is a simple valid/payload protocol which mean the slave can't halt the bus.<br>
 It could be used, for example, to represent data coming from an UART controller, requests to write an on-chip memory, etc.
 
 | Signal | Driver| Description | Don't care when

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TODO
+title: Core features of Spinal
 description: "TODO"
 tags: [components, intro]
 categories: [intro]
@@ -8,17 +8,15 @@ sidebar: spinal_sidebar
 permalink: /spinal/core/introduction.md
 ---
 
-The core components of the language are described in this document. It is part of the general [Spinal user guide](userGuide.md).
+The core of the language define the syntax that provide many features :
 
-The core language components are as follows:
+- Types / Literals
+- Register / Clock domains
+- Component / Area
+- RAM / ROM
+- When / Switch / Mux
+- BlackBox (to integrate VHDL or Verilog IP inside Spinal)
+- Spinal to VHDL converter
 
-- [*Clock domains*](#clock_domains), which allow to define and interoperate multiple clock domains within a design
-- *Memory instantiation*, which permit the automatic instantiation of RAM and ROM memories.
-- *IP instantiation*, using either existing VHDL or Verilog component.
-- Assignments
-- When / Switch
-- Component hierarchy
-- Area
-- Functions
-- Utility functions
-- VHDL generator
+Then, by using these features, you can of course define your digital hardware, but also build powerful libraries and abstractions. It's one of the biggest advantages of Spinal over commonly used HDL, the language is not stuck in the rock, you can extend it without having knowledge about the compiler.<br>
+One example of that is the [Spinal lib](/SpinalDoc/spinal/lib/introduction.md) which add many utils, tools, buses and methodology.

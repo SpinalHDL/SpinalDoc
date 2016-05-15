@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Spinal lib components
+title: Stream bus
 description: "This pages describes the lib components of Spinal"
 tags: [components, intro]
 categories: [intro]
@@ -9,7 +9,7 @@ permalink: /spinal/lib/stream.md
 ---
 
 ## Specification
-The Stream interface is a simple handshake protocol to carry payload.<br> 
+The Stream interface is a simple handshake protocol to carry payload.<br>
 It could be used for example to push and pop elements into a FIFO, send requests to a UART controller, etc.
 
 | Signal | Driver| Description | Don't care when
@@ -22,7 +22,7 @@ It could be used for example to push and pop elements into a FIFO, send requests
 - An priority arbiter without lock logic can switch from one input to the other (which will change the payload).<br>
 - An UART controller could directly use the write port to drive UART pins and only consume the transaction at the end of the transmission. <br>
  Be careful with that." %}
- 
+
 ```scala
 class StreamFifo[T <: Data](dataType: T, depth: Int) extends Component {
   val io = new Bundle {
@@ -79,51 +79,51 @@ sink <-< source.throwWhen(source.payload.isBlack)
 
 ### StreamFifo
 
-| parameter name | Type | Description| 
-| ------- | ---- |  ---- | 
-| dataType | T | Payload data type | 
-| depth | Int | Size of the memory used to store elements | 
+| parameter name | Type | Description|
+| ------- | ---- |  ---- |
+| dataType | T | Payload data type |
+| depth | Int | Size of the memory used to store elements |
 
-| io name | Type | Description| 
-| ------- | ---- |  ---- | 
-| push | Stream[T] | Used to push elements | 
-| pop | Stream[T] | Used to pop elements | 
-| flush | Bool | Used to remove all elements inside the FIFO | 
-| occupancy | UInt of log2Up(depth + 1) bits | Indicate the internal memory occupancy | 
+| io name | Type | Description|
+| ------- | ---- |  ---- |
+| push | Stream[T] | Used to push elements |
+| pop | Stream[T] | Used to pop elements |
+| flush | Bool | Used to remove all elements inside the FIFO |
+| occupancy | UInt of log2Up(depth + 1) bits | Indicate the internal memory occupancy |
 
 ### StreamFifoCC
 
-| parameter name | Type | Description| 
-| ------- | ---- |  ---- | 
-| dataType | T | Payload data type | 
-| depth | Int | Size of the memory used to store elements | 
-| pushClock | ClockDomain | Clock domain used by the push side | 
-| popClock | ClockDomain |  Clock domain used by the pop side | 
+| parameter name | Type | Description|
+| ------- | ---- |  ---- |
+| dataType | T | Payload data type |
+| depth | Int | Size of the memory used to store elements |
+| pushClock | ClockDomain | Clock domain used by the push side |
+| popClock | ClockDomain |  Clock domain used by the pop side |
 
-| io name | Type | Description| 
-| ------- | ---- |  ---- | 
-| push | Stream[T] | Used to push elements | 
-| pop | Stream[T] | Used to pop elements | 
-| pushOccupancy | UInt of log2Up(depth + 1) bits | Indicate the internal memory occupancy (from the push side perspective) | 
-| popOccupancy | UInt of log2Up(depth + 1) bits | Indicate the internal memory occupancy  (from the pop side perspective) | 
+| io name | Type | Description|
+| ------- | ---- |  ---- |
+| push | Stream[T] | Used to push elements |
+| pop | Stream[T] | Used to pop elements |
+| pushOccupancy | UInt of log2Up(depth + 1) bits | Indicate the internal memory occupancy (from the push side perspective) |
+| popOccupancy | UInt of log2Up(depth + 1) bits | Indicate the internal memory occupancy  (from the pop side perspective) |
 
 ### StreamCCByToggle
 
-Component that provide a Stream cross clock domain bridge based on toggling signals.<br> 
+Component that provide a Stream cross clock domain bridge based on toggling signals.<br>
 This method is characterised by a small area usage but also a low bandwidth.
 
-| parameter name | Type | Description| 
-| ------- | ---- |  ---- | 
-| dataType | T | Payload data type | 
-| pushClock | ClockDomain | Clock domain used by the push side | 
-| popClockn | ClockDomain |  Clock domain used by the pop side | 
+| parameter name | Type | Description|
+| ------- | ---- |  ---- |
+| dataType | T | Payload data type |
+| pushClock | ClockDomain | Clock domain used by the push side |
+| popClockn | ClockDomain |  Clock domain used by the pop side |
 
-| io name | Type | Description| 
-| ------- | ---- |  ---- | 
-| push | Stream[T] | Used to push elements | 
-| pop | Stream[T] | Used to pop elements | 
+| io name | Type | Description|
+| ------- | ---- |  ---- |
+| push | Stream[T] | Used to push elements |
+| pop | Stream[T] | Used to pop elements |
 
-This component could be also instantiated via a Function : 
+This component could be also instantiated via a Function :
 
 ```scala
 val streamInClockA = Stream(Bits(4 bits))
