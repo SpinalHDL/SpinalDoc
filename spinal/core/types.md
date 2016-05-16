@@ -82,7 +82,7 @@ Elements could be defined as follows:
 | x : Range -> y : T  |  Set bits in range x with y|
 | default -> y : Boolean/Bool  |  Set all floating bits y|
 
-You can define a Range values 
+You can define a Range values
 
 | Range syntax| Description | Width |
 | ------- | ---- | ---- |
@@ -109,7 +109,7 @@ myUInt := U(7 -> true,default -> false) //Assign myUInt with "10000000"
 myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "00011110"
 ```
 
-### Valid operators
+### Operators
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
@@ -125,6 +125,15 @@ myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "0001111
 | x(offset,width) := z |  Assign bitfield, offset: UInt, width: Int | T(width bit) |
 | x.toBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
 
+### Masked comparison
+
+Some time you need to check equality between a `BitVector` and a bits constant that contain hole (don't care values).<br>
+There is an example about how to do that :
+
+```scala
+val myBits = Bits(8 bits)
+val itMatch = myBits === M"00--10--"
+```
 
 ## Bits
 
@@ -165,8 +174,8 @@ myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "0001111
 ## Vec
 
 | Declaration| Description|
-| ------- | ---- | 
-| Vec(type : Data, size : Int) | Create a vector of size time the given type | 
+| ------- | ---- |
+| Vec(type : Data, size : Int) | Create a vector of size time the given type |
 | Vec(x,y,..)  | Create a vector where indexes point to given elements. <br> this construct support mixed element width
 
 | Operator | Description | Return |
@@ -219,7 +228,7 @@ vgaOut.color.green := 0    //Fix the green to zero
 ## Enum
 
 Spinal support enumeration with some encodings :
-| Encoding | Bit width | Description | 
+| Encoding | Bit width | Description |
 | ------- | ---- | --- |
 | native | ? | Use the VHDL enumeration system, this is the default encoding |
 | sequancial | log2Up(stateCount) | Use a Bits to encode states in declaration order |
@@ -261,7 +270,7 @@ stateNext := sIdle
 | x.getZero |  Get equivalent type assigned with zero | T |
 
 
-## Literals
+## Literals as signal declaration
 
 Literals are generally use as a constant value. But you can also use them to do two things in a single one :
 
@@ -280,4 +289,3 @@ when(cond){
   value := red
 }
 ```
-

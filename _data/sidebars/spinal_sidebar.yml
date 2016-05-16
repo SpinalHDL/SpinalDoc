@@ -83,6 +83,10 @@ entries:
           url: /spinal/core/blackbox.md
           output: web
 
+        - title: Utils
+          url: /spinal/core/utils.md
+          output: web
+
       - title: spinal.lib
         output: web
         subfolderitems:
