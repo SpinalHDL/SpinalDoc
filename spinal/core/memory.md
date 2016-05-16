@@ -31,4 +31,4 @@ This relationship could be important in some design (cache, FIFO, ...). It speci
 | `readFirst`  | The read is done before all writes |
 | `writeFirst` | The read is done after all writes |
 
-{% include warning.html content="Currently, the generated VHDL is always in the 'readFirst' mode, which is compatible with 'dontCase' but not with 'writeFirst'" %}
+{% include warning.html content="Currently, the generated VHDL is always in the 'readFirst' mode, which is compatible with 'dontCase' but not with 'writeFirst'." %}
