@@ -8,6 +8,7 @@ sidebar: spinal_sidebar
 permalink: /spinal/core/introduction.md
 ---
 
+## Introduction
 The core of the language define the syntax that provide many features :
 
 - Types / Literals
@@ -20,3 +21,11 @@ The core of the language define the syntax that provide many features :
 
 Then, by using these features, you can of course define your digital hardware, but also build powerful libraries and abstractions. It's one of the biggest advantages of Spinal over commonly used HDL, the language is not stuck in the rock, you can extend it without having knowledge about the compiler.<br>
 One example of that is the [Spinal lib](/SpinalDoc/spinal/lib/introduction.md) which add many utils, tools, buses and methodology.
+
+## Documentation grammar
+In following pages the following grammar is used to express the syntax of Spinal :
+
+| Notation | Description |
+|--------|--------------|
+| [...] | optional |
+| * | repetition |

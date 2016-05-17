@@ -17,4 +17,4 @@ The Spinal core contain some utils :
 | roundUp(that : BigInt, by : BigInt) | Return the first `by` multiply from `that` (included)  |
 | Cat(x : Data*) | Concatenate all arguments, the first in MSB, the last in LSB | Bits |
 
-Much more tools and utils are present in spinal.lib
+Much more tools and utils are present in [spinal.lib](/SpinalDoc/spinal/lib/utils.md)

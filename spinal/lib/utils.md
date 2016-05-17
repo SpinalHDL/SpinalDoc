@@ -22,3 +22,5 @@ permalink: /spinal/lib/utils.md
 | MajorityVote(x : Seq[Bool]) <br> MajorityVote(x : BitVector) | Bool | Return True if the number of bit set is > x.size / 2 |
 | BufferCC(input : T) | T | Return the input signal synchronised with the current clock domain by using 2 flip flop |
 | LatencyAnalysis(paths : Node*) | Int | Return the shortest path,in therm of cycle, that travel through all nodes, <br> from the first one to the last one |
+
+Some utils are also present in [spinal.core](/SpinalDoc/spinal/core/utils.md)

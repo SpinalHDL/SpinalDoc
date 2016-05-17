@@ -109,7 +109,7 @@ Then let's define a component with the `sources` input which is an vector of col
       val result = out(Color(channelWidth))
     }
 
-    var sum = io.sources(0)
+    var sum = UInt(0,channelWidth bits)
     for (i <- 0 to sourceCount - 1) {
       sum \= sum + io.sources(i)
     }
@@ -120,7 +120,7 @@ Then let's define a component with the `sources` input which is an vector of col
 
 ### RGB to gray
 
-Let's imagine a component which convert a RGB color into a gray one, and then write it into an external memory. 
+Let's imagine a component which convert a RGB color into a gray one, and then write it into an external memory.
 
 | io name  | Direction | Description |
 | ------- | ---- |
@@ -153,7 +153,7 @@ Let's imagine a component which convert a RGB color into a gray one, and then wr
     io.address := address
     io.wr := True
     io.data := gray
-    
+
     when(io.clear){
       gray := 0
       address.clear()

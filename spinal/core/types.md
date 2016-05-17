@@ -61,9 +61,7 @@ The following operators are available for the `Bool` type
 
 ### Declaration syntax
 
-@TODO mettre un lien sur syntaxe EBNF
-
-| Syntax (using EBNF syntax) | Description| Return|
+| Syntax | Description| Return|
 | ------- | ---- | --- |
 | Bits/UInt/SInt [()] |  Create a BitVector, bit count is inferred| Bits/UInt/SInt |
 | Bits/UInt/SInt(x bit) |  Create a BitVector with x bit| Bits/UInt/SInt |
