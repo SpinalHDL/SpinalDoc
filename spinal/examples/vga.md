@@ -8,11 +8,14 @@ sidebar: spinal_sidebar
 permalink: /spinal/examples/vga.md
 ---
 
+## Introduction
 VGA interfaces are probably endangered, but implementing a VGA controller is still a good exercise.
 
 A explanation about VGA protocol can be find here : <br>
 http://www.xess.com/blog/vga-the-rest-of-the-story/ <br>
 http://www.xess.com/static/media/uploads/blog/devbisme/2011-06-11/app001_2.png <br>
+
+This VGA controller tutorial is based on this implementation : <br> https://github.com/SpinalHDL/SpinalHDL/blob/master/lib/src/main/scala/spinal/lib/graphic/vga/VgaCtrl.scala
 
 ## Data structures
 
@@ -147,7 +150,7 @@ case class VgaTimings(timingsWidth: Int) extends Bundle {
 | frameStart | out | High when a new frame start |
 | vga | master | VGA interface |
 
-The controller didn't integrate any pixels buffering, it directly take them from the `pixels` and put them on the `vga.color` at the right time. If the `pixels` is not valid then `error` pulse high one cycle. 
+The controller didn't integrate any pixels buffering, it directly take them from the `pixels` and put them on the `vga.color` at the right time. If the `pixels` is not valid then `error` pulse high one cycle.
 
 ### Component and io definition
 
@@ -156,7 +159,7 @@ Let's define a new VgaCtrl component, which take as parameter an RgbConfig and a
 ```scala
 class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
   val io = new Bundle {
-    val softReset = in Bool 
+    val softReset = in Bool
     val timings = in(VgaTimings(timingsWidth))
     val colorStream = slave Stream (Rgb(rgbConfig))
 
@@ -170,7 +173,7 @@ class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
 
 ### Horizontal and vertical logic
 
-The logic that generate horizontal and vertical syncro is quite the same. It's kind of ~PWM~. The horizontal one count up each cycle, while the vertical one use the horizontal syncro has count up event. 
+The logic that generate horizontal and vertical syncro is quite the same. It's kind of ~PWM~. The horizontal one count up each cycle, while the vertical one use the horizontal syncro has count up event.
 
 Let's define a HVArea which represent one ~PWM~ and then instanciate it two time, one for the horizontal syncro, and then one for the vertical syncro.
 

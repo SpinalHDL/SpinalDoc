@@ -5,20 +5,6 @@ entries:
   product: Spinal doc
   version: 0.21
   folders:
-  - title:
-    output: pdf
-    type: frontmatter
-
-    folderitems:
-    - title:
-      url: /titlepage/
-      output: pdf
-      type: frontmatter
-    - title:
-      url: /tocpage/
-      output: pdf
-      type: frontmatter
-
   - title: Spinal
     output: web
     folderitems:
@@ -117,4 +103,8 @@ entries:
 
         - title: VGA
           url: /spinal/examples/vga.md
+          output: web
+
+        - title: JTAG TAP
+          url: /spinal/examples/jtag.md
           output: web

@@ -56,12 +56,19 @@ when(cond){
 
 ## Mux
 
-If you just need a mux with a Bool selection signal, you can use the following :
+If you just need a mux with a Bool selection signal, there is two syntax :
+
+| Syntax | Return | Description |
+| ------- | ---- | --- |
+| Mux(cond,whenTrue,whenFalse) | T | Return `whenTrue` when `cond` is True, `whenFalse` otherwise |
+| cond ? whenTrue \| whenFalse | T | Return `whenTrue` when `cond` is True, `whenFalse` otherwise |
+
 
 ```scala
 val cond = Bool
 val whenTrue,whenFalse = UInt(8 bits)
-val muxOutput = Mux(cond,whenTrue,whenFalse)
+val muxOutput  = Mux(cond,whenTrue,whenFalse)
+val muxOutput2 = cond ? whenTrue | whenFalse
 ```
 
 Sometime we need kind of "switch mux", like you can do with the VHDL `when` syntax. Spinal offer something similar by using the `mux` function :

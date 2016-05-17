@@ -1,0 +1,283 @@
+---
+layout: page
+title: JTAG
+description: "JTAG TAP implementation example"
+tags: [getting started, examples]
+categories: [documentation, JTAG]
+sidebar: spinal_sidebar
+permalink: /spinal/examples/jtag.md
+---
+
+## Introduction
+This page is not about explaining how work the JTAG interface, a good tutorial could be find [there](http://www.fpga4fun.com/JTAG.html)
+
+The goal of this page is to show the implementation of a JTAG TAP (a slave) by a none conventional way.<br>
+One big difference between commonly used HDL and Spinal, is the fact that Spinal allow you to generate/build your design. It's very different than describing it.
+Let's take a look into the example bellow because the difference between generate/build/describing could seem "playing with word" but it's not.
+
+The example bellow is a JTAG TAP which allow the JTAG master to read `switchs`/`keys` inputs and write `leds` outputs. This TAP could also be recognised by a master by using the UID 0x87654321.
+
+```scala
+class SimpleJtagTap extends Component {
+  val io = new Bundle {
+    val jtag    = slave(Jtag())
+    val switchs = in  Bits(8 bit)
+    val keys    = in  Bits(4 bit)
+    val leds    = out Bits(8 bit)
+  }
+
+  val tap = new JtagTap(io.jtag, 8)
+  val idcodeArea  = tap.idcode(B"x87654321") (instructionId=4)
+  val switchsArea = tap.read(io.switchs)     (instructionId=5)
+  val keysArea    = tap.read(io.switchs)     (instructionId=6)
+  val ledsArea    = tap.write(io.leds)       (instructionId=7)
+}
+```
+
+As you can see, a JtagTap is created but then some factory functions are called to create each JTAG instruction. This is what i call "Generate hardware".
+
+This JTAG TAP tutorial is based on [this](https://github.com/SpinalHDL/SpinalHDL/tree/master/lib/src/main/scala/spinal/lib/com/jtag) implementation.
+
+## JTAG bus
+First we need to define a JTAG bus bundle.
+
+```scala
+case class Jtag() extends Bundle with IMasterSlave {
+  val tms = Bool
+  val tdi = Bool
+  val tdo = Bool
+
+  override def asMaster(): Jtag.this.type = {
+    out(tdi, tms)
+    in(tdo)
+    this
+  }
+}
+```
+
+As you can see this bus don't contain the TCK pin because it will be provided by the clock domain.
+
+## JTAG state machine
+Let's define the JTAG state machine as explained (here)[http://www.fpga4fun.com/JTAG2.html]
+
+```scala
+object JtagState extends SpinalEnum {
+  val RESET, IDLE,
+      IR_SELECT, IR_CAPTURE, IR_SHIFT, IR_EXIT1, IR_PAUSE, IR_EXIT2, IR_UPDATE,
+      DR_SELECT, DR_CAPTURE, DR_SHIFT, DR_EXIT1, DR_PAUSE, DR_EXIT2, DR_UPDATE = newElement()
+}
+
+class JtagFsm(jtag: Jtag) extends Area {
+  import JtagState._
+  val stateNext = JtagState()
+  val state = RegNext(stateNext) randBoot()
+
+  stateNext := state.mux(
+    default    -> (jtag.tms ? RESET     | IDLE),           //RESET
+    IDLE       -> (jtag.tms ? DR_SELECT | IDLE),
+    IR_SELECT  -> (jtag.tms ? RESET     | IR_CAPTURE),
+    IR_CAPTURE -> (jtag.tms ? IR_EXIT1  | IR_SHIFT),
+    IR_SHIFT   -> (jtag.tms ? IR_EXIT1  | IR_SHIFT),
+    IR_EXIT1   -> (jtag.tms ? IR_UPDATE | IR_PAUSE),
+    IR_PAUSE   -> (jtag.tms ? IR_EXIT2  | IR_PAUSE),
+    IR_EXIT2   -> (jtag.tms ? IR_UPDATE | IR_SHIFT),
+    IR_UPDATE  -> (jtag.tms ? DR_SELECT | IDLE),
+    DR_SELECT  -> (jtag.tms ? IR_SELECT | DR_CAPTURE),
+    DR_CAPTURE -> (jtag.tms ? DR_EXIT1  | DR_SHIFT),
+    DR_SHIFT   -> (jtag.tms ? DR_EXIT1  | DR_SHIFT),
+    DR_EXIT1   -> (jtag.tms ? DR_UPDATE | DR_PAUSE),
+    DR_PAUSE   -> (jtag.tms ? DR_EXIT2  | DR_PAUSE),
+    DR_EXIT2   -> (jtag.tms ? DR_UPDATE | DR_SHIFT),
+    DR_UPDATE  -> (jtag.tms ? DR_SELECT | IDLE)
+  )
+}
+```
+
+## JTAG TAP
+Let's implement the core of the JTAG TAP, without any instruction, just the base manage the instruction register (IR) and the bypass.
+
+```scala
+class JtagTap(val jtag: Jtag, instructionWidth: Int) extends Area{
+  val fsm = new JtagFsm(jtag)
+  val instruction = Reg(Bits(instructionWidth bit))
+  val instructionShift = Reg(Bits(instructionWidth bit))
+  val bypass = Reg(Bool)
+
+  jtag.tdo := bypass
+
+  switch(fsm.state) {
+    is(JtagState.IR_CAPTURE) {
+      instructionShift := instruction
+    }
+    is(JtagState.IR_SHIFT) {
+      instructionShift := (jtag.tdi ## instructionShift) >> 1
+      jtag.tdo := instructionShift.lsb
+    }
+    is(JtagState.IR_UPDATE) {
+      instruction := instructionShift
+    }
+    is(JtagState.DR_SHIFT) {
+      bypass := jtag.tdi
+    }
+  }
+}
+```
+
+## Jtag instructions
+Now that the JTAG TAP core is done, we can think about how to implement JTAG instructions by an reusable way.
+
+### JTAG TAP class interface
+First we need to define how an instruction could interact with the JTAG TAP core. We could of course directly take the JtagTap area, but it's not very nice because is some situation the JTAG TAP core is provided by another IP (Altera virtual JTAG for example).
+
+So let's define a simple and abstract interface between the JTAG TAP core and instructions :
+
+```scala
+trait JtagTapAccess {
+  def jtag : Jtag
+  def state : JtagState.T
+  def getInstruction() : Bits
+  def setInstruction(value : Bits) : Unit
+}
+
+Then let's the JtagTap implement this abstract interface :
+
+class JtagTap(val jtag: Jtag, ...) extends Area with JtagTapAccess{
+  ...
+
+  //JtagTapAccess impl
+  override def getInstruction(): Bits = instruction
+  override def setInstruction(value: Bits): Unit = instruction := value
+  override def state: JtagState.T = fsm.state
+}
+```
+
+### Base class
+Let's define a useful base class for JTAG instruction that provide some callback depending the selected instruction and the state of the JTAG TAP :
+
+```scala
+class JtagInstruction(tap: JtagTapAccess,val instructionId: Bits) extends Area {
+  def doCapture(): Unit = {}
+  def doShift(): Unit = {}
+  def doUpdate(): Unit = {}
+  def doReset(): Unit = {}
+
+  val instructionHit = tap.getInstruction === instructionId
+
+  //Register some code to be executed just before the end of the component.
+  Component.current.addPrePopTask(() => {
+    when(instructionHit) {
+      when(tap.state === JtagState.DR_CAPTURE) {
+        doCapture()
+      }
+      when(tap.state === JtagState.DR_SHIFT) {
+        doShift()
+      }
+      when(tap.state === JtagState.DR_UPDATE) {
+        doUpdate()
+      }
+    }
+    when(tap.state === JtagState.RESET) {
+      doReset()
+    }
+  })
+}
+```
+
+### Read instruction
+Let's implement an instruction that allow the JTAG to read a signal.
+
+```scala
+class JtagInstructionRead[T <: Data](data: T) (tap: JtagTapAccess,instructionId: Bits)extends JtagInstruction(tap,instructionId) {
+  val shifter = Reg(Bits(data.getBitsWidth bit))
+
+  override def doCapture(): Unit = {
+    shifter := data.asBits
+  }
+
+  override def doShift(): Unit = {
+    shifter := (tap.jtag.tdi ## shifter) >> 1
+    tap.jtag.tdo := shifter.lsb
+  }
+}
+```
+
+### Write instruction
+Let's implement an instruction that allow the JTAG to write a register (and also read its current value).
+
+```scala
+class JtagInstructionWrite[T <: Data](data: T) (tap: JtagTapAccess,instructionId: Bits) extends JtagInstruction(tap,instructionId) {
+  val shifter,store = Reg(Bits(data.getBitsWidth bit))
+
+  override def doCapture(): Unit = {
+    shifter := store
+  }
+  override def doShift(): Unit = {
+    shifter := (tap.jtag.tdi ## shifter) >> 1
+    tap.jtag.tdo := shifter.lsb
+  }
+  override def doUpdate(): Unit = {
+    store := shifter
+  }
+
+  data.assignFromBits(store)
+}
+```
+
+### Idcode instruction
+Let's implement the instruction that return a idcode to the JTAG and also, when a reset occur, set the instruction register (IR) to it own instructionId.
+
+```scala
+class JtagInstructionIdcode[T <: Data](value: Bits)(tap: JtagTapAccess, instructionId: Bits)extends JtagInstruction(tap,instructionId) {
+  val shifter = Reg(Bits(32 bit))
+
+  override def doShift(): Unit = {
+    shifter := (tap.jtag.tdi ## shifter) >> 1
+    tap.jtag.tdo := shifter.lsb
+  }
+
+  override def doReset(): Unit = {
+    shifter := value
+    tap.setInstruction(instructionId)
+  }
+}
+```
+
+## User friendly wrapper
+Let's add some user friendly function to the JtagTap to instantiate instructions.
+
+```scala
+class JtagTap(val jtag: Jtag, instructionWidth: Int) extends Area with JtagTapAccess{
+  ...
+
+  def idcode(value: Bits)(instructionId: Bits) =
+    new JtagInstructionIdcode(value)(this,instructionId)
+
+  def read[T <: Data](data: T)(instructionId: Bits)   =
+    new JtagInstructionRead(data)(this,instructionId)
+
+  def write[T <: Data](data: T,  cleanUpdate: Boolean = true, readable: Boolean = true)(instructionId: Bits) =
+    new JtagInstructionWrite[T](data,cleanUpdate,readable)(this,instructionId)
+}
+```
+
+## Usage demonstration
+And there we are, we can now very easly create an application specific JTAG TAP without having to write any logic or any interconnections.
+
+```scala
+class SimpleJtagTap extends Component {
+  val io = new Bundle {
+    val jtag    = slave(Jtag())
+    val switchs = in  Bits(8 bit)
+    val keys    = in  Bits(4 bit)
+    val leds    = out Bits(8 bit)
+  }
+
+  val tap = new JtagTap(io.jtag, 8)
+  val idcodeArea  = tap.idcode(B"x87654321") (instructionId=4)
+  val switchsArea = tap.read(io.switchs)     (instructionId=5)
+  val keysArea    = tap.read(io.switchs)     (instructionId=6)
+  val ledsArea    = tap.write(io.leds)       (instructionId=7)
+}
+```
+
+This way of doing things (Generating hardware) could also be applied to, for example, generating an APB/AHB/AXI bus slave.
