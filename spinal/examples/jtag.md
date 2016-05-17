@@ -133,21 +133,30 @@ So let's define a simple and abstract interface between the JTAG TAP core and in
 
 ```scala
 trait JtagTapAccess {
-  def jtag : Jtag
-  def state : JtagState.T
+  def getTdi : Bool
+  def getTms : Bool
+  def setTdo(value : Bool) : Unit
+
+  def getState : JtagState.T
   def getInstruction() : Bits
   def setInstruction(value : Bits) : Unit
 }
+```
 
 Then let's the JtagTap implement this abstract interface :
 
+```scala
 class JtagTap(val jtag: Jtag, ...) extends Area with JtagTapAccess{
   ...
 
   //JtagTapAccess impl
+  override def getTdi: Bool = jtag.tdi
+  override def setTdo(value: Bool): Unit = jtag.tdo := value
+  override def getTms: Bool = jtag.tms
+
+  override def getState: JtagState.T = fsm.state
   override def getInstruction(): Bits = instruction
   override def setInstruction(value: Bits): Unit = instruction := value
-  override def state: JtagState.T = fsm.state
 }
 ```
 
@@ -163,20 +172,19 @@ class JtagInstruction(tap: JtagTapAccess,val instructionId: Bits) extends Area {
 
   val instructionHit = tap.getInstruction === instructionId
 
-  //Register some code to be executed just before the end of the component.
   Component.current.addPrePopTask(() => {
     when(instructionHit) {
-      when(tap.state === JtagState.DR_CAPTURE) {
+      when(tap.getState === JtagState.DR_CAPTURE) {
         doCapture()
       }
-      when(tap.state === JtagState.DR_SHIFT) {
+      when(tap.getState === JtagState.DR_SHIFT) {
         doShift()
       }
-      when(tap.state === JtagState.DR_UPDATE) {
+      when(tap.getState === JtagState.DR_UPDATE) {
         doUpdate()
       }
     }
-    when(tap.state === JtagState.RESET) {
+    when(tap.getState === JtagState.RESET) {
       doReset()
     }
   })
@@ -195,8 +203,8 @@ class JtagInstructionRead[T <: Data](data: T) (tap: JtagTapAccess,instructionId:
   }
 
   override def doShift(): Unit = {
-    shifter := (tap.jtag.tdi ## shifter) >> 1
-    tap.jtag.tdo := shifter.lsb
+    shifter := (tap.getTdi ## shifter) >> 1
+    tap.setTdo(shifter.lsb)
   }
 }
 ```
@@ -212,8 +220,8 @@ class JtagInstructionWrite[T <: Data](data: T) (tap: JtagTapAccess,instructionId
     shifter := store
   }
   override def doShift(): Unit = {
-    shifter := (tap.jtag.tdi ## shifter) >> 1
-    tap.jtag.tdo := shifter.lsb
+    shifter := (tap.getTdi ## shifter) >> 1
+    tap.setTdo(shifter.lsb)
   }
   override def doUpdate(): Unit = {
     store := shifter
@@ -231,8 +239,8 @@ class JtagInstructionIdcode[T <: Data](value: Bits)(tap: JtagTapAccess, instruct
   val shifter = Reg(Bits(32 bit))
 
   override def doShift(): Unit = {
-    shifter := (tap.jtag.tdi ## shifter) >> 1
-    tap.jtag.tdo := shifter.lsb
+    shifter := (tap.getTdi ## shifter) >> 1
+    tap.setTdo(shifter.lsb)
   }
 
   override def doReset(): Unit = {
