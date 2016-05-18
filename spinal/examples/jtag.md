@@ -256,10 +256,10 @@ class JtagInstructionIdcode[T <: Data](value: Bits)(tap: JtagTapAccess, instruct
 ```
 
 ## User friendly wrapper
-Let's add some user friendly function to the JtagTap to instantiate instructions.
+Let's add some user friendly function to the JtagTapAccess to make instructions instantiation easier .
 
 ```scala
-class JtagTap(val jtag: Jtag, instructionWidth: Int) extends Area with JtagTapAccess{
+trait JtagTapAccess {
   ...
 
   def idcode(value: Bits)(instructionId: Bits) =
