@@ -12,10 +12,10 @@ permalink: /spinal/examples/jtag.md
 This page is not about explaining how work the JTAG interface, a good tutorial could be find [there](http://www.fpga4fun.com/JTAG.html)
 
 The goal of this page is to show the implementation of a JTAG TAP (a slave) by a none conventional way.<br>
-One big difference between commonly used HDL and Spinal, is the fact that Spinal allow you to generate/build your design. It's very different than describing it.
-Let's take a look into the example bellow because the difference between generate/build/describing could seem "playing with word" but it's not.
+One big difference between commonly used HDL and Spinal, is the fact that Spinal allow you to define hardware generators/builders. It's very different than describing hardware.
+Let's take a look into the example bellow because the difference between generate/build/describing could seem "playing with word" or could be interpreted differently.
 
-The example bellow is a JTAG TAP which allow the JTAG master to read `switchs`/`keys` inputs and write `leds` outputs. This TAP could also be recognised by a master by using the UID 0x87654321.
+The example bellow is a JTAG TAP which allow the JTAG master to read `switchs`/`keys` inputs and write `leds` outputs. This TAP could also be recognized by a master by using the UID 0x87654321.
 
 ```scala
 class SimpleJtagTap extends Component {
@@ -34,7 +34,7 @@ class SimpleJtagTap extends Component {
 }
 ```
 
-As you can see, a JtagTap is created but then some factory functions are called to create each JTAG instruction. This is what i call "Generate hardware".
+As you can see, a JtagTap is created but then some Generator/Builder functions (idcode,read,write) are called to create each JTAG instruction. This is what i call "Hardware generator/builder", then these Generator/Builder are used by the user to describing an hardware. And there is the point, in commonly HDL you can only describe your hardware, which imply many donkey job.
 
 This JTAG TAP tutorial is based on [this](https://github.com/SpinalHDL/SpinalHDL/tree/master/lib/src/main/scala/spinal/lib/com/jtag) implementation.
 
@@ -58,7 +58,7 @@ case class Jtag() extends Bundle with IMasterSlave {
 As you can see this bus don't contain the TCK pin because it will be provided by the clock domain.
 
 ## JTAG state machine
-Let's define the JTAG state machine as explained (here)[http://www.fpga4fun.com/JTAG2.html]
+Let's define the JTAG state machine as explained [here](http://www.fpga4fun.com/JTAG2.html)
 
 ```scala
 object JtagState extends SpinalEnum {
@@ -92,6 +92,8 @@ class JtagFsm(jtag: Jtag) extends Area {
   )
 }
 ```
+
+{% include note.html content="The `randBoot()` on `state` make it initialized with a random state. It's only for simulation purpose." %}
 
 ## JTAG TAP
 Let's implement the core of the JTAG TAP, without any instruction, just the base manage the instruction register (IR) and the bypass.
@@ -161,7 +163,7 @@ class JtagTap(val jtag: Jtag, ...) extends Area with JtagTapAccess{
 ```
 
 ### Base class
-Let's define a useful base class for JTAG instruction that provide some callback depending the selected instruction and the state of the JTAG TAP :
+Let's define a useful base class for JTAG instruction that provide some callback (doCapture/doShift/doUpdate/doReset) depending the selected instruction and the state of the JTAG TAP :
 
 ```scala
 class JtagInstruction(tap: JtagTapAccess,val instructionId: Bits) extends Area {
@@ -190,6 +192,9 @@ class JtagInstruction(tap: JtagTapAccess,val instructionId: Bits) extends Area {
   })
 }
 ```
+
+{% include note.html content="About the Component.current.addPrePopTask(...) : <br> This  allow you to call the given code at the end of the current component construction. Because of object oriented nature of JtagInstruction, doCapture, doShift, doUpdate and doReset should not be called before children classes construction (because children classes will use it as a callback to do some logic)" %}
+
 
 ### Read instruction
 Let's implement an instruction that allow the JTAG to read a signal.
