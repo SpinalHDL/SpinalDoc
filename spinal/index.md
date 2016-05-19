@@ -56,10 +56,8 @@ It is a very good question ! Why develop a new language when there Chisel has be
 - No enumeration support
 
 #### Various issue :
-- Assignment operator is only checked when you generate the code, the IDE can't check it for you. Bundle assignment operator is weak typed.
 - Can't add attribute into generated verilog
 - You can't define function without argument into `Bundles`.
-- There is no notion of "Area".
 - Using `when`/`otherwise` is not strict in all case. This allows you to generate an asynchronous signal that is not assigned in every case.
 - You can't write a given range of bit into a bit vector (UInt,SInt,Bits).
 - The library that is integrated into Chisel and that provides you some utils and useful bus definition is a good intention, but could be so better and more complete
@@ -67,6 +65,7 @@ It is a very good question ! Why develop a new language when there Chisel has be
 - No cross clock domain checking
 - No verilog attribute specification possibilities.
 - Unreadable generated code
+- Assignment operator is only checked when you generate the code, the IDE can't check it for you. Bundle assignment operator is weakly typed.
 - They are now moving to FIRRTL (Chisel 3.0) which remove the possibility to analyse the netlist (latency, delay, connections) during the scala generation phase.
 
 For some major issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (4 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
