@@ -17,7 +17,7 @@ entries:
       output: web
 
       subfolders:
-      - title: spinal.core
+      - title: Language features
         output: web
         subfolderitems:
 
@@ -73,7 +73,7 @@ entries:
           url: /spinal/core/utils.md
           output: web
 
-      - title: spinal.lib
+      - title: Language libraries
         output: web
         subfolderitems:
 
