@@ -9,7 +9,7 @@ permalink: /spinal/examples/jtag.md
 ---
 
 ## Introduction
-{% include important.html content="The goal of this page is to show the implementation of a JTAG TAP (a slave) by a none conventional way." %}
+{% include important.html content="The goal of this page is to show the implementation of a JTAG TAP (a slave) by a non-conventional way." %}
 
 {% include important.html content="This implementation is not a simple one, it mix object oriented programming, abstract interfaces decoupling, hardware generation and hardware description. <br>Of course a simple JTAG TAP implementation could be done only with a simple hardware description, but the goal here is really to going forward and creating an very reusable and extensible JTAG TAP generator" %}
 

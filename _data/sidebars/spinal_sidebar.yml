@@ -57,10 +57,6 @@ entries:
           url: /spinal/core/function.md
           output: web
 
-        - title: VHDL generation
-          url: /spinal/core/vhdl_generation.md
-          output: web
-
         - title: RAM / ROM
           url: /spinal/core/memory.md
           output: web
@@ -71,6 +67,10 @@ entries:
 
         - title: Utils
           url: /spinal/core/utils.md
+          output: web
+
+        - title: VHDL generation
+          url: /spinal/core/vhdl_generation.md
           output: web
 
       - title: Language libraries
