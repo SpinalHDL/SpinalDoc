@@ -1,3 +1,4 @@
+
 ---
 layout: page
 title: Types in Spinal
@@ -48,10 +49,14 @@ The following operators are available for the `Bool` type
 | Operator | Description | Return type |
 | ------- | ---- | --- |
 | !x  |  Logical NOT | Bool |
-| x && y |  Logical AND | Bool |
-| x \|\| y |  Logical OR  | Bool |
-| x.rise | Return True when x was low at the last cycle and is now high | Bool |
-| x.fall | Return False when x was high at the last cycle and is now low | Bool |
+| x && y <br> x & y |  Logical AND | Bool |
+| x \|\| y <br> x \| y  |  Logical OR  | Bool |
+| x.set[()]  |  Set x to True  | - |
+| x.clear[()]  |  Set x to False  | - |
+| x.rise[()] | Return True when x was low at the last cycle and is now high | Bool |
+| x.rise(initAt : Bool) | Same as x.rise but with a reset value  | Bool |
+| x.fall[()] | Return True when x was high at the last cycle and is now low | Bool |
+| x.fall(initAt : Bool) | Same as x.fall but with a reset value  | Bool |
 | x.setWhen(cond)  | Set x when cond is True | Bool |
 | x.clearWhen(cond)  |  Clear x when cond is True | Bool |
 
@@ -121,7 +126,17 @@ myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "0001111
 | x(y) := z |  Assign bit, y : Int/UInt | Bool |
 | x(hi,lo) := z |  Assign bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
 | x(offset,width) := z |  Assign bitfield, offset: UInt, width: Int | T(width bit) |
-| x.toBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
+| x.msb |  Return the most significant bit  | Bool |
+| x.lsb |  Return the least significant bit  | Bool |
+| x.range |  Return the range of the type x  | Range |
+| x.high |  Return the upper bound of the type x  | Int |
+| x.xorR |  XOR all bits of x | Bool |
+| x.orR  |  OR all bits of x  | Bool |
+| x.andR |  AND all bits of x | Bool |
+| x.clearAll[()] |  Clear all bits | T |
+| x.setAll[()] |  Set all bits | T |
+| x.setAllTo(value : Boolean) | Set all bits to value | T |
+
 
 ### Masked comparison
 
@@ -164,7 +179,7 @@ val itMatch = myBits === M"00--10--"
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
-| x.asBool |  Binary cast in Bool, True if x bit 0 is set | Bool) |
+| x.asBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
 | x.asBits |  Binary cast in Bits | Bits(w(x) bit) |
 | x.asUInt |  Binary cast in UInt | UInt(w(x) bit) |
 | x.asSInt |  Binary cast in SInt | SInt(w(x) bit) |
@@ -226,9 +241,10 @@ vgaOut.color.green := 0    //Fix the green to zero
 ## Enum
 
 Spinal support enumeration with some encodings :
+
 | Encoding | Bit width | Description |
 | ------- | ---- | --- |
-| native | ? | Use the VHDL enumeration system, this is the default encoding |
+| native | - | Use the VHDL enumeration system, this is the default encoding |
 | sequancial | log2Up(stateCount) | Use a Bits to encode states in declaration order |
 | oneHot | stateCount | Use a Bits to encode state. Each bit correspond to one state |
 
@@ -262,7 +278,7 @@ stateNext := sIdle
 | Cat(x) |  Concatenate list, first element on lsb, x : Array[Data]  | Bits(sumOfWidth bit)|
 | Mux(cond,x,y) |  if cond ? x : y  | T(max(w(x), w(y) bit)|
 | x.asBits  |  Cast in Bits | Bits(width(x) bit)|
-| x.assignFromBits(bits) |  Assign from Bits | |
+| x.assignFromBits(bits) |  Assign from Bits | - |
 | x.assignFromBits(bits,hi,lo) |  Assign bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
 | x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int | T(width bit) |
 | x.getZero |  Get equivalent type assigned with zero | T |
