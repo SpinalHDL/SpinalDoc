@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: Types in Spinal
@@ -128,7 +127,7 @@ myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "0001111
 | x(offset,width) := z |  Assign bitfield, offset: UInt, width: Int | T(width bit) |
 | x.msb |  Return the most significant bit  | Bool |
 | x.lsb |  Return the least significant bit  | Bool |
-| x.range |  Return the range of the type x  | Range |
+| x.range |  Return the range (x.high downto 0) | Range |
 | x.high |  Return the upper bound of the type x  | Int |
 | x.xorR |  XOR all bits of x | Bool |
 | x.orR  |  OR all bits of x  | Bool |
@@ -136,6 +135,7 @@ myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "0001111
 | x.clearAll[()] |  Clear all bits | T |
 | x.setAll[()] |  Set all bits | T |
 | x.setAllTo(value : Boolean) | Set all bits to value | T |
+| x.asBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
 
 
 ### Masked comparison
@@ -179,7 +179,7 @@ val itMatch = myBits === M"00--10--"
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
-| x.asBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
+| x.asBool |  Binary cast in Bool, True when bit 0 is set | Bool) |
 | x.asBits |  Binary cast in Bits | Bits(w(x) bit) |
 | x.asUInt |  Binary cast in UInt | UInt(w(x) bit) |
 | x.asSInt |  Binary cast in SInt | SInt(w(x) bit) |
