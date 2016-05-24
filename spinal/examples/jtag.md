@@ -9,9 +9,12 @@ permalink: /spinal/examples/jtag.md
 ---
 
 ## Introduction
-This page is not about explaining how work the JTAG interface, a good tutorial could be find [there](http://www.fpga4fun.com/JTAG.html)
+{% include important.html content="The goal of this page is to show the implementation of a JTAG TAP (a slave) by a non-conventional way." %}
 
-The goal of this page is to show the implementation of a JTAG TAP (a slave) by a none conventional way.<br>
+{% include important.html content="This implementation is not a simple one, it mix object oriented programming, abstract interfaces decoupling, hardware generation and hardware description. <br>Of course a simple JTAG TAP implementation could be done only with a simple hardware description, but the goal here is really to going forward and creating an very reusable and extensible JTAG TAP generator" %}
+
+{% include important.html content="This page will not explains how JTAG work. A good tutorial could be find [there](http://www.fpga4fun.com/JTAG.html)." %}
+
 One big difference between commonly used HDL and Spinal, is the fact that Spinal allow you to define hardware generators/builders. It's very different than describing hardware.
 Let's take a look into the example bellow because the difference between generate/build/describing could seem "playing with word" or could be interpreted differently.
 
