@@ -179,7 +179,6 @@ val itMatch = myBits === M"00--10--"
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
-| x.asBool |  Binary cast in Bool, True when bit 0 is set | Bool) |
 | x.asBits |  Binary cast in Bits | Bits(w(x) bit) |
 | x.asUInt |  Binary cast in UInt | UInt(w(x) bit) |
 | x.asSInt |  Binary cast in SInt | SInt(w(x) bit) |
