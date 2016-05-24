@@ -17,7 +17,7 @@ entries:
       output: web
 
       subfolders:
-      - title: Language features
+      - title: spinal.core
         output: web
         subfolderitems:
 
@@ -57,6 +57,10 @@ entries:
           url: /spinal/core/function.md
           output: web
 
+        - title: VHDL generation
+          url: /spinal/core/vhdl_generation.md
+          output: web
+
         - title: RAM / ROM
           url: /spinal/core/memory.md
           output: web
@@ -69,11 +73,7 @@ entries:
           url: /spinal/core/utils.md
           output: web
 
-        - title: VHDL generation
-          url: /spinal/core/vhdl_generation.md
-          output: web
-
-      - title: Language libraries
+      - title: spinal.lib
         output: web
         subfolderitems:
 

@@ -17,6 +17,5 @@ The spinal.lib package goal are :
 - Provide some example to get the spirit of spinal
 - Provide some tools and facilities (latency analyser, QSys converter, ...)
 
-To use features introduced in followings chapter you need, in most of cases, to `import spinal.lib._` in your sources.
 
 {% include important.html content="This package is currently under construction and some components are not much tested.<br> Do not hesitate to use github for suggestions/bug/fixes/enhancements" %}
