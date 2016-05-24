@@ -5,7 +5,7 @@ description: "TODO"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/core/blackbox.md
+permalink: /spinal/core/blackbox/
 ---
 
 ## Instanciate VHDL and Verilog IP inside Spinal

@@ -5,7 +5,7 @@ description: "TODO"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/core/vhdl_generation.md
+permalink: /spinal/core/vhdl_generation/
 ---
 
 

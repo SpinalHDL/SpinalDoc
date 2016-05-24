@@ -5,7 +5,7 @@ description: "JTAG TAP implementation example"
 tags: [getting started, examples]
 categories: [documentation, JTAG]
 sidebar: spinal_sidebar
-permalink: /spinal/examples/jtag.md
+permalink: /spinal/examples/jtag/
 ---
 
 ## Introduction

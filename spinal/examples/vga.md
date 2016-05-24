@@ -5,7 +5,7 @@ description: "VGA controller implementation example"
 tags: [getting started, examples]
 categories: [documentation, VGA]
 sidebar: spinal_sidebar
-permalink: /spinal/examples/vga.md
+permalink: /spinal/examples/vga/
 ---
 
 ## Introduction

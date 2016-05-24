@@ -5,7 +5,7 @@ description: "This pages describes the lib components of Spinal"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/lib/introduction.md
+permalink: /spinal/lib/introduction/
 ---
 
 The spinal.lib package goal are :

@@ -5,7 +5,7 @@ description: "TODO"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/core/when_switch.md
+permalink: /spinal/core/when_switch/
 ---
 
 

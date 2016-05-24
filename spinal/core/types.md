@@ -4,7 +4,7 @@ title: Types in Spinal
 description: "This pages describes the main types usable in Spinal"
 tags: [types]
 categories: [documentation, types]
-permalink: /spinal/core/types.md
+permalink: /spinal/core/types/
 sidebar: spinal_sidebar
 ---
 

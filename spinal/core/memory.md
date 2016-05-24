@@ -5,7 +5,7 @@ description: "TODO"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/core/memory.md
+permalink: /spinal/core/memory/
 ---
 
 ## Syntax

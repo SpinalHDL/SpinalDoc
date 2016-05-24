@@ -5,7 +5,7 @@ description: "TODO"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/core/assertion.md
+permalink: /spinal/core/assertion/
 ---
 
 In addition of scala run-time assertion, you can add hardware assertion via the following syntax:

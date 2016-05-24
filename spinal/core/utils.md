@@ -5,7 +5,7 @@ description: "TODO"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/core/utils.md
+permalink: /spinal/core/utils/
 ---
 
 The Spinal core contain some utils :
@@ -17,4 +17,4 @@ The Spinal core contain some utils :
 | roundUp(that : BigInt, by : BigInt) | BigInt | Return the first `by` multiply from `that` (included)  |
 | Cat(x : Data*) | Bits | Concatenate all arguments, the first in MSB, the last in LSB |
 
-Much more tools and utils are present in [spinal.lib](/SpinalDoc/spinal/lib/utils.md)
+Much more tools and utils are present in [spinal.lib](/SpinalDoc/spinal/lib/utils/)
