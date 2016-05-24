@@ -32,3 +32,6 @@ In following pages the following grammar is used to express the syntax of Spinal
 |--------|--------------|
 | [...] | optional |
 | * | repetition |
+
+
+ 
