@@ -114,4 +114,4 @@ end arch;
 ```
 
 ## What to do next ?
-It's up to you, but why not have a look at what the [types](types.md) are in Spinal or discover what [primitives]() the language provides to describe hardware components? You could also have a look at our [examples](examples.md) to see some samples of what you could do next.
+It's up to you, but why not have a look at what the [types](types/) are in Spinal or discover what [primitives]() the language provides to describe hardware components? You could also have a look at our [examples](examples/) to see some samples of what you could do next.

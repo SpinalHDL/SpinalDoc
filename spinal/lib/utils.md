@@ -5,7 +5,7 @@ description: "This pages describes the lib components of Spinal"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/lib/utils.md
+permalink: /spinal/lib/utils/
 ---
 
 ## Utils
@@ -23,4 +23,4 @@ permalink: /spinal/lib/utils.md
 | BufferCC(input : T) | T | Return the input signal synchronised with the current clock domain by using 2 flip flop |
 | LatencyAnalysis(paths : Node*) | Int | Return the shortest path,in therm of cycle, that travel through all nodes, <br> from the first one to the last one |
 
-Some utils are also present in [spinal.core](/SpinalDoc/spinal/core/utils.md)
+Some utils are also present in [spinal.core](/SpinalDoc/spinal/core/utils/)

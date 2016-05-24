@@ -4,7 +4,7 @@ title: Registers in Spinal
 description: "TODO"
 tags: [types]
 categories: [documentation, types]
-permalink: /spinal/core/registers.md
+permalink: /spinal/core/registers/
 sidebar: spinal_sidebar
 ---
 
@@ -14,9 +14,9 @@ In Spinal, you don't have process/always blocks and registers are explicitly def
 This difference against traditional event driven HDL has a big impact :
 
 - You can assign registers and wires in the same scope, you don't have to split your code between process/always blocks
-- It make things much more flexible (see [Functions](/SpinalDoc/spinal/core/function.md))
+- It make things much more flexible (see [Functions](/SpinalDoc/spinal/core/function/))
 
-The way how clock and reset wire are managed are explained in the [Clock domain](/SpinalDoc/spinal/core/clock_domain.md) chapter.
+The way how clock and reset wire are managed are explained in the [Clock domain](/SpinalDoc/spinal/core/clock_domain/) chapter.
 
 ## Instantiation
 

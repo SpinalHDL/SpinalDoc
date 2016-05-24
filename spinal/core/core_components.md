@@ -9,7 +9,7 @@ permalink: /spinal_core_components/
 ---
 
 # The `spinal.core` components
-The core components of the language are described in this document. It is part of the general [Spinal user guide](userGuide.md).
+The core components of the language are described in this document. It is part of the general [Spinal user guide](userGuide/).
 
 The core language components are as follows:
 

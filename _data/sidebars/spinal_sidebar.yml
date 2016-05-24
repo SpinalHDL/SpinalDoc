@@ -17,80 +17,84 @@ entries:
       output: web
 
       subfolders:
-      - title: spinal.core
+      - title: Language features
         output: web
         subfolderitems:
 
         - title: Introduction
-          url: /spinal/core/introduction.md
+          url: /spinal/core/introduction/
           output: web
 
         - title: Types and literals
-          url: /spinal/core/types.md
+          url: /spinal/core/types/
           output: web
 
         - title: Registers
-          url: /spinal/core/registers.md
+          url: /spinal/core/registers/
           output: web
 
         - title: Clock domains
-          url: /spinal/core/clock_domain.md
+          url: /spinal/core/clock_domain/
           output: web
 
         - title: Assignements
-          url: /spinal/core/assignements.md
+          url: /spinal/core/assignements/
           output: web
 
         - title: When / Switch / Mux
-          url: /spinal/core/when_switch.md
+          url: /spinal/core/when_switch/
           output: web
 
         - title: Components / Hierarchy
-          url: /spinal/core/components_hierarchy.md
+          url: /spinal/core/components_hierarchy/
           output: web
 
         - title: Area
-          url: /spinal/core/area.md
+          url: /spinal/core/area/
           output: web
 
         - title: Function
-          url: /spinal/core/function.md
-          output: web
-
-        - title: VHDL generation
-          url: /spinal/core/vhdl_generation.md
+          url: /spinal/core/function/
           output: web
 
         - title: RAM / ROM
-          url: /spinal/core/memory.md
+          url: /spinal/core/memory/
           output: web
 
         - title: Instanciate VHDL and Verilog IP
-          url: /spinal/core/blackbox.md
+          url: /spinal/core/blackbox/
           output: web
 
         - title: Utils
-          url: /spinal/core/utils.md
+          url: /spinal/core/utils/
           output: web
 
-      - title: spinal.lib
+        - title: Assertion
+          url: /spinal/core/assertion/
+          output: web
+
+        - title: VHDL generation
+          url: /spinal/core/vhdl_generation/
+          output: web
+
+      - title: Language libraries
         output: web
         subfolderitems:
 
         - title: Introduction
-          url: /spinal/lib/introduction.md
+          url: /spinal/lib/introduction/
           output: web
 
         - title: Utils
-          url: /spinal/lib/utils.md
+          url: /spinal/lib/utils/
           output: web
 
         - title: Stream
-          url: /spinal/lib/stream.md
+          url: /spinal/lib/stream/
           output: web
 
         - title: Flow
-          url: /spinal/lib/flow.md
+          url: /spinal/lib/flow/
           output: web
 
       - title: Examples
@@ -98,13 +102,13 @@ entries:
         subfolderitems:
 
         - title: Simple ones
-          url: /spinal/examples/simple_ones.md
+          url: /spinal/examples/simple_ones/
           output: web
 
         - title: VGA
-          url: /spinal/examples/vga.md
+          url: /spinal/examples/vga/
           output: web
 
         - title: JTAG TAP
-          url: /spinal/examples/jtag.md
+          url: /spinal/examples/jtag/
           output: web
