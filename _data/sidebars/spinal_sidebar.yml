@@ -50,7 +50,7 @@ entries:
           output: web
 
         - title: Area
-          url: /spinal/core/area.md
+          url: /spinal/core/area
           output: web
 
         - title: Function
@@ -67,6 +67,10 @@ entries:
 
         - title: Utils
           url: /spinal/core/utils.md
+          output: web
+
+        - title: Assertion
+          url: /spinal/core/assertion.md
           output: web
 
         - title: VHDL generation
