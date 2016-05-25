@@ -118,11 +118,11 @@ Then the returned instance (which is a ClockDomain one) as following functions t
 
 | name | Description| Return |
 | ------- | ---- | --- |
-| hasReset |  Return if the clock domain has a reset signal | Boolean | 
+| hasReset |  Return if the clock domain has a reset signal | Boolean |
 | hasClockEnable |  Return if the clock domain has a clock enable signal | Boolean |
 | frequency.getValue |  Return the frequency of the clock domain | Double |
 | readClockWire |  Return a signal derived by the clock signal | Bool |
-| readResetWire |  Return a signal derived by the reset signal | Bool | 
+| readResetWire |  Return a signal derived by the reset signal | Bool |
 | readClockEnableWire |  Return a signal derived by the clock enable signal | Bool |
 | isResetActive |  Return True when the reset has effect | Bool |
 | isClockEnableActive |  Return True when the clock enable has effect | Bool |
@@ -132,38 +132,63 @@ Spinal checks at compile time that there is no unwanted/unspecified cross clock 
 
 
 ```scala
-//             _____                        _____             _____ 
+//             _____                        _____             _____
 //            |     |  (crossClockDomain)  |     |           |     |
 //  dataIn -->|     |--------------------->|     |---------->|     |--> dataOut
 //            | FF  |                      | FF  |           | FF  |
-//  clk_1  -->|     |             clk_2 -->|     |  clk_2 -->|     |
-//  rst_1  -->|_____|             rst_2 -->|_____|  rst_2 -->|_____|
-//
+//  clkA   -->|     |              clkB -->|     |   clkB -->|     |
+//  rstA   -->|_____|              rstB -->|_____|   rstB -->|_____|
+
+
+
+// Implementation where clock and reset pins are given by components IO
 class CrossingExample extends Component {
-
   val io = new Bundle {
-    val clk_1 = in Bool
-    val rst_1 = in Bool
+    val clkA = in Bool
+    val rstA = in Bool
 
-    val clk_2 = in Bool
-    val rst_2 = in Bool 
+    val clkB = in Bool
+    val rstB = in Bool
 
-    val dataIn  = in Bool 
-    val dataOut = out Bool 
+    val dataIn  = in Bool
+    val dataOut = out Bool
   }
 
-  // sample dataIn with clk_1
-  val aera_clk_1 = new ClockingArea(ClockDomain(io.clk_1,io.rst_1)){  
-    val reg = RegNext(io.dataIn) init(False) 
+  // sample dataIn with clkA
+  val area_clkA = new ClockingArea(ClockDomain(io.clkA,io.rstA)){  
+    val reg = RegNext(io.dataIn) init(False)
   }
 
-  // 2 register stages to avoid metastability issues 
-  val aera_clk_2 = new ClockingArea(ClockDomain(io.clk_2,io.rst_2)){  
-    val buf0   = RegNext(aera_clk_1.reg) init(False) addTag(crossClockDomain)
-    val buf1   = RegNext(buf1) init(False)
+  // 2 register stages to avoid metastability issues
+  val area_clkB = new ClockingArea(ClockDomain(io.clkB,io.rstB)){  
+    val buf0   = RegNext(area_clkA.reg) init(False) addTag(crossClockDomain)
+    val buf1   = RegNext(buf1)           init(False)
   }
 
-  io.dataOut := aera_clk_2.buf1
+  io.dataOut := area_clkB.buf1
+}
 
+
+
+
+//Alternative implementation where clock domains are given as parameters
+class CrossingExample(clkA : ClockDomain,clkB : ClockDomain) extends Component {
+  val io = new Bundle {
+    val dataIn  = in Bool
+    val dataOut = out Bool
+  }
+
+  // sample dataIn with clkA
+  val area_clkA = new ClockingArea(clkA){  
+    val reg = RegNext(io.dataIn) init(False)
+  }
+
+  // 2 register stages to avoid metastability issues
+  val area_clkB = new ClockingArea(clkB){  
+    val buf0   = RegNext(area_clkA.reg) init(False) addTag(crossClockDomain)
+    val buf1   = RegNext(buf1)           init(False)
+  }
+
+  io.dataOut := area_clkB.buf1
 }
 ```
