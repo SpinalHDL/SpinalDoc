@@ -25,6 +25,7 @@ The way how clock and reset wire are managed are explained in the [Clock domain]
 | Reg(type : Data) | Register of the given type |
 | RegInit(value : Data) | Register with the given value when a reset occur |
 | RegNext(value : Data) | Register that sample the given value each cycle |
+| RegNextWhen(value : Data, cond : Bool) | Register that sample the given value when a condition occurs |
 
 ```scala
 //UInt register of 4 bits    
@@ -35,6 +36,9 @@ val reg2 = RegNext(toto)
 
 //UInt register of 4 bits initialized with 0 when the reset occur
 val reg3 = RegInit(U"0000")
+
+//Register toto when cond is True
+val reg4 = RegNextWhen(toto,cond)
 ```
 
 ## Reset value
@@ -44,4 +48,13 @@ you can also set the reset value by calling the `init(value : Data)` function on
 ```scala
 //UInt register of 4 bits initialized with 0 when the reset occur
 val reg1 = Reg(UInt(4 bit)) init(0) 
+```
+
+
+## Initialization  value
+For register that doesn't need a reset value in RTL, but need an initialization value for simulation (avoid x-propagation), you can set an initialization random value by calling the `randBoot()` function.
+
+```scala
+// UInt register of 4 bits initialized with a random value
+val reg1 = Reg(UInt(4 bit)) randBoot()
 ```

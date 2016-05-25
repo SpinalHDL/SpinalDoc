@@ -50,6 +50,7 @@ The following operators are available for the `Bool` type
 | !x  |  Logical NOT | Bool |
 | x && y <br> x & y |  Logical AND | Bool |
 | x \|\| y <br> x \| y  |  Logical OR  | Bool |
+| x ^ y | Logical XOR | Bool |
 | x.set[()]  |  Set x to True  | - |
 | x.clear[()]  |  Set x to False  | - |
 | x.rise[()] | Return True when x was low at the last cycle and is now high | Bool |
@@ -156,6 +157,7 @@ val itMatch = myBits === M"00--10--"
 | x >> y |  Logical shift right, y : UInt | T(w(x) bit) |
 | x << y |  Logical shift left, y : Int | T(w(x) + y bit) |
 | x << y |  Logical shift left, y : UInt | T(w(x) + max(y) bit) |
+| x.rotateLeft(y) |  Logical left rotation, y : UInt | T(w(x)) |
 | x.resize(y) |  Return a resized copy of x, filled with zero, y : Int  | T(y bit) |
 
 ## UInt, SInt
@@ -193,7 +195,7 @@ val itMatch = myBits === M"00--10--"
 | Operator | Description | Return |
 | ------- | ---- | --- |
 | x(y) |  Read element y, y : Int/UInt | T|
-| x(y) := z | Assign element y with z, y : Int/UInt | |
+| x(y) := z | Assign element y with z, y : Int/UInt | - |
 
 ```scala
 val myVecOfSInt = Vec(SInt(8 bit),2)

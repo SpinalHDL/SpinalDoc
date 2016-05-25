@@ -19,13 +19,14 @@ Clock domain application work like a stack, which mean, if you are in a given cl
 The syntax to define a clock domain is as follows (using EBNF syntax):
 
 <a name="clock_constructor"></a>
-`ClockDomain(clock : Bool[,reset : Bool][,enable : Bool][,enable : Bool][,config : ClockDomainConfig])`
+`ClockDomain(clock : Bool[,reset : Bool][,enable : Bool][,enable : Bool][,frequency : IClockDomainFrequency][,config : ClockDomainConfig])`
 
-This definition takes three parameters:
+This definition takes five parameters:
 
 1. The clock signal that defines the domain
 1. An optional `reset`signal. If a register which need a reset and his clock domain didn't provide one, an error message happen
 1. An optional `enable` signal. The goal of this signal is to disable the clock on the whole clock domain without having to  manually implement that on each synchronous element.
+1. An optional `frequency` class. Which allow to specify the frequency of the given clock domain and later get it in your design.
 1. An optional `config` class. Which specify polarity of signals and the nature of the reset.
 
 An applied example to define a specific clock domain within the design is as follows:
@@ -40,6 +41,17 @@ val coreClockDomain = ClockDomain(coreClock,coreReset)
 // Use this domain in an area of the design
 val coreArea = new ClockingArea(coreClockDomain){
   val coreClockedRegister = Reg(UInt(4 bit))
+}
+```
+
+### Frequency
+There is an example with an UART controller that use the frequency specification to set its clock divider :
+
+```scala
+val coreClockDomain = ClockDomain(coreClock,coreReset,frequency=FixedFrequency(100e6)
+val coreArea = new ClockingArea(coreClockDomain){
+  val ctrl = new UartCtrl()
+  ctrl.io.config.clockDivider := (coreClk.frequency.getValue / 57.6e3 / 8).toInt
 }
 ```
 
@@ -98,6 +110,22 @@ class ExternalClockExample extends Component {
   }
 }
 ```
+
+### Context
+At any moment you can retrieve in which clock domain you are by calling `ClockDomain.current`
+
+Then the returned instance (which is a ClockDomain one) as following functions that you can call :
+
+| name |  Return | Description|
+| ------- | ---- | --- |
+| hasReset | Boolean |  Return if the clock domain has a reset signal |
+| hasClockEnable | Boolean | Return if the clock domain has a clock enable signal |
+| frequency.getValue | Double | Return the frequency of the clock domain |
+| readClockWire | Bool | Return a signal derived by the clock signal |
+| readResetWire | Bool |  Return a signal derived by the reset signal |
+| readClockEnableWire | Bool | Return a signal derived by the clock enable signal |
+| isResetActive | Bool | Return True when the reset has effect |
+| isClockEnableActive | Bool | Return True when the clock enable has effect |
 
 ## Clock domain crossing
 Spinal checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another `ClockDomain` area, you should add the `crossClockDomain` tag to the destination signal as depicted in the following example:
