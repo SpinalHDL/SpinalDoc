@@ -21,7 +21,7 @@ Before implementing the controller itself we need to define some data structures
 
 ### RGB color
 
-First, we need a tree channel color structure (Red, Green, Blue). This data structure will be used to feed the controller with pixels and also use by the VGA bus.
+First, we need a three channel color structure (Red, Green, Blue). This data structure will be used to feed the controller with pixels and also use by the VGA bus.
 
 ```scala
 case class RgbConfig(rWidth : Int,gWidth : Int,bWidth : Int){
@@ -79,7 +79,7 @@ case class VgaTimings(timingsWidth: Int) extends Bundle {
 }
 ```
 
-But this not a very good way to specify it, because it's redondante for Vertical and Horizontal timings.
+But this not a very good way to specify it, because it's redundant for Vertical and Horizontal timings.
 
 Let's write it by a clearer way :
 
@@ -152,7 +152,7 @@ The controller didn't integrate any pixels buffering, it directly take them from
 
 ### Component and io definition
 
-Let's define a new VgaCtrl component, which take as parameter an RgbConfig and a timings bits counts. Let's give the this bits counts a default value of 12.
+Let's define a new VgaCtrl component, which take as parameter an RgbConfig and a timings bits counts. Let's give the bits counts a default value of 12.
 
 ```scala
 class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
