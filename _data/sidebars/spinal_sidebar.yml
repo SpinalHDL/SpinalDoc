@@ -109,6 +109,10 @@ entries:
           url: /spinal/examples/vga/
           output: web
 
+        - title: UART
+          url: /spinal/examples/uart/
+          output: web
+
         - title: JTAG TAP
           url: /spinal/examples/jtag/
           output: web

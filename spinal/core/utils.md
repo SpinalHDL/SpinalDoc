@@ -10,7 +10,7 @@ permalink: /spinal/core/utils/
 
 The Spinal core contain some utils :
 
-| Syntax |  Return |Description|
+| Syntax |  Return | Description|
 | ------- | ---- | --- |
 | log2Up(x : BigInt) | Int | Return the number of bit needed to represent x states |
 | isPow2(x : BigInt) | Boolean | Return true if x is a power of two |
