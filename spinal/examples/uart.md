@@ -473,7 +473,7 @@ class UartCtrl(g : UartCtrlGenerics = UartCtrlGenerics()) extends Component {
 }
 ```
 
-## Example
+## Example with test bench
 There is an top level example that do the followings things :
 
 - Instanciate the `UartCtrl` and fix its configuration to 921600 baud/s, no parity, 1 stop bit.
@@ -514,3 +514,20 @@ object UartCtrlUsageExample{
 ```
 
 [Here](https://github.com/SpinalHDL/SpinalHDL/blob/master/tester/src/test/resources/UartCtrlUsageExample_tb.vhd) you can get a simple VHDL testbench for this small `UartCtrlUsageExample`.
+
+## Bonus : Having fun with Stream
+If you want to queue data received from the UART :
+
+```scala
+val uartCtrl = new UartCtrl()
+val queuedReads = uartCtrl.io.read.toStream.queue(16)
+```
+
+If you want to add a queue on the write interface and do some flow control :
+
+```scala
+val uartCtrl = new UartCtrl()
+val writeCmd = Stream(Bits(8 bits))
+val stopIt = Bool
+writeCmd.queue(16).haltWhen(stopIt) >> uartCtrl.io.write
+```
