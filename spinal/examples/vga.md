@@ -143,12 +143,12 @@ case class VgaTimings(timingsWidth: Int) extends Bundle {
 | ------- | ---- |
 | softReset | in | Reset internal counters and keep the VGA inactive|
 | timings | in | Specify VGA horizontal and  vertical timings |
-| pixels | slave | Stream of RGB colors that feed the VGA controller |
+| colorStream | slave | Stream of RGB colors that feed the VGA controller |
 | error | out | High when the pixels stream is to slow |
 | frameStart | out | High when a new frame start |
 | vga | master | VGA interface |
 
-The controller didn't integrate any pixels buffering, it directly take them from the `pixels` and put them on the `vga.color` at the right time. If the `pixels` is not valid then `error` pulse high one cycle.
+The controller didn't integrate any pixels buffering, it directly take them from the `colorStream` and put them on the `vga.color` at the right time. If the `colorStream` is not valid then `error` pulse high one cycle.
 
 ### Component and io definition
 
@@ -223,15 +223,15 @@ class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
   val v = HVArea(io.timings.v, h.syncEnd)
 
   val colorEn = h.colorEn && v.colorEn
-  io.pixels.ready := colorEn
-  io.error := colorEn && ! io.pixels.valid
+  io.colorStream.ready := colorEn
+  io.error := colorEn && ! io.colorStream.valid
 
   io.frameStart := v.syncEnd
 
   io.vga.hSync := h.sync
   io.vga.vSync := v.sync
   io.vga.colorEn := colorEn
-  io.vga.color := io.pixels.payload
+  io.vga.color := io.colorStream.payload
 }
 ```
 
@@ -240,7 +240,7 @@ class VgaCtrl(rgbConfig: RgbConfig, timingsWidth: Int = 12) extends Component {
 The VgaCtrl that was defined on the top is neutral (not application specific).
 We can imagine a case where the system provide a Stream of Fragment of RGB. Which mean the system transmit pixels with start/end of picture indication.
 
-In this case we can manage automaticly the `softReset` input by rising it when a `error` occure, then waiting the end of the current `pixels` picture to falling `error`.
+In this case we can manage automaticly the `softReset` input by rising it when a `error` occure, then waiting the end of the current `colorStream` picture to falling `error`.
 
 Let's add to the VgaCtrl a function that can be called from the parent component to feed the VgaCtrl by using this Stream of Fragment of RGB.
 
