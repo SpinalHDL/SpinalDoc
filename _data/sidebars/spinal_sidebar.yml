@@ -97,6 +97,10 @@ entries:
           url: /spinal/lib/flow/
           output: web
 
+        - title: Fragment
+          url: /spinal/lib/fragment/
+          output: web
+
       - title: Examples
         output: web
         subfolderitems:

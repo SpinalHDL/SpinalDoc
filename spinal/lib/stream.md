@@ -12,11 +12,11 @@ permalink: /spinal/lib/stream/
 The Stream interface is a simple handshake protocol to carry payload.<br>
 It could be used for example to push and pop elements into a FIFO, send requests to a UART controller, etc.
 
-| Signal | Driver| Description | Don't care when
-| ------- | ---- | --- |  --- |
-| valid | Master | When high => payload present on the interface  | |
-| payload| Master | Content of the transaction | valid is low |
-| ready| Slave | When low => transaction are not consumed by the slave | valid is low |
+| Signal  | Type | Driver| Description | Don't care when
+| ------- | ---- | --- |  --- |  --- |
+| valid | Bool | Master | When high => payload present on the interface  | - |
+| ready| Bool | Slave | When low => transaction are not consumed by the slave | valid is low |
+| payload| T | Master | Content of the transaction | valid is low |
 
 {% include note.html content="Each slave can or can't allow the payload to change when valid is high and ready is low. For examples:<br>
 - An priority arbiter without lock logic can switch from one input to the other (which will change the payload).<br>
@@ -47,8 +47,10 @@ class StreamArbiter[T <: Data](dataType: T,portCount: Int) extends Component {
 | ------- | ---- | --- |  --- |
 | Stream(type : Data) | Create a Stream of a given type | Stream[T] | |
 | master/slave Stream(type : Data) | Create a Stream of a given type <br> Initialized with corresponding in/out setup | Stream[T] |
+| x.fire | Return True when a transaction is consumed on the bus (valid && ready) | Bool | - |
+| x.isStall | Return True when a transaction is stall on the bus (valid && ! ready) | Bool | - |
 | x.queue(size:Int) | Return a Stream connected to x through a FIFO | Stream[T] | 2 |
-| x.m2sPipe() | Return a Stream drived by x <br>through a register stage that cut valid/payload paths <br> Cost (payload width + 1) flip flop | Stream[T] |  1 |
+| x.m2sPipe() | Return a Stream drived by x <br>through a rgister stage that cut valid/payload paths <br> Cost (payload width + 1) flip flop | Stream[T] |  1 |
 | x.s2mPipe() | Return a Stream drived by x <br> ready paths is cut by a register stage <br> Cost payload width 2->1 mux + one flip flop | Stream[T] |  0 |
 | x.halfPipe() | Return a Stream drived by x <br> valid/ready/payload paths are cut by some register <br> Cost only (payload width + 2) flip flop, bandwidth divided by two | Stream[T] |  1 |
 | x << y <br> y >> x | Connect y to x | | 0 |
