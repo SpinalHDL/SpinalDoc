@@ -514,6 +514,7 @@ object UartCtrlUsageExample{
 ```
 
 If you want to send an 0x55 header before sending switches value, you can remplace the write generator of the precedent example by :
+
 ```scala
   val write = Stream(Fragment(Bits(8 bits)))
   write.valid := CounterFreeRun(4000).willOverflow
