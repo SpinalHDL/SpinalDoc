@@ -31,7 +31,7 @@ It maybe doesn't look like, but having to use process/always block in VHDL and V
 
 In Spinal you can assign any signals in the current Component at any time from everywhere from the moment that you have a reference on it (OOP). 
 
-TODO add example
+This is a major paradigm change that add many value to Spinal. Some good example of that come in followings chapters (Stream).
 
 # Goodbye limited records/structs
 In VHDL a data structure could be modeled as a record. But there is many limitation in that :
@@ -50,7 +50,7 @@ case class Color(channelWidth: Int) extends Bundle {
 }
 ```
 
-You can also give template data types as arguments. This is very useful, for example, to model an hand-shake bus with a templated payload.
+You can also give template data types as arguments. This is very useful, for example, to model an handshake interface with a templated payload.
 
 
 ```scala
@@ -76,6 +76,12 @@ case class Stream[T <: Data](dataType: T) extends Bundle {
     that
   }
 
+  def queue(size: Int): Stream[T] = {
+    val fifo = new StreamFifo(dataType, size)
+    fifo.io.push << this
+    return fifo.io.pop
+  }
+
   def haltWhen(cond: Bool): Stream[T] = {
     val next = new Stream(dataType)
     next.valid := this.valid && !cond
@@ -83,14 +89,6 @@ case class Stream[T <: Data](dataType: T) extends Bundle {
     next.payload := this.payload
     return next
   }
-
-  def queue(size: Int): Stream[T] = {
-    val fifo = new StreamFifo(dataType, size)
-    fifo.io.push << this
-    return fifo.io.pop
-  }
-
-
 }
 ```
 
@@ -121,10 +119,10 @@ In Spinal, generics/parameters are bound less :
 ```
 
 # Components/modules need an organisation tool for internal logic 
-On pathological symptom in VHDL/Verilog, is when see signals named with the following manner :
+On pathological symptom in VHDL/Verilog, is when signals are named by the following manner :
 
 ```vhdl
-signal counter_inc    : std_logic;
+signal counter_inc      : std_logic;
 signal counter_clear    : std_logic;
 signal counter_overflow : std_logic;
 signal counter_value    : unsigned(15 downto 0);
@@ -138,6 +136,39 @@ val counter = new Area{
   val clear    = Bool
   val overflow = Bool
   val value    = UInt(16 bits)
+
+  //Add here some logic
 }
 ```
 
+# Functional programming
+Functional programming is not the best solution to all problems, but in many cases it allow to write things with less verbosity than procedural programming.
+
+There is an conceptual example of a tag cache and some signals calculated from it by using functional programming (map, reduce)
+
+```scala
+case class Tag extends Bundle {
+  val valid = Bool
+  val address = UInt(32 bit)
+  val dirty = Bool
+
+  def hit(targetAddress: UInt): Bool = valid && address === targetAddress
+}
+
+val tags     = Vec(Tag(), 8)
+val hits     = tags.map(tag => tag.hit(targetAddress))
+val hitValid = hits.reduce((a, b) => a || b)
+val hitIndex = OHToUInt(hits) //One hot to UInt
+val hitValue = tags(hitIndex)
+```
+
+You can also use recursion to generate some logic. For example here is an function that return the given data delayed by cycleCount.
+
+```scala
+def Delay[T <: Data](that: T, cycleCount: Int): T = cycleCount match {
+  case 0 => that
+  case _ => Delay(RegNext(that), cycleCount - 1)
+}
+```
+
+# Meta-programming/Logic generation
