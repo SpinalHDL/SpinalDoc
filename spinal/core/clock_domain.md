@@ -162,13 +162,11 @@ class CrossingExample extends Component {
   // 2 register stages to avoid metastability issues
   val area_clkB = new ClockingArea(ClockDomain(io.clkB,io.rstB)){  
     val buf0   = RegNext(area_clkA.reg) init(False) addTag(crossClockDomain)
-    val buf1   = RegNext(buf1)           init(False)
+    val buf1   = RegNext(buf0)          init(False)
   }
 
   io.dataOut := area_clkB.buf1
 }
-
-
 
 
 //Alternative implementation where clock domains are given as parameters
@@ -186,7 +184,32 @@ class CrossingExample(clkA : ClockDomain,clkB : ClockDomain) extends Component {
   // 2 register stages to avoid metastability issues
   val area_clkB = new ClockingArea(clkB){  
     val buf0   = RegNext(area_clkA.reg) init(False) addTag(crossClockDomain)
-    val buf1   = RegNext(buf1)           init(False)
+    val buf1   = RegNext(buf0)          init(False)
+  }
+
+  io.dataOut := area_clkB.buf1
+}
+```
+
+Even shorter by importing the lib `import spinal.lib._` Spinal offers a cross clock domain buffer `BufferCC(input: T, init: T = null, bufferDepth: Int = 2)` to avoid metastability issues.
+
+This example also use `ClockDomain` given as component construction parameters.   
+
+```scala
+class CrossingExample(clkA : ClockDomain,clkB : ClockDomain) extends Component {
+  val io = new Bundle {
+    val dataIn  = in Bool
+    val dataOut = out Bool
+  }
+
+  // sample dataIn with clkA
+  val area_clkA = new ClockingArea(clkA){  
+    val reg = RegNext(io.dataIn) init(False)
+  }
+
+  // BufferCC to avoid metastability issues
+  val area_clkB = new ClockingArea(clkB){  
+    val buf1   = BufferCC(area_clkA.reg, False)
   }
 
   io.dataOut := area_clkB.buf1
