@@ -19,13 +19,13 @@ Clock domain application work like a stack, which mean, if you are in a given cl
 The syntax to define a clock domain is as follows (using EBNF syntax):
 
 <a name="clock_constructor"></a>
-`ClockDomain(clock : Bool[,reset : Bool][,enable : Bool][,enable : Bool][,frequency : IClockDomainFrequency][,config : ClockDomainConfig])`
+`ClockDomain(clock : Bool[,reset : Bool][,clockEnable : Bool][,frequency : IClockDomainFrequency][,config : ClockDomainConfig])`
 
 This definition takes five parameters:
 
 1. The clock signal that defines the domain
 1. An optional `reset`signal. If a register which need a reset and his clock domain didn't provide one, an error message happen
-1. An optional `enable` signal. The goal of this signal is to disable the clock on the whole clock domain without having to  manually implement that on each synchronous element.
+1. An optional `clockEnable` signal. The goal of this signal is to disable the clock on the whole clock domain without having to  manually implement that on each synchronous element.
 1. An optional `frequency` class. Which allow to specify the frequency of the given clock domain and later get it in your design.
 1. An optional `config` class. Which specify polarity of signals and the nature of the reset.
 
@@ -48,7 +48,7 @@ val coreArea = new ClockingArea(coreClockDomain){
 There is an example with an UART controller that use the frequency specification to set its clock divider :
 
 ```scala
-val coreClockDomain = ClockDomain(coreClock,coreReset,frequency=FixedFrequency(100e6)
+val coreClockDomain = ClockDomain(coreClock,coreReset,frequency=FixedFrequency(100e6))
 val coreArea = new ClockingArea(coreClockDomain){
   val ctrl = new UartCtrl()
   ctrl.io.config.clockDivider := (coreClk.frequency.getValue / 57.6e3 / 8).toInt
@@ -112,36 +112,107 @@ class ExternalClockExample extends Component {
 ```
 
 ### Context
-At any moment you can retrieve in which clock domain you are by calling `ClockDomain.current`
+At any moment you can retrieve in which clock domain you are by calling `ClockDomain.current`.
 
 Then the returned instance (which is a ClockDomain one) as following functions that you can call :
 
-| name |  Return | Description|
+| name | Description| Return |
 | ------- | ---- | --- |
-| hasReset | Boolean |  Return if the clock domain has a reset signal |
-| hasClockEnable | Boolean | Return if the clock domain has a clock enable signal |
-| frequency.getValue | Double | Return the frequency of the clock domain |
-| readClockWire | Bool | Return a signal derived by the clock signal |
-| readResetWire | Bool |  Return a signal derived by the reset signal |
-| readClockEnableWire | Bool | Return a signal derived by the clock enable signal |
-| isResetActive | Bool | Return True when the reset has effect |
-| isClockEnableActive | Bool | Return True when the clock enable has effect |
+| hasReset |  Return if the clock domain has a reset signal | Boolean |
+| hasClockEnable |  Return if the clock domain has a clock enable signal | Boolean |
+| frequency.getValue |  Return the frequency of the clock domain | Double |
+| readClockWire |  Return a signal derived by the clock signal | Bool |
+| readResetWire |  Return a signal derived by the reset signal | Bool |
+| readClockEnableWire |  Return a signal derived by the clock enable signal | Bool |
+| isResetActive |  Return True when the reset has effect | Bool |
+| isClockEnableActive |  Return True when the clock enable has effect | Bool |
 
 ## Clock domain crossing
 Spinal checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another `ClockDomain` area, you should add the `crossClockDomain` tag to the destination signal as depicted in the following example:
 
-```scala
-val asynchronousSignal = UInt(8 bit)
-...
-val buffer0 = Reg(UInt(8 bit)).addTag(crossClockDomain)
-val buffer1 = Reg(UInt(8 bit))
-buffer0 := asynchronousSignal
-buffer1 := buffer0   // Second register stage to be avoid metastability issues
-```
-
-Or in short:
 
 ```scala
-val buffer0 = RegNext(asynchronousSignal).addTag(crossClockDomain)
-val buffer1 = RegNext(buffer0)
+//             _____                        _____             _____
+//            |     |  (crossClockDomain)  |     |           |     |
+//  dataIn -->|     |--------------------->|     |---------->|     |--> dataOut
+//            | FF  |                      | FF  |           | FF  |
+//  clkA   -->|     |              clkB -->|     |   clkB -->|     |
+//  rstA   -->|_____|              rstB -->|_____|   rstB -->|_____|
+
+
+
+// Implementation where clock and reset pins are given by components IO
+class CrossingExample extends Component {
+  val io = new Bundle {
+    val clkA = in Bool
+    val rstA = in Bool
+
+    val clkB = in Bool
+    val rstB = in Bool
+
+    val dataIn  = in Bool
+    val dataOut = out Bool
+  }
+
+  // sample dataIn with clkA
+  val area_clkA = new ClockingArea(ClockDomain(io.clkA,io.rstA)){  
+    val reg = RegNext(io.dataIn) init(False)
+  }
+
+  // 2 register stages to avoid metastability issues
+  val area_clkB = new ClockingArea(ClockDomain(io.clkB,io.rstB)){  
+    val buf0   = RegNext(area_clkA.reg) init(False) addTag(crossClockDomain)
+    val buf1   = RegNext(buf0)          init(False)
+  }
+
+  io.dataOut := area_clkB.buf1
+}
+
+
+//Alternative implementation where clock domains are given as parameters
+class CrossingExample(clkA : ClockDomain,clkB : ClockDomain) extends Component {
+  val io = new Bundle {
+    val dataIn  = in Bool
+    val dataOut = out Bool
+  }
+
+  // sample dataIn with clkA
+  val area_clkA = new ClockingArea(clkA){  
+    val reg = RegNext(io.dataIn) init(False)
+  }
+
+  // 2 register stages to avoid metastability issues
+  val area_clkB = new ClockingArea(clkB){  
+    val buf0   = RegNext(area_clkA.reg) init(False) addTag(crossClockDomain)
+    val buf1   = RegNext(buf0)          init(False)
+  }
+
+  io.dataOut := area_clkB.buf1
+}
 ```
+
+Even shorter by importing the lib `import spinal.lib._` Spinal offers a buffer clock domain `BufferCC(input: T, init: T = null, bufferDepth: Int = 2)` to avoid metastability issues.  
+
+```scala
+class CrossingExample(clkA : ClockDomain,clkB : ClockDomain) extends Component {
+  val io = new Bundle {
+    val dataIn  = in Bool
+    val dataOut = out Bool
+  }
+
+  // sample dataIn with clkA
+  val area_clkA = new ClockingArea(clkA){  
+    val reg = RegNext(io.dataIn) init(False)
+  }
+
+  // BufferCC to avoid metastability issues
+  val area_clkB = new ClockingArea(clkB){  
+    val buf1   = BufferCC(area_clkA.reg, False)
+  }
+
+  io.dataOut := area_clkB.buf1
+}
+```
+
+
+
