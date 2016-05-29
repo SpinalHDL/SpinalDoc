@@ -40,23 +40,27 @@ It is a very good question ! Why develop a new language when there Chisel has be
 [Chisel](https://chisel.eecs.berkeley.edu/) is the project at the origin of Spinal and Chisel it represents a big step forward compared to common HDL. However, it has several drawbacks for large designs that mix multiple clock domain and external IP (black-boxes). In fact, Chisel show some serious conception issue :
 
 #### Various issue :
+- When an assignment occur, bits width are automatically resized by Chisel to match. It should at least generate a warning.
+- Bundle assignments are weakly typed.
+- You can assign Bool, Bits, UInt, Bits together, Chisel will automatically cast them. It should at least generate a warning as well.
+- Chisel didn't print any warning when you completely reassign a signals, kind of situation that is clearly the most of the time an user error.
 - Can't add attribute into generated verilog
-- You can't define function without argument into `Bundles`.
+- You can't define function without argument that return a `Data` inside `Bundles`.
 - Using `when`/`otherwise` is not strict in all case. This allows you to generate an asynchronous signal that is not assigned in every case.
-- You can't write a given range of bit into a bit vector (UInt,SInt,Bits).
-- The library that is integrated into Chisel and that provides you some utils and useful bus definition is a good intention, but could be so better and more complete
-- When an assignment occur, bits width is automatically resized to match. It should at least generate a warning or an error.
+- You can't assign a given range of bit into a bit vector (UInt,SInt,Bits) in many cases.
 - No cross clock domain checking
-- No verilog attribute specification possibilities.
+- You can't define signals inside when scope, which remove the possibility to define local variably and sometime to use functions that need it.
+- You can't define signals "inline" like in scala (val toto = False; when(cond){toto := True}).
 - Unreadable generated code
-- Assignment operator is only checked when you generate the code, the IDE can't check it for you. Bundle assignment operator is weakly typed.
 - They are now moving to FIRRTL (Chisel 3.0) which remove the possibility to analyse the netlist (latency, delay, connections) during the scala generation phase.
+- The library that is integrated into Chisel and that provides you some utils and useful bus definition is a good intention, but could be so better and more complete
+- You can't define a Reg of Bundle where some elements have reset values and some doesn't have.
 
 #### Multiple clock support is awkward:
 - Working into a single block with multiple clock is difficult, you can't define "ClockingArea", only creating a module allow it.
 - Reset wire is not really integrated into the clock domain notion, sub module loose reset of parent, which is really annoying.
 - No support of falling edge clock or active low reset.
-- No support for asynchronous reset
+- No support for asynchronous reset and reverse polarity
 - No clock enable support.
 - Chisel makes the assumption that every clock wire come from the top level inputs, you don't have access to clock signal.
 
@@ -65,7 +69,7 @@ It is a very good question ! Why develop a new language when there Chisel has be
 - Not pretty input/output definition.
 - Switch statement doesn't have default case.
 - No "Area" notion to give a better structure to the user code.
-- No enumeration support
+- No enumeration support, it's currently emulated by using weakly typed UInt.
 
 For some major issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (4 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
 
