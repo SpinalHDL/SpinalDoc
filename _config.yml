@@ -89,3 +89,5 @@ description: "This is the host site for the Spinal programming language document
 
 #gems:
 #  - jekyll-last-modified-at
+
+google_analytics: bonjour
