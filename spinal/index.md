@@ -14,7 +14,9 @@ This site presents the *Spinal* language and how to use it on concrete examples.
 
 1. [Languages principles](/SpinalDoc/) (this document)
 1. [Getting started](/SpinalDoc/spinal_getting_started)
-1. [Language principles and primitives](/SpinalDoc/spinal/core/introduction/)
+1. [Language features](/SpinalDoc/spinal/core/introduction/)
+1. [Language libraries](/SpinalDoc/spinal/lib/introduction/)
+1. [Some examples](/SpinalDoc/spinal/examples/simple_ones/)
 
 ## What is Spinal ?
 Spinal is a high-level hardware description language. It can be used as an alternative to VHDL or Verilog and has several advantages over those.
