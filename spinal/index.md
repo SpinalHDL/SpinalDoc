@@ -71,7 +71,7 @@ It is a very good question ! Why develop a new language when there Chisel has be
 - No "Area" notion to give a better structure to the user code.
 - No enumeration support, it's currently emulated by using weakly typed UInt.
 
-For some major issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (4 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
+For some major issues mentioned here, an issue/pull request was open on github, without effect. In addition, if we consider the age (5.5 years at the time of writing) of Chisel, this is a very serious issue and it's why SpinalHDL was created.
 
 ## Getting started
 Want to try it for yourself? Then jump to the [getting started section](/SpinalDoc/spinal_getting_started) and have fun!
