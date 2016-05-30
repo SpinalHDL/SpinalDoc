@@ -22,8 +22,8 @@ Interfaces of this UartCtrl are :
 | Name | Type |Description|
 | ------- | ---- | --- |
 | config | UartCtrlConfig | Give all configurations to the controller |
-| write | Stream[Bits] | Port used to send payloads |
-| read | Flow[Bits] | Port used to receive payloads |
+| write | Stream[Bits] | Port used to give transmission order to the controller |
+| read | Flow[Bits] | Port used by the controller to notify the system about a successfully received frame |
 | uart | Uart | Uart interface with rxd/tdx |
 
 ## Data structures
@@ -107,8 +107,23 @@ case class UartCtrlConfig(g: UartCtrlGenerics) extends Bundle {
 ```
 
 ## implementation
+In the `UartCtrl` 3 things will be instantiated :
+
+- One clock divider that generate a tick pulse at the UART RX sampling rate.
+- One UartCtrlTx Component
+- One UartCtrlRx Component
+
 
 ### UartCtrlTx
+
+The interfaces of this Component is the following :
+
+| Name | Type |Description|
+| ------- | ---- | --- |
+| configFrame | UartCtrlFrameConfig | Give data bits count and party/stop bits configurations  |
+| samplingTick  | Bool | Time reference that pulse `rxSamplePerBit` time per UART baud  |
+| write | Stream[Bits] | Port used to give transmission order to the controller |
+| txd | Bool | Uart txd pin |
 Let's define the enumeration that will be used to store the state of the UartCtrlTx :
 
 ```scala
@@ -125,10 +140,10 @@ class UartCtrlTx(g : UartCtrlGenerics) extends Component {
   import g._
 
   val io = new Bundle {
-    val configFrame = in(UartCtrlFrameConfig(g))
+    val configFrame  = in(UartCtrlFrameConfig(g))
     val samplingTick = in Bool
-    val write = slave Stream (Bits(dataWidthMax bit))
-    val txd = out Bool
+    val write        = slave Stream (Bits(dataWidthMax bit))
+    val txd          = out Bool
   }
 
   // Provide one clockDivider.tick each rxSamplePerBit pulse of io.samplingTick
@@ -169,10 +184,10 @@ class UartCtrlTx(g : UartCtrlGenerics) extends Component {
   import g._
 
   val io = new Bundle {
-    val configFrame = in(UartCtrlFrameConfig(g))
+    val configFrame  = in(UartCtrlFrameConfig(g))
     val samplingTick = in Bool
-    val write = slave Stream (Bits(dataWidthMax bit))
-    val txd = out Bool
+    val write        = slave Stream (Bits(dataWidthMax bit))
+    val txd          = out Bool
   }
 
   // Provide one clockDivider.tick each rxSamplePerBit pulse of io.samplingTick
@@ -258,6 +273,14 @@ class UartCtrlTx(g : UartCtrlGenerics) extends Component {
 ```
 
 ### UartCtrlRx
+The interfaces of this Component is the following :
+
+| Name | Type |Description|
+| ------- | ---- | --- |
+| configFrame | UartCtrlFrameConfig | Give data bits count and party/stop bits configurations  |
+| samplingTick  | Bool | Time reference that pulse `rxSamplePerBit` time per UART baud  |
+| read | Flow[Bits] | Port used by the controller to notify the system about a successfully received frame |
+| rxd | Bool | Uart rxd pin, not synchronized with the current clock domain |
 
 Let's define the enumeration that will be used to store the state of the UartCtrlTx :
 
