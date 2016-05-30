@@ -22,7 +22,7 @@ Interfaces of this UartCtrl are :
 | Name | Type |Description|
 | ------- | ---- | --- |
 | config | UartCtrlConfig | Give all configurations to the controller |
-| write | Stream[Bits] | Port used to give transmission order to the controller |
+| write | Stream[Bits] | Port used by the system to give transmission order to the controller |
 | read | Flow[Bits] | Port used by the controller to notify the system about a successfully received frame |
 | uart | Uart | Uart interface with rxd/tdx |
 
@@ -122,8 +122,9 @@ The interfaces of this Component is the following :
 | ------- | ---- | --- |
 | configFrame | UartCtrlFrameConfig | Give data bits count and party/stop bits configurations  |
 | samplingTick  | Bool | Time reference that pulse `rxSamplePerBit` time per UART baud  |
-| write | Stream[Bits] | Port used to give transmission order to the controller |
+| write | Stream[Bits] | Port used by the system to give transmission order to the controller |
 | txd | Bool | Uart txd pin |
+
 Let's define the enumeration that will be used to store the state of the UartCtrlTx :
 
 ```scala
