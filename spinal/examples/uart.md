@@ -174,7 +174,7 @@ class UartCtrlTx(g : UartCtrlGenerics) extends Component {
     }
   }
 
-  io.txd := RegNext(stateMachine.txd, True)
+  io.txd := RegNext(stateMachine.txd) init(True)
 }
 ```
 
@@ -537,14 +537,14 @@ object UartCtrlUsageExample{
 }
 ```
 
-If you want to send an 0x55 header before sending switches value, you can remplace the write generator of the precedent example by :
+The following example is just a "mad one" but if you want to send an 0x55 header before sending the value of switches, you can replace the write generator of the precedent example by :
 
 ```scala
   val write = Stream(Fragment(Bits(8 bits)))
   write.valid := CounterFreeRun(4000).willOverflow
   write.fragment := io.switchs
   write.last := True
-  write.m2sPipe().insertHeader(0x55).toStreamOfFragment >> uartCtrl.io.write
+  write.stage().insertHeader(0x55).toStreamOfFragment >> uartCtrl.io.write
 ```
 
 [Here](https://github.com/SpinalHDL/SpinalHDL/blob/master/tester/src/test/resources/UartCtrlUsageExample_tb.vhd) you can get a simple VHDL testbench for this small `UartCtrlUsageExample`.
