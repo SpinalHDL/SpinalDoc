@@ -18,6 +18,8 @@ The language provides 5 base types and 2 composite types that can be used.
 
 Those types and their usage (with examples) are explained hereafter.
 
+About the fixed point support it's documented [there](/SpinalDoc/spinal/core/utils/#fixed-point)
+
 ## Bool
 This is the standard *boolean* type that correspond to a bit.
 
