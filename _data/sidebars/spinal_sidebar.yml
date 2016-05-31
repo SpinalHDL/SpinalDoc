@@ -117,6 +117,10 @@ entries:
           url: /spinal/examples/uart/
           output: web
 
+        - title: Memory mapped UART
+          url: /spinal/examples/memory_mapped_uart/
+          output: web
+
         - title: JTAG TAP
           url: /spinal/examples/jtag/
           output: web

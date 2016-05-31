@@ -193,8 +193,6 @@ class CrossingExample(clkA : ClockDomain,clkB : ClockDomain) extends Component {
 
 Even shorter by importing the lib `import spinal.lib._` Spinal offers a cross clock domain buffer `BufferCC(input: T, init: T = null, bufferDepth: Int = 2)` to avoid metastability issues.
 
-This example also use `ClockDomain` given as component construction parameters.   
-
 ```scala
 class CrossingExample(clkA : ClockDomain,clkB : ClockDomain) extends Component {
   val io = new Bundle {
