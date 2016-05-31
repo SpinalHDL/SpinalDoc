@@ -60,4 +60,22 @@ class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) exten
 }
 ```
 
-{% include important.html content="Yes, that's all. It's also synthesizable and it work in real world (tested on FPGA). The AvalonMMSlaveFactory tool is not something hard-coded into the Spinal compiler. It's something implemented with Spinal regular hardware description syntax." %}
+{% include important.html content="Yes, that's all. It's also synthesizable and it work in real world (tested on FPGA).<br><br> The AvalonMMSlaveFactory tool is not something hard-coded into the Spinal compiler. It's something implemented with Spinal regular hardware description syntax." %}
+
+## Bonus : Altera QSys
+To generate the QSys IP of this component it's very simple :
+
+```scala
+object QSysifyAvalonUartCtrl{
+
+  def main(args: Array[String]) {
+    val report = SpinalVhdl(new AvalonUartCtrl(UartCtrlGenerics(),64))
+    val toplevel = report.toplevel
+
+    toplevel.io.bus.addTag(ClockDomainTag(toplevel.clockDomain))
+    QSysify(toplevel)
+  }
+}
+```
+
+Then if you add the path of you Spinal project to QSys libraries, you will the the AvalonUartCtrl component in the GUI !
