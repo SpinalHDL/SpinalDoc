@@ -15,7 +15,7 @@ There are multiple assignment operator :
 | Symbole| Description |
 | ------- | ---- |
 | := | Standard assignment, equivalent to '<=' in VHDL/Verilog <br> last assignment win, value updated at next delta cycle  |
-| \= | Equivalent to := in VHDL and = in Verilog <br> value updated instantly |
+| \\= | Equivalent to := in VHDL and = in Verilog <br> value updated instantly |
 | <> | Automatic connection between 2 signals or two bundles of the same type. Direction is inferred by using signal direction (in/out). (Similar behavioral than `:=`)  |
 
 ```scala
