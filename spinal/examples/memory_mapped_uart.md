@@ -58,4 +58,4 @@ class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) exten
 }
 ```
 
-{% include important.html content="Yes, that's all. It's also synthesizable and it work in real world (tested on FPGA)." %}
+{% include important.html content="Yes, that's all. It's also synthesizable and it work in real world (tested on FPGA). The AvalonMMSlaveFactory tool is not something hard-coded into the Spinal compiler. It's something implemented with Spinal regular hardware description syntax." %}
