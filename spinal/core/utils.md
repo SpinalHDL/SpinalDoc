@@ -68,10 +68,10 @@ When you assign a fixed point into another there is two assignment cases :
 
 ```scala
 val i16_m2 = SFix(16 exp,-2 exp)
-val i16_0  = SFix(16 exp,0 exp)
-val i8_m2  = SFix(8 exp,-2 exp)
+val i16_0  = SFix(16 exp, 0 exp)
+val i8_m2  = SFix( 8 exp,-2 exp)
 val o16_m2 = SFix(16 exp,-2 exp)
-val o16_m0 = SFix(16 exp,0 exp)
+val o16_m0 = SFix(16 exp, 0 exp)
 val o14_m2 = SFix(14 exp,-2 exp)
 
 
