@@ -39,6 +39,8 @@ object AvalonUartCtrl{
 
 Then we can define a `AvalonUartCtrl` which instanciate the UartCtrl and create the memory mapping logic between it and the Avalon bus :
 
+<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/master/asset/picture/memory_mapped_uart.svg"  align="middle" width="300">
+
 ```scala
 class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) extends Component{
   val io = new Bundle{
@@ -52,9 +54,9 @@ class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) exten
   val busCtrl = AvalonMMSlaveFactory(io.bus)
   busCtrl.driveAndRead(uartCtrl.io.config.clockDivider,address = 0)
   busCtrl.driveAndRead(uartCtrl.io.config.frame,address = 4)
-  busCtrl.createFlow(Bits(uartCtrlConfig.dataWidthMax bits),8).toStream >-> uartCtrl.io.write
-  busCtrl.read(uartCtrl.io.write.valid,8)
-  busCtrl.readStreamNonBlocking(uartCtrl.io.read.toStream.queue(64),12)
+  busCtrl.createFlow(Bits(uartCtrlConfig.dataWidthMax bits),address = 8).toStream >-> uartCtrl.io.write
+  busCtrl.read(uartCtrl.io.write.valid,address = 8)
+  busCtrl.readStreamNonBlocking(uartCtrl.io.read.toStream.queue(64),address = 12)
 }
 ```
 
