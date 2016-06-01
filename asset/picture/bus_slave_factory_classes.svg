@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<svg version="1.2" baseProfile="tiny" width="109.81mm" height="100.84mm" viewBox="-15191 21657 10981 10084" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+<svg version="1.2" baseProfile="tiny" width="290.81mm" height="75.81mm" viewBox="1710 -12541 29081 7581" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
  <defs>
   <font id="EmbeddedFont_1" horiz-adv-x="2048">
    <font-face font-family="Arial embedded" units-per-em="2048" font-weight="normal" font-style="normal" ascent="1842" descent="445"/>
@@ -138,128 +138,129 @@
  </defs>
  <g visibility="visible" id="Slide_1">
   <g id="Drawing_1">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -8500,22697 L -9500,22697 -9500,21697 -7500,21697 -7500,22697 -8500,22697 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" stroke-dasharray="160,160" d="M -8500,22697 L -9500,22697 -9500,21697 -7500,21697 -7500,22697 -8500,22697 Z"/>
+   <path fill="rgb(255,255,255)" stroke="none" d="M 9450,-10250 L 5700,-10250 5700,-11250 13200,-11250 13200,-10250 9450,-10250 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" stroke-dasharray="160,160" d="M 9450,-10250 L 5700,-10250 5700,-11250 13200,-11250 13200,-10250 9450,-10250 Z"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-9170" y="22413">
-     <tspan x="-9170 -8713 -8361 -8184">Data</tspan></text>
+    <text x="7058" y="-10534">
+     <tspan x="7058 7481 7833 8150 8574 8713 9065 9382 9733 10123 10474 10792 10970 11321 11533">BusSlaveFactory</tspan></text>
    </g>
   </g>
   <g id="Drawing_2">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -11750,25750 L -13250,25750 -13250,24750 -10250,24750 -10250,25750 -11750,25750 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" stroke-dasharray="160,160" d="M -11750,25750 L -13250,25750 -13250,24750 -10250,24750 -10250,25750 -11750,25750 Z"/>
+   <path fill="rgb(255,255,255)" stroke="none" d="M 9450,-8000 L 5700,-8000 5700,-9000 13200,-9000 13200,-8000 9450,-8000 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" stroke-dasharray="160,160" d="M 9450,-8000 L 5700,-8000 5700,-9000 13200,-9000 13200,-8000 9450,-8000 Z"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-13158" y="25466">
-     <tspan x="-13158 -12735 -12383 -12066 -11714 -11355 -11046 -10694">BaseType</tspan></text>
+    <text x="5902" y="-8284">
+     <tspan x="5902 6325 6677 6994 7418 7557 7909 8226 8577 8967 9318 9636 9814 10165 10377 10686 11143 11494 11634 11985 12294 12646">BusSlaveFactoryDelayed</tspan></text>
    </g>
   </g>
   <g id="Drawing_3">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -11650,28750 L -12650,28750 -12650,27750 -10650,27750 -10650,28750 -11650,28750 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M -11650,28750 L -12650,28750 -12650,27750 -10650,27750 -10650,28750 -11650,28750 Z"/>
+   <path fill="rgb(255,255,255)" stroke="none" d="M 5500,-5650 L 1750,-5650 1750,-6650 9250,-6650 9250,-5650 5500,-5650 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M 5500,-5650 L 1750,-5650 1750,-6650 9250,-6650 9250,-5650 5500,-5650 Z"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-12284" y="28466">
-     <tspan x="-12284 -11861 -11509 -11158">Bool</tspan></text>
+    <text x="2164" y="-5934">
+     <tspan x="2164 2575 2892 3244 3383 3735 4086 4615 5144 5568 5707 6059 6376 6728 7117 7468 7786 7964 8315 8527">AvalonMMSlaveFactory</tspan></text>
    </g>
   </g>
-  <g id="Drawing_4">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -8650,28750 L -10150,28750 -10150,27750 -7150,27750 -7150,28750 -8650,28750 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" stroke-dasharray="160,160" d="M -8650,28750 L -10150,28750 -10150,27750 -7150,27750 -7150,28750 -8650,28750 Z"/>
-   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-9921" y="28466">
-     <tspan x="-9921 -9498 -9358 -9180 -8791 -8439 -8122 -7944 -7593">BitVector</tspan></text>
-   </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_4_0" stroke-width="81" stroke-linejoin="round" d="M 9500,-9000 L 9500,-9829"/>
+   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_4_1" d="M 9500,-10250 L 9711,-9829 9290,-9829 9500,-10250 Z M 9500,-10187 L 9335,-9857 9665,-9857 9500,-10187 Z"/>
   </g>
-  <g id="Drawing_5">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -11150,31700 L -12150,31700 -12150,30700 -10150,30700 -10150,31700 -11150,31700 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M -11150,31700 L -12150,31700 -12150,30700 -10150,30700 -10150,31700 -11150,31700 Z"/>
-   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-11680" y="31416">
-     <tspan x="-11680 -11257 -11117 -10939">Bits</tspan></text>
-   </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_5_0" stroke-width="81" stroke-linejoin="round" d="M 5500,-6650 L 6033,-7539"/>
+   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_5_1" d="M 6250,-7900 L 6214,-7431 5853,-7647 6250,-7900 Z M 6218,-7846 L 5906,-7648 6189,-7478 6218,-7846 Z"/>
   </g>
-  <g id="Drawing_6">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -8650,31700 L -9650,31700 -9650,30700 -7650,30700 -7650,31700 -8650,31700 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M -8650,31700 L -9650,31700 -9650,30700 -7650,30700 -7650,31700 -8650,31700 Z"/>
-   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-9233" y="31416">
-     <tspan x="-9233 -8776 -8598 -8247">UInt</tspan></text>
-   </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_6_0" stroke-width="81" stroke-linejoin="round" d="M 13250,-6700 L 12730,-7497"/>
+   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_6_1" d="M 12500,-7850 L 12906,-7612 12554,-7382 12500,-7850 Z M 12534,-7797 L 12576,-7431 12853,-7611 12534,-7797 Z"/>
   </g>
   <g id="Drawing_7">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -6150,31700 L -7150,31700 -7150,30700 -5150,30700 -5150,31700 -6150,31700 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M -6150,31700 L -7150,31700 -7150,30700 -5150,30700 -5150,31700 -6150,31700 Z"/>
+   <path fill="rgb(255,255,255)" stroke="none" d="M 13500,-5624 L 9750,-5624 9750,-6624 17250,-6624 17250,-5624 13500,-5624 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M 13500,-5624 L 9750,-5624 9750,-6624 17250,-6624 17250,-5624 13500,-5624 Z"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-6716" y="31416">
-     <tspan x="-6716 -6293 -6115 -5763">SInt</tspan></text>
+    <text x="10469" y="-5908">
+     <tspan x="10469 10833 11184 11536 11747 12171 12522 12840 13263 13403 13754 14072 14423 14812 15164 15481 15659 16010 16222">YourBusSlaveFactory</tspan></text>
+   </g>
+  </g>
+  <g id="Drawing_8">
+   <path fill="rgb(255,255,255)" stroke="none" d="M 20250,-8750 L 20250,-5000 19250,-5000 19250,-12500 20250,-12500 20250,-8750 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" stroke-dasharray="160,160" d="M 20250,-8750 L 20250,-5000 19250,-5000 19250,-12500 20250,-12500 20250,-8750 Z"/>
+   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
+    <g transform="translate(19966,-5196) rotate(-90) translate(-19966,5196)">
+     <text x="19966" y="-5196">
+      <tspan x="19966 20389 20741 21058 21482 21621 21973 22290 22641 23031 23382 23700 23878 24229 24441 24750 25173 25313 25664 26193 26545 26896">BusSlaveFactoryElement</tspan></text>
+    </g>
+   </g>
+  </g>
+  <g id="Drawing_9">
+   <path fill="rgb(255,255,255)" stroke="none" d="M 26250,-9500 L 21750,-9500 21750,-10500 30750,-10500 30750,-9500 26250,-9500 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M 26250,-9500 L 21750,-9500 21750,-10500 30750,-10500 30750,-9500 26250,-9500 Z"/>
+   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
+    <text x="23124" y="-9784">
+     <tspan x="23124 23547 23899 24216 24640 24779 25131 25448 25799 26189 26540 26858 27036 27387 27599 27908 28496 28708 28847 29025">BusSlaveFactoryWrite</tspan></text>
+   </g>
+  </g>
+  <g id="Drawing_10">
+   <path fill="rgb(255,255,255)" stroke="none" d="M 26250,-8250 L 21750,-8250 21750,-9250 30750,-9250 30750,-8250 26250,-8250 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M 26250,-8250 L 21750,-8250 21750,-9250 30750,-9250 30750,-8250 26250,-8250 Z"/>
+   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
+    <text x="22679" y="-8534">
+     <tspan x="22679 23102 23454 23771 24195 24334 24686 25003 25354 25744 26095 26413 26591 26942 27154 27463 27958 28309 28767 29118 29469">BusSlaveFactoryOnRead</tspan></text>
+   </g>
+  </g>
+  <g id="Drawing_11">
+   <path fill="rgb(255,255,255)" stroke="none" d="M 26250,-7000 L 21750,-7000 21750,-8000 30750,-8000 30750,-7000 26250,-7000 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M 26250,-7000 L 21750,-7000 21750,-8000 30750,-8000 30750,-7000 26250,-7000 Z"/>
+   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
+    <text x="23103" y="-7284">
+     <tspan x="23103 23526 23878 24195 24619 24758 25110 25427 25778 26168 26519 26837 27015 27366 27578 27887 28344 28695 29047">BusSlaveFactoryRead</tspan></text>
+   </g>
+  </g>
+  <g id="Drawing_12">
+   <path fill="rgb(255,255,255)" stroke="none" d="M 26250,-5750 L 21750,-5750 21750,-6750 30750,-6750 30750,-5750 26250,-5750 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M 26250,-5750 L 21750,-5750 21750,-6750 30750,-6750 30750,-5750 26250,-5750 Z"/>
+   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
+    <text x="21892" y="-6034">
+     <tspan x="21892 22315 22667 22984 23408 23547 23899 24216 24567 24957 25308 25626 25804 26155 26367 26676 27133 27484 27836 28259 28437 28788 29139 29728 29940 30079 30257">BusSlaveFactoryNonStopWrite</tspan></text>
+   </g>
+  </g>
+  <g id="Drawing_13">
+   <path fill="rgb(255,255,255)" stroke="none" d="M 26250,-10750 L 21750,-10750 21750,-11750 30750,-11750 30750,-10750 26250,-10750 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M 26250,-10750 L 21750,-10750 21750,-11750 30750,-11750 30750,-10750 26250,-10750 Z"/>
+   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
+    <text x="23103" y="-11034">
+     <tspan x="23103 23526 23878 24195 24619 24758 25110 25427 25778 26168 26519 26837 27015 27366 27578 27887 28344 28695 29047">BusSlaveFactoryRead</tspan></text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_8_0" stroke-width="81" stroke-linejoin="round" d="M -6150,30700 L -7619,29063"/>
-   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_8_1" d="M -7900,28750 L -7462,28923 -7775,29204 -7900,28750 Z M -7858,28797 L -7760,29153 -7515,28932 -7858,28797 Z"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_9_0" stroke-width="81" stroke-linejoin="round" d="M -8650,30700 L -8650,29121"/>
-   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_9_1" d="M -8650,28700 L -8440,29121 -8861,29121 -8650,28700 Z M -8650,28763 L -8815,29093 -8485,29093 -8650,28763 Z"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_10_0" stroke-width="81" stroke-linejoin="round" d="M -11150,30700 L -9907,29084"/>
-   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_10_1" d="M -9650,28750 L -9740,29212 -10074,28955 -9650,28750 Z M -9688,28800 L -10020,28961 -9759,29162 -9688,28800 Z"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_11_0" stroke-width="81" stroke-linejoin="round" d="M -11750,27750 L -11750,26171"/>
-   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_11_1" d="M -11750,25750 L -11540,26171 -11961,26171 -11750,25750 Z M -11750,25813 L -11915,26143 -11585,26143 -11750,25813 Z"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_12_0" stroke-width="81" stroke-linejoin="round" d="M -8750,27750 L -10451,26067"/>
-   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_12_1" d="M -10750,25771 L -10303,25917 -10599,26217 -10750,25771 Z M -10705,25815 L -10587,26165 -10355,25930 -10705,25815 Z"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_13_0" stroke-width="81" stroke-linejoin="round" d="M -11750,24750 L -9337,22949"/>
-   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_13_1" d="M -9000,22697 L -9211,23118 -9463,22780 -9000,22697 Z M -9050,22735 L -9414,22800 -9216,23064 -9050,22735 Z"/>
-  </g>
-  <g id="Drawing_14">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -8500,25750 L -9750,25750 -9750,24750 -7250,24750 -7250,25750 -8500,25750 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M -8500,25750 L -9750,25750 -9750,24750 -7250,24750 -7250,25750 -8500,25750 Z"/>
-   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-9485" y="25466">
-     <tspan x="-9485 -9062 -8710 -8359 -8008 -7868">Bundle</tspan></text>
-   </g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_14_0" stroke-width="81" stroke-linejoin="round" stroke-dasharray="160,160" d="M 13200,-8500 L 18619,-8500"/>
+   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_14_1" d="M 19250,-8500 L 18619,-8711 18619,-8290 19250,-8500 Z"/>
   </g>
   <g id="Drawing_15">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -5500,25750 L -6750,25750 -6750,24750 -4250,24750 -4250,25750 -5500,25750 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M -5500,25750 L -6750,25750 -6750,24750 -4250,24750 -4250,25750 -5500,25750 Z"/>
+   <rect fill="none" stroke="none" x="14500" y="-9500" width="3919" height="964"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-6030" y="25466">
-     <tspan x="-6030 -5641 -5289">Vec</tspan></text>
+    <text x="14750" y="-8803">
+     <tspan x="14750 15207 15525 15876 16227">Usage</tspan></text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_16_0" stroke-width="81" stroke-linejoin="round" d="M -8500,24750 L -8500,23192"/>
-   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_16_1" d="M -8500,22771 L -8290,23192 -8711,23192 -8500,22771 Z M -8500,22834 L -8665,23164 -8335,23164 -8500,22834 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_16_0" stroke-width="81" stroke-linejoin="round" d="M 21750,-6250 L 20671,-6250"/>
+   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_16_1" d="M 20250,-6250 L 20671,-6461 20671,-6040 20250,-6250 Z M 20313,-6250 L 20643,-6085 20643,-6415 20313,-6250 Z"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_17_0" stroke-width="81" stroke-linejoin="round" d="M -5500,24750 L -7675,22964"/>
-   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_17_1" d="M -8000,22697 L -7541,22802 -7808,23127 -8000,22697 Z M -7952,22737 L -7801,23074 -7592,22819 -7952,22737 Z"/>
-  </g>
-  <g id="Drawing_18">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -14150,28750 L -15150,28750 -15150,27750 -13150,27750 -13150,28750 -14150,28750 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M -14150,28750 L -15150,28750 -15150,27750 -13150,27750 -13150,28750 -14150,28750 Z"/>
-   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-14978" y="28466">
-     <tspan x="-14978 -14555 -14203 -13852">Enum</tspan></text>
-   </g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_17_0" stroke-width="81" stroke-linejoin="round" d="M 21750,-7500 L 20671,-7500"/>
+   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_17_1" d="M 20250,-7500 L 20671,-7711 20671,-7290 20250,-7500 Z M 20313,-7500 L 20643,-7335 20643,-7665 20313,-7500 Z"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_19_0" stroke-width="81" stroke-linejoin="round" d="M -14250,27750 L -13003,26087"/>
-   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_19_1" d="M -12750,25750 L -12834,26213 -13171,25961 -12750,25750 Z M -12788,25800 L -13118,25965 -12854,26163 -12788,25800 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_18_0" stroke-width="81" stroke-linejoin="round" d="M 21750,-8750 L 20671,-8750"/>
+   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_18_1" d="M 20250,-8750 L 20671,-8961 20671,-8540 20250,-8750 Z M 20313,-8750 L 20643,-8585 20643,-8915 20313,-8750 Z"/>
   </g>
-  <g id="Drawing_20">
-   <path fill="rgb(255,255,255)" stroke="none" d="M -11150,31700 L -12150,31700 -12150,30700 -10150,30700 -10150,31700 -11150,31700 Z"/>
-   <path fill="none" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M -11150,31700 L -12150,31700 -12150,30700 -10150,30700 -10150,31700 -11150,31700 Z"/>
-   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
-    <text x="-11680" y="31416">
-     <tspan x="-11680 -11257 -11117 -10939">Bits</tspan></text>
-   </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_19_0" stroke-width="81" stroke-linejoin="round" d="M 21750,-10000 L 20671,-10000"/>
+   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_19_1" d="M 20250,-10000 L 20671,-10211 20671,-9790 20250,-10000 Z M 20313,-10000 L 20643,-9835 20643,-10165 20313,-10000 Z"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_20_0" stroke-width="81" stroke-linejoin="round" d="M 21750,-11250 L 20671,-11250"/>
+   <path fill="rgb(0,0,0)" stroke="none" id="Drawing_20_1" d="M 20250,-11250 L 20671,-11461 20671,-11040 20250,-11250 Z M 20313,-11250 L 20643,-11085 20643,-11415 20313,-11250 Z"/>
   </g>
  </g>
 </svg>
