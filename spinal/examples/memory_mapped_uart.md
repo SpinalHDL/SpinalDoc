@@ -39,7 +39,7 @@ object AvalonUartCtrl{
 
 Then we can define a `AvalonUartCtrl` which instanciate the UartCtrl and create the memory mapping logic between it and the Avalon bus :
 
-<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/master/asset/picture/memory_mapped_uart.svg"  align="middle" width="300">
+<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/b91e400a090f558699b7f71d1751269779e5c58e/asset/picture/memory_mapped_uart.svg"  align="middle" width="300">
 
 ```scala
 class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) extends Component{
@@ -67,7 +67,6 @@ To generate the QSys IP of this component it's very simple :
 
 ```scala
 object QSysifyAvalonUartCtrl{
-
   def main(args: Array[String]) {
     val report = SpinalVhdl(new AvalonUartCtrl(UartCtrlGenerics(),64))
     val toplevel = report.toplevel

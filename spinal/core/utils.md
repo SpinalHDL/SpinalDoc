@@ -21,7 +21,7 @@ Many tools and utilities are present in [spinal.lib](/SpinalDoc/spinal/lib/utils
 ## Fixed point
 Spinal include an implementation of fixed point data types called UFix for the unsigned version and SFix for the signed one.
 
-{% include warning.html content="The Spinal fixed point support is partially used/tested, if you have any bug with it or you think that an functionality is missing, please make an github issue and then let's talk about it. Do not use undocumented features." %}
+{% include warning.html content="The Spinal fixed point support is only partially used/tested, if you have any bug with it or you think that an functionality is missing, please make an github issue and then let's talk about it. Do not use undocumented features." %}
 
 ### Declaration
 There many imaginable ways to define the format of a given fixed point number. A popular one is to specify how many bits are used after and before the point plus an optional bit for the sign. For example Q8.3 will mean an signed fixed point of 1+8+3 bits, where 8 bit are used for the natural portion and 3 bits for the fractional portion. More information [there](https://en.wikipedia.org/wiki/Q_(number_format)).
