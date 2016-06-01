@@ -54,7 +54,7 @@ class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) exten
   val busCtrl = AvalonMMSlaveFactory(io.bus)
   busCtrl.driveAndRead(uartCtrl.io.config.clockDivider,address = 0)
   busCtrl.driveAndRead(uartCtrl.io.config.frame,address = 4)
-  busCtrl.createFlow(Bits(uartCtrlConfig.dataWidthMax bits),address = 8).toStream >-> uartCtrl.io.write
+  busCtrl.createAndDriveFlow(Bits(uartCtrlConfig.dataWidthMax bits),address = 8).toStream >-> uartCtrl.io.write
   busCtrl.read(uartCtrl.io.write.valid,address = 8)
   busCtrl.readStreamNonBlocking(uartCtrl.io.read.toStream.queue(64),address = 12)
 }

@@ -38,7 +38,7 @@ By using them the `BusSlaveFactory` should also be able to provide many utilitie
 | writeMultiWord(that,address) | - | Create the memory mapping to write `that` at 'address'.<br> If `that ` is bigger than one word it extends the register on followings addresses |
 | createWriteOnly(dataType,address,bitOffset) | T | Create a write only register of type `dataType` at `address` and placed at `bitOffset` in the word |
 | createReadWrite(dataType,address,bitOffset) | T | Create a read write register of type `dataType` at `address` and placed at `bitOffset` in the word |
-| createWriteFlow(dataType,address,bitOffset) | Flow[T] | Create a writable Flow register of type `dataType` at `address` and placed at `bitOffset` in the word |
+| createAndDriveFlow(dataType,address,bitOffset) | Flow[T] | Create a writable Flow register of type `dataType` at `address` and placed at `bitOffset` in the word |
 | drive(that,address,bitOffset) | - | Drive `that` with a register writable at `address` placed at `bitOffset` in the word |
 | driveAndRead(that,address,bitOffset) | - | Drive `that` with a register writable and readable at `address` placed at `bitOffset` in the word |
 | driveFlow(that,address,bitOffset) | - | Emit on `that` a transaction when a write happen at `address` by using data placed at `bitOffset` in the word |
@@ -119,7 +119,7 @@ trait BusSlaveFactory  extends Area{
     reg
   }
 
-  def createWriteFlow[T <: Data](dataType : T,
+  def createAndDriveFlow[T <: Data](dataType : T,
                                  address: BigInt,
                                  bitOffset : Int = 0) : Flow[T] = {
     val flow = Flow(dataType)
