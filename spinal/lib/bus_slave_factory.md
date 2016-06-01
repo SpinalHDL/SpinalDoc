@@ -9,11 +9,11 @@ permalink: /spinal/lib/bus_slave_factory/
 ---
 
 ## Introduction
-In many situation it's needed to implement a bus register bank. The `BusSlaveFactory` is a tool that provide an abstract and smooth way to define a bus register bank.  
+In many situation it's needed to implement a bus register bank. The `BusSlaveFactory` is a tool that provide an abstract and smooth way to define them.  
 
 This page will document it but also explain how it's implemented.
 
-To see capabilities of the tool by an example, an simple Spinal example use an AvalonMMSlaveFactory variation of it. It could be find [there](/SpinalDoc/spinal/examples/memory_mapped_uart/).
+To see capabilities of the tool, an simple example use the AvalonMMSlaveFactory variation [there](/SpinalDoc/spinal/examples/memory_mapped_uart/).
 
 ## Specification
 The class diagram is the following :
