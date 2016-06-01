@@ -27,7 +27,7 @@ There is the register mapping table :
 | read | Bits ## Bool | R | 12 | Bit 0 => readed data valid <br> Bit x:1 => readed data |
 
 ## Implementation
-For this implemention, the AvalonMMSlaveFactory tool will be used. It allow to define a Avalon slave with a smooth syntax.
+For this implemention, the AvalonMMSlaveFactory tool will be used. It allow to define a Avalon slave with a smooth syntax. You can find the documentation of it this tool [there](/SpinalDoc/spinal/lib/bus_slave_factory/).
 
 First, we just need to define the AvalonMMConfig that will be used for the controller.
 
@@ -39,7 +39,7 @@ object AvalonUartCtrl{
 
 Then we can define a `AvalonUartCtrl` which instanciate the UartCtrl and create the memory mapping logic between it and the Avalon bus :
 
-<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/b91e400a090f558699b7f71d1751269779e5c58e/asset/picture/memory_mapped_uart.svg"  align="middle" width="300">
+<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/cacb6e086ff635ca93def01e31aee2da582d991a/asset/picture/memory_mapped_uart.svg"  align="middle" width="300">
 
 ```scala
 class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) extends Component{

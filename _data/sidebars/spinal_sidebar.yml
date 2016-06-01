@@ -101,6 +101,10 @@ entries:
           url: /spinal/lib/fragment/
           output: web
 
+        - title: Bus Slave Factory (hot)
+          url: /spinal/lib/bus_slave_factory/
+          output: web
+
       - title: Examples
         output: web
         subfolderitems:
