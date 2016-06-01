@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<svg version="1.2" baseProfile="tiny" width="278.87mm" height="99.24mm" viewBox="-5675 34250 27887 9924" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+<svg version="1.2" baseProfile="tiny" width="278.87mm" height="95.6mm" viewBox="-5675 34614 27887 9560" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
  <defs>
   <font id="EmbeddedFont_1" horiz-adv-x="2048">
    <font-face font-family="Arial embedded" units-per-em="2048" font-weight="normal" font-style="normal" ascent="1842" descent="445"/>
@@ -135,12 +135,12 @@
  <g visibility="visible" id="Slide_1">
   <g id="Drawing_1">
    <defs>
-    <linearGradient id="Gradient_2" gradientUnits="userSpaceOnUse" x1="9990" y1="35227" x2="9990" y2="36227">
+    <linearGradient id="Gradient_16" gradientUnits="userSpaceOnUse" x1="9990" y1="35227" x2="9990" y2="36227">
      <stop offset="0" stop-color="rgb(221,221,221)"/>
      <stop offset="1" stop-color="rgb(153,153,153)"/>
     </linearGradient>
    </defs>
-   <path fill="url(#Gradient_2)" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M 9990,36227 L 8115,36227 8115,35227 11865,35227 11865,36227 9990,36227 Z"/>
+   <path fill="url(#Gradient_16)" stroke="rgb(0,0,0)" stroke-width="81" stroke-linejoin="round" d="M 9990,36227 L 8115,36227 8115,35227 11865,35227 11865,36227 9990,36227 Z"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="494" font-style="normal" font-weight="700">
     <text x="9067" y="35901">
      <tspan x="9067 9423 9698 9893 10058 10413 10578 10773">UartCtrl</tspan></text>
@@ -538,7 +538,7 @@ nspMGuoAAAAASUVORK5CYII="/>
   </g>
   <g id="DrawingGroup_14">
    <g>
-<image x="14177" y="34382" width="500" height="500" xlink:href="data:image/png;base64,
+<image x="16927" y="35890" width="500" height="500" xlink:href="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACSElEQVR4nO3cwVLC
 QBAA0aGK//9l1MJCBERINumZne4beqHmERGyu8fT6RTGdaSfQPcEgBMATgA4AeAE
 gBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgC48gCHw+H6Ybk1BrUBbqZ/
@@ -553,19 +553,19 @@ RDJ8+tEZIMP0oy1AkulHT4A804+GAKmmH90Ask0/WgEknH70Acg5/WgCkHb60QEg
 8/RjeoDk04+5AfJPPyYGKDH9KA3wZD1SlelHaYC/KjT9qA5wfxHUmn5UB4iCE7+p
 PED1BIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAO4DDpMV
 nspMGuoAAAAASUVORK5CYII="/>
-    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_42_0" stroke-width="53" stroke-linejoin="round" d="M 14427,34882 L 14177,34882 14177,34382 14677,34382 14677,34882 14427,34882 Z"/>
+    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_42_0" stroke-width="53" stroke-linejoin="round" d="M 17177,36390 L 16927,36390 16927,35890 17427,35890 17427,36390 17177,36390 Z"/>
    </g>
    <g id="Drawing_43">
-    <rect fill="none" stroke="none" x="14621" y="34250" width="2577" height="726"/>
+    <rect fill="none" stroke="none" x="17371" y="35758" width="2577" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-     <text x="14872" y="34757">
-      <tspan x="14872 14991 15198 15317 15435 15554 15837 16074 16311">tx : Bool</tspan></text>
+     <text x="17622" y="36265">
+      <tspan x="17622 17741 17948 18067 18185 18304 18587 18824 19061">tx : Bool</tspan></text>
     </g>
    </g>
   </g>
   <g id="DrawingGroup_15">
    <g>
-<image x="14177" y="35008" width="500" height="500" xlink:href="data:image/png;base64,
+<image x="16927" y="36516" width="500" height="500" xlink:href="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACdklEQVR4nO3cy04D
 MRBE0YrE///ysBgpipIIErs91e2+dwcrqJPJ0/BzHIfI14/7B+geAOYAMAeAOQDM
 AWAOAHMAmAPAHADmADAHgDkAzAFgDgBzAJgDwBwA5gAwB4C5egC32+3xy+qHCooB
@@ -581,35 +581,35 @@ zMLAfzKuuYEfQL0NUgCosUEWAHU1SASglga5ANTPIB2AmhlkBFAng6QAamOQF0A9
 DFIDqIFBdgDtblAAQFsb1ADQnwZ1z6SoEIA2vQ4qAeidQembv8oBqP7iT9UD2CwA
 zAFgDgBzAJgDwBwA5gAwB4A5AMwBYA4AcwCYA8AcAOYAMAeAOQDMAWDuF/dZqmpk
 MHEPAAAAAElFTkSuQmCC"/>
-    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_44_0" stroke-width="53" stroke-linejoin="round" d="M 14427,35508 L 14177,35508 14177,35008 14677,35008 14677,35508 14427,35508 Z"/>
+    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_44_0" stroke-width="53" stroke-linejoin="round" d="M 17177,37016 L 16927,37016 16927,36516 17427,36516 17427,37016 17177,37016 Z"/>
    </g>
    <g id="Drawing_45">
-    <rect fill="none" stroke="none" x="14621" y="34876" width="2370" height="726"/>
+    <rect fill="none" stroke="none" x="17371" y="36384" width="2370" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-     <text x="14872" y="35383">
-      <tspan x="14872 15012 15219 15338 15456 15575 15858 16095 16333">rx : Bool</tspan></text>
+     <text x="17622" y="36891">
+      <tspan x="17622 17762 17969 18088 18206 18325 18608 18845 19083">rx : Bool</tspan></text>
     </g>
    </g>
   </g>
   <g id="DrawingGroup_16">
    <g>
-    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_46_0" stroke-width="106" stroke-linejoin="round" d="M 14099,34388 C 14032,34388 13965,34434 13965,34481 L 13965,34854 C 13965,34901 13898,34948 13831,34948 13898,34948 13965,34994 13965,35041 L 13965,35414 C 13965,35461 14032,35508 14099,35508"/>
-    <rect fill="none" stroke="none" x="13832" y="34389" width="268" height="1120"/>
+    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_46_0" stroke-width="106" stroke-linejoin="round" d="M 16849,35896 C 16782,35896 16715,35942 16715,35989 L 16715,36362 C 16715,36409 16648,36456 16581,36456 16648,36456 16715,36502 16715,36549 L 16715,36922 C 16715,36969 16782,37016 16849,37016"/>
+    <rect fill="none" stroke="none" x="16582" y="35897" width="268" height="1120"/>
    </g>
    <g id="Drawing_47">
-    <rect fill="none" stroke="none" x="10599" y="34382" width="3313" height="1082"/>
+    <rect fill="none" stroke="none" x="13349" y="35890" width="3313" height="1082"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-     <text x="12860" y="35067">
-      <tspan x="12860 13165 13402 13542">Uart</tspan></text>
+     <text x="15610" y="36575">
+      <tspan x="15610 15915 16152 16292">Uart</tspan></text>
     </g>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_48_0" stroke-width="53" stroke-linejoin="round" stroke-dasharray="104,104" d="M 13099,35463 L 12599,36839"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_48_0" stroke-width="53" stroke-linejoin="round" stroke-dasharray="104,104" d="M 15500,36477 L 14750,36971"/>
   </g>
   <g id="DrawingGroup_17">
    <g>
-<image x="2427" y="35233" width="500" height="500" xlink:href="data:image/png;base64,
+<image x="2427" y="35263" width="500" height="500" xlink:href="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACSElEQVR4nO3cwVLC
 QBAA0aGK//9l1MJCBERINumZne4beqHmERGyu8fT6RTGdaSfQPcEgBMATgA4AeAE
 gBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgC48gCHw+H6Ybk1BrUBbqZ/
@@ -624,12 +624,12 @@ RDJ8+tEZIMP0oy1AkulHT4A804+GAKmmH90Ask0/WgEknH70Acg5/WgCkHb60QEg
 8/RjeoDk04+5AfJPPyYGKDH9KA3wZD1SlelHaYC/KjT9qA5wfxHUmn5UB4iCE7+p
 PED1BIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAO4DDpMV
 nspMGuoAAAAASUVORK5CYII="/>
-    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_49_0" stroke-width="53" stroke-linejoin="round" d="M 2677,35733 L 2427,35733 2427,35233 2927,35233 2927,35733 2677,35733 Z"/>
+    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_49_0" stroke-width="53" stroke-linejoin="round" d="M 2677,35763 L 2427,35763 2427,35263 2927,35263 2927,35763 2677,35763 Z"/>
    </g>
    <g id="Drawing_50">
-    <rect fill="none" stroke="none" x="2871" y="35101" width="5037" height="726"/>
+    <rect fill="none" stroke="none" x="2871" y="35131" width="5037" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-     <text x="3122" y="35608">
+     <text x="3122" y="35638">
       <tspan x="3122 3359 3596 3715 3952 4189 4426 4663 4896 5014 5251 5370 5488 5607 5912 6005 6242 6361 6500 6737 6856 7093 7186 7305 7516">dataLength : Uint(3 bits)</tspan></text>
     </g>
    </g>
@@ -663,13 +663,13 @@ nspMGuoAAAAASUVORK5CYII="/>
   </g>
   <g id="DrawingGroup_19">
    <g>
-    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_53_0" stroke-width="106" stroke-linejoin="round" d="M 2243,35384 C 2176,35384 2109,35446 2109,35509 L 2109,36009 C 2109,36071 2042,36134 1976,36134 2042,36134 2109,36197 2109,36259 L 2109,36759 C 2109,36822 2176,36885 2243,36885"/>
-    <rect fill="none" stroke="none" x="1976" y="35384" width="267" height="1501"/>
+    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_53_0" stroke-width="106" stroke-linejoin="round" d="M 2243,34750 C 2176,34750 2109,34838 2109,34927 L 2109,35639 C 2109,35728 2042,35817 1976,35817 2042,35817 2109,35906 2109,35995 L 2109,36707 C 2109,36796 2176,36885 2243,36885"/>
+    <rect fill="none" stroke="none" x="1976" y="34750" width="267" height="2135"/>
    </g>
    <g id="Drawing_54">
-    <rect fill="none" stroke="none" x="-1131" y="35554" width="3187" height="1088"/>
+    <rect fill="none" stroke="none" x="-1131" y="34992" width="3187" height="1547"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Source Code Pro embedded" font-size="423" font-style="normal" font-weight="400">
-     <text x="-880" y="36267">
+     <text x="-880" y="35935">
       <tspan x="-880 -575 -338 -198 -80 225 343 483 576 881 1118 1355 1474 1567">UartCtrlConfig</tspan></text>
     </g>
    </g>
@@ -1060,6 +1060,33 @@ MHEPAAAAAElFTkSuQmCC"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
      <text x="-1318" y="43956">
       <tspan x="-1318 -1178 -941 -704 -467 -230 7 126 363 481 600 718 1002 1095 1214 1425 1565 1802 2039 2158 2395 2488 2606 2818">readdata : Bits(32 bits)</tspan></text>
+    </g>
+   </g>
+  </g>
+  <g id="DrawingGroup_36">
+   <g>
+<image x="2427" y="34746" width="500" height="500" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAACSElEQVR4nO3cwVLC
+QBAA0aGK//9l1MJCBERINumZne4beqHmERGyu8fT6RTGdaSfQPcEgBMATgA4AeAE
+gBMATgA4AeAEgBMATgA4AeAEgBMATgA4AeAEgBMATgC48gCHw+H6Ybk1BrUBbqZ/
+/kktg9oAD6tlUBjg/uV//asqBoUBnlfFYFqAKGIwM0BUMJgcINIbzA8QuQ1aAERi
+gy4AkdWgEUCkNOgFEPkM2gFEMoOOAJHJoClApDHoCxA5DFoDRAKD7gBBGwjwFWgg
+wHeUgQA/IQYC/Gp/AwFu29lAgAftaTAS4MkyhXLtZjAGYKbRX9rHYADAlNM/t4OB
+7wH/tLXBWoCJX/6XNjXwCnip7QwEeLWNDAR4oy0MBHiv4QYCvN1YAwGWNNBAgIWN
+MhBgeUMMBFjVegMB1rbSQIABrTEQYEyLDQSAE2BYyy4CAYbln6CSCTAm/wsi83MA
+mZ+EyfwuiMxvQ8m8H0DmHTEy7wmTuSqCzHVBZK6MI8u7NvTzmU2/Pjf16ujpK7A/
+YOKLoMYOmYCOzN5avdIesfkquUtymtwnTOZOeTLPiiDztBQyzwsi88QsMs+MI/PU
+RDJ8+tEZIMP0oy1AkulHT4A804+GAKmmH90Ask0/WgEknH70Acg5/WgCkHb60QEg
+8/RjeoDk04+5AfJPPyYGKDH9KA3wZD1SlelHaYC/KjT9qA5wfxHUmn5UB4iCE7+p
+PED1BIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAE4AOAHgBIATAO4DDpMV
+nspMGuoAAAAASUVORK5CYII="/>
+    <path fill="none" stroke="rgb(0,0,0)" id="Drawing_91_0" stroke-width="53" stroke-linejoin="round" d="M 2677,35246 L 2427,35246 2427,34746 2927,34746 2927,35246 2677,35246 Z"/>
+   </g>
+   <g id="Drawing_92">
+    <rect fill="none" stroke="none" x="2871" y="34614" width="5185" height="726"/>
+    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
+     <text x="3122" y="35121">
+      <tspan x="3122 3334 3427 3664 3876 4087 4392 4485 4693 4786 5023 5260 5400 5518 5637 5755 6060 6153 6390 6509 6648 6885 7004 7241 7334 7453 7664">clockDivider : Uint(3 bits)</tspan></text>
     </g>
    </g>
   </g>
