@@ -61,7 +61,7 @@ In addition to the constructor parameters given [here](#clock_constructor), the 
 | Property | Valid values|
 | ------- | ---- |
 | `clockEdge` | `RISING`, `FALLING` |
-| `ResetKind`| `ASYNC`, `SYNC` |
+| `ResetKind`| `ASYNC`, `SYNC`, `BOOT` which is supported by some FPGA (FF values loaded by the bitstream) |
 | `resetActiveLevel`| `HIGH`, `LOW` |
 | `clockEnableActiveLevel`| `HIGH`, `LOW` |
 
