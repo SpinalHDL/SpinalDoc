@@ -258,7 +258,16 @@ trait BusSlaveFactoryDelayed extends BusSlaveFactory{
 
 ### AvalonMMSlaveFactory
 
-First let's implement the companion object that provide the compatible AvalonMM configuration object
+First let's implement the companion object that provide the compatible AvalonMM configuration object that correspond to the following table :
+
+| Pin name | Type |  Description |
+| ------- | ---- |  ---- |
+| read | Bool | High one cycle to produce a read request |
+| write | Bool |  High one cycle to produce a write request |
+| address | UInt(addressWidth bits) | Byte granularity but word aligned |
+| writeData | Bits(dataWidth bits) | - |
+| readDataValid | Bool | High to respond a read command |
+| readData | Bool(dataWidth bits) | Valid when readDataValid is high |
 
 ```scala
 object AvalonMMSlaveFactory{
