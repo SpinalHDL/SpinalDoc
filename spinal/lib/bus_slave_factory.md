@@ -34,6 +34,7 @@ By using them the `BusSlaveFactory` should also be able to provide many utilitie
 
 | Name | Return |  Description |
 | ------- | ---- |
+| readAndWrite(that,address,bitOffset) | - | Make `that` readable and writable at `address` and placed at `bitOffset` in the word |
 | readMultiWord(that,address) | - | Create the memory mapping to read `that` from 'address'.<br> If `that ` is bigger than one word it extends the register on followings addresses |
 | writeMultiWord(that,address) | - | Create the memory mapping to write `that` at 'address'.<br> If `that ` is bigger than one word it extends the register on followings addresses |
 | createWriteOnly(dataType,address,bitOffset) | T | Create a write only register of type `dataType` at `address` and placed at `bitOffset` in the word |
@@ -82,6 +83,12 @@ Then let's operate the magic to implement all utile based on them :
 ```scala
 trait BusSlaveFactory  extends Area{
   //...
+  def readAndWrite(that : Data,
+                   address: BigInt,
+                   bitOffset : Int = 0): Unit = {
+    write(that,address,bitOffset)
+    read(that,address,bitOffset)
+  }
 
   def drive(that : Data,
             address : BigInt,
