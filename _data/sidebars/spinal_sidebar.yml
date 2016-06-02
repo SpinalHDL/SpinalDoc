@@ -105,6 +105,10 @@ entries:
           url: /spinal/lib/bus_slave_factory/
           output: web
 
+        - title: RISCV CPU
+          url: /spinal/lib/riscv/
+          output: web
+
       - title: Examples
         output: web
         subfolderitems:
