@@ -13,7 +13,7 @@ permalink: /spinal/lib/utils/
 | Syntax | Return | Description |
 | ------------------------------- | ---- | --- |
 | Delay(that: T, cycleCount: Int) | T | Return `that` delayed by `cycleCount` cycles |
-| Delays(that: T, delayMax: Int) | List[T] | Return a Vec of delayMax + 1 elements <br> The first element is `that`, the last one is `that` delayed by `delayMax`   |
+| History(that: T, length: Int[,when : Bool]) | List[T] | Return a Vec of `length` elements <br> The first element is `that`, the last one is `that` delayed by `length`-1<br> The internal shift register sample when `when` is asserted |
 | toGray(x : UInt) | Bits | Return the gray value converted from `x` (UInt) |
 | fromGray(x : Bits) | UInt | Return the UInt value converted value from `x` (gray) |
 | Reverse(x : T) | T | Flip all bits (lsb + n -> msb - n) |

@@ -12,10 +12,10 @@ permalink: /spinal/lib/flow/
 The Flow interface is a simple valid/payload protocol which mean the slave can't halt the bus.<br>
 It could be used, for example, to represent data coming from an UART controller, requests to write an on-chip memory, etc.
 
-| Signal | Driver| Description | Don't care when
-| ------- | ---- | --- |  --- |
-| valid | Master | When high => payload present on the interface  | |
-| payload| Master | Content of the transaction | valid is low |
+| Signal | Type | Driver| Description | Don't care when
+| ------- | ---- | --- |  --- |  --- |
+| valid | Bool | Master | When high => payload present on the interface  | - |
+| payload | T | Master | Content of the transaction | valid is low |
 
 ## Functions
 
