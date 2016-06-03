@@ -19,4 +19,4 @@ The spinal.lib package goal are :
 
 To use features introduced in followings chapter you need, in most of cases, to `import spinal.lib._` in your sources.
 
-{% include important.html content="This package is currently under construction and some components are not much tested.<br> Do not hesitate to use github for suggestions/bug/fixes/enhancements" %}
+{% include important.html content="This package is currently under construction. Documented features could be considered as stable.<br> Do not hesitate to use github for suggestions/bug/fixes/enhancements" %}

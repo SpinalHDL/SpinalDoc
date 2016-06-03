@@ -48,14 +48,31 @@ class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) exten
     val uart = master(Uart())
   }
 
+  // Instanciate an simple uart controller
   val uartCtrl = new UartCtrl()
   io.uart <> uartCtrl.io.uart
 
+  // Create an instance of the AvalonMMSlaveFactory that will then be used as a slave factory drived by io.bus
   val busCtrl = AvalonMMSlaveFactory(io.bus)
+
+  // Ask the busCtrl to create a readable/writable register at the address 0
+  // and drive uartCtrl.io.config.clockDivider with this register
   busCtrl.driveAndRead(uartCtrl.io.config.clockDivider,address = 0)
+
+  // Do the same thing than above but for uartCtrl.io.config.frame at the address 4
   busCtrl.driveAndRead(uartCtrl.io.config.frame,address = 4)
+
+  // Ask the busCtrl to create a writable Flow[Bits] (valid/payload) at the address 8.
+  // Then convert it into a stream and connect it to the uartCtrl.io.write by using an register stage (>->)
   busCtrl.createAndDriveFlow(Bits(uartCtrlConfig.dataWidthMax bits),address = 8).toStream >-> uartCtrl.io.write
+
+  // To avoid losing writes commands between the Flow to Stream transformation just above,
+  // make the occupancy of the uartCtrl.io.write readable at address 8
   busCtrl.read(uartCtrl.io.write.valid,address = 8)
+
+  // Take uartCtrl.io.read, convert it into a Stream, then connect it to the input of a FIFO of 64 elements
+  // Then make the output of the FIFO readable at the address 12 by using a non blocking protocol
+  // (bit 0 => data valid, bits 8 downto 1 => data)
   busCtrl.readStreamNonBlocking(uartCtrl.io.read.toStream.queue(64),address = 12)
 }
 ```

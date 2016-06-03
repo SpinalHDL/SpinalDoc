@@ -10,7 +10,7 @@ permalink: /spinal/examples/introduction/
 
 Examples could be split in two familly :
 
-The ones that use traditional approaches and doesn't asks many effort to be understood :
+The ones that use traditional implementation approaches and doesn't asks many effort to be understood :
 
 - [Simple ones](/SpinalDoc/spinal/examples/simple_ones/)
 - [VGA controller](/SpinalDoc/spinal/examples/vga/)
