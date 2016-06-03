@@ -113,6 +113,10 @@ entries:
         output: web
         subfolderitems:
 
+        - title: Introduction
+          url: /spinal/examples/introduction/
+          output: web
+
         - title: Simple ones
           url: /spinal/examples/simple_ones/
           output: web
