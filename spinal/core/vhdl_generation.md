@@ -77,18 +77,18 @@ class TopLevel extends Component {
     val withoutProcess = out UInt(4 bits)
     val withProcess = out UInt(4 bits)
   }
-  io.withProcess := io.value
-  io.withoutProcess := 0
+  io.withoutProcess := io.value
+  io.withProcess := 0
   when(io.cond){
     switch(io.value){
       is(U"0000"){
-        io.withoutProcess := 8
+        io.withProcess := 8
       }
       is(U"0001"){
-        io.withoutProcess := 9
+        io.withProcess := 9
       }
       default{
-        io.withoutProcess := io.value+1
+        io.withProcess := io.value+1
       }
     }
   }
@@ -109,17 +109,17 @@ end TopLevel;
 
 architecture arch of TopLevel is
 begin
-  io_withProcess <= io_value;
+  io_withoutProcess <= io_value;
   process(io_cond,io_value)
   begin
-    io_withoutProcess <= pkg_unsigned("0000");
-    if io_cond then
+    io_withProcess <= pkg_unsigned("0000");
+    if io_cond = '1' then
       if io_value = pkg_unsigned("0000") then
-        io_withoutProcess <= pkg_unsigned("1000");
+        io_withProcess <= pkg_unsigned("1000");
       elsif io_value = pkg_unsigned("0001") then
-        io_withoutProcess <= pkg_unsigned("1001");
+        io_withProcess <= pkg_unsigned("1001");
       else
-        io_withoutProcess <= (io_value + pkg_resize(pkg_unsigned("1"),4));
+        io_withProcess <= (io_value + pkg_resize(pkg_unsigned("1"),4));
       end if;
     end if;
   end process;
