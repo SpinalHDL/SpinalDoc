@@ -45,6 +45,8 @@ There is the list of optional arguments :
 | ------- | ---- | ------------------------- |
 | defaultConfigForClockDomains | ClockDomainConfig |  Set the clock configuration that will be use as default for all new `ClockDomain`. The default value is : <br> clockEdge = RISING <br> resetKind = ASYNC <br> resetActiveLevel = HIGH <br> clockEnableActiveLevel = HIGH |
 | onlyStdLogicVectorAtTopLevelIo | Boolean | Change all unsigned/signed toplevel io into std_logic_vector. Disabled by default. |
+| defaultClockDomainFrequency    | IClockDomainFrequency | Default clock frequency |
+| vhdPath | String | Path where the VHDL file generated is saved |   
 
 ## Generated VHDL
 The way how the Spinal `Component` is translated into VHDL is important. There is some tips about that :
