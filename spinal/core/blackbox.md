@@ -92,7 +92,7 @@ The previous code will generate the VHDL below :
     ...
 ```
 
-In order to avoid the prefix io_ on each IOs of the blackbox, you can use the function `setName()` as shown below :
+In order to avoid the prefix "io_" on each IOs of the blackbox, you can use the function `setName()` as shown below :
 
 ```scala
 // Define the Ram as a BlackBox
