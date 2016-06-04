@@ -19,7 +19,7 @@ To see capabilities of the tool, an simple example use the AvalonMMSlaveFactory 
 
 ## Specification
 The class diagram is the following :
-<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/cacb6e086ff635ca93def01e31aee2da582d991a/asset/picture/bus_slave_factory_classes.svg"  align="middle" width="300">
+<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/df358b87416c786922b4336a1b43c5cce601efa2/asset/picture/bus_slave_factory_classes.svg"  align="middle" width="300">
 
 The `BusSlaveFactory ` abstract class define minimum requirements that each implementation of it should provide :
 
