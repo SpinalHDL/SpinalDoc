@@ -136,3 +136,38 @@ entries:
         - title: JTAG TAP
           url: /spinal/examples/jtag/
           output: web
+
+
+
+
+#  - title: Bus
+#    output: web
+#    folderitems:
+#    - title: Index
+#      url: /spinal/bus/index/
+#      output: web
+#
+#      subfolders:
+#      - title: Avalon
+#        output: web
+#        subfolderitems:
+#
+#        - title: AvalonMM
+#          url: /spinal/bus/avalon/avalonmm/
+#          output: web
+#
+#      - title: AMBA3
+#        output: web
+#        subfolderitems:
+#
+#        - title: APB3
+#          url: /spinal/bus/amba3/apb3/
+#          output: web
+#
+#      - title: AMBA4
+#        output: web
+#        subfolderitems:
+#
+#        - title: AXILITE-3
+#          url: /spinal/bus/amba4/axilite3/
+#          output: web
