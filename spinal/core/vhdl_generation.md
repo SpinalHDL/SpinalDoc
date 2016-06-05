@@ -38,15 +38,50 @@ object MyMain {
 
 {% include important.html content="SpinalVhdl could need to create multiple instance of your component class. It's why its first argument is not a Component reference but a function that return a new component." %}
 
+### Parametrization from Scala
 
-There is the list of optional arguments :
-
-| Argument name | Type | Description|
+| Argument name | Type | Default | Description|
 | ------- | ---- | ------------------------- |
-| defaultConfigForClockDomains | ClockDomainConfig |  Set the clock configuration that will be use as default for all new `ClockDomain`. The default value is : <br> clockEdge = RISING <br> resetKind = ASYNC <br> resetActiveLevel = HIGH <br> clockEnableActiveLevel = HIGH |
-| onlyStdLogicVectorAtTopLevelIo | Boolean | Change all unsigned/signed toplevel io into std_logic_vector. Disabled by default. |
-| defaultClockDomainFrequency    | IClockDomainFrequency | Default clock frequency |
-| vhdPath | String | Path where the VHDL file generated is saved |   
+| mode | SpinalMode | null | Set the Spinal mode. Only the VHDL mode is available for now |
+| defaultConfigForClockDomains | ClockDomainConfig | RisingEdgeClock <br> AsynchronousReset <br> ResetActiveHigh <br> ClockEnableActiveHigh |  Set the clock configuration that will be use as default for all new `ClockDomain`.  |
+| onlyStdLogicVectorAtTopLevelIo | Boolean | false | Change all unsigned/signed toplevel io into std_logic_vector.|
+| defaultClockDomainFrequency    | IClockDomainFrequency | UnknownFrequency | Default clock frequency |
+| targetDirectory | String | Current directory | Directory where files are generated |   
+
+And there is the syntax to specify them :
+
+```scala
+SpinalConfig(mode = VHDL, targetDirectory="temp/myDesign").generate(new UartCtrl)
+
+// Or in a more scalable formatting :
+SpinalConfig(
+  mode = VHDL,
+  targetDirectory="temp/myDesign"
+).generate(new UartCtrl)
+```
+
+### Parametrization from shell
+
+You can also specify generation parameters by using command line arguments.
+
+```scala
+def main(args: Array[String]): Unit = {
+  SpinalConfig.shell(args)(new UartCtrl)
+}
+```
+
+Arguments syntax is :
+
+```text
+Usage: SpinalCore [options]
+
+  --vhdl
+        Select the VHDL mode
+  -d | --debug
+        Enter in debug mode directly
+  -o <value> | --targetDirectory <value>
+        Set the target directory
+```
 
 ## Generated VHDL
 The way how the Spinal `Component` is translated into VHDL is important. There is some tips about that :
