@@ -89,10 +89,7 @@ The way how the Spinal `Component` is translated into VHDL is important. There i
 - Names in Scala are preserved in VHDL.
 - `Component` hierarchy in Scala is preserved in VHDL.
 - `when` statements in Scala are emitted as if statements in VHDL
-- `switch` statements in Scala are emitted as if statements in VHDL
-
-{% include note.html content="About the fact that switch statements that are not emitted by using VHDL case statements. Today tools are smart enough to produce the same hardware from an case and a equivalent if structure. <br>If in some case it become a real issue, it's possible to update Spinal to generate case statements.<br> Fun fact : Moving order of case elements in VHDL can change the generated hardware." %}
-
+- `switch` statements in Scala are emitted as case statements in VHDL
 
 
 ### Organization
@@ -109,10 +106,10 @@ Scala :
 ```scala
 class TopLevel extends Component {
   val io = new Bundle {
-    val cond   = in Bool
-    val value      = in UInt (4 bit)
+    val cond           = in  Bool
+    val value          = in  UInt (4 bits)
     val withoutProcess = out UInt(4 bits)
-    val withProcess = out UInt(4 bits)
+    val withProcess    = out UInt(4 bits)
   }
   io.withoutProcess := io.value
   io.withProcess := 0
@@ -151,13 +148,14 @@ begin
   begin
     io_withProcess <= pkg_unsigned("0000");
     if io_cond = '1' then
-      if io_value = pkg_unsigned("0000") then
-        io_withProcess <= pkg_unsigned("1000");
-      elsif io_value = pkg_unsigned("0001") then
-        io_withProcess <= pkg_unsigned("1001");
-      else
-        io_withProcess <= (io_value + pkg_resize(pkg_unsigned("1"),4));
-      end if;
+      case io_value is
+        when pkg_unsigned("0000") =>
+          io_withProcess <= pkg_unsigned("1000");
+        when pkg_unsigned("0001") =>
+          io_withProcess <= pkg_unsigned("1001");
+        when others =>
+          io_withProcess <= (io_value + pkg_unsigned("0001"));
+      end case;
     end if;
   end process;
 end arch;
