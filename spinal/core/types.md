@@ -248,8 +248,8 @@ Spinal support enumeration with some encodings :
 | Encoding | Bit width | Description |
 | ------- | ---- | --- |
 | native | - | Use the VHDL enumeration system, this is the default encoding |
-| sequancial | log2Up(stateCount) | Use a Bits to encode states in declaration order |
-| oneHot | stateCount | Use a Bits to encode state. Each bit correspond to one state |
+| binarySequancial | log2Up(stateCount) | Use Bits to store states in declaration order (value from 0 to n-1) |
+| binaryOneHot | stateCount | Use Bits to store state. Each bit correspond to one state |
 
 Define a enumeration type:
 
