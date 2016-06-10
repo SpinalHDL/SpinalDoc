@@ -73,7 +73,7 @@ entries:
           url: /spinal/core/assertion/
           output: web
 
-        - title: VHDL generation
+        - title: VHDL and Verilog generation
           url: /spinal/core/vhdl_generation/
           output: web
 

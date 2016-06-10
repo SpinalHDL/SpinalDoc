@@ -1,6 +1,6 @@
 ---
 layout: page
-title: VHDL generation
+title: VHDL and Verilog generation
 description: "TODO"
 tags: [components, intro]
 categories: [intro]
@@ -9,8 +9,10 @@ permalink: /spinal/core/vhdl_generation/
 ---
 
 
-## Generate VHDL from an Spinal Component
+## Generate VHDL and Verilog from an Spinal Component
 To generate the VHDL from an Spinal component you just need to call `SpinalVhdl(new YourComponent[, args])` in a Scala `main`.
+
+To generate the Verilog, it's exactly the same, but with `SpinalVerilog` in place of `SpinalVHDL`
 
 ```scala
 import spinal.core._
@@ -28,21 +30,25 @@ class MyTopLevel extends Component {
   io.c := io.a & io.b
 }
 
-//This is the main that generate the VHDL corresponding to MyTopLevel
+//This is the main that generate the VHDL and the Verilog corresponding to MyTopLevel
 object MyMain {
   def main(args: Array[String]) {
     SpinalVhdl(new MyTopLevel)
+    SpinalVerilog(new MyTopLevel)
   }
 }
 ```
 
-{% include important.html content="SpinalVhdl could need to create multiple instance of your component class. It's why its first argument is not a Component reference but a function that return a new component." %}
+{% include important.html content="SpinalVhdl and SpinalVerilog could need to create multiple instance of your component class. It's why its first argument is not a Component reference but a function that return a new component." %}
+
+{% include important.html content="SpinalVerilog implementation has start the 5 June 2016. This backend pass successfully the same regression tests than the VHDL one (Multicore and pipelined mandelbrot,UART RX/TX, Single clock fifo, Dual clock fifo, Gray counter). But still, if you have any issue with this young backend, please, make a git issue." %}
+
 
 ### Parametrization from Scala
 
 | Argument name | Type | Default | Description|
 | ------- | ---- | ------------------------- |
-| mode | SpinalMode | null | Set the Spinal mode. Only the VHDL mode is available for now |
+| mode | SpinalMode | null | Set the Spinal mode.<br> Could be set to `VHDL` or `Verilog` |
 | defaultConfigForClockDomains | ClockDomainConfig | RisingEdgeClock <br> AsynchronousReset <br> ResetActiveHigh <br> ClockEnableActiveHigh |  Set the clock configuration that will be use as default for all new `ClockDomain`.  |
 | onlyStdLogicVectorAtTopLevelIo | Boolean | false | Change all unsigned/signed toplevel io into std_logic_vector.|
 | defaultClockDomainFrequency    | IClockDomainFrequency | UnknownFrequency | Default clock frequency |
@@ -53,9 +59,9 @@ And there is the syntax to specify them :
 ```scala
 SpinalConfig(mode = VHDL, targetDirectory="temp/myDesign").generate(new UartCtrl)
 
-// Or in a more scalable formatting :
+// Or for Verilog in a more scalable formatting :
 SpinalConfig(
-  mode = VHDL,
+  mode = Verilog,
   targetDirectory="temp/myDesign"
 ).generate(new UartCtrl)
 ```
