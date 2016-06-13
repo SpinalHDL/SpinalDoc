@@ -44,7 +44,7 @@ Then we can define a `AvalonUartCtrl` which instanciate the UartCtrl and create 
 ```scala
 class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) extends Component{
   val io = new Bundle{
-    val bus =  slave(AvalonMMBus(AvalonUartCtrl.getAvalonMMConfig))
+    val bus =  slave(AvalonMM(AvalonMMUartCtrl.getAvalonMMConfig))
     val uart = master(Uart())
   }
 
