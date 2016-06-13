@@ -49,7 +49,7 @@ class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) exten
   }
 
   // Instanciate an simple uart controller
-  val uartCtrl = new UartCtrl()
+  val uartCtrl = new UartCtrl(uartCtrlConfig)
   io.uart <> uartCtrl.io.uart
 
   // Create an instance of the AvalonMMSlaveFactory that will then be used as a slave factory drived by io.bus
