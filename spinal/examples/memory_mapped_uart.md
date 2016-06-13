@@ -24,7 +24,7 @@ There is the register mapping table :
 | frame | UartCtrlFrameConfig | RW  | 4 | Set the dataLength, the parity and the stop bit configuration |
 | writeCmd | Bits | W | 8 | Send a write command to the UartCtrl  |
 | writeBusy | Bool | R | 8 | Bit 0 => zero when a new writeCmd could be sent |
-| read | Bits ## Bool | R | 12 | Bit 0 => readed data valid <br> Bit 8 downto 1 => readed data |
+| read | Bits ## Bool | R | 12 | Bit 0 => read data valid <br> Bit 8 downto 1 => read data |
 
 ## Implementation
 For this implemention, the AvalonMMSlaveFactory tool will be used. It allow to define a Avalon slave with a smooth syntax. You can find the documentation of it this tool [there](/SpinalDoc/spinal/lib/bus_slave_factory/).

@@ -32,7 +32,7 @@ We have prepared a ready to go project for you on Github.
 
 Normally, this command must generate an output file `MyTopLevel.vhd` which corresponds to the top level *Spinal* code defined in `src\main\scala\MyCode.scala` which corresponds to the [most simple Spinal example](#example).
 
-From a clean Debian distribution you can type followings commands in the shell. It will install java, scala, sbt, download the base project and generate the corresponding VHDL file. 
+From a clean Debian distribution you can type followings commands in the shell. It will install java, scala, sbt, download the base project and generate the corresponding VHDL file. Don't worry if it take time the first time that you run it.
 
 ```sh
 sudo apt-get install openjdk-7-jdk
