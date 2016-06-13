@@ -21,10 +21,33 @@ Optionally, if you need an IDE (which is not compulsory) we advise you to get In
 ## How to start programming with Spinal
 Once you have downloaded all the requirements, there are two ways to get started with Spinal programming.
 
-1. [*The simple way*](#simple) : get a project already setup for you in an IDE and start programming right away.
-1. [*The most flexible way*](#flexible) : if you already are familiar with the SBT build system and/or if you don't need an IDE.
+1. [*The SBT way*](#sbtWay) : if you already are familiar with the SBT build system and/or if you don't need an IDE.
+1. [*The IDE way*](#ideWay) : get a project already setup for you in an IDE and start programming right away.
 
-### The simple way, with IntelliJ IDEA and its Scala plugin {#simple}
+### The SBT way {#sbtWay}
+We have prepared a ready to go project for you on Github.
+
+- Either clone or [download](https://github.com/SpinalHDL/SpinalBaseProject/archive/master.zip) the ["getting started" repository](https://github.com/SpinalHDL/SpinalBaseProject.git).
+- Open a terminal in the root of it and run `sbt run`. When you execute it for the first time, the process could take some time as it will download all the dependencies required to run *Spinal*.
+
+Normally, this command must generate an output file `MyTopLevel.vhd` which corresponds to the top level *Spinal* code defined in `src\main\scala\MyCode.scala` which corresponds to the [most simple Spinal example](#example).
+
+From a clean Debian distribution you can type followings commands in the shell. It will install java, scala, sbt, download the base project and generate the corresponding VHDL file. 
+
+```sh
+sudo apt-get install openjdk-7-jdk
+sudo apt-get install scala
+echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
+sudo apt-get update
+sudo apt-get install sbt
+git clone https://github.com/SpinalHDL/SpinalBaseProject.git
+cd SpinalBaseProject/
+sbt run
+ls MyTopLevel.vhd
+```
+
+### The IDE way, with IntelliJ IDEA and its Scala plugin {#ideWay}
 In addition to the aforementioned [requirements](#requirements), you also need to download the IntelliJ IDEA (the free *Community edition* is enough). When you have installed IntelliJ, also check that you have enabled its Scala plugin ([install information](https://www.jetbrains.com/help/idea/2016.1/enabling-and-disabling-plugins.html?origin=old_help) can be found here).
 
 And do the following :
@@ -35,14 +58,6 @@ And do the following :
 - In the project (Intellij project GUI), right click on `src/main/scala/MyCode/TopLevel.scala` and select "Run MyTopLevel"
 
 Normally, this must generate the output file `MyTopLevel.vhd` in the project directory which corresponds to the most [most simple Spinal example](#example).
-
-### The flexible way {#flexible}
-We have prepared a ready to go project for you on Github.
-
-- Either clone or [download](https://github.com/SpinalHDL/SpinalBaseProject/archive/master.zip) the ["getting started" repository](https://github.com/SpinalHDL/SpinalBaseProject.git).
-- Open a terminal in the root of it and run `sbt run`. When you execute it for the first time, the process could take some time as it will download all the dependencies required to run *Spinal*.
-
-Normally, this command must generate an output file `MyTopLevel.vhd` which corresponds to the top level *Spinal* code defined in `src\main\scala\MyCode.scala` which corresponds to the [most simple Spinal example](#example).
 
 ## A very simple Spinal example {#example}
 The following code generates an `and` gate between two one bit inputs.
@@ -102,7 +117,7 @@ entity AND_Gate is
   port(
     io_a : in std_logic;
     io_b : in std_logic;
-    io_c : out std_logic 
+    io_c : out std_logic
   );
 end AND_Gate;
 
