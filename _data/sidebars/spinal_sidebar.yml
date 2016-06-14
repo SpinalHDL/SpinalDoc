@@ -16,6 +16,10 @@ entries:
       url: /spinal_getting_started/
       output: web
 
+    - title: Presentation (PPT-PDF)
+      url: /presentation/
+      output: web
+
       subfolders:
       - title: Language features
         output: web
