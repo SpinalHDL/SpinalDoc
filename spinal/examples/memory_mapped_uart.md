@@ -11,8 +11,6 @@ permalink: /spinal/examples/memory_mapped_uart/
 ## Introduction
 This example will take the UartCtrl implemented in the precedent [example](/SpinalDoc/spinal/examples/uart/) to create a memory mapped UART controller.
 
-{% include warning.html content="After this example you will probably not be able to write any register bank in VHDL/Verilog ever again." %}
-
 ## Specification
 The implementation will by based on the Avalon bus with a RX FIFO.
 
