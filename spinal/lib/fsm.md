@@ -19,6 +19,8 @@ The following state machine is implemented in following examples :
 Style A :
 
 ```scala
+import spinal.lib.fsm._
+
 class TopLevel extends Component {
   val io = new Bundle{
     val result = out Bool
@@ -51,6 +53,8 @@ class TopLevel extends Component {
 Style B :
 
 ```scala
+import spinal.lib.fsm._
+
 class TopLevel extends Component {
   val io = new Bundle{
     val result = out Bool
@@ -102,14 +106,14 @@ The StateMachine class also provide some utils :
 
 
 ## States
-There multiple kind of states that you can use.
+There is multiple kinds of states that you can use.
 
 - State (the base one)
 - StateDelay
 - StateFsm
 - StateParallelFsm
 
-In each of them you have access to the following utils :
+In each of them you have access the following utilities :
 
 | Name | Description |
 | ------- | ---- |
@@ -137,7 +141,7 @@ val stateB : State = new State{
 }
 ```
 
-You can also define state your state is the entry point of the state machine by extends the EntryPoint trait.
+You can also define your state as the entry point of the state machine by extends the EntryPoint trait.
 
 ```scala
 val stateA: State = new State with EntryPoint {
@@ -148,7 +152,7 @@ val stateA: State = new State with EntryPoint {
 ```
 
 ### StateDelay
-StateDelay allow you to create a state which wait a fixed number of cycle before execute statments in your `whenCompleted{...}`. The standard way to write it is :
+StateDelay allow you to create a state which wait a fixed number of cycles before executing statments in your `whenCompleted{...}`. The standard way to write it is :
 
 ```scala
 val stateG : State = new StateDelay(cyclesCount=40){
