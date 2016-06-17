@@ -85,7 +85,7 @@ class TopLevel extends Component {
 
 
 ## StateMachine
-To define a new FSM you need to the following in your Component:
+StateMachine is the base class that will manage the logic of your FSM.
 
 ```scala
 val myFsm = new StateMachine{
