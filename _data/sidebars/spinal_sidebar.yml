@@ -105,6 +105,10 @@ entries:
           url: /spinal/lib/fragment/
           output: web
 
+        - title: State machine
+          url: /spinal/lib/fsm/
+          output: web
+
         - title: Bus Slave Factory <i class="fa fa-bolt"></i>
           url: /spinal/lib/bus_slave_factory/
           output: web
