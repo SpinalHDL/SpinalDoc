@@ -45,7 +45,7 @@ By using them the `BusSlaveFactory` should also be able to provide many utilitie
 | drive(that,address,bitOffset) | - | Drive `that` with a register writable at `address` placed at `bitOffset` in the word |
 | driveAndRead(that,address,bitOffset) | - | Drive `that` with a register writable and readable at `address` placed at `bitOffset` in the word |
 | driveFlow(that,address,bitOffset) | - | Emit on `that` a transaction when a write happen at `address` by using data placed at `bitOffset` in the word |
-| readStreamNonBlocking(that,address,bitOffset) |- | Read `that` and consume the transaction when a read happen at `address`. <br> valid 	&nbsp;	&nbsp; <= `bitOffset`+0 bit <br> payload <= `bitOffset`+widthOf(payload)+1 downto `bitOffset`+1   |
+| readStreamNonBlocking(that,address,<br>validBitOffset,dataBitOffset) |- | Read `that` and consume the transaction when a read happen at `address`. <br> valid 	&nbsp;	&nbsp; <= validBitOffset bit <br> payload <= dataBitOffset+widthOf(payload) downto `dataBitOffset`   |
 | doBitsAccumulationAndClearOnRead<br> (that,address,bitOffset) | - | Instanciate an internal register which at each cycle do :<br> reg := reg \| that <br> Then when a read occur, the register is cleared. This register is readable at `address` and placed at `bitOffset` in the word  |
 
 About `BusSlaveFactoryDelayed`, it's still an abstract class, but it capture each primitives (BusSlaveFactoryElement) calls into a data-model. This datamodel is one list that contain all primitives, but also a HashMap that link each address used to a list of primitives that are using it. Then when they all are collected (at the end of the current component), it do a callback that should be implemented by classes that extends it. The implementation of this callback should implement the hardware corresponding to all primitives collected.
@@ -150,17 +150,15 @@ trait BusSlaveFactory  extends Area{
 
   def readStreamNonBlocking[T <: Data] (that : Stream[T],
                                         address: BigInt,
-                                        bitOffset : Int = 0) : Unit = {
-    val flow = Flow(that.dataType)
-    flow.valid := that.valid
-    flow.payload := that.payload
+                                        validBitOffset : Int,
+                                        dataBitOffset : Int) : Unit = {
     that.ready := False
     onRead(address){
       that.ready := True
     }
-    read(flow,address,bitOffset)
+    read(that.valid  ,address,validBitOffset)
+    read(that.payload,address,dataBitOffset)
   }
-
 
   def readMultiWord(that : Data,
                 address : BigInt) : Unit  = {
