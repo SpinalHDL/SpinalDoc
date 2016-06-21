@@ -22,7 +22,7 @@ There is the register mapping table :
 | frame | UartCtrlFrameConfig | RW  | 4 | Set the dataLength, the parity and the stop bit configuration |
 | writeCmd | Bits | W | 8 | Send a write command to the UartCtrl  |
 | writeBusy | Bool | R | 8 | Bit 0 => zero when a new writeCmd could be sent |
-| read | Bits ## Bool | R | 12 | Bit 7 downto 0 => read data <br> Bit 31 => read data valid |
+| read | Bool / Bits | R | 12 | Bit 7 downto 0 => rx payload <br> Bit 31 => rx payload valid |
 
 ## Implementation
 For this implemention, the AvalonMMSlaveFactory tool will be used. It allow to define a Avalon slave with a smooth syntax. You can find the documentation of it this tool [there](/SpinalDoc/spinal/lib/bus_slave_factory/).
@@ -72,7 +72,7 @@ class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) exten
   // Then make the output of the FIFO readable at the address 12 by using a non blocking protocol
   // (Bit 7 downto 0 => read data <br> Bit 31 => read data valid )
   busCtrl.readStreamNonBlocking(uartCtrl.io.read.toStream.queue(rxFifoDepth),
-                                address = 12, validBitOffset = 31, dataBitOffset = 0)
+                                address = 12, validBitOffset = 31, payloadBitOffset = 0)
 }
 ```
 
