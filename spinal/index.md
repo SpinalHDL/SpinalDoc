@@ -21,7 +21,7 @@ This site presents the *Spinal* language and how to use it on concrete examples.
 If you are learning the language from scratch, [this presentation](/SpinalDoc/presentation/) is probably a good starting point.
 
 ## What is Spinal ?
-Spinal is a high-level hardware description language. It can be used as an alternative to VHDL or Verilog and has several advantages over those.
+Spinal is a open source high-level hardware description language. It can be used as an alternative to VHDL or Verilog and has several advantages over those.
 
 Also Spinal is not a HLS approch, its goal is not to push something abstract into ff and gates, but by using simple elements (ff, gates, if / case statments) create new abstraction level and help the designer to not rewrite always the same thing.
 
@@ -40,10 +40,18 @@ As Spinal is based on a high-level language, it provides several advantages to i
 1. *Clock domains safety* - The tools inform you that there is no user unintentional cross clock domain.
 1. *Generic design* - There are no restrictions to the genericity of your hardware description by using Scala constructs.
 
+### License
+Spinal HDL is under the LGPL license, which could be summarized with following statements :
+
+- You can make money with your Spinal HDL description and its generated RTL.
+- You don't have to share your Spinal HDL description and its generated RTL.
+- There is no fees, no royalties.
+- If your make improvements on the Spinal HDL core, please, share your modifications to make the tool better for everybody.
+
 ### What are the differences between Chisel VS Spinal ?
 It is a very good question ! Why develop a new language when there Chisel has been released 3 years ago ?
 
-[Chisel](https://chisel.eecs.berkeley.edu/) is the project at the origin of Spinal and Chisel it represents a big step forward compared to common HDL. However, Chisel has show some serious and persistent conception issue :
+[Chisel](https://chisel.eecs.berkeley.edu/) is the project at the origin of Spinal and Chisel it represents a big step forward compared to common HDL. However, Chisel has show some serious and persistent conception issues :
 
 #### Various issue :
 - When an assignment occur, bits width are automatically resized by Chisel to match. It should at least generate a warning.
