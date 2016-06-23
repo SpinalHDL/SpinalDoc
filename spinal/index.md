@@ -43,7 +43,7 @@ As Spinal is based on a high-level language, it provides several advantages to i
 ### What are the differences between Chisel VS Spinal ?
 It is a very good question ! Why develop a new language when there Chisel has been released 3 years ago ?
 
-[Chisel](https://chisel.eecs.berkeley.edu/) is the project at the origin of Spinal and Chisel it represents a big step forward compared to common HDL. However, it has several drawbacks for large designs that mix multiple clock domain and external IP (black-boxes). In fact, Chisel show some serious conception issue :
+[Chisel](https://chisel.eecs.berkeley.edu/) is the project at the origin of Spinal and Chisel it represents a big step forward compared to common HDL. However, Chisel has show some serious and persistent conception issue :
 
 #### Various issue :
 - When an assignment occur, bits width are automatically resized by Chisel to match. It should at least generate a warning.
@@ -68,7 +68,7 @@ It is a very good question ! Why develop a new language when there Chisel has be
 - No support of falling edge clock or active low reset.
 - No support for asynchronous reset, also nothing for FPGA-bitstream reset (FF loaded by the bitstream)
 - No clock enable support.
-- Chisel makes the assumption that every clock wire come from the top level inputs, you don't have access to clock signal.
+- Chisel makes the assumption that every clock wire come from the top level inputs, you don't have access to clock signals.
 
 #### Syntax could be better:
 - Not pretty literal value syntax, No implicit conversion between Scala and Chisel types.
