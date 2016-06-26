@@ -14,5 +14,5 @@ Redirection to https://github.com/SpinalHDL/SpinalDoc/blob/master/presentation/e
 <head>
    <!-- HTML meta refresh URL redirection -->
    <meta http-equiv="refresh"
-   content="0; url=http://cdn.rawgit.com/SpinalHDL/SpinalDoc/0669f1ba779b5aa057dbe86c704df18d616f9c43/presentation/en/presentation.pdf">
+   content="0; url=http://cdn.rawgit.com/SpinalHDL/SpinalDoc/ff0888c15242e12b367220cf6420a56d3bae5886/presentation/en/presentation.pdf">
 </head>
