@@ -9,14 +9,8 @@ toc: false
 permalink: /
 ---
 
-## Document purpose and structure
-This site presents the *Spinal* language and how to use it on concrete examples. This documentation also explains how the language is implemented. The documentation is split into different sections:
-
-1. [Languages principles](/SpinalDoc/) (this document)
-1. [Getting started](/SpinalDoc/spinal_getting_started)
-1. [Language features](/SpinalDoc/spinal/core/introduction/)
-1. [Language libraries](/SpinalDoc/spinal/lib/introduction/)
-1. [Some examples](/SpinalDoc/spinal/examples/simple_ones/)
+## Site purpose and structure
+This site presents the *Spinal HDL* language and how to use it on concrete examples.
 
 If you are learning the language from scratch, [this presentation](/SpinalDoc/presentation/) is probably a good starting point.
 
