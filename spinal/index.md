@@ -15,7 +15,7 @@ This site presents the *Spinal HDL* language and how to use it on concrete examp
 If you are learning the language from scratch, [this presentation](/SpinalDoc/presentation/) is probably a good starting point.
 
 ## What is Spinal ?
-Spinal is a open source high-level hardware description language. It can be used as an alternative to VHDL or Verilog and has several advantages over those.
+Spinal is a [open source](https://github.com/SpinalHDL/SpinalHDL) high-level hardware description language. It can be used as an alternative to VHDL or Verilog and has several advantages over those.
 
 Also Spinal is not a HLS approch, its goal is not to push something abstract into ff and gates, but by using simple elements (ff, gates, if / case statments) create new abstraction level and help the designer to not rewrite always the same thing.
 
