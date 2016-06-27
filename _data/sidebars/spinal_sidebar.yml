@@ -8,7 +8,7 @@ entries:
   - title: Spinal
     output: web
     folderitems:
-    - title: Index
+    - title: Introduction
       url: /
       output: web
 
