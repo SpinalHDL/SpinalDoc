@@ -19,12 +19,13 @@ Clock domain application work like a stack, which mean, if you are in a given cl
 The syntax to define a clock domain is as follows (using EBNF syntax):
 
 <a name="clock_constructor"></a>
-`ClockDomain(clock : Bool[,reset : Bool][,clockEnable : Bool][,frequency : IClockDomainFrequency][,config : ClockDomainConfig])`
+`ClockDomain(clock : Bool[,reset : Bool][,softReset : Bool][,clockEnable : Bool][,frequency : IClockDomainFrequency][,config : ClockDomainConfig])`
 
 This definition takes five parameters:
 
 1. The clock signal that defines the domain
 1. An optional `reset`signal. If a register which need a reset and his clock domain didn't provide one, an error message happen
+1. An optional `softReset`signal. Infer an additional synchronous reset
 1. An optional `clockEnable` signal. The goal of this signal is to disable the clock on the whole clock domain without having to  manually implement that on each synchronous element.
 1. An optional `frequency` class. Which allow to specify the frequency of the given clock domain and later get it in your design.
 1. An optional `config` class. Which specify polarity of signals and the nature of the reset.
@@ -63,6 +64,7 @@ In addition to the constructor parameters given [here](#clock_constructor), the 
 | `clockEdge` | `RISING`, `FALLING` |
 | `ResetKind`| `ASYNC`, `SYNC`, `BOOT` which is supported by some FPGA (FF values loaded by the bitstream) |
 | `resetActiveLevel`| `HIGH`, `LOW` |
+| `softResetActiveLevel`| `HIGH`, `LOW` |
 | `clockEnableActiveLevel`| `HIGH`, `LOW` |
 
 ```scala
@@ -80,7 +82,7 @@ class CustomClockExample extends Component {
   )
 
   val myClockDomain = ClockDomain(io.clk,io.resetn,config = myClockDomainConfig)
-  
+
   val myArea = new ClockingArea(myClockDomain){
     val myReg = Reg(UInt(4 bits)) init(7)
     myReg := myReg + 1
