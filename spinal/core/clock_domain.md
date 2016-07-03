@@ -123,13 +123,16 @@ Then the returned instance (which is a ClockDomain one) as following functions t
 
 | name | Description| Return |
 | ------- | ---- | --- |
-| hasReset |  Return if the clock domain has a reset signal | Boolean |
-| hasClockEnable |  Return if the clock domain has a clock enable signal | Boolean |
 | frequency.getValue |  Return the frequency of the clock domain | Double |
+| hasReset |  Return if the clock domain has a reset signal | Boolean |
+| hasSoftReset |  Return if the clock domain has a reset signal | Boolean |
+| hasClockEnable |  Return if the clock domain has a clock enable signal | Boolean |
 | readClockWire |  Return a signal derived by the clock signal | Bool |
 | readResetWire |  Return a signal derived by the reset signal | Bool |
+| readSoftResetWire |  Return a signal derived by the reset signal | Bool |
 | readClockEnableWire |  Return a signal derived by the clock enable signal | Bool |
 | isResetActive |  Return True when the reset has effect | Bool |
+| isSoftResetActive |  Return True when the softReset has effect | Bool |
 | isClockEnableActive |  Return True when the clock enable has effect | Bool |
 
 ## Clock domain crossing
