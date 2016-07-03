@@ -22,8 +22,8 @@ To use features introduced in followings chapter you need, in most of cases, to 
 
 {% include important.html content="This package is currently under construction. Documented features could be considered as stable.<br> Do not hesitate to use github for suggestions/bug/fixes/enhancements" %}
 
-## Code style
-The code style is something very important to have a coherent library. Followings chapter will specify it.
+## Coding style
+The coding style is something very important to have a coherent library. Followings chapter will specify it.
 
 ### [case] class
 All class's names should start with a upper case letter

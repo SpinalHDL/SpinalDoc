@@ -42,9 +42,9 @@ Syntax to define in/out is the following :
 
 | Syntax | Description| Return
 | ------- | ---- | --- |
-| in/out(x : Data) | Set x an input/output | x |
 | in/out Bool | Create an input/output Bool | Bool |
-| in/out Bits/UInt/SInt[(x bit)]| Create an input/output of the corresponding type | T|
+| in/out Bits/UInt/SInt[(x bit)]| Create an input/output of the corresponding type | T |
+| in/out(T)| For all other data types, you should add the brackets around it.<br> Sorry this is a Scala limitation. | T |
 
 There is some rules about component interconnection :
 
