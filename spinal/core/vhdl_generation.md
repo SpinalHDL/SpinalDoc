@@ -91,21 +91,27 @@ Usage: SpinalCore [options]
         Set the target directory
 ```
 
-## Generated VHDL
-The way how the Spinal `Component` is translated into VHDL is important. There is some tips about that :
+## Generated VHDL and Verilog
+The way how a Spinal HDL RTL description is translated into VHDL and Verilog is important :
 
-- Names in Scala are preserved in VHDL.
-- `Component` hierarchy in Scala is preserved in VHDL.
-- `when` statements in Scala are emitted as if statements in VHDL
-- `switch` statements in Scala are emitted as case statements in VHDL
+- Names in Scala are preserved in VHDL and Verilog.
+- `Component` hierarchy in Scala is preserved in VHDL and Verilog.
+- `when` statements in Scala are emitted as if statements in VHDL and Verilog
+- `switch` statements in Scala are emitted as case statements in VHDL and Verilog in all standard cases
 
 
 ### Organization
-All the VHDL stuff is generated into a single file which contain tree section :
+When you use the VHDL generation, stuff are generated into a single file which contain tree section :
 
 1. A package that contain enumeration's definitions
 1. A package that contain function used by architectures
 1. All components needed by your design
+
+When you use the Verilog generation, stuff are generated into a single file which contain two section :
+
+1. All enumeration defines
+1. All modules needed by your design
+
 
 ### Combinatorial logic
 
@@ -238,26 +244,32 @@ begin
 end arch;
 ```
 
-## VHDL attributes
+## VHDL and Verilog attributes
 
-In some situation you need VHDL attributes to obtain a specific synthesis result. <br>  To do that, on any signals or memory of your design you can call the following functions :
+In some situation, it's useful to give some attributes to some signals of a given design to obtain a specific synthesis result. <br>  To do that, on any signals or memory of your design you can call the following functions :
 
 | Syntax | Description |
 | ------- | ---- | --- |
 | addAttribute(name) | Add a boolean attribute with the given `name` set to true |
 | addAttribute(name,value) | Add a string attribute with the given `name` set to `value` |
 
-For example :
+Example :
 
 ```scala
 val pcPlus4 = pc + 4
 pcPlus4.addAttribute("keep")
 ```
 
-Will generate the following declaration :
+Produced declaration in VHDL :
 
 ```vhdl
 attribute keep : boolean;
 signal pcPlus4 : unsigned(31 downto 0);
 attribute keep of pcPlus4: signal is true;
+```
+
+Produced declaration in Verilog :
+
+```verilog
+(* keep *) wire [31:0] pcPlus4;
 ```
