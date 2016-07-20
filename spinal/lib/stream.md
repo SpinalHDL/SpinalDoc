@@ -77,9 +77,24 @@ val sink   = Stream(RGB(8))
 sink <-< source.throwWhen(source.payload.isBlack)
 ```
 
-## Components
+## Utils
+
+There is many utils that you can use in your design in conjunction with the Stream bus, This chapter will document them.
 
 ### StreamFifo
+
+On each stream you can call the .queue(size) to get a buffered stream. But you can also instantiate the FIFO component itself :
+
+```scala
+val streamA,streamB = Stream(Bits(8 bits))
+//...
+val myFifo = StreamFifo(
+  dataType = Bits(8 bits),
+  depth    = 128
+)
+myFifo.io.push << streamA
+myFifo.io.pop  >> streamB
+```
 
 | parameter name | Type | Description|
 | ------- | ---- |  ---- |
@@ -94,6 +109,23 @@ sink <-< source.throwWhen(source.payload.isBlack)
 | occupancy | UInt of log2Up(depth + 1) bits | Indicate the internal memory occupancy |
 
 ### StreamFifoCC
+
+You can instanciate the dual clock domain version of the fifo by the following way :
+
+```scala
+val clockA = ClockDomain(???)
+val clockB = ClockDomain(???)
+val streamA,streamB = Stream(Bits(8 bits))
+//...
+val myFifo = StreamFifoCC(
+  dataType  = Bits(8 bits),
+  depth     = 128,
+  pushClock = clockA,
+  popClock  = clockB
+)
+myFifo.io.push << streamA
+myFifo.io.pop  >> streamB
+```
 
 | parameter name | Type | Description|
 | ------- | ---- |  ---- |
@@ -112,26 +144,98 @@ sink <-< source.throwWhen(source.payload.isBlack)
 ### StreamCCByToggle
 
 Component that provide a Stream cross clock domain bridge based on toggling signals.<br>
-This method is characterised by a small area usage but also a low bandwidth.
+This way of doing cross clock domain bridge is characterized by a small area usage but also a low bandwidth.
+
+```scala
+val clockA = ClockDomain(???)
+val clockB = ClockDomain(???)
+val streamA,streamB = Stream(Bits(8 bits))
+//...
+val bridge = StreamCCByToggle(
+  dataType    = Bits(8 bits),
+  inputClock  = clockA,
+  outputClock = clockB
+)
+bridge.io.input  << streamA
+bridge.io.output >> streamB
+```
 
 | parameter name | Type | Description|
 | ------- | ---- |  ---- |
 | dataType | T | Payload data type |
-| pushClock | ClockDomain | Clock domain used by the push side |
-| popClockn | ClockDomain |  Clock domain used by the pop side |
+| inputClock | ClockDomain | Clock domain used by the push side |
+| outputClock | ClockDomain |  Clock domain used by the pop side |
 
 | io name | Type | Description|
 | ------- | ---- |  ---- |
-| push | Stream[T] | Used to push elements |
-| pop | Stream[T] | Used to pop elements |
+| input | Stream[T] | Used to push elements |
+| output | Stream[T] | Used to pop elements |
 
-This component could be also instantiated via a Function :
+But you can also use a this shorter syntax which directly return you the cross clocked stream:
 
 ```scala
-val streamInClockA = Stream(Bits(4 bits))
-val streamInClockB = StreamCCByToggle(
-  push      = streamInClockA,
-  pushClock = clockA,
-  popClock  = clockB
+val clockA = ClockDomain(???)
+val clockB = ClockDomain(???)
+val streamA = Stream(Bits(8 bits))
+val streamB = StreamCCByToggle(
+  input       = streamA,
+  inputClock  = clockA,
+  outputClock = clockB
+)
+```
+
+### StreamArbiter
+
+When you have multiple Streams and you want to arbitrate them to drive a single one, you can use the StreamArbiterFactory.
+
+```scala
+val streamA, streamB, streamC = Stream(Bits(8 bits))
+val arbitredABC = StreamArbiterFactory.roundRobin.onArgs(streamA, streamB, streamC)
+
+val streamD, streamE, streamF = Stream(Bits(8 bits))
+val arbitredDEF = StreamArbiterFactory.lowerFirst.noLock.onArgs(streamD, streamE, streamF)
+```
+
+
+| Arbitration functions | Description|
+| ------- | ---- |
+| lowerFirst | Lower port have priority over higher port |
+| roundRobin | Fair round robin arbitration |
+| sequentialOrder | Could be used to retrieve transaction in a sequancial order <br> First transaction should come from port zero, then from port one, ... |
+
+| Lock functions  | Description|
+| ------- | ---- |
+| noLock | The port selection could change every cycle, even if the transaction on the selected port is not consumed. |
+| transactionLock | The port selection is locked until the transaction on the selected port is consumed. |
+| fragmentLock | Could be used to arbitrate Stream[Flow[T]].<br> In this mode, the port selection is locked until the selected port finish is burst (last=True). |
+
+| Generation functions | Return |
+| ------- | ---- |  ---- |
+| on(inputs : Seq[Stream[T]]) | Stream[T] |
+| onArgs(inputs : Stream[T]*) | Stream[T] |
+
+
+### StreamFork
+
+This utile take its input stream and duplicate it outputCount times.
+
+```scala
+val inputStream = Stream(Bits(8 bits))
+val dispatchedStreams = StreamDispatcherSequencial(
+  input = inputStream,
+  outputCount = 3
+)
+```
+
+
+### StreamDispatcherSequencial
+
+This utile take its input stream and route it to `outputCount` stream in a sequential order.
+
+```scala
+val inputStream = Stream(Bits(8 bits))
+val dispatchedStreams = StreamDispatcherSequencial(
+  input = inputStream,
+  outputCount = 3
 )
 ```
