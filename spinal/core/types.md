@@ -271,6 +271,10 @@ class MyComponent extends Component{
 If you want to define an interface, let's imagine an APB interface, you can also use bundles :
 
 ```scala
+//You need to import spinal.lib._ to use master slave concepts
+import spinal.core._
+import spinal.lib._
+
 class APB(addressWidth: Int,
           dataWidth: Int,
           selWidth : Int,
@@ -305,6 +309,10 @@ This could make the parametrization much easier later in your components, especi
 Also if one time you need to add another construction parameter, you will only have to add it into the configuration class and everywhere this one is instantiated:
 
 ```scala
+//You need to import spinal.lib._ to use master slave concepts
+import spinal.core._
+import spinal.lib._
+
 case class APBConfig(addressWidth: Int,
                      dataWidth: Int,
                      selWidth : Int,
