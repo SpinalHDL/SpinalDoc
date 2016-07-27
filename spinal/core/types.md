@@ -23,8 +23,6 @@ About the fixed point support it's documented [there](/SpinalDoc/spinal/core/uti
 ## Bool
 This is the standard *boolean* type that correspond to a bit.
 
-@TODO is there a any way / sense to assign values such as U or X, does it correspond in reality to std_logic ?
-
 ### Declaration
 
 The syntax to declare such as value is as follows:
@@ -70,11 +68,11 @@ The following operators are available for the `Bool` type
 
 | Syntax | Description| Return|
 | ------- | ---- | --- |
-| Bits/UInt/SInt [()] |  Create a BitVector, bit count is inferred| Bits/UInt/SInt |
-| Bits/UInt/SInt(x bit) |  Create a BitVector with x bit| Bits/UInt/SInt |
+| Bits/UInt/SInt [()] |  Create a BitVector, bits count is inferred| Bits/UInt/SInt |
+| Bits/UInt/SInt(x bits) |  Create a BitVector with x bits| Bits/UInt/SInt |
 | B/U/S(value : Int[,width : BitCount]) |  Create a BitVector assigned with 'value' | Bits/UInt/SInt |
 | B/U/S"[[size']base]value" |  Create a BitVector assigned with 'value' | Bits/UInt/SInt |
-| B/U/S([x bit], element, ...) |  Create a BitVector assigned with the value specified by elements (see bellow table) | Bits/UInt/SInt |
+| B/U/S([x bits], element, ...) |  Create a BitVector assigned with the value specified by elements (see bellow table) | Bits/UInt/SInt |
 
 Elements could be defined as follows:
 
@@ -85,7 +83,7 @@ Elements could be defined as follows:
 | x : Range -> y : T  |  Set bits in range x with y|
 | x : Range -> y : String  |  Set bits in range x with y <br> The string format follow same rules than B/U/S"xyz" one |
 | x : Range -> y : T  |  Set bits in range x with y|
-| default -> y : Boolean/Bool  |  Set all floating bits y|
+| default -> y : Boolean/Bool  |  Set all unconnected bits with the y value.<br> This feature could only be use to do assignements without the U/B/S prefix |
 
 You can define a Range values
 
@@ -96,8 +94,8 @@ You can define a Range values
 | (x until y)  |  [x:y[ x < y |  y-x |
 
 ```scala
-val myUInt = UInt(8 bit)
-myUInt := U(2,8 bit)
+val myUInt = UInt(8 bits)
+myUInt := U(2,8 bits)
 myUInt := U(2)
 myUInt := U"0000_0101"  // Base per default is binary => 5
 myUInt := U"h1A"        // Base could be x (base 16)
@@ -108,26 +106,30 @@ myUInt := U"h1A"        // Base could be x (base 16)
 myUInt := U"8'h1A"       
 myUInt := 2             // You can use scala Int as literal value
 
-myUInt := U(default -> true) // Assign myUInt with "11111111"
-myUInt := U(myUInt.range -> true) // Assign myUInt with "11111111"
-myUInt := U(7 -> true,default -> false) //Assign myUInt with "10000000"
-myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "00011110"
+val myBool := myUInt === U(7 -> true,(6 downto 0) -> false)
+val myBool := myUInt === U(myUInt.range -> true)
+
+//For assignement purposes, you can omit the B/U/S, which also alow the use of the [default -> ???] feature
+myUInt := (default -> true)                       //Assign myUInt with "11111111"
+myUInt := (myUInt.range -> true)                  //Assign myUInt with "11111111"
+myUInt := (7 -> true,default -> false)            //Assign myUInt with "10000000"
+myUInt := ((4 downto 1) -> true,default -> false) //Assign myUInt with "00011110"
 ```
 
 ### Operators
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
-| ~x |  Bitwise NOT | T(w(x) bit) |
-| x & y |  Bitwise AND | T(max(w(x), w(y) bit) |
-| x \| y |  Bitwise OR  | T(max(w(x), w(y) bit) |
-| x ^ y |  Bitwise XOR | T(max(w(x), w(y) bit) |
+| ~x |  Bitwise NOT | T(w(x) bits) |
+| x & y |  Bitwise AND | T(max(w(x), w(y) bits) |
+| x \| y |  Bitwise OR  | T(max(w(x), w(y) bits) |
+| x ^ y |  Bitwise XOR | T(max(w(x), w(y) bits) |
 | x(y) |  Readbit, y : Int/UInt | Bool |
-| x(hi,lo) |  Read bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
-| x(offset,width) |  Read bitfield, offset: UInt, width: Int | T(width bit) |
-| x(y) := z |  Assign bit, y : Int/UInt | Bool |
-| x(hi,lo) := z |  Assign bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
-| x(offset,width) := z |  Assign bitfield, offset: UInt, width: Int | T(width bit) |
+| x(hi,lo) |  Read bitfield, hi : Int, lo : Int | T(hi-lo+1 bits) |
+| x(offset,width) |  Read bitfield, offset: UInt, width: Int | T(width bits) |
+| x(y) := z |  Assign bits, y : Int/UInt | Bool |
+| x(hi,lo) := z |  Assign bitfield, hi : Int, lo : Int | T(hi-lo+1 bits) |
+| x(offset,width) := z |  Assign bitfield, offset: UInt, width: Int | T(width bits) |
 | x.msb |  Return the most significant bit  | Bool |
 | x.lsb |  Return the least significant bit  | Bool |
 | x.range |  Return the range (x.high downto 0) | Range |
@@ -137,7 +139,8 @@ myUInt := U((4 downto 1) -> true,default -> false) //Assign myUInt with "0001111
 | x.andR |  AND all bits of x | Bool |
 | x.clearAll[()] |  Clear all bits | T |
 | x.setAll[()] |  Set all bits | T |
-| x.setAllTo(value : Boolean) | Set all bits to value | T |
+| x.setAllTo(value : Boolean) | Set all bits to the given Boolean value | - |
+| x.setAllTo(value : Bool) | Set all bits to the given Bool value | - |
 | x.asBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
 
 
@@ -155,37 +158,37 @@ val itMatch = myBits === M"00--10--"
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
-| x >> y |  Logical shift right, y : Int | T(w(x) - y bit) |
-| x >> y |  Logical shift right, y : UInt | T(w(x) bit) |
-| x << y |  Logical shift left, y : Int | T(w(x) + y bit) |
-| x << y |  Logical shift left, y : UInt | T(w(x) + max(y) bit) |
+| x >> y |  Logical shift right, y : Int | T(w(x) - y bits) |
+| x >> y |  Logical shift right, y : UInt | T(w(x) bits) |
+| x << y |  Logical shift left, y : Int | T(w(x) + y bits) |
+| x << y |  Logical shift left, y : UInt | T(w(x) + max(y) bits) |
 | x.rotateLeft(y) |  Logical left rotation, y : UInt | T(w(x)) |
-| x.resize(y) |  Return a resized copy of x, filled with zero, y : Int  | T(y bit) |
+| x.resize(y) |  Return a resized copy of x, filled with zero, y : Int  | T(y bits) |
 
 ## UInt, SInt
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
-| x + y |  Addition | T(max(w(x), w(y) bit) |
-| x - y |  Subtraction  | T(max(w(x), w(y) bit) |
-| x * y |  Multiplication | T(w(x) + w(y) bit) |
+| x + y |  Addition | T(max(w(x), w(y) bits) |
+| x - y |  Subtraction  | T(max(w(x), w(y) bits) |
+| x * y |  Multiplication | T(w(x) + w(y) bits) |
 | x > y |  Greater than  | Bool  |
 | x >= y |  Greater than or equal | Bool  |
 | x > y |  Less than  | Bool |
 | x >= y |  Less than or equal | Bool  |
-| x >> y |  Arithmetic shift right, y : Int | T(w(x) - y bit) |
-| x >> y |  Arithmetic shift right, y : UInt | T(w(x) bit) |
-| x << y |  Arithmetic shift left, y : Int | T(w(x) + y bit) |
-| x << y |  Arithmetic shift left, y : UInt | T(w(x) + max(y) bit) |
-| x.resize(y) |  Return an arithmetic resized copy of x, y : Int  | T(y bit) |
+| x >> y |  Arithmetic shift right, y : Int | T(w(x) - y bits) |
+| x >> y |  Arithmetic shift right, y : UInt | T(w(x) bits) |
+| x << y |  Arithmetic shift left, y : Int | T(w(x) + y bits) |
+| x << y |  Arithmetic shift left, y : UInt | T(w(x) + max(y) bits) |
+| x.resize(y) |  Return an arithmetic resized copy of x, y : Int  | T(y bits) |
 
 ## Bool, Bits, UInt, SInt
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
-| x.asBits |  Binary cast in Bits | Bits(w(x) bit) |
-| x.asUInt |  Binary cast in UInt | UInt(w(x) bit) |
-| x.asSInt |  Binary cast in SInt | SInt(w(x) bit) |
+| x.asBits |  Binary cast in Bits | Bits(w(x) bits) |
+| x.asUInt |  Binary cast in UInt | UInt(w(x) bits) |
+| x.asSInt |  Binary cast in SInt | SInt(w(x) bits) |
 
 ## Vec
 
@@ -200,13 +203,13 @@ val itMatch = myBits === M"00--10--"
 | x(y) := z | Assign element y with z, y : Int/UInt | - |
 
 ```scala
-val myVecOfSInt = Vec(SInt(8 bit),2)
+val myVecOfSInt = Vec(SInt(8 bits),2)
 myVecOfSInt(0) := 2
 myVecOfSInt(1) := myVecOfSInt(0) + 3
 
-val myVecOfMixedUInt = Vec(UInt(3 bit), UInt(5 bit), UInt(8 bit))
+val myVecOfMixedUInt = Vec(UInt(3 bits), UInt(5 bits), UInt(8 bits))
 
-val x,y,z = UInt(8 bit)
+val x,y,z = UInt(8 bits)
 val myVecOf_xyz_ref = Vec(x,y,z)
 for(element <- myVecOf_xyz_ref){
   element := 0   //Assign x,y,z with the value 0
@@ -215,30 +218,121 @@ myVecOf_xyz_ref(1) := 3    //Assign y with the value 3
 ```
 
 ## Bundle
+Bundles could be used to model data structure line buses and interfaces.<br>
+All attributes that extends Data (Bool, Bits, UInt, ...) that are defined inside the bundle are considered as part of the bundle.
+
+The following example show an RGB bundle definition with some internal function.
 
 ```scala
 case class RGB(channelWidth : Int) extends Bundle{
-  val red   = UInt(channelWidth bit)
-  val green = UInt(channelWidth bit)
-  val blue  = UInt(channelWidth bit)
+  val red   = UInt(channelWidth bits)
+  val green = UInt(channelWidth bits)
+  val blue  = UInt(channelWidth bits)
 
   def isBlack : Bool = red === 0 && green === 0 && blue === 0
   def isWhite : Bool = {
-    val max = U((channelWidth-1 downto 0) -> True)
+    val max = U((channelWidth-1 downto 0) -> true)
     return red === max && green === max && blue === max
   }
 }
+```
 
+Then you can also incorporate a Bundle inside Bundle as deeply as you want:
+
+```scala
 case class VGA(channelWidth : Int) extends Bundle{
   val hsync = Bool
   val vsync = Bool
   val color = RGB(channelWidth)
 }
+```
 
+And finaly instanciate your Bundles inside the hardware :
+
+```scala
 val vgaIn  = VGA(8)         //Create a RGB instance
 val vgaOut = VGA(8)
 vgaOut := vgaIn            //Assign the whole bundle
 vgaOut.color.green := 0    //Fix the green to zero
+val vgaInRgbIsBlack = vgaIn.rgb.isBlack   //Get if the vgaIn rgb is black
+```
+
+If you want to specify your bundle as an input or an output of a Component, you have to do it by the following way :
+
+```scala
+class MyComponent extends Component{
+  val io = Bundle{
+    val cmd = in(RGB(8))    //Don't forget the bracket around the bundle.
+    val rsp = out(RGB(8))
+  }
+}
+```
+
+If you want to define an interface, let's imagine an APB interface, you can also use bundles :
+
+```scala
+class APB(addressWidth: Int,
+          dataWidth: Int,
+          selWidth : Int,
+          useSlaveError : Boolean) extends Bundle with IMasterSlave {
+
+  val PADDR      = UInt(addressWidth bit)
+  val PSEL       = Bits(selWidth bits)
+  val PENABLE    = Bool
+  val PREADY     = Bool
+  val PWRITE     = Bool
+  val PWDATA     = Bits(dataWidth bit)
+  val PRDATA     = Bits(dataWidth bit)
+  val PSLVERROR  = if(useSlaveError) Bool else null   //This wire is created only when useSlaveError is true
+
+  override def asMaster(): this.type = {
+    out(PADDR,PSEL,PENABLE,PWRITE,PWDATA)
+    in(PREADY,PRDATA)
+    if(useSlaveError) in(PSLVERROR)
+    this
+  }
+}
+// ...
+val io = new Bundle{
+  val bus = slave(APB(8,32,4,false))
+  // or
+  val bus = slave(APB(addressWidth = 8,dataWidth = 32,selWidth = 4,useSlaveError = false))
+}
+```
+
+One good practice is to group all construction parameters inside a configuration class.
+This could make the parametrization much easier later in your components, especially if you have to reuse the same configuration at multiple places.
+Also if one time you need to add another construction parameter, you will only have to add it into the configuration class and everywhere this one is instantiated:
+
+```scala
+case class APBConfig(addressWidth: Int,
+                     dataWidth: Int,
+                     selWidth : Int,
+                     useSlaveError : Boolean)
+
+class APB(val config: APBConfig) extends Bundle with IMasterSlave {
+  val PADDR      = UInt(config.addressWidth bit)
+  val PSEL       = Bits(config.selWidth bits)
+  val PENABLE    = Bool
+  val PREADY     = Bool
+  val PWRITE     = Bool
+  val PWDATA     = Bits(config.dataWidth bit)
+  val PRDATA     = Bits(config.dataWidth bit)
+  val PSLVERROR  = if(config.useSlaveError) Bool else null
+
+  override def asMaster(): this.type = {
+    out(PADDR,PSEL,PENABLE,PWRITE,PWDATA)
+    in(PREADY,PRDATA)
+    if(config.useSlaveError) in(PSLVERROR)
+    this
+  }
+}
+// ...
+val apbConfig = APBConfig(addressWidth = 8,dataWidth = 32,selWidth = 4,useSlaveError = false)
+// ...
+val io = new Bundle{
+  val bus = slave(apbConfig)
+}
 ```
 
 ## Enum
@@ -271,19 +365,20 @@ stateNext := sIdle
 ```
 
 ## Data (Bool, Bits, UInt, SInt, Enum, Bundle, Vec)
+All hardware types extends the Data class, which mean that all of them provide following operators :
 
 | Operator | Description | Return |
 | ------- | ---- | --- |
 | x === y  |  Equality | Bool |
 | x =/= y  |  Inequality | Bool |
 | x.getWidth  |  Return bitcount | Int |
-| x ## y |  Concatenate, x->high, y->low  | Bits(width(x) + width(y) bit)|
-| Cat(x) |  Concatenate list, first element on lsb, x : Array[Data]  | Bits(sumOfWidth bit)|
-| Mux(cond,x,y) |  if cond ? x : y  | T(max(w(x), w(y) bit)|
-| x.asBits  |  Cast in Bits | Bits(width(x) bit)|
+| x ## y |  Concatenate, x->high, y->low  | Bits(width(x) + width(y) bits)|
+| Cat(x) |  Concatenate list, first element on lsb, x : Array[Data]  | Bits(sumOfWidth bits)|
+| Mux(cond,x,y) |  if cond ? x : y  | T(max(w(x), w(y) bits)|
+| x.asBits  |  Cast in Bits | Bits(width(x) bits)|
 | x.assignFromBits(bits) |  Assign from Bits | - |
-| x.assignFromBits(bits,hi,lo) |  Assign bitfield, hi : Int, lo : Int | T(hi-lo+1 bit) |
-| x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int | T(width bit) |
+| x.assignFromBits(bits,hi,lo) |  Assign bitfield, hi : Int, lo : Int | T(hi-lo+1 bits) |
+| x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int | T(width bits) |
 | x.getZero |  Get equivalent type assigned with zero | T |
 
 
