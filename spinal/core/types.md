@@ -274,15 +274,118 @@ class MyComponent extends Component{
 If you want to define an interface, let's imagine an APB interface, you can also use bundles :
 
 ```scala
-//You need to import spinal.lib._ to use master slave concepts
-import spinal.core._
-import spinal.lib._
 
 class APB(addressWidth: Int,
           dataWidth: Int,
           selWidth : Int,
-          useSlaveError : Boolean) extends Bundle with IMasterSlave {
+          useSlaveError : Boolean) extends Bundle {
 
+  val PADDR      = UInt(addressWidth bit)
+  val PSEL       = Bits(selWidth bits)
+  val PENABLE    = Bool
+  val PREADY     = Bool
+  val PWRITE     = Bool
+  val PWDATA     = Bits(dataWidth bit)
+  val PRDATA     = Bits(dataWidth bit)
+  val PSLVERROR  = if(useSlaveError) Bool else null   //This wire is created only when useSlaveError is true
+}
+
+// Example of usage :
+val bus = APB(addressWidth = 8,
+              dataWidth = 32,
+              selWidth = 4,
+              useSlaveError = false)
+```
+
+
+One good practice is to group all construction parameters inside a configuration class.
+This could make the parametrization much easier later in your components, especially if you have to reuse the same configuration at multiple places.
+Also if one time you need to add another construction parameter, you will only have to add it into the configuration class and everywhere this one is instantiated:
+
+```scala
+case class APBConfig(addressWidth: Int,
+                     dataWidth: Int,
+                     selWidth : Int,
+                     useSlaveError : Boolean)
+
+class APB(val config: APBConfig) extends Bundle {   //[val] config, make the configuration public
+  val PADDR      = UInt(config.addressWidth bit)
+  val PSEL       = Bits(config.selWidth bits)
+  val PENABLE    = Bool
+  val PREADY     = Bool
+  val PWRITE     = Bool
+  val PWDATA     = Bits(config.dataWidth bit)
+  val PRDATA     = Bits(config.dataWidth bit)
+  val PSLVERROR  = if(config.useSlaveError) Bool else null
+}
+
+// Example of usage
+val apbConfig = APBConfig(addressWidth = 8,dataWidth = 32,selWidth = 4,useSlaveError = false)
+val busA = APB(apbConfig)
+val busB = APB(apbConfig)
+```
+
+Then at some points, you will probably need to use the APB bus as master or as slave interface of some components. To do that you can define some functions :
+
+```scala
+import spinal.core._
+
+case class APBConfig(addressWidth: Int,
+                     dataWidth: Int,
+                     selWidth : Int,
+                     useSlaveError : Boolean)
+
+class APB(val config: APBConfig) extends Bundle {
+  val PADDR      = UInt(config.addressWidth bit)
+  val PSEL       = Bits(config.selWidth bits)
+  val PENABLE    = Bool
+  val PREADY     = Bool
+  val PWRITE     = Bool
+  val PWDATA     = Bits(config.dataWidth bit)
+  val PRDATA     = Bits(config.dataWidth bit)
+  val PSLVERROR  = if(config.useSlaveError) Bool else null
+
+  def asMaster(): this.type = {
+    out(PADDR,PSEL,PENABLE,PWRITE,PWDATA)
+    in(PREADY,PRDATA)
+    if(config.useSlaveError) in(PSLVERROR)
+    this
+  }
+
+  def asSlave(): this.type = this.asMaster().flip() //Flip reverse all in out configuration.
+}
+
+// Example of usage
+val apbConfig = APBConfig(addressWidth = 8,dataWidth = 32,selWidth = 4,useSlaveError = false)
+val io = new Bundle{
+  val masterBus = APB(apbConfig).asMaster()
+  val slaveBus = APB(apbConfig).asSlave()
+}
+```
+
+Then to make that better, the spinal.lib integrate a small master slave utile named IMasterSlave. When a bundle extends IMasterSlave, it should implement/override the asMaster function. It give you the ability to setup a master or a slave interface by a smoother way :
+
+```scala
+val apbConfig = APBConfig(addressWidth = 8,dataWidth = 32,selWidth = 4,useSlaveError = false)
+val io = new Bundle{
+  val masterBus = master(apbConfig)
+  val slaveBus  = slave(apbConfig)
+}
+```
+
+There is an example of an APB bus that implement this IMasterSlave :
+
+```scala
+//You need to import spinal.lib._ to use IMasterSlave
+import spinal.core._
+import spinal.lib._
+
+case class APBConfig(addressWidth: Int,
+                     dataWidth: Int,
+                     selWidth : Int,
+                     useSlaveError : Boolean)
+
+class APB(val config: APBConfig) extends Bundle with IMasterSlave {
   val PADDR      = UInt(addressWidth bit)
   val PSEL       = Bits(selWidth bits)
   val PENABLE    = Bool
@@ -298,51 +401,7 @@ class APB(addressWidth: Int,
     if(useSlaveError) in(PSLVERROR)
     this
   }
-}
-// ...
-val io = new Bundle{
-  val bus = slave(APB(8,32,4,false))
-  // or
-  val bus = slave(APB(addressWidth = 8,dataWidth = 32,selWidth = 4,useSlaveError = false))
-}
-```
-
-One good practice is to group all construction parameters inside a configuration class.
-This could make the parametrization much easier later in your components, especially if you have to reuse the same configuration at multiple places.
-Also if one time you need to add another construction parameter, you will only have to add it into the configuration class and everywhere this one is instantiated:
-
-```scala
-//You need to import spinal.lib._ to use master slave concepts
-import spinal.core._
-import spinal.lib._
-
-case class APBConfig(addressWidth: Int,
-                     dataWidth: Int,
-                     selWidth : Int,
-                     useSlaveError : Boolean)
-
-class APB(val config: APBConfig) extends Bundle with IMasterSlave {
-  val PADDR      = UInt(config.addressWidth bit)
-  val PSEL       = Bits(config.selWidth bits)
-  val PENABLE    = Bool
-  val PREADY     = Bool
-  val PWRITE     = Bool
-  val PWDATA     = Bits(config.dataWidth bit)
-  val PRDATA     = Bits(config.dataWidth bit)
-  val PSLVERROR  = if(config.useSlaveError) Bool else null
-
-  override def asMaster(): this.type = {
-    out(PADDR,PSEL,PENABLE,PWRITE,PWDATA)
-    in(PREADY,PRDATA)
-    if(config.useSlaveError) in(PSLVERROR)
-    this
-  }
-}
-// ...
-val apbConfig = APBConfig(addressWidth = 8,dataWidth = 32,selWidth = 4,useSlaveError = false)
-// ...
-val io = new Bundle{
-  val bus = slave(apbConfig)
+  //The asSlave is by default the flipped version of asMaster.
 }
 ```
 

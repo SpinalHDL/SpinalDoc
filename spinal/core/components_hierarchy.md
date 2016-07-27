@@ -45,6 +45,7 @@ Syntax to define in/out is the following :
 | in/out Bool | Create an input/output Bool | Bool |
 | in/out Bits/UInt/SInt[(x bit)]| Create an input/output of the corresponding type | T |
 | in/out(T)| For all other data types, you should add the brackets around it.<br> Sorry this is a Scala limitation. | T |
+| master/slave(T)| This syntax is provided by the spinal.lib. T should extends IMasterSlave<br> Some documentation is available [here](/SpinalDoc/spinal/core/types/#interface-example-apb) | T |
 
 There is some rules about component interconnection :
 
