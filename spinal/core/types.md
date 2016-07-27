@@ -221,6 +221,7 @@ myVecOf_xyz_ref(1) := 3    //Assign y with the value 3
 Bundles could be used to model data structure line buses and interfaces.<br>
 All attributes that extends Data (Bool, Bits, UInt, ...) that are defined inside the bundle are considered as part of the bundle.
 
+### Simple example (RGB/VGA)
 The following example show an RGB bundle definition with some internal function.
 
 ```scala
@@ -267,6 +268,8 @@ class MyComponent extends Component{
   }
 }
 ```
+
+### Interface example (APB)
 
 If you want to define an interface, let's imagine an APB interface, you can also use bundles :
 
