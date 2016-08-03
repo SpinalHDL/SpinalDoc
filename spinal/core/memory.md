@@ -11,10 +11,14 @@ permalink: /spinal/core/memory/
 ## Introduction
 To specify memory of your RTL you can use the Mem tool of Spinal. It allow you to define a memory, and than add ports on it.
 
+The following table show how to instantiate a memory :
+
 | Syntax | Description|
 | ------- | ---- |
 | Mem(type : Data,size : Int) |  Create a RAM |
 | Mem(type : Data,initialContent : Array[Data]) |  Create a ROM    |
+
+The following table show how to add access ports on a memory :
 
 | Syntax | Description| Return |
 | ------- | ---- | --- |
