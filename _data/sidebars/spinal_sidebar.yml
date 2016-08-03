@@ -3,7 +3,7 @@
 entries:
 - title: Sidebar
   product: Spinal doc
-  version: 0.21
+  version: v0.9.3
   folders:
   - title: Spinal
     output: web
