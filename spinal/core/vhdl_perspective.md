@@ -158,7 +158,7 @@ val myCombinatorial = Bool
 val myRegister = UInt(8 bits)
 
 myCombinatorial := False
-when(cond
+when(cond)
   myCombinatorial := True
   myRegister = myRegister + 1
 }
