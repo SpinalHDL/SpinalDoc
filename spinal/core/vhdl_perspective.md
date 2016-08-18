@@ -17,8 +17,8 @@ There is an example of a component which has 3 inputs (a,b,c) and an output (res
 ```scala
 case class MyComponent(offset : Int) extends Component{
   val io = new Bundle{
-    val a,b,c  = UInt(8 bits)
-    val result = UInt(8 bits)
+    val a,b,c  = in UInt(8 bits)
+    val result = out UInt(8 bits)
   }
   io.result := a + b + c + offset
 }
@@ -134,7 +134,7 @@ myUInt := "xEE"
 myUInt := 42
 myUInt := U(54,8 bits)
 myUInt := ((3 downto 0) -> myBool,default -> true)
-when(myUInt === (myUInt.range -> true)){
+when(myUInt === U(myUInt.range -> true)){
   myUInt(3) := False
 }
 ```
