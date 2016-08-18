@@ -33,3 +33,7 @@ In following pages the following grammar is used to express the syntax of Spinal
 |--------|--------------|
 | [...] | optional |
 | * | repetition |
+
+## Misc
+
+[There](/SpinalDoc/spinal/core/vhdl_perspective/) is a small VHDL developper guide
