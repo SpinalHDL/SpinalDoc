@@ -103,7 +103,7 @@ val counter = Reg(UInt(8 bits))
 
 when(clear){
   counter := 0
-}.elsewhen(counter == 76){
+}.elsewhen(counter === 76){
   counter := 79
 }.otherwise{
   counter(7) := ! counter(7)
