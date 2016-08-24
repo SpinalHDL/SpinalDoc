@@ -102,7 +102,7 @@
                                     </tr>
                                     <tr class="code borderBottom" >   
                                         <td>x &lt;&gt; y</td>
-                                        <td>uartCtrl.io.uart <> io.uart <cComment>//Automatic connection </cComment></td>
+                                        <td>uartCtrl.io.uart &lt;&gt; io.uart <cComment>//Automatic connection </cComment></td>
                                     </tr>
                                     <tr class="code borderBottom" >   
                                         <td>x \= y</td>
@@ -766,7 +766,7 @@
                                     </tr> 
                                     <tr class="code borderBottom">
                                         <td>
-                                            <cComment>// Function to multiply a UInt by a scala Float value. </cComment> <br>
+                                            <cComment>// Function to multiply an UInt by a scala Float value. </cComment> <br>
                                             <cScala>def</cScala>  coef(value : UInt,by : <cScala>Float</cScala> ) : UInt = (value * U((255*by).toInt,8 bits) >> 8)   
                                         </td>
                                     </tr>
