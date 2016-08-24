@@ -1,0 +1,102 @@
+
+table{
+	border-spacing:0mm; 
+}
+
+.tableSectionCore{
+  margin-top:0mm;
+}
+
+#core_Basictype, #core_literals, #core_range, #core_assignement, #core_register,
+#core_conditional, #core_Assertion, #core_operator, #core_ClockDomain, #core_Bundle,
+#core_FixPoint, #core_HDLGeneration, #core_RAM,  #core_Unit, #core_Function,
+#core_utils, #core_Template {
+  width:97%; 
+}
+
+
+.borderRight > td {
+  border-right: 1px solid #D3D3D3;
+  text-align: center;
+}
+
+
+#core_area{
+  float: right;
+}
+
+.titleSectionCore{
+  font: 2.5mm "DaunPenh";
+  font-weight: bold;
+  text-align:right;
+  line-height: 2mm;   
+}
+
+.titleSectionCore > td{
+  border-bottom: 0.4mm solid #FFA500;
+}
+
+
+.code{
+   font: 1.9mm "DaunPenh";
+   line-height: 2.3mm;     
+   margin: 0;
+}
+
+.code > td{
+  padding-top: 0.5mm;
+}
+
+
+
+.borderBottom > td{
+  border-bottom: 1px solid #D3D3D3;
+}
+
+.borderRight{
+  border-right: 1px solid #D3D3D3;
+}
+
+.core_operator_ok{
+  font-size: 5pt;
+  text-align: center;
+}
+
+
+
+tab1{  
+  padding-left: 2mm;
+}
+tab2{
+  padding-left: 4mm;
+}
+tab3{
+  padding-left: 6mm;
+}
+
+
+cScala{
+  color:red;
+}
+
+cComment{
+	color:green;
+}
+
+#version{
+  display: inline;
+  font: 2mm "DaunPenh";
+}
+
+.columnLayout{
+  //border: 1px solid black; 
+  vertical-align:top;
+  padding-left:2mm;
+}
+
+.tableLayout{
+  width:100%; 
+  /*border:1px  solid black;  */
+  height: 100%; 
+  margin:0 auto;
+} 
