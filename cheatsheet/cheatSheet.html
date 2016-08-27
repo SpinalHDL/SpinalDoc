@@ -1,0 +1,1342 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="sheet.css" />
+        <link rel="stylesheet" href="table.css" />
+        <title>CheatSheet Spinal</title>
+    </head>
+
+
+
+    <body>
+
+        <div class="book">
+
+            <!-- Core CheatSheet -->
+            <div class="page">
+                <div class="subpage">
+                  
+                    <table class="tableLayout">
+                        <tr style="background-image:linear-gradient( #FFA500, white); height:10mm;">
+                            <td colspan="3" class="headerTitle">Spinal CheatSheet - Core</td>
+                            <td style="text-align:right; padding-right:3mm;">
+                                <p id="version">v0.1</p>
+                                <img src="spinalLogo.png" alt="Basic Types" style="width:7mm;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="columnLayout" style="width: 70mm;">
+
+                                <!-- Type -->
+                                <table id="core_Basictype" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Basic Types</td>
+                                    </tr>
+                                    <tr class="code borderBottom" >   
+                                        
+                                        <td rowspan="4" style="border:none;"> 
+                                            <img src="types.svg" alt="Basic Types" style="width:20mm;">
+                                        </td>  
+                                        <td>Bool</td>           
+                                    </tr>
+                                    <tr class="code borderBottom" >     
+                                        <td>Bits/UInt/SInt([x bits])</td>
+                           
+                                    </tr>
+                                    <tr class="code borderBottom" >   
+                                        <td>Vec(dataType:Data, size:<cScala>Int</cScala>)</td>
+                         
+                                    </tr>
+                                    <tr class="code">  
+                                          <td>
+                                            <cScala>object</cScala> myEnum <cScala>extends</cScala> SpinalEnum([encoding]){ <br>
+                                                <tab1><cScala>val</cScala> IDLE, STATE1 = newElement() </tab1><br>
+                                            }
+                                          </td>     
+                                    </tr>
+                                    <tr class="code">
+                                        <td colspan="2">Encoding Type for Enum are <cComment> native, binarySequencial, binaryOneHot </cComment> </td>
+                                    </tr>
+
+                                </table> <!-- End Table Type -->
+
+                                <!-- Literals -->
+                                <table id="core_literals" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Literal</td>
+                                    </tr>
+                                    <tr class="code borderBottom" >   
+                                        <td>Bool(boolean)</td>
+                                        <td> <cScala>val</cScala> myBool = Bool(4 &lt; 2 )</td>             
+                                    </tr>
+                                    <tr class="code borderBottom" >   
+                                        <td>True, False</td>
+                                        <td><cScala>val</cScala> myBool = True</td>
+                                    </tr>
+                                    <tr class="code borderBottom" >   
+                                        <td>B/U/S(value:Int[,x bits])</td>
+                                        <td><cScala>val</cScala> myUInt = U(13, 32 bits)</td>
+                                    </tr>   
+                                    <tr class="code borderBottom" >    
+                                        <td>B/U/S”[[size’]base]value”</td>
+                                        <td><cScala>val</cScala> myBits = B"8'hA3" <cComment> // h,d,b,x,o </cComment> </td>
+                                    </tr>
+                                    <tr class="code borderBottom" >    
+                                        <td>B/U/S”binaryNumber”</td>
+                                        <td><cScala>val</cScala> myBits = B"0110"</td>
+                                    </tr>
+                                    <tr class="code">  
+                                        <td>M”binaryNumber”</td>
+                                        <td> <cScala>val</cScala>  itMatch = myBits === M"00--10--"</td>
+                                    </tr>           
+                                </table> <!-- End Table Literals -->
+
+                                <!-- Assignement -->
+                                <table id="core_assignement" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Assignments</td>
+                                    </tr>
+                                    <tr   class="code borderBottom" >    
+                                        <td>x := y</td>
+                                        <td>VHDL, Verilog &lt;=</td>             
+                                    </tr>
+                                    <tr class="code borderBottom" >   
+                                        <td>x &lt;&gt; y</td>
+                                        <td>uartCtrl.io.uart &lt;&gt; io.uart <cComment>//Automatic connection </cComment></td>
+                                    </tr>
+                                    <tr class="code borderBottom" >   
+                                        <td>x \= y</td>
+                                        <td>VHDL :=, Verilog =</td>
+                                    </tr>   
+                                    <tr class="code ">  
+                                        <td>x.assignFromBits(Bits)</td>
+                                        <td>Can be used to assign enum to Bits</td>
+                                    </tr>          
+                                    <tr class="code">
+                                        <td colspan="2">
+                                            x.assignFromBits(Bits,hi:<cScala>Int</cScala>,lo:<cScala>Int</cScala>), x.assignFrom(Bits, offset:<cScala>Int</cScala>, bitCount:BitCount)
+                                        </td>                                                                                   
+                                    </tr> 
+                                </table>  <!-- End Table Assignment -->
+
+
+                                <!-- Range -->
+                                <table id="core_range" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Range</td>
+                                    </tr>
+                                    <tr   class="code borderBottom" >   
+                                        <td class="borderRight">myBits(7 downto 0) <cComment>//8 bits</cComment></td>
+                                        <td>myBits(0 to 5) <cComment>//6 bits</cComment></td>             
+                                    </tr>
+                                    <tr   class="code borderBottom" >   
+                                        <td class="borderRight">myBits(0 until 5) <cComment>//5 bits</cComment></td>
+                                        <td>myBits(5) <cComment>//bit 5</cComment></td>
+                                    </tr>
+                                    <tr   class="code borderBottom" >   
+                                        <td class="borderRight">myUInt := (default -&gt; true)</td>
+                                        <td>myUInt := (myUInt.range -&gt; true)</td>
+                                    </tr>   
+                                    <tr class="code borderBottom" >    
+                                        <td class="borderRight">myUInt := (3 -&gt; true, default -&gt; false)</td>
+                                        <td >myUInt := ((3 downto 1) -&gt; true, default -&gt; false)</td>
+                                    </tr>                                       
+                                    <tr class="code ">  
+                                        <td colspan="2">val myBool = myUInt === U(default -&gt; true)</td>
+                                        
+                                    </tr>
+                                </table> <!-- End Table Range -->
+
+                                <!-- Register -->
+                                <table id="core_register" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Register</td>
+                                    </tr>
+                                    <tr   class="code borderBottom" >   
+                                        <td class="borderRight"><cScala>val</cScala> r = Reg(DataType)</td>
+                                        <td><cScala>val</cScala> r = RegInit(U"010")</td>             
+                                    </tr>
+                                    <tr   class="code borderBottom" >   
+                                        <td class="borderRight"><cScala>val</cScala> r = RegNext(signal)</td>
+                                        <td><cScala>val</cScala> r = RegNextWhen(signal,cond)</td>
+                                    </tr>               
+                                    <tr class="code " >  
+                                        <td colspan="2"><strong>Function :</strong> .set(), .clear(), .setWhen(cond), .clearWhen(cond), .init(value), .randBoot()</td>                   
+                                    </tr>
+                                </table> <!-- End Table Register -->
+
+                                <!-- Conditional -->
+                                <table id="core_conditional" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Conditional</td>
+                                    </tr>
+                                    <tr   class="code  borderBottom" >   
+                                        <td style="width:50%; vertical-align:top;" class="borderRight">
+                                            when(cond1){ <br>
+                                                <tab1> <cComment>//when cond1 is true</cComment> </tab1> <br>
+                                            }.elsewhen(cond2){ <br>
+                                                <tab1> <cComment>//when (not cond1) and cond2 </cComment> </tab1> <br>
+                                            }.otherwise{ <br>
+                                                <tab1> <cComment>//when (not cond1) and (not cond2)</cComment> </tab1> <br>
+                                            }
+                                        </td>
+                                        <td>
+                                            switch(x){ <br>
+                                              <tab1>is(value1){ </tab1><br>
+                                                <tab2><cComment>//when x === value1 </cComment></tab2><br>
+                                              <tab1>} </tab1><br>
+                                              <tab1>is(value2){ </tab1><br>
+                                                <tab2><cComment>// when x === value2 </cComment></tab2><br>
+                                              <tab1>} </tab1> <br>
+                                              <tab1>default{  </tab1><br>
+                                                <tab2><cComment>//default code</cComment></tab2> <br>
+                                              <tab1>} <br>
+                                            }
+                                        </td>
+                            
+                                    </tr>
+
+                                    <tr class="code  borderBottom" >   
+                                        <td class="borderRight"><cScala>val</cScala> res = cond ? whenTrue | whenFalse</td>
+                                        <td><cScala>val</cScala> res  = Mux(cond,whenTrue,whenFalse)</td>
+                                    </tr>     
+                                    <tr  class="code ">   
+                                        <td style="widht:50%;" class="borderRight">
+                                            <cScala>val</cScala> bitwiseResult = myBits.mux( <br>
+                                                 <tab2>0 -&gt; (io.src0  &amp; io.src1),  </tab2><br>
+                                                 <tab2>1 -&gt; (io.src0 | io.src1),  </tab2><br>
+                                                 <tab2>default -> (io.src0)       </tab2>
+                                            )
+                                        </td>
+                                        <td>
+                                            myBits := Select(   <br>
+                                              <tab2>cond1 -&gt; value1,  </tab2> <br>
+                                              <tab2>cond2 -&gt; value2,  </tab2> <br>
+                                              <tab2>default -&gt; value3)</tab2>
+                                        </td> 
+                                    </tr>                   
+                                </table>  <!-- End Table Conditional -->       
+
+                                <!-- Assertion -->
+                                <table id="core_Assertion" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td>Assertion</td>
+                                    </tr>               
+                                    <tr class="code ">  
+                                        <td>
+                                            assert( <br>
+                                                <tab1>assertion = cond1, </tab1><br>
+                                                <tab1>message   = "My message",</tab1><br>
+                                                <tab1>severity  = ERROR <cComment>// WARNING, NOTE, FAILURE</cComment></tab1><br>
+                                            )                                           
+                                        </td>                   
+                                    </tr>
+                                </table> <!-- End Table Assertion -->    
+
+                                <!-- Unit -->
+                                <table id="core_Unit" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Units</td>
+                                    </tr>               
+                                    <tr  class="code borderBottom" > 
+                                        <td>Hz, kHz, MHz, GHz, THz </td>                    
+                                        <td><cScala>val</cScala> freq:BigDecimal = 1 kHz </td>                  
+                                    </tr>
+                                    <tr  class="code borderBottom" > 
+                                        <td>fs, ps, ns, us, ms, s, mn, hr </td>                 
+                                        <td><cScala>val</cScala> time:BigDecimal = 2 ms </td>                   
+                                    </tr>
+                                    <tr  class="code borderBottom" > 
+                                        <td>Bytes, kB, MB, GB, TB </td>                 
+                                        <td><cScala>val</cScala> size:BigInt = 4MB </td>                    
+                                    </tr>
+                                    <tr class="code borderBottom"> 
+                                        <td>Bits, Bit</td>                  
+                                        <td><cScala>val</cScala> myBits:BitCount = 3 bits</td>                 
+                                    </tr>   
+                                    <tr class="code borderBottom"> 
+                                        <td>exp</td>                  
+                                        <td><cScala>val</cScala> myExp:ExpNumber = 5 exp</td>                 
+                                    </tr>  
+                                    <tr class="code"> 
+                                        <td>pos</td>                  
+                                        <td><cScala>val</cScala> myPos:PosCount = 2 pos</td>                 
+                                    </tr>  
+                                </table>  <!-- End Table Units -->  
+                                                
+                            </td> <!-- end Column 1 -->
+
+
+                            <td class="columnLayout" style="width: 70mm;"> 
+                                <!-- Operator -->
+                                <table id="core_operator" class="tableSectionCore">
+                                    
+                                    <tr class="titleSectionCore">
+                                        <td colspan="11">Operator</td>
+                                    </tr>
+                                    <tr  class="code  borderBottom borderRight">  
+                                        <td></td>
+                                        <td>!x</td>
+                                        <td>    
+                                            x + y <br>
+                                            x - y <br>
+                                            x * x
+                                        </td>
+                                        <td>
+                                            x &lt; y <br>
+                                            x &gt; y <br>
+                                            x &lt;= y <br>
+                                            x &gt;= y 
+                                        </td>
+                                        <td>
+                                            x =\= y <br>
+                                            x === y
+                                        </td>
+                                        <td>
+                                            x &gt;&gt; y <br>
+                                            x &lt;&lt; y
+                                        </td>
+                                        <td>    
+                                            x ^ y <br>
+                                            x | y <br>
+                                            x &amp; y <br>
+                                        </td>
+                                        <td> ~x </td>
+                                        <td>
+                                            x &amp;&amp; y <br>
+                                            x || y
+                                        </td>
+                                        <td>
+                                            x ## y
+                                        </td>
+                                        <td>
+                                            x @@ y
+                                        </td>
+                                    </tr>
+                                    <tr  class="code borderBottom borderRight"> 
+                                        <td> Bool </td>
+                                        <td class="core_operator_ok">&#x2714</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="core_operator_ok">&#x2714</td>
+                                        <td></td>
+                                        <td class="core_operator_ok">&#x2714</td>
+                                        <td></td>
+                                        <td class="core_operator_ok">&#x2714</td>
+                                        <td class="core_operator_ok">&#x2714</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr  class="code borderBottom borderRight">   
+                                        <td> SInt/UInt </td>
+                                        <td></td>
+                                        <td class="core_operator_ok">&#x2714</td>                               
+                                        <td class="core_operator_ok">&#x2714</td>                   
+                                        <td class="core_operator_ok">&#x2714</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="core_operator_ok">&#x2714</td>                   
+                                    </tr>
+                                    <tr  class="code borderBottom borderRight">  
+                                        <td> Bits </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="core_operator_ok">&#x2714</td>                               
+                                        <td class="core_operator_ok">&#x2714</td>                   
+                                        <td class="core_operator_ok">&#x2714</td>
+                                        <td class="core_operator_ok">&#x2714</td>
+                                        <td></td>
+                                        <td class="core_operator_ok">&#x2714</td>                   
+                                        <td></td>
+                                    </tr>  
+                                    <tr   class="code borderBottom">
+                                        <td colspan="2">Bits <br> SInt <br> UInt</td>
+                                        <td colspan="9">
+                                            .resize(y:Int), .resized, .range, .high, x(hi,lo), x(offset,width), x(index) <br>
+                                            .xorR, .orR, .andR, .clearAll, .setAll, .setAllTo(Boolean), setAllTo(Bool), <br>
+                                            .msb, .lsb
+                                        </td>
+                                    </tr>       
+                                    <tr   class="code borderBottom">
+                                        <td colspan="2">Bool:</td>
+                                        <td colspan="9">
+                                            .set, .clear, .rise[(init)], .fall[(init)], .setWhen(cond), .clearWhen(cond)
+                                        </td>
+                                    </tr> 
+                                    <tr class="code">
+                                        <td colspan="2">Bits:</td>
+                                        <td colspan="9">.rotateLeft(y:UInt)</td>
+                                    </tr>          
+                                </table> <!-- End Table Operator -->
+
+
+                                <!-- In/Out -->
+                                <table id="core_InOut" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td >in/out, master/slave</td>
+                                    </tr>               
+                                    <tr class="code borderBottom">
+                                        <td>
+                                            in/out Bool, in/out Bits/UInt/SInt[(x bits)], in/out(T) <cComment> // Create input/output </cComment> <br>
+                                        </td>                                        
+                                    </tr>
+                                    <tr class="code">
+                                        <td>                                            
+                                            master/slave Stream/Flow[T], master/slave(T) <cComment> // Provide by the spinal.lib </cComment>
+                                        </td>                                        
+                                    </tr>                                    
+                                </table> <!-- End Table  In/Out  -->
+                        
+
+                                <!-- Bundle -->
+                                <table id="core_Bundle" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Bundle</td>
+                                    </tr>               
+                                    <tr  class="code borderBottom">    
+                                        <td class="borderRight" style="vertical-align:top;">
+                                            <cScala>case class</cScala> RGB(width:<cScala>Int</cScala>) <cScala>extends</cScala> Bundle{ <br>
+                                                <tab1><cScala>val</cScala> red, green, blue = UInt(width bits) </tab1><br> 
+                                                <tab1><cScala>def</cScala> isBlack = red === 0 &amp; green === 0 &amp; blue === 0 </tab1><br>
+                                            }
+                                        </td>     
+                                        <td style="vertical-align:top;">
+                                            <cScala>val</cScala> io = new Bundle{ <br>
+                                                <tab1><cScala>val</cScala> a = in Bits(32 bits) </tab1><br>
+                                                <tab1><cScala>val</cScala> b = in(MyType) </tab1><br>
+                                                <tab1><cScala>val</cScala> c = out UInt(32 bits) </tab1><br>
+                                            }
+                                        </td>              
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td colspan="2">
+                                            <cScala>class</cScala> Bus(val config: BusConfig) <cScala>extends</cScala> Bundle { <br>
+                                              <tab1><cScala>val</cScala> addr     = UInt(config.addrWidth bits)  </tab1><br>
+                                              <tab1><cScala>val</cScala> dataWr, dataRd = Bits(config.dataWidth bits) </tab1><br>
+                                              <tab1><cScala>val</cScala> cs,rw    = Bool </tab1><br>                                              
+                                              <tab1><cScala>def</cScala> asMaster(): this.type = {  </tab1><br>
+                                                 <tab2>out(addr, dataWr, cs, rw) </tab2><br>
+                                                 <tab2>in(dataRd) </tab2><br>                                                
+                                              <tab1>}</tab1> <br>
+                                              <tab1><cScala>def</cScala> asSlave(): this.type = this.asMaster().flip() <cComment>//Flip reverse all in out</cComment></tab1><br>
+                                            } <br>
+                                            <cScala>val</cScala> io = <cScala>new</cScala> Bundle{ <br>
+                                                <tab1><cScala>val</cScala> masterBus = Bus(BusConfig).asMaster() </tab1></br>
+                                                <tab1><cScala>val</cScala> slaveBus = Bus(BusConfig).asSlave() </tab1></br>
+                                            } <br>
+                                            <cComment>!! Thanks to the Lib this code can be written different (cf master/slave interface on Lib Sheet) !! </cComment>
+                                        </td>
+                                    </tr>
+                                    <tr class="code">
+                                        <td colspan="2">
+                                            in/out Bool, in/out Bits/UInt/SInt[(x bits)], in/out(T) <cComment> // Create input/output </cComment> <br>
+                                            master/slave Stream/Flow[T], master/slave(T) <cComment> // Provide by the spinal.lib </cComment>
+
+                                        </td>                                        
+                                    </tr>
+                                </table> <!-- End Table Bundle -->
+
+                                <!-- Area -->
+                                <table id="core_area"  style="width:40%" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td>Area</td>
+                                    </tr>               
+                                    <tr class="code ">  
+                                        <td>
+                                            <cScala>val</cScala> myCounter = <cScala>new</cScala> Area{ <br>
+                                                <tab1><cScala>val</cScala> tick = Bool </tab1><br>
+                                                <tab2>... </tab2><br>
+                                            <tab1>} </tab1><br>
+                                            io.output := myCounter.tick                                                 
+                                        </td>                   
+                                    </tr>
+                                </table> <!-- End Table Area -->   
+                                
+
+                                <!-- Component -->
+                                <table id="core_Component" style="width:59%"; class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td>Component</td>
+                                    </tr>               
+                                    <tr class="code ">  
+                                        <td>
+                                            <cScala>class</cScala> AndGate(width : <cScala>Int</cScala>) <cScala>extend</cScala> Component{ <br>
+                                                <tab1><cScala>val</cScala> io = <cScala>new</cScala> Bundle{ </tab1><br>
+                                                    <tab2>  <cScala>val</cScala> value = out Bits(width bits) </tab2> <br>
+                                                    <tab2>  <cScala>val</cScala> in1,in2 = in Bits(width bits) </tab2> <br>
+                                                <tab1>} </tab1> <br>
+                                                <tab1> io.value := io.in1 &amp; io.in2</tab1> <br>
+                                            }                                               
+                                        </td>                   
+                                    </tr>
+                                </table> <!-- End Table Component -->    
+
+
+                                <!-- Clock domain -->
+                                <table id="core_ClockDomain" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">ClockDomain</td>
+                                    </tr>
+                                    <tr   class="code borderBottom" >  
+                                        <td><b>Configuration</b></td>
+                                        <td>
+                                            <cScala>val</cScala> myConfig = ClockDomainConfig( <br>
+                                                <tab1>clockEdge   = RISING, <cComment>// FALLING     </cComment></tab1><br>
+                                                <tab1>resetKind    = ASYNC,  <cComment>// SYNC, BOOT </cComment></tab1><br>
+                                                <tab1>resetActiveLevel = LOW,   <cComment>// HIGH    </cComment></tab1><br>
+                                                <tab1>softResetActiveLevel = LOW, <cComment>// HIGH  </cComment></tab1><br>
+                                                <tab1>clockEnableActiveLevel = LOW <cComment>// HIGH </cComment></tab1><br>
+                                          )
+                                        </td>
+                                    </tr>
+                                    <tr   class="code borderBottom" >  
+                                        <td><b>Clock Domain</b></td>
+                                        <td> <cScala>val</cScala> myCD = ClockDomain(ioClock,ioReset, myConfig)</td>
+                                    </tr>
+                                    <tr   class="code borderBottom" >  
+                                        <td><b>Area</b></td>
+                                        <td>
+                                            <cScala>val</cScala> coreArea = new ClockingArea(myCD){ <br>
+                                                <tab1><cScala>val</cScala> myReg = Reg(UInt(32 bits)) <cComment>//Reg clocked with ioClock </cComment> </tab1> <br>
+                                                <tab1>...</tab1> <br>
+                                            }
+                                        </td>
+                                    </tr>   
+                                    <tr   class="code borderBottom" >   
+                                        <td><b>External Clock</b></td>
+                                        <td><cScala>val</cScala> myCD = ClockDomain.external("myClockName")</td>
+                                    </tr>        
+                                    <tr class="code "> 
+                                        <td colspan="2">ClockDomain.current.frequency.getValue<cComment>//Return frequency of the clock domain</cComment> </td>
+                                    </tr>   
+
+                                </table> <!-- End Table Clock Domain -->    
+
+                                <!-- Fixed point -->
+                                <table id="core_FixPoint" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Fixed Point</td>
+                                    </tr>               
+                                    <tr  class="code borderBottom" >  
+                                        <td>UFix/SFix(peak, resolution)</td>                    
+                                        <td><cScala>val</cScala> q1= SFix(8 exp, -2 exp) </td>                   
+                                    </tr>
+                                    <tr  class="code borderBottom" >  
+                                        <td>UFix/SFix(peak, width)</td>                 
+                                        <td><cScala>val</cScala> q0 = SFix(8 exp,11 bits)</td>                   
+                                    </tr>
+                                    <tr  class="code borderBottom" >  
+                                        <td><b>Operator : </b></td>                 
+                                        <td></td>                   
+                                    </tr>
+                                    <tr  class="code borderBottom" >  
+                                        <td>sub, add, multiplication</td>                   
+                                        <td>x+y, x-y, x*y</td>                  
+                                    </tr>
+                                    <tr  class="code borderBottom" >  
+                                        <td>shift</td>                  
+                                        <td>x&lt;&lt;y, x&gt;&gt;y, x&gt;|y, x&lt;|y</td>                   
+                                    </tr>
+                                    <tr class="code borderBottom" >  
+                                        <td>Comparaison</td>                    
+                                        <td>x&gt;y, x&lt;y, x&gt;=y, x&lt;=y</td>                   
+                                    </tr>
+                                    <tr class="code borderBottom"> 
+                                        <td colspan="2"><b>Cast : </b> myUFix.toUInt, mySFix.toSInt, myUInt.toUFix, mySInt.toSFix </td>                                                     
+                                    </tr>   
+                                    <tr class="code "> 
+                                        <td colspan="2"><b>Function : </b> .maxValue, .minValue, .resolution </td>                                                     
+                                    </tr>   
+
+                                </table> <!-- End Table Fixe point -->
+
+
+
+                            </td> <!-- end Column 2 -->
+
+                            <td class="columnLayout" style="width: 80mm;"> 
+
+                                <table style="width:97%; padding:0mm; margin:0px;">
+                                    <tr>    
+                                        <td rowspan="2" style="width:60%;">
+                                            <!-- BlackBox -->
+                                            <table id="core_BlackBox" class="tableSectionCore">
+                                                <tr class="titleSectionCore">
+                                                    <td>BlackBox</td>
+                                                </tr>               
+                                                <tr  class="code">   
+                                                    <td>
+                                                    <cScala>class</cScala> CurstomRam(_wordWidth: <cScala>Int</cScala>) <cScala>extends</cScala> BlackBox { <br>
+
+                                                        <tab1><cScala>val</cScala> generic = <cScala>new</cScala> Generic { </tab1><br>
+                                                            <tab2><cScala>val</cScala> wordWidth = _wordWidth </tab2><br>
+                                                        <tab1>}</tab1><br>
+
+                                                        <tab1><cScala>val</cScala> io = <cScala>new</cScala> Bundle {</tab1><br>
+                                                            <tab2><cScala>val</cScala> clk = in Bool</tab2><br>
+                                                            <tab2><cScala>val</cScala> wr = <cScala>new</cScala> Bundle {</tab2><br>
+                                                                <tab3><cScala>val</cScala> en   = in Bool</tab3><br>
+                                                                <tab3>... </tab3><br>
+                                                            <tab2>}</tab2><br>
+                                                        <tab1>}</tab1><br>
+
+                                                        <tab1>mapClockDomain(clock=io.clk)</tab1><br>
+                                                    } <br>
+                                                    <cScala>val</cScala> ram = <cScala>new</cScala> CurstomRam(16) <cComment>//Use as a component </cComment>
+
+
+                                                    </td>                                    
+                                                </tr>  
+                                            </table> <!-- End Table BlackBox -->   
+                                        </td>
+                                        <td style="vertical-align:top;">
+                                            <!-- Cast -->
+                                            <table id="core_cast" class="tableSectionCore" style="width:100%;">
+                                                <tr class="titleSectionCore">
+                                                    <td>Cast</td>
+                                                </tr>               
+                                                <tr   class="code borderBottom" >  
+                                                    <td>myBool.asBits/asUInt/asSInt</td>
+                                                </tr>
+                                                <tr   class="code borderBottom" >  
+                                                    <td>myBits.asBool/asUInt/asSInt</td>
+                                                </tr>
+                                                <tr   class="code borderBottom" >  
+                                                    <td>myUInt.asBool/asBits/asSInt</td>
+                                                </tr>
+                                                <tr class="code">
+                                                    <td>mySInt.asBool/asBits/asUInt</td>
+                                                </tr>
+                                            </table> <!-- End Table Cast -->
+                                        </td>
+                                    </tr>   
+                                    <tr >   
+                                        <td style="vertical-align:top;">
+                                            <!-- Attribute -->
+                                            <table id="core_Attribute" class="tableSectionCore" style="width:100%">
+                                                <tr class="titleSectionCore">
+                                                    <td>Attribute</td>
+                                                </tr>               
+                                                <tr class="code borderBottom" >   
+                                                    <td>addAttribute(name) </td>
+                                                </tr>
+                                                <tr class="code">                      
+                                                    <td>addAttribute(name.value) </td>                  
+                                                </tr>
+                                            </table> <!-- End Table Attribute -->
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+
+                                <!-- RAM -->
+                                <table id="core_RAM" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">RAM</td>
+                                    </tr>               
+                                    <tr  class="code borderBottom" >   
+                                        <td><b>Declaration</b></td>                    
+                                        <td>
+                                            <cScala>val</cScala> myRAM = Mem(type,size:<cScala>Int</cScala>) <cComment> // RAM  </cComment> <br>
+                                            <cScala>val</cScala> myROM = Mem(type,initialContent : Array[Data])<cComment>  // ROM </cComment>
+                                        </td>                   
+                                    </tr>
+                                    <tr  class="code borderBottom" >  
+                                        <td><b>Write access</b></td>                   
+                                        <td>
+                                            mem(address) := data <br>
+                                            mem.write(address, data, [mask])
+                                        </td>                   
+                                    </tr>
+                                    <tr  class="code borderBottom" >  
+                                        <td><b>Read access</b></td>                    
+                                        <td>
+                                            myOutput := mem(x) <br>
+                                            mem.readAsync(address,[readUnderWrite]) <br>
+                                            mem.readSync(address,[enable],[readUnderWrite], [clockCrossing])
+                                        </td>                   
+                                    </tr>
+                                    <tr  class="code borderBottom" > 
+                                        <td><b>BlackBoxing</b></td>                   
+                                        <td>
+                                            mem.generateAsBlackBox() <cComment>//Explicitly set a memory to be a blackBox </cComment> <br>
+                                            <cScala>def</cScala> main(args: Array[String]) { <br>
+                                              <tab1>SpinalConfig()  </tab1>   <br>
+                                                <tab2>.addStandardMemBlackboxing(blackboxAll) <cComment>//Option: blackboxAll, </cComment> </tab2> <br> 
+                                                <tab2><cComment>//blackboxAllWhatsYouCan, blackboxRequestedAndUninferable</cComment> </tab2> <br>
+                                                <tab2><cComment>// blackboxOnlyIfRequested </cComment> </tab2> <br>
+                                                <tab2>.generateVhdl(new TopLevel) </tab2> <br>
+                                            }
+                                        </td>                   
+                                    </tr>         
+                                    <tr class="code borderBottom"  > 
+                                        <td><b>readUnderWrite</b></td>
+                                        <td>dontCare, readFirst, writeFirst</td>
+                                    </tr> 
+                                    <tr class="code borderBottom"  > 
+                                        <td><b>Technology</b></td>
+                                        <td>mem.setTechnology(auto) <cComment> // auto, ramBlock, distributedLut, registerFile </cComment></td>
+                                    </tr>         
+                                    <tr class="code "> 
+                                        <td><b>Mixed<br>width <br>RAM</b></td>
+                                        <td>
+                                            mem.writeMixedWidth(address, data, [readUnderWrite]) <br>
+                                            mem.readAsyncMixedWidth(address, data, [readUnderWrite])    <br>
+                                            mem.readSyncMixedWidth(address, data, [enable], [readUnderWrite], <br>
+                                                <tab1> [clockCrossing]) </tab1> <br>
+                                            mem.readWriteSyncMixedWidth(address, data, enable, write, [mask], <br>
+                                                <tab1> [readUnderWrite], [crossClock])  </tab1> 
+                                        </td>
+                                    </tr>   
+                                </table> <!-- End Table RAM -->
+
+
+                                <!-- HDL Generation -->
+                                <table id="core_HDLGeneration" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td>HDL Generation</td>
+                                    </tr>               
+                                    <tr  class="code borderBottom" > 
+                                        <td>SpinalVhdl(<cScala>new</cScala> MyTopLevel())    <cComment>// Generate VHDL file</cComment></td>                                                   
+                                    </tr>
+                                    <tr  class="code borderBottom" > 
+                                        <td>SpinalVerilog(<cScala>new</cScala> MyTopLevel()) <cComment>// Generate Verilog file</cComment></td>                                                    
+                                    </tr>       
+                                    <tr  class="code borderBottom" > 
+                                        <td>
+                                            <b>SpinalConfig : </b>                                                   
+                                            mode, debug, defaultConfigForClockDomains, onlyStdLogicVectorAtTopLevelIo, defaultClockDomainFrequency, targetDirectory, dumpWave, globalPrefix, device, genVhdlPkg, phasesInserters, transformationPhases, memBlackBoxers
+                                        </td> 
+                                    </tr> 
+                                    <tr  class="code borderBottom" > 
+                                        <td>
+                                            SpinalConfig( <br>
+                                              <tab1> mode = Verilog,  <cComment>// VHDL </cComment>  </tab1><br>
+                                              <tab1> targetDirectory="temp/myDesign",  </tab1><br>
+                                              <tab1> defaultConfigForClockDomains = ClockDomainConfig(clockEdge=RISING, resetKind=ASYNC), </tab1><br>
+                                              <tab1> defaultClockDomainFrequency  = FixedFrequency(50 MHz), </tab1><br>
+                                              <tab1> OnlyStdLogicVectorAtTopLevelIo = true </tab1><br>
+                                            ).generate(<cScala>new</cScala> myComponent())
+                                        </td>
+                                    </tr>       
+                                    <tr   class="code borderBottom" > 
+                                        <td>SpinalConfig(dumpWave = DumpWaveConfig(depth = 0)).generateVhdl(<cScala>new</cScala> MyComp()) <cComment>//Gen wave file </cComment></td>
+                                    </tr>
+                                    <tr   class="code borderBottom" > 
+                                        <td>SpinalConfig(globalPrefix="myPrefix_").generateVerilog(<cScala>new</cScala> MyTopLevel()) <cComment>// Add a prefix to the package </cComment></td>
+                                    </tr>
+                                    <tr   class="code borderBottom" > 
+                                        <td>SpinalVhdl(<cScala>new</cScala> myTopLevel()).printPruned() <cComment>// Print all signals not used </cComment></td>
+                                    </tr>                                     
+                                    <tr class="code ">
+                                        <td>
+                                            <cScala>def</cScala> main(args: Array[String]): <cScala>Unit</cScala> = { <br>
+                                            <tab1>SpinalConfig.shell(args)(<cScala>new</cScala> UartCtrl()) <cComment>// Config from shell </cComment></tab1> <br>
+                                            <tab2><cComment>// Option : --vhdl, --verilog, -o, --targetDirectory </cComment></tab2> <br>
+                                            }
+                                        </td>                                        
+                                    </tr>
+                                </table>  <!-- End Table HDL Generation -->
+
+                                <!-- Template -->
+                                <table id="core_Template" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td>Template</td>
+                                    </tr>               
+                                    <tr  class="code">   
+                                        <td>
+                                            <cScala>import</cScala>  spinal.core._  <cComment> // import the core  </cComment> <br> 
+
+                                            <cScala>class</cScala>  MyTopLevel() <cScala>extends</cScala>  Component { <cComment> //Create a Component  </cComment><br>
+                                                <tab1><cScala>val</cScala> io = <cScala>new</cScala> Bundle { </tab1><br>
+                                                    <tab2><cScala>val</cScala>  a,b = in Bool </tab2><br>                                                
+                                                    <tab2><cScala>val</cScala> c = out Bool </tab2><br>
+                                                <tab1>} </tab1><br>
+                                                <tab1>io.c := io.a &amp; io.b </tab1><br>
+                                            }<br>
+
+                                            <cScala>object</cScala> MyMain { <br> 
+                                              <tab1><cScala>def</cScala> main(args: Array[String]) { </tab1><br>
+                                                <tab2>SpinalVhdl(<cScala>new</cScala> MyTopLevel()) </tab2> <cComment> //Generate a VHDL file  </cComment> <br>                                                
+                                              <tab1>}</tab1><br>
+                                            }
+
+                                        </td>                                    
+                                    </tr>  
+                                </table> <!-- End Table Template -->
+
+                            </td> <!-- End Column 3 -->
+
+                            <td class="columnLayout" style="width: 80mm;"> 
+
+                                <!-- Utils -->
+                                <table id="core_utils" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Utils</td>
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td>log2Up(x : <cScala>BigInt</cScala>)</td>
+                                        <td>Number of bit needed to represent x</td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td>isPow2(x : <cScala>BigInt</cScala>) </td>
+                                        <td>Return true if x is a power of two</td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td>roundUp(that : <cScala>BigInt</cScala>, by : <cScala>BigInt</cScala>)</td>
+                                        <td>Return the first by multiply from that (included)</td>
+                                    </tr>
+                                    <tr class="code">
+                                        <td>Cat(x : Data*)</td>
+                                        <td>Concatenate all arguments</td>
+                                    </tr>
+                                </table><!-- End Table Utils -->
+
+                                <!-- Function -->
+                                <table id="core_Function" class="tableSectionCore">
+                                    <tr class="titleSectionCore">
+                                        <td colspan="2">Function</td>
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td>
+                                            <cComment>// Function to multiply an UInt by a scala Float value. </cComment> <br>
+                                            <cScala>def</cScala>  coef(value : UInt,by : <cScala>Float</cScala> ) : UInt = (value * U((255*by).toInt,8 bits) >> 8)   
+                                        </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td>
+                                            <cScala>def</cScala>  clear() : Unit = counter := 0  <cComment>// Clear the register counter </cComment>   
+                                        </td>
+                                    </tr>                                    
+                                    <tr class="code">
+                                        <td>
+                                            <cScala>def</cScala>  sinus(size:<cScala>Int</cScala>, res:BitCount) = { <br>
+                                                <tab1>(0 to size).<cScala>map</cScala> (i => U((Math.sin(i)+1) * Math.pow(2,res.value)/2).toInt)  </tab1><br>
+                                            } <br>
+                                            <cScala>val</cScala>  mySinus = Mem(UInt(16 bits), sinus(1024, 16 bits)) <cComment>// memory init with a sinus </cComment> 
+                                        </td> 
+                                    </tr> 
+                                </table><!-- End Table Function -->
+
+
+                            </td> <!-- End Column 4 -->
+                        </tr>
+                    </table> <!-- End Table Layout -->  
+                </div> <!-- End div subpage -->  
+            </div> <!-- End div Page Core -->
+            
+
+
+            <!-- Lib CheatSheet -->
+            <div class="page">
+                <div class="subpage">
+
+                    <table class="tableLayout">
+                        <tr style="background-image:linear-gradient( #0000ff, white); height:10mm;">
+                            <td colspan="3"  class="headerTitle">Spinal CheatSheet - Lib</td>
+                            <td style="text-align:right; padding-right:3mm;">
+                                <p id="version">v0.1</p>
+                                <img src="spinalLogo.png" alt="Basic Types" style="width:7mm;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="columnLayout" style="width: 70mm;"> 
+
+                                <!-- Stream -->
+                                <table id="lib_Stream" class="tableSectionLib">
+                                    <tr class="titleSectionLib">
+                                        <td colspan="2">Stream</td>
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td> <b> Interface </b> </td>
+                                        <td> valid, ready, payload </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> <b> Example </b> </td>
+                                        <td> 
+                                            <cScala>val</cScala> myStream = Stream(T)   <br>
+                                            <cScala>val</cScala> myStream = master/slave Stream(T)
+                                        </td>
+                                    </tr>                                    
+                                    <tr class="code borderBottom">
+                                        <td colspan="2"> <b> Connection </b> </td>                                
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td> slave &lt;&lt; master <br> master &gt;&gt; slave  </td>    
+                                         <td>Connect the slave to the master stream</td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> s &lt;-&lt; m <br> m &gt;-&gt; s </td>    
+                                         <td>Connect with a register stage (1 lactency)</td>
+                                    </tr>                                    
+                                    <tr class="code borderBottom">
+                                        <td> s &lt;/&lt; m <br> m &gt;/&gt; s </td>    
+                                         <td>Connect with a register stage + mux(0 latency)</td>
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td> s &lt;-/&lt; m <br> m &gt;-/&gt; s </td>    
+                                         <td>bandwith divided by 2</td>
+                                    </tr>  
+                                    <tr class="code borderBottom">
+                                        <td><b> Function </b> </td>
+                                        <td> .haltWhen(cond), .throwWhen(cond), .queue(size:Int), .fire, .isStall  </td>    
+                                    </tr>  
+                                    <tr class="code borderBottom">
+                                        <td><b> StreamFifo</b></td>
+                                        <td>                                              
+                                            <cScala>val</cScala> myFifo = StreamFifo( dataType=Bits(8 bits), depth=128) <cComment>// .push, .pop, .flush, .occupancy </cComment>
+                                        </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td ><b> StreamFifoCC</b></td>
+                                        <td>                                              
+                                            <cScala>val</cScala> myFifo = StreamFifoCC( dataType=Bits(8 bits), depth=128, pushClock=clockA, popClock=clockB)
+                                        </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td><b> StreamCCByToggle</b></td>
+                                        <td>                                              
+                                            <cScala>val</cScala> bridge = StreamCCByToggle(dataType=Bits(8 bits), inputClock=clockA, outputClock=clockB)
+                                        </td>
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td><b> StreamArbiter</b></td>
+                                        <td>                                             
+                                            <cScala>val</cScala> arbitredABC = StreamArbiterFactory.<cComment>arbitration.lock </cComment>.onArgs(Seq[Stream[T]])/Stream[T]*) ) <br>
+                                            <cComment> <b>Arbitration</b> : lowerFirst, roundRobin, sequentialOrder </cComment> <br>
+                                            <cComment> <b>Lock</b> : noLock, transactionLock, fragmentLock </cComment>  <br>
+                                            <cScala>val</cScala>  arbitredDEF = StreamArbiterFactory.lowerFirst.noLock.onArgs(streamA, streamB, streamC)
+                                            
+                                        </td>
+                                    </tr>     
+                                    <tr class="code borderBottom">
+                                        <td><b> StreamFork</b></td>
+                                        <td>                                            
+                                            <cScala>val</cScala> fork = <cScala>new</cScala> StreamFork(T, 2) <br>
+                                            fork.io.input &lt;&lt; input <cComment> // Connect the input stream  </cComment><br>
+                                            fork.io.outputs(0) <cComment> //Get the fork stream 0  </cComment>                                            
+                                        </td>
+                                    </tr>    
+                                    <tr class="code borderBottom">
+                                        <td><b>StreamDispatcherSequencial</b></td>
+                                        <td>                                              
+                                            <cScala>val</cScala> dispatchedStreams = StreamDispatcherSequencial(input=inputStream, outputCount=3 )
+                                        </td>
+                                    </tr>  
+                                    <tr class="code borderBottom">
+                                        <td ><b> StreamMux</b></td>
+                                        <td>                                              
+                                            <cScala>val</cScala> outStream = StreamMux(UInt, Seq[Stream[T]]/Vec[Stream[T]])
+                                        </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td><b> StreamDemux</b></td>
+                                        <td>                                              
+                                            <cScala>val</cScala> demux = StreamDemux(T, portCount :<cScala>Int</cScala>) <cComment> //demux.io.select, demux.io.input, demux.io.output </cComment>
+                                        </td>
+                                    </tr>
+                                    <tr class="code">
+                                        <td><b> StreamJoin : translateWith... </b></td>
+                                        <td>  
+                                            <cScala>val</cScala> ???
+                                        </td>
+                                    </tr>                                       
+                                </table><!-- End Table Stream -->   
+
+
+                                <!-- Flow -->
+                                <table id="lib_Flow" class="tableSectionLib">
+                                    <tr class="titleSectionLib">
+                                        <td colspan="2">Flow</td>
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td> <b> Interface </b> </td>
+                                        <td> valid, payload </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> <b> Example </b> </td>
+                                        <td> 
+                                            <cScala>val</cScala> myFlow = Flow(T) <br>
+                                            <cScala>val</cScala> myFlow = master/slave Flow(T)
+                                        </td>
+                                    </tr>                                    
+                                    <tr class="code borderBottom">
+                                        <td> <b> Connection </b> </td>  
+                                        <td> s &lt;&lt; m. m &gt;&gt; s, s &lt;-&lt; m, m &gt;-&gt; s  </td>                               
+                                    </tr> 
+                                    <tr class="code">
+                                        <td> <b> Function </b> </td>  
+                                        <td> .toReg(), .throwWhen(cond) </td>                               
+                                    </tr> 
+
+                                </table><!-- End Table Flow -->   
+
+
+                                <!-- Fragment -->
+                                <table id="lib_Fragment" class="tableSectionLib">
+                                    <tr class="titleSectionLib">
+                                        <td colspan="2">Fragment</td>
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td> <b> Interface </b> </td>
+                                        <td> last, payload </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> <b> Example </b> </td>
+                                        <td> 
+                                            <cScala>val</cScala> myStream = slave Stream (Fragment[T])   <br>
+                                            <cScala>val</cScala> myFlow = master Flow (Fragment[T])
+                                        </td>
+                                    </tr>                                    
+                                    <tr class="code">
+                                        <td> <b> Function </b> </td>  
+                                        <td> .first, .tail, .isFirst, .isTail, .isLast, .insterHeader(T) </td>                               
+                                    </tr> 
+
+                                </table><!-- End Table Fragment -->     
+
+
+                                <!-- State machine  -->
+                                <table id="lib_StateMachine" class="tableSectionLib">
+                                    <tr class="titleSectionLib">
+                                        <td colspan="2" >State machine</td>
+                                    </tr>                                  
+                                    <tr class="code borderBottom">
+                                        <td style="width:50%; vertical-align:top;" class="borderRight">
+                                            <cScala>val</cScala> sm = <cScala>new</cScala> StateMachine{ <cComment>// Style A </cComment> <br>
+                                                <tab1>always{ </tab1><br>
+                                                    <tab2>when(cond) { goto (sS1) } </tab2><br>
+                                                <tab1>} </tab1><br>
+                                                <tab1><cScala>val</cScala> sS1:State=<cScala>new</cScala> State <cScala>with</cScala> EntryPoint{ </tab1><br>
+                                                    <tab2>onEntry{ } </tab2><br>
+                                                    <tab2>whenIsActive{ goto (sS2) } </tab2><br>
+                                                    <tab2>onExit {} </tab2><br>
+                                                <tab1>} </tab1> <br>
+                                                <tab1><cScala>val</cScala> sS2:State= <cScala>new</cScala> State{ </tab1><br>
+                                                    <tab2>whenIsActive{ goto(sSx) } </tab2><br>
+                                                <tab1>}</tab1> <br>
+                                            }
+                                        </td>      
+                                        <td>
+                                            <cScala>val</cScala> sm = <cScala>new</cScala> StateMachine{ <cComment>// Style B </cComment><br>
+                                                <tab1><cScala>val</cScala> sS1 = <cScala>new</cScala> State with EntryPoint</tab1> <br>
+                                                <tab1><cScala>val</cScala> sS2 = <cScala>new</cScala> State </tab1><br>
+                                                <tab1>always{ </tab1><br>
+                                                    <tab2>when(cond) { goto (sS1) } </tab2><br>
+                                                <tab1>} </tab1><br>
+                                                <tab1>sS1 </tab1><br>
+                                                    <tab2>.onEntry() <br>                                                 
+                                                    <tab2>.whenIsActive{ goto (sS2) } </tab2><br>
+                                                    <tab2>.onExit() </tab2><br>
+                                                <tab1>sS2 </tab1><br>
+                                                    <tab2>.whenIsActive{ goto(sSx) } </tab2> <br>
+                                            }
+                                        </td>                         
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td colspan="2">
+                                            <b>Delay : </b> 
+                                            <cScala>val</cScala> sDelay : State = <cScala>new</cScala> StateDelay(40) { whenCompleted( goto(stateH) ) }
+                                        </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td colspan="2">
+                                            <b>Inner SM : </b>
+                                            <cScala>val</cScala> stateC = <cScala>new</cScala> StateFsm(fsm=internalFsm()) {  whenCompleted{ goto(stateD) }}
+                                        </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td colspan="2">
+                                            <b>Parallel SM : </b>
+                                            <cScala>val</cScala> stateD = <cScala>new</cScala> StateParallelFsm (internalFsmA(), internalFsmB()){   whenCompleted{ goto(stateE) } }
+                                        </td>
+                                    </tr>   
+                                    <tr class="code">
+                                        <td colspan="2">
+                                            <cScala>def</cScala> internalFsm() = <cScala>new</cScala> StateMachine { <cComment> // Internal SM </cComment> <br>
+                                                <tab1><cScala>val</cScala> counter = Reg(UInt(8 bits)) init (0) </tab1> <br>
+
+                                                <tab1><cScala>val</cScala> stateA: State = <cScala>new</cScala> State <cScala>with</cScala> EntryPoint { whenIsActive { goto(stateB) } }  </tab1><br>
+
+                                                <tab1><cScala>val</cScala> stateB: State = <cScala>new</cScala> State {  </tab1><br>
+                                                    <tab2>onEntry (counter := 0)  </tab2> <br>
+                                                    <tab2>whenIsActive {   </tab2><br>
+                                                        <tab3>when(counter === 4) { exit() }  </tab3><br>
+                                                        <tab3>counter := counter + 1  </tab3><br>
+                                                    <tab2>}</tab2>  <br>
+                                                <tab1>}  </tab1><br>
+                                            }
+                                        </td>   
+                                    </tr>   
+
+
+                                </table><!-- End Table State machine  -->                                                                
+
+                            </td> <!-- End Column 1 -->     
+
+
+
+                            <td class="columnLayout" style="width: 80mm;"> 
+
+                                <!-- Utils -->
+                                <table id="lib_Utils" class="tableSectionLib" style="width:100%;">
+                                    <tr class="titleSectionLib">
+                                        <td colspan="4">Utils</td>
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td> Delay(singal, cycle)    </td>
+                                        <td class="borderRight"> Delay a signal of x clock </td>
+                                        <td> History(T, len, [when, init])</td>                                        
+                                        <td> Shit register </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> toGray(x:UInt)</td>                                        
+                                        <td class="borderRight"> Return the gray value </td>
+                                        <td> fromGray(x : Bits)</td>                                        
+                                        <td> Return the UInt value </td>                                        
+                                    </tr>    
+                                    <tr class="code borderBottom">
+                                        <td> toGray(x:UInt)</td>                                        
+                                        <td class="borderRight"> Return the gray value </td>
+                                        <td> fromGray(x : Bits)</td>                                        
+                                        <td> Return the UInt value </td>                                        
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td> Reverse(T) </td>  
+                                        <td class="borderRight"> Flip all bits </td>       
+                                        <td> Endianness(T,[base])</td>  
+                                        <td> Big-Endian &lt;-&gt; Littre-Endian</td>                      
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td> OHToUInt(Seq[Bool]/BitVector) </td>  
+                                        <td class="borderRight"> Index of the single bit </td>       
+                                        <td> CountOne(Seq[Bool]/BitVector)</td>  
+                                        <td> Number of bits set</td>                      
+                                    </tr>  
+                                    <tr class="code borderBottom">
+                                        <td> MajorityVote(Seq[Bool]/BitVector) </td>  
+                                        <td class="borderRight"> True if nuber bit set is &lt; x.size/2 </td>       
+                                        <td> BufferCC(T)</td>  
+                                        <td> Buffer clock domain</td>                      
+                                    </tr>    
+                                    <tr class="code">
+                                        <td>LatencyAnalysis(Node*)</td>
+                                        <td class="borderRight">Return the shortest path</td>
+                                        <td>Counter(BigInt)</td>
+                                        <td>Counter</td>
+                                    </tr>                                  
+
+                                </table><!-- End Table Utils -->  
+
+
+                                <!-- Bus Slave Factory -->
+                                <table id="lib_BusSlaveFactory" class="tableSectionLib" style="width:100%;">
+                                    <tr class="titleSectionLib">
+                                        <td>Bus Slave Factory</td>
+                                    </tr> 
+                                    <tr class="code borderBottom">
+                                        <td style="text-align:center;">  <img src="busSlaveFactory.svg" alt="Bus Factory" style="width:40mm; "> </td>
+                                    </tr>          
+                                    <tr class="code borderBottom">
+                                        <td>
+                                            <b>BusSlaveFactory (Base Functions) : </b> <br> 
+                                                <p style="margin-left:2mm;margin-top:0px;margin-bottom:0px;">
+                                                .busDataWidth, .read(that,address,bitOffset), .write(that,address,bitOffset), .onWrite(address)(doThat), .onRead(address)(doThat), .nonStopWrite(that,bitOffset)
+                                                </p>
+                                            <b> BusSlaveFactory (Derived Functions) : </b> <br>
+                                                <p style="margin-left:2mm;margin-top:0px;margin-bottom:0px;">
+                                                  .readAndWrite(that,address,bitOffset), .readMultiWord(that,address), .writeMultiWord(that,address), .createWriteOnly(dataType,address,bitOffset), 
+                                                  .createReadWrite(dataType,address,bitOffset), .createAndDriveFlow(dataType,address,bitOffset), .drive(that,address,bitOffset), .driveAndRead(that,address,bitOffset) , .driveFlow(that,address,bitOffset), .readStreamNonBlocking(that,address,validBitOffset,payloadBitOffset), .doBitsAccumulationAndClearOnRead(that,address,bitOffset)
+                                                </p>
+                                        </td>
+                                    </tr>
+                                    <tr class="code">
+                                        <td>
+                                            <cScala>class</cScala> AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : <cScala>Int</cScala>) <cScala>extends</cScala> Component{ <br>
+                                                <tab1><cScala>val</cScala> io = <cScala>new</cScala> Bundle{ </tab1><br>
+                                                    <tab2><cScala>val</cScala> bus =  slave(AvalonMM(AvalonMMUartCtrl.getAvalonMMConfig)) /tab2><br>
+                                                    <tab2><cScala>val</cScala> uart = master(Uart()) </tab2><br>
+                                                <tab1>} </tab1><br>
+                                                <tab1><cScala>val</cScala> uartCtrl = <cScala>new</cScala> UartCtrl(uartCtrlConfig) </tab1><br>
+                                                <tab1>io.uart &lt;&gt; uartCtrl.io.uart </tab1><br>
+
+                                                <tab1><cScala>val</cScala> busCtrl = AvalonMMSlaveFactory(io.bus) </tab1><br>
+
+                                                <tab1>busCtrl.driveAndRead(uartCtrl.io.config.clockDivider,address = 0) </tab1><br>
+                                                <tab1>busCtrl.driveAndRead(uartCtrl.io.config.frame,address = 4) </tab1><br>
+                                                <tab1>busCtrl.createAndDriveFlow(Bits(uartCtrlConfig.dataWidthMax bits),address = 8).toStream &gt;-&gt; uartCtrl.io.write </tab1><br>
+
+                                                <tab1>busCtrl.readStreamNonBlocking(uartCtrl.io.read.toStream.queue(rxFifoDepth),address = 12, validBitOffset = 31, payloadBitOffset = 0) </tab1>
+                                            }
+                                        </td>
+                                    </tr>
+                                </table><!-- End Table Bus Slave Factory -->           
+
+                                <!-- Master/Slave interface -->
+                                <table id="lib_MasterSlaveInterface" class="tableSectionLib" style="width:100%;">
+                                    <tr class="titleSectionLib">
+                                        <td colspan="2">Master/Slave interface</td>
+                                    </tr>       
+                                    <tr class="code">
+                                        <td>
+                                            <cScala>class</cScala> Bus(val config: BusConfig) <cScala>extends</cScala> Bundle <cScala>with</cScala> IMasterSlave { <br>
+                                              <tab1><cScala>val</cScala> addr     = UInt(config.addrWidth bits)  </tab1><br>
+                                              <tab1><cScala>val</cScala> dataWr, dataRd = Bits(config.dataWidth bits) </tab1><br>
+                                              <tab1><cScala>val</cScala> cs,rw    = Bool </tab1><br>                                              
+                                              <tab1><cScala>def</cScala> asMaster(): this.type = {  </tab1><br>
+                                                 <tab2>master(addr, dataWr, cs, rw) <cComment> // Master drive these signals </cComment> </tab2><br>
+                                                 <tab2>slave(dataRd) <cComment> // Slave drive this signal </cComment> </tab2><br>                                                
+                                              <tab1>}</tab1> <br>
+                                            } <br>
+                                        </td>
+                                        <td style="vertical-align:top;">
+                                            <cScala>val</cScala> io = <cScala>new</cScala> Bundle{ <br>
+                                                <tab1><cScala>val</cScala> masterBus = master(Bus(BusConfig))  </tab1></br>
+                                                <tab1><cScala>val</cScala> slaveBus = slave(Bus(BusConfig)) </tab1></br>
+                                            } 
+                                        </td>
+                                    </tr>
+
+                                </table><!-- End Table Master/Slave interface -->   
+
+
+                                <!-- Uart controller -->
+                                <table id="lib_UARTCtrl" class="tableSectionLib" style="width:100%;">
+                                    <tr class="titleSectionLib">
+                                        <td>UART Controller</td>
+                                    </tr>       
+                                    <tr class="code">
+                                        <td>
+                                            <cScala>val</cScala> uartCtrl = <cScala>new</cScala> UartCtrl() <br>
+                                            uartCtrl.io.config.setClockDivider(921600) <br>
+                                            uartCtrl.io.config.frame.dataLength := 7 <cComment>// 8 bits </cComment> <br>
+                                            uartCtrl.io.config.frame.parity := UartParityType.NONE <cComment>// NONE, EVEN, ODD </cComment> <br>
+                                            uartCtrl.io.config.frame.stop := UartStopType.ONE <cComment>// ONE, TWO </cComment><br>
+                                            uartCtrl.io.uart &lt;&gt; io.uart 
+                                        </td>
+                                    </tr>
+
+                                </table><!-- End Table Uart -->                                  
+
+                            </td>
+                        </tr>
+                     </table> <!-- End Table Layout --> 
+ 
+                </div>  <!-- End div subpage -->    
+            </div>  <!-- End div Page Lib -->
+
+
+
+            <!-- Tips and Tricks -->
+            <div class="page">
+                <div class="subpage">
+
+                    <table class="tableLayout">
+                        <tr style="background-image:linear-gradient( #009900, white); height:10mm;">
+                            <td colspan="3" class="headerTitle">Spinal CheatSheet - Tips and Tricks</td>
+                            <td style="text-align:right; padding-right:3mm;">
+                                <p id="version">v0.1</p>
+                                <img src="spinalLogo.png" alt="Basic Types" style="width:7mm;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="columnLayout" style="width: 70mm;"> 
+                            
+                                <!-- Scala Tricks -->
+                                <table id="tips_Scala" class="tableSectionTricks">
+                                    <tr class="titleSectionTricks">
+                                        <td colspan="2">Scala</td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> <b>foreach</b> </td>
+                                        <td> 
+                                            <cScala>val</cScala> myReady   = Bool <br>
+                                            <cScala>val</cScala> vecStream = Vec(Stream(Bool),4) <br>
+                                            vecStream.foreach(_.ready := myReady) <cComment> // Connect to each stream.ready the myReady signal </cComment>  
+                                        </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> <b>zipped</b> </td>
+                                        <td> 
+                                            <cScala>val</cScala> vecStream1 = Vec(Stream(Bool), 3) <br>
+                                            <cScala>val</cScala> vecStream2 = Vec(Stream(Bool), 3) <br>
+                                            (vecStream1, vecStream2).zipped.foreach(_ &gt;&gt; _) <cComment> // Connect all Streams of vecStream1 to vecStream2 </cComment> 
+                                        </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> <b>reduce</b> </td>
+                                        <td> 
+                                            <cScala>val</cScala> myBits = B"00110011" <br>
+                                            <cScala>val</cScala> xorBits = myBits.reduce(_ ^ _) <cComment> // XOR all bits </cComment> 
+                                        </td>
+                                    </tr>
+                                    <tr class="code">
+                                        <td> <b>map</b> </td>
+                                        <td> 
+                                            <cScala>val</cScala> addresses = Vec(UInt(8 bits),4) <br>
+                                            <cScala>val</cScala> key  = UInt(8 bits) <br>
+                                            <cScala>val</cScala> hits = addresses.map(address => address === key) <cComment>// hits is a Vector of Bool   </cComment>  <br>
+                                            <br>
+                                            <cScala>val</cScala>  vecStream = Vec(Stream(Bool), 4) <br>
+                                            <cScala>val</cScala> andValid = srcStreams.map(_.valid).reduce(_ &amp;&amp; _) <cComment>// AND all valid signals of the Stream together  </cComment> 
+
+                                        </td>
+                                    </tr>
+                                </table><!-- End Table Scala Tricks -->  
+
+
+                                <!-- Miscellaneous -->
+                                <table id="tips_Miscellaneous" class="tableSectionTricks">
+                                    <tr class="titleSectionTricks">
+                                        <td colspan="2">Miscellaneous</td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> <b>String to Bits</b> </td>
+                                        <td> <cScala>val</cScala> vecOfBits = Vec("Salut".map(c => B(c.toInt,8 bits)))</td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> <b>Remove io prefix</b> </td>
+                                        <td> 
+                                            <cScala>val</cScala> io = <cScala>new</cScala> Bundle{ <br>
+                                                <tab1><cScala>val</cScala> pulse = in Bool </tab1><br>
+                                                <tab1><cScala>val</cScala> counter = out UInt(3 bits) </tab1><br>
+                                            }.setName("")
+                                        </td>
+                                    </tr>
+                                    <tr class="code borderBottom">
+                                        <td> <b>Cross Clock Domain</b> </td>
+                                        <td> 
+                                            <cScala>val</cScala> area_clkB = <cScala>new</cScala> ClockingArea(ClockDomain(io.clkB,io.rstB)){   <br>
+                                                <tab1><cScala>val</cScala> buf0 = RegNext(area_clkA.reg) init(False) addTag(crossClockDomain) </tab1><br>
+                                                <tab1><cScala>val</cScala> buf1 = RegNext(buf0)          init(False) </tab1><br>
+                                            } 
+                                            <cComment> // Or by using a BufferCC </cComment> <br>
+                                            <cScala>val</cScala> area_clkB = <cScala>new</cScala> ClockingArea(clkB){   <br>
+                                                <tab1><cScala>val</cScala> buf1   = BufferCC(area_clkA.reg, False) </tab1><br>
+                                            } <br>
+                                        </td>
+                                    </tr>                                    
+
+                                </table><!-- End Table miscellaneous -->                                  
+
+                            </td> <!-- End column 1 -->
+                        </tr>
+                     </table> <!-- End Table Layout --> 
+ 
+                </div>  <!-- End div subpage -->    
+            </div>  <!-- End div Page Tips and Tricks -->            
+
+
+        </div> <!-- End div Book -->
+
+    </body>
+
+</html>
+
+
