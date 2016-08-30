@@ -113,9 +113,9 @@ i4_m2 := 4       //Will load 16 in i4_m2.raw
 
 | Name | Return | Description |
 | ------- | ---- | --- |
-| x.maxValue | Double | Return the maximum value storable |
-| x.minValue | Double  | Return the minimum value storable |
-| x.resolution |  Double | x.amplitude * y.amplitude |
+| x.maxValue | BigDecimal | Return the maximum value storable |
+| x.minValue | BigDecimal  | Return the minimum value storable |
+| x.resolution |  BigDecimal | x.amplitude * y.amplitude |
 
 ### Casts
 
@@ -125,3 +125,23 @@ i4_m2 := 4       //Will load 16 in i4_m2.raw
 | mySFix.toSInt | SInt | Return the corresponding SInt (with truncation) |
 | myUInt.toUFix | UFix | Return the corresponding UFix  |
 | mySInt.toSFix | SFix | Return the corresponding SFix |
+
+## Frequency and time
+Spinal HDL has a little syntax to have a smooth declaration of frequency and time value :
+
+```scala
+val frequency = 100 MHz
+val timeoutLimit = 3 mn
+val period = 100 us
+
+val periodCycles = frequency*period
+val timeoutCycles = frequency*timeoutLimit
+```
+
+For time definition you can use following postfixes :<br>
+fs, ps, ns, us, ms, sec, mn, hr
+
+For time definition you can use following postfixes :<br>
+Hz, KHz, MHz, HHz, THz
+
+By postfixing an Int or an Double value, you will get an BigDecimal value with the corresponding scale.
