@@ -23,25 +23,35 @@ entries:
       url: /presentation/
       output: web
 
-  - title: Language
+  - title: Built-in types
     output: web
     folderitems:
-    - title: Introduction
-      url: /spinal/core/introduction/
-      output: web
-
     - title: Types and literals
       url: /spinal/core/types/
       output: web
 
-    - title: Registers
-      url: /spinal/core/registers/
+  - title: Structuring a design
+    output: web
+    folderitems:
+    - title: Components and hierarchy
+      url: /spinal/core/components_hierarchy/
+      output: web
+
+    - title: Area
+      url: /spinal/core/area/
       output: web
 
     - title: Clock domains
       url: /spinal/core/clock_domain/
       output: web
 
+    - title: Instanciate VHDL and Verilog IP
+      url: /spinal/core/blackbox/
+      output: web
+
+  - title: Combinational logic
+    output: web
+    folderitems:
     - title: Assignements
       url: /spinal/core/assignements/
       output: web
@@ -50,31 +60,33 @@ entries:
       url: /spinal/core/when_switch/
       output: web
 
-    - title: Components / Hierarchy
-      url: /spinal/core/components_hierarchy/
-      output: web
-
-    - title: Area
-      url: /spinal/core/area/
-      output: web
-
     - title: Function
       url: /spinal/core/function/
+      output: web
+
+  - title: Sequential logic
+    output: web
+    folderitems:
+    - title: Registers
+      url: /spinal/core/registers/
       output: web
 
     - title: RAM / ROM
       url: /spinal/core/memory/
       output: web
 
-    - title: Instanciate VHDL and Verilog IP
-      url: /spinal/core/blackbox/
+  - title: Other language features
+    output: web
+    folderitems:
+    - title: Introduction
+      url: /spinal/core/introduction/
       output: web
 
-    - title: Utils
+    - title: Helper functions
       url: /spinal/core/utils/
       output: web
 
-    - title: Assertion
+    - title: Assertions
       url: /spinal/core/assertion/
       output: web
 
