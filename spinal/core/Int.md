@@ -1,26 +1,40 @@
 ---
 layout: page
-title: Signed integer (SInt)
-description: "Signed integer data type"
-tags: [SInt signed integer]
-categories: [documentation, types, SInt, signed, integer]
-permalink: /spinal/core/types/SInt
+title: Integer (UInt and SInt)
+description: "Integer data type"
+tags: [UInt SInt unsigned signed integer]
+categories: [documentation, types, UInt, unsigned, SInt, signed integer]
+permalink: /spinal/core/types/Int
 sidebar: spinal_sidebar
 ---
 ### Description
-The `SInt` type corresponds to a vector of bits that can be used for signed
+The `UInt` type corresponds to a vector of bits that can be used for integer
 arithmetic.
 
 ### Declaration
-The syntax to declare a signed integer is as follows:
+The syntax to declare an integer is as follows:
+
+#### Unsigned Integer
 
 | Syntax | Description| Return|
 | ------- | ---- | --- |
-| SInt [()] |  Create a signed integer, bits count is inferred| Bits |
-| SInt(x bits) |  Create a signed integer with x bits| Bits |
-| S(value : Int[,width : BitCount]) |  Create a signed integer assigned with 'value' | Bits |
-| S"[[size']base]value" |  Create a signed integer assigned with 'value' | Bits |
-| S([x bits], element, ...) |  Create a signed integer assigned with the value specified by elements (see table below) | Bits |
+| UInt [()] |  Create an unsigned integer, bits count is inferred| Bits |
+| UInt(x bits) |  Create an unsigned integer with x bits| Bits |
+| U(value : Int[,width : BitCount]) |  Create an unsigned integer assigned with 'value' | Bits |
+| U"[[size']base]value" |  Create an unsigned integer assigned with 'value' | Bits |
+| U([x bits], element, ...) |  Create an unsigned integer assigned with the value specified by elements (see table below) | Bits |
+
+#### Signed Integer
+
+| Syntax | Description| Return|
+| ------- | ---- | --- |
+| SInt [()] |  Create an signed integer, bits count is inferred| Bits |
+| SInt(x bits) |  Create an signed integer with x bits| Bits |
+| S(value : Int[,width : BitCount]) |  Create an signed integer assigned with 'value' | Bits |
+| S"[[size']base]value" |  Create an signed integer assigned with 'value' | Bits |
+| S([x bits], element, ...) |  Create an signed integer assigned with the value specified by elements (see table below) | Bits |
+
+#### Elements
 
 Elements could be defined as follows:
 
@@ -51,7 +65,7 @@ myBool := Bool(false)   // Use a Scala Boolean to create a literal
 -->
 
 ### Operators
-The following operators are available for the `Bits` type
+The following operators are available for the `UInt` type
 
 #### Logic
 

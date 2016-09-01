@@ -35,12 +35,12 @@ entries:
       url: /spinal/core/types/Bits
       output: web
 
-    - title: Unsigned Integer (UInt)
-      url: /spinal/core/types/UInt
+    - title: Integer (UInt and SInt)
+      url: /spinal/core/types/Int
       output: web
 
-    - title: Signed Integer (SInt)
-      url: /spinal/core/types/SInt
+    - title: Fixed Point (UFix and SFix)
+      url: /spinal/core/types/Fix
       output: web
 
     - title: Enumeration (Enum)
