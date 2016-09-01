@@ -26,8 +26,33 @@ entries:
   - title: Built-in types
     output: web
     folderitems:
-    - title: Types and literals
-      url: /spinal/core/types/
+
+    - title: Boolean (Bool)
+      url: /spinal/core/types/Bool
+      output: web
+
+    - title: Bit Vector (Bits)
+      url: /spinal/core/types/Bits
+      output: web
+
+    - title: Unsigned Integer (UInt)
+      url: /spinal/core/types/UInt
+      output: web
+
+    - title: Signed Integer (SInt)
+      url: /spinal/core/types/SInt
+      output: web
+
+    - title: Enumeration (Enum)
+      url: /spinal/core/types/Enum
+      output: web
+
+    - title: Bundle (Bundle)
+      url: /spinal/core/types/Bundle
+      output: web
+
+    - title: Vector (Vec)
+      url: /spinal/core/types/Vector
       output: web
 
   - title: Structuring a design
@@ -157,6 +182,14 @@ entries:
       - title: JTAG TAP
         url: /spinal/examples/jtag/
         output: web
+
+  - title: Developers area
+    output: web
+    folderitems:
+
+    - title: Types
+      url: /spinal/core/types/
+      output: web
 
 #  - title: Bus
 #    output: web
