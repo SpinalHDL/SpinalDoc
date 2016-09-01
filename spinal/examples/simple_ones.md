@@ -32,12 +32,12 @@ This example define a component with a `clear` input and a `value` output.
 Each cycle, the `value` output is incrementing but when clear is high the `value` is cleared.
 
 ```scala
-class Counter(width : Int) extend Component{
+class Counter(width : Int) extends Component{
   val io = new Bundle{
     val clear = in Bool
-    val value = out UInt(width bit)
+    val value = out UInt(width bits)
   }
-  val register = Reg(UInt(width bit)) init(0)
+  val register = Reg(UInt(width bits)) init(0)
   register := register + 1
   when(io.clear){
     register := 0
@@ -97,7 +97,7 @@ First let's define a Color Bundle with an addition operator.
       result.b := this.b + that.b
       return result
     }
-    
+
     def reset: Color ={
       this.r := 0
       this.g := 0

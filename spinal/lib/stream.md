@@ -50,9 +50,9 @@ class StreamArbiter[T <: Data](dataType: T,portCount: Int) extends Component {
 | x.fire | Return True when a transaction is consumed on the bus (valid && ready) | Bool | - |
 | x.isStall | Return True when a transaction is stall on the bus (valid && ! ready) | Bool | - |
 | x.queue(size:Int) | Return a Stream connected to x through a FIFO | Stream[T] | 2 |
-| x.m2sPipe() | Return a Stream drived by x <br>through a rgister stage that cut valid/payload paths <br> Cost (payload width + 1) flip flop | Stream[T] |  1 |
-| x.s2mPipe() | Return a Stream drived by x <br> ready paths is cut by a register stage <br> Cost payload width 2->1 mux + one flip flop | Stream[T] |  0 |
-| x.halfPipe() | Return a Stream drived by x <br> valid/ready/payload paths are cut by some register <br> Cost only (payload width + 2) flip flop, bandwidth divided by two | Stream[T] |  1 |
+| x.m2sPipe() | Return a Stream drived by x <br>through a rgister stage that cut valid/payload paths <br> Cost = (payload width + 1) flop flop | Stream[T] |  1 |
+| x.s2mPipe() | Return a Stream drived by x <br> ready paths is cut by a register stage <br> Cost = payload width * (mux2 + 1 flip flop) | Stream[T] |  0 |
+| x.halfPipe() | Return a Stream drived by x <br> valid/ready/payload paths are cut by some register <br> Cost = (payload width + 2) flip flop, bandwidth divided by two | Stream[T] |  1 |
 | x << y <br> y >> x | Connect y to x | | 0 |
 | x <-< y <br> y >-> x | Connect y to x through a m2sPipe  |   | 1 |
 | x <&#47;< y <br> y >&#47;> x | Connect y to x through a s2mPipe|   | 0 |

@@ -24,12 +24,14 @@ The following table show how to add access ports on a memory :
 | ------- | ---- | --- |
 | mem(address) := data |  Synchronous write | |
 | mem(x) |  Asynchronous read | T |
-| mem.write(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;data<br>&nbsp;&nbsp;[mask]<br>) |  Synchronous write with an optional mask. <br> The write enable is automatically inferred from the conditional scope where this function is called | |
+| mem.write(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;data<br>&nbsp;&nbsp;[enable]<br>&nbsp;&nbsp;[mask]<br>) |  Synchronous write with an optional mask. <br> If no enable is specified, it's automatically inferred from the conditional scope where this function is called | |
 | mem.readAsync(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;[readUnderWrite]<br>) | Asynchronous read with an optional read under write policy | T |
 | mem.readSync(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;[enable]<br>&nbsp;&nbsp;[readUnderWrite]<br>&nbsp;&nbsp;[clockCrossing]<br>) | Synchronous read with an optional enable, read under write policy and clockCrossing mode | T |
-| mem.readWriteSync(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;data<br>&nbsp;&nbsp;enable<br>&nbsp;&nbsp;write<br>&nbsp;&nbsp;[mask]<br>&nbsp;&nbsp;[readUnderWrite]<br>&nbsp;&nbsp;[crossClock]<br>) | Infer a read/write port.<br> `data` is written when `enable && write`.<br> Return the read data, the read occur when `enable` | T |
+| mem.readWriteSync(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;data<br>&nbsp;&nbsp;enable<br>&nbsp;&nbsp;write<br>&nbsp;&nbsp;[mask]<br>&nbsp;&nbsp;[readUnderWrite]<br>&nbsp;&nbsp;[clockCrossing]<br>) | Infer a read/write port.<br> `data` is written when `enable && write`.<br> Return the read data, the read occur when `enable` | T |
 
 {% include note.html content="If for some reason you need a specific memory port which is not implemented in Spinal, you can always abstract your memory by specifying a BlackBox for it." %}
+
+{% include important.html content="Memories ports in SpinalHDL are not inferred but explicitly defined. You should not use coding templates like in VHDL/Verilog to help the synthesis tool to infer memory." %}
 
 
 ## Read under write policy
@@ -41,7 +43,7 @@ This policy specify how a read is affected when a write occur in the same cycle 
 | `readFirst`  | The read will get the old value (before the write) |
 | `writeFirst` | The read will get the new value (provided by the write) |
 
-{% include warning.html content="Currently, the generated VHDL/Verilog is always in the 'readFirst' mode, which is compatible with 'dontCare' but not with 'writeFirst'. To generate a design that contains this kind of feature, you need to enable the automatic memory blackboxing." %}
+{% include important.html content="The generated VHDL/Verilog is always in the 'readFirst' mode, which is compatible with 'dontCare' but not with 'writeFirst'. To generate a design that contains this kind of feature, you need to enable the automatic memory blackboxing." %}
 
 ## Mixed width ram
 You can specify ports that interface the memory with a data width of a power of two fraction of the memory one.
@@ -51,9 +53,9 @@ You can specify ports that interface the memory with a data width of a power of 
 | mem.writeMixedWidth(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;data<br>&nbsp;&nbsp;[readUnderWrite]<br>) |  Similar to mem.write |
 | mem.readAsyncMixedWidth(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;data<br>&nbsp;&nbsp;[readUnderWrite]<br>) | Similar to mem.readAsync, but in place to return the read value, it drive the data structure given as argument |
 | mem.readSyncMixedWidth(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;data<br>&nbsp;&nbsp;[enable]<br>&nbsp;&nbsp;[readUnderWrite]<br>&nbsp;&nbsp;[clockCrossing]<br>) | Similar to mem.readSync, but in place to return the read value, it drive the data structure given as argument |
-| mem.readWriteSyncMixedWidth(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;data<br>&nbsp;&nbsp;enable<br>&nbsp;&nbsp;write<br>&nbsp;&nbsp;[mask]<br>&nbsp;&nbsp;[readUnderWrite]<br>&nbsp;&nbsp;[crossClock]<br>) | Equivalent to mem.readWriteSync |
+| mem.readWriteSyncMixedWidth(<br>&nbsp;&nbsp;address<br>&nbsp;&nbsp;data<br>&nbsp;&nbsp;enable<br>&nbsp;&nbsp;write<br>&nbsp;&nbsp;[mask]<br>&nbsp;&nbsp;[readUnderWrite]<br>&nbsp;&nbsp;[clockCrossing]<br>) | Equivalent to mem.readWriteSync |
 
-{% include warning.html content="As for Read under write policy, to use this feature you need to enable the automatic memory blackboxing, because there is no universal VHDL/Verilog language template to infer mixed width ram." %}
+{% include important.html content="As for Read under write policy, to use this feature you need to enable the automatic memory blackboxing, because there is no universal VHDL/Verilog language template to infer mixed width ram." %}
 
 ## Automatic blackboxing
 Because it's impossible to infer all ram kinds by using regular VHDL/Verilog, Spinal integrate an optional automatic blackboxing system. This system look all Mem present in your RTL netlist and replace them by using BlackBox. Then the generated code will rely third party IP to provide memories features like read during write policy and mixed width ports.
@@ -159,7 +161,7 @@ component Ram_1wrs is
   port(
     clk : in std_logic;
     en : in std_logic;
-    we : in std_logic;
+    wr : in std_logic;
     addr : in unsigned;
     wrData : in std_logic_vector;
     rdData : out std_logic_vector

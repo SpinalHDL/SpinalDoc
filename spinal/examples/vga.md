@@ -54,8 +54,7 @@ case class Vga (rgbConfig: RgbConfig) extends Bundle with IMasterSlave{
   val colorEn = Bool
   val color   = Rgb(rgbConfig)
 
-  override def asMaster() = this.asOutput()
-  override def asSlave()  = this.asInput()
+  override def asMaster() : Unit = this.asOutput()
 }
 ```
 This Vga bundle is with IMasterSlave. That allow to create master/slave VGA interface by this way : <br>

@@ -395,11 +395,10 @@ class APB(val config: APBConfig) extends Bundle with IMasterSlave {
   val PRDATA     = Bits(dataWidth bit)
   val PSLVERROR  = if(useSlaveError) Bool else null   //This wire is created only when useSlaveError is true
 
-  override def asMaster(): this.type = {
+  override def asMaster() : Unit = {
     out(PADDR,PSEL,PENABLE,PWRITE,PWDATA)
     in(PREADY,PRDATA)
     if(useSlaveError) in(PSLVERROR)
-    this
   }
   //The asSlave is by default the flipped version of asMaster.
 }
