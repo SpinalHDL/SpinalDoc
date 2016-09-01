@@ -66,6 +66,10 @@ entries:
       url: /spinal/core/area/
       output: web
 
+    - title: Function
+      url: /spinal/core/function/
+      output: web
+
     - title: Clock domains
       url: /spinal/core/clock_domain/
       output: web
@@ -85,9 +89,7 @@ entries:
       url: /spinal/core/when_switch/
       output: web
 
-    - title: Function
-      url: /spinal/core/function/
-      output: web
+
 
   - title: Sequential logic
     output: web
