@@ -26,8 +26,33 @@ entries:
   - title: Built-in types
     output: web
     folderitems:
-    - title: Types and literals
-      url: /spinal/core/types/
+
+    - title: Boolean (Bool)
+      url: /spinal/core/types/Bool
+      output: web
+
+    - title: Bit Vector (Bits)
+      url: /spinal/core/types/Bits
+      output: web
+
+    - title: Integer (UInt and SInt)
+      url: /spinal/core/types/Int
+      output: web
+
+    - title: Fixed Point (UFix and SFix)
+      url: /spinal/core/types/Fix
+      output: web
+
+    - title: Enumeration (Enum)
+      url: /spinal/core/types/Enum
+      output: web
+
+    - title: Bundle (Bundle)
+      url: /spinal/core/types/Bundle
+      output: web
+
+    - title: Vector (Vec)
+      url: /spinal/core/types/Vector
       output: web
 
   - title: Structuring a design
@@ -39,6 +64,10 @@ entries:
 
     - title: Area
       url: /spinal/core/area/
+      output: web
+
+    - title: Function
+      url: /spinal/core/function/
       output: web
 
     - title: Clock domains
@@ -60,9 +89,7 @@ entries:
       url: /spinal/core/when_switch/
       output: web
 
-    - title: Function
-      url: /spinal/core/function/
-      output: web
+
 
   - title: Sequential logic
     output: web
@@ -157,6 +184,14 @@ entries:
       - title: JTAG TAP
         url: /spinal/examples/jtag/
         output: web
+
+  - title: Developers area
+    output: web
+    folderitems:
+
+    - title: Types
+      url: /spinal/core/types/
+      output: web
 
 #  - title: Bus
 #    output: web
