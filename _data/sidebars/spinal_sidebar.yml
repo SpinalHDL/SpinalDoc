@@ -3,7 +3,7 @@
 entries:
 - title: Sidebar
   product: SpinalHDL documentation
-  version: v0.9.3
+  version: v0.10.0
   folders:
   - title: What is SpinalHDL ?
     output: web
@@ -157,6 +157,24 @@ entries:
         url: /spinal/lib/riscv/
         output: web
 
+
+        subfolders:
+          - title: Pinsec SoC
+            output: web
+            subfolderitems:
+            - title: Introduction
+              url: /spinal/lib/pinsec/introduction/
+              output: web
+
+            - title: Hardware
+              url: /spinal/lib/pinsec/hardware/
+              output: web
+
+            - title: Software
+              url: /spinal/lib/pinsec/software/
+              output: web
+
+
   - title: Examples
     output: web
     folderitems:
@@ -184,6 +202,11 @@ entries:
       - title: JTAG TAP
         url: /spinal/examples/jtag/
         output: web
+
+      - title: SoC toplevel (Pinsec)
+        url: /spinal/lib/pinsec/hardware_toplevel/
+        output: web
+
 
   - title: Developers area
     output: web

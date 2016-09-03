@@ -1,23 +1,75 @@
 ---
 layout: page
-title: Hardware toplevel
+title: Pinsec Toplevel code explanation
 description: ""
 tags: [components, intro]
 categories: [intro]
-sidebar: spinal_sidebar/
+sidebar: spinal_sidebar
 permalink: /spinal/lib/pinsec/hardware_toplevel/
 ---
 
 ## Introduction
+`Pinsec` is a little SoC designed for FPGA. It is available in the SpinalHDL library and some documentation could be find [there](/SpinalDoc/spinal/lib/pinsec/introduction/)
 
-The toplevel of the Pinsec contains some kind of magic, many things are done in very few lines of code. This page document its implementation.
+Its toplevel implementation is an interesting example, because it mix some design pattern that make it very easy to modify. Adding a new master or a new peripheral to the bus fabric could be done in the seconde.
+
+This toplevel implementation could be consulted there :
+[https://github.com/SpinalHDL/SpinalHDL/blob/master/lib/src/main/scala/spinal/lib/soc/pinsec/Pinsec.scala](https://github.com/SpinalHDL/SpinalHDL/blob/master/lib/src/main/scala/spinal/lib/soc/pinsec/Pinsec.scala)
+
+There is the Pinsec toplevel hardware diagram :
+<img src="http://cdn.rawgit.com/SpinalHDL/SpinalDoc/dd17971aa549ccb99168afd55aad274bbdff1e88/asset/picture/pinsec_hardware.svg"   align="middle" width="300">
+
+
+## Defining all IO
+
+```scala
+val io = new Bundle{
+  //Clocks / reset
+  val asyncReset = in Bool
+  val axiClk     = in Bool
+  val vgaClk     = in Bool
+
+  //Main components IO
+  val jtag       = slave(Jtag())
+  val sdram      = master(SdramInterface(IS42x320D.layout))
+
+  //Peripherals IO
+  val gpioA      = master(TriStateArray(32 bits))   //Each pin has it's individual output enable control
+  val gpioB      = master(TriStateArray(32 bits))
+  val uart       = master(Uart())
+  val vga        = master(Vga(RgbConfig(5,6,5)))
+}
+```
+
+## Clock and resets
+
+Pinsec has three clocks inputs :
+
+- axiClock
+- vgaClock
+- jtag.tck
+
+And one reset input :
+
+- asyncReset
+
+Which will finally give 5 ClockDomain (clock/reset couple) :
+
+| Name  | Clock | Description |
+| ------- | ---- | ---- |
+| resetCtrlClockDomain  | axiClock | Used by the reset controller, Flops of this clock domain are initialized by the FPGA bitstream |
+| axiClockDomain  | axiClock |  Used by all component connected to the AXI and the APB interconnect |
+| coreClockDomain  | axiClock | The only difference with the axiClockDomain, is the fact that the reset could also be asserted by the debug module |
+| vgaClockDomain  | vgaClock |  Used by the VGA controller backend as a pixel clock |
+| jtagClockDomain  | jtag.tck |  Used to clock the frontend of the JTAG controller |
+
 
 ### Reset controller
 
 First we need to define the reset controller clock domain, which has no reset wire, but use the FPGA bitstream loading to setup flipflops.
 
 ```scala
-val resetClockDomain = ClockDomain(
+val resetCtrlClockDomain = ClockDomain(
   clock = io.axiClk,
   config = ClockDomainConfig(
     resetKind = BOOT
@@ -28,22 +80,30 @@ val resetClockDomain = ClockDomain(
 Then we can define a simple reset controller under this clock domain.
 
 ```scala
-val resetCtrl = new ClockingArea(resetClockDomain) {
-  val axiResetOrder  = False
-  val coreResetOrder = False setWhen(axiResetOrder)
+val resetCtrl = new ClockingArea(resetCtrlClockDomain) {
+  val axiResetUnbuffered  = False
+  val coreResetUnbuffered = False
 
+  //Implement an counter to keep the reset axiResetOrder high 64 cycles
+  // Also this counter will automaticly do a reset when the system boot.
   val axiResetCounter = Reg(UInt(6 bits)) init(0)
   when(axiResetCounter =/= U(axiResetCounter.range -> true)){
     axiResetCounter := axiResetCounter + 1
-    axiResetOrder := True
+    axiResetUnbuffered := True
   }
   when(BufferCC(io.asyncReset)){
     axiResetCounter := 0
   }
 
-  val axiReset  = RegNext(axiResetOrder)
-  val coreReset = RegNext(coreResetOrder)
-  val vgaReset  = BufferCC(axiReset)
+  //When an axiResetOrder happen, the core reset will as well
+  when(axiResetUnbuffered){
+    coreResetUnbuffered := True
+  }
+
+  //Create all reset used later in the design
+  val axiReset  = RegNext(axiResetUnbuffered)
+  val coreReset = RegNext(coreResetUnbuffered)
+  val vgaReset  = BufferCC(axiResetUnbuffered)
 }
 ```
 
@@ -55,7 +115,7 @@ Now that the reset controller is implemented, we can define clock domain for all
 val axiClockDomain = ClockDomain(
   clock     = io.axiClk,
   reset     = resetCtrl.axiReset,
-  frequency = FixedFrequency(50 MHz)
+  frequency = FixedFrequency(50 MHz) //The frequency information is used by the SDRAM controller
 )
 
 val coreClockDomain = ClockDomain(
@@ -81,6 +141,15 @@ val axi = new ClockingArea(axiClockDomain) {
 }
 ```
 
+## Main components
+
+Pinsec is constituted mainly by 4 main components :
+
+- One RISCV CPU
+- One SDRAM controller
+- One on chip memory
+- One JTAG controller
+
 ### RISCV CPU
 
 The RISCV CPU used in Pinsec as many parametrization possibilities :
@@ -102,6 +171,8 @@ val core = coreClockDomain {
     dynamicBranchPredictorCacheSizeLog2 = 7
   )
 
+  //The CPU has a systems of plugin which allow to add new feature into the core.
+  //Those extension are not directly implemented into the core, but are kind of additive logic patch defined in a separated area.
   coreConfig.add(new MulExtension)
   coreConfig.add(new DivExtension)
   coreConfig.add(new BarrelShifterFullExtension)
@@ -116,31 +187,34 @@ val core = coreClockDomain {
     memDataWidth = 32
   )
 
-
+  //There is the instanciation of the CPU by using all those construction parameters
   new RiscvAxi4(
     coreConfig = coreConfig,
     iCacheConfig = iCacheConfig,
     dCacheConfig = null,
     debug = true,
-    interruptCount = 4
+    interruptCount = 2
   )
 }
 ```
 
 
 ### On chip RAM
+The instanciation of the AXI4 on chip RAM is very simple.
+
+In fact it's not an AXI4 but an Axi4Shared, which mean that a ARW channel replace the AR and AW ones. This solution use less area while being fully interoperable with full AXI4.
 
 ```scala
 val ram = Axi4SharedOnChipRam(
   dataWidth = 32,
   byteCount = 4 kB,
-  idWidth = 4
+  idWidth = 4     //Specify the AXI4 ID width.
 )
 ```
 
 ### SDRAM controller
 
-First you need to define the layout and timings of your SDRAM device :
+First you need to define the layout and timings of your SDRAM device. On the DE1-SOC, the SDRAM device is an IS42x320D one.
 
 ```scala
 object IS42x320D {
@@ -168,14 +242,13 @@ object IS42x320D {
 ```
 
 Then you can used those definition to parametrize the SDRAM controller instantiation.
-
 ```scala
 val sdramCtrl = Axi4SharedSdramCtrl(
-  dataWidth = 32,
-  idWidth   = 4,
-  layout    = IS42x320D.layout,
-  timing    = IS42x320D.timingGrade7,
-  CAS       = 3
+  axiDataWidth = 32,
+  axiIdWidth   = 4,
+  layout       = IS42x320D.layout,
+  timing       = IS42x320D.timingGrade7,
+  CAS          = 3
 )
 ```
 
@@ -193,30 +266,42 @@ val jtagCtrl = JtagAxi4SharedDebugger(SystemDebuggerConfig(
 ))
 ```
 
-### AXI4 to APB3 bridge
 
-This bridge will be used to connect low bandwidth peripherals to the AXI crossbar.
+## Peripherals
+
+Pinsec integrate some peripherals :
+
+- GPIO
+- Timer
+- UART
+- VGA
+
+### GPIO
 
 ```scala
-val apbBridge = Axi4SharedToApb3Bridge(
-  addressWidth = 20,
-  dataWidth    = 32,
-  idWidth      = 4
+val gpioACtrl = Apb3Gpio(
+  gpioWidth = 32
+)
+
+val gpioBCtrl = Apb3Gpio(
+  gpioWidth = 32
 )
 ```
 
+### Timer
+The Pinsec timer module is constituted of :
 
-### Peripherals
+- One prescaler
+- One 32 bits timer
+- Three 16 bits timers
 
-Pinsec integrate some peripherals, there is the code that instantiate Some GPIO and one timer :
+All of them are packed into the PinsecTimerCtrl component.
 
 ```scala
-val gpioACtrl = Apb3Gpio(32)
-val gpioBCtrl = Apb3Gpio(32)
 val timerCtrl = PinsecTimerCtrl()
 ```
 
-#### UART controller
+### UART controller
 
 First we need to define a configuration for our UART controller :
 
@@ -240,7 +325,7 @@ Then we can use it to instantiate the UART controller
 val uartCtrl = Apb3UartCtrl(uartCtrlConfig)
 ```
 
-#### VGA controller
+### VGA controller
 
 First we need to define a configuration for our VGA controller :
 
@@ -248,10 +333,10 @@ First we need to define a configuration for our VGA controller :
 val vgaCtrlConfig = Axi4VgaCtrlGenerics(
   axiAddressWidth = 32,
   axiDataWidth    = 32,
-  burstLength     = 8,
-  frameSizeMax    = 2048*1512*2,
-  fifoSize        = 512,
-  rgbConfig       = vgaRgbConfig,
+  burstLength     = 8,           //In Axi words
+  frameSizeMax    = 2048*1512*2, //In byte
+  fifoSize        = 512,         //In axi words
+  rgbConfig       = RgbConfig(5,6,5),
   vgaClock        = vgaClockDomain
 )
 ```
@@ -260,6 +345,26 @@ Then we can use it to instantiate the VGA controller
 
 ```scala
 val vgaCtrl = Axi4VgaCtrl(vgaCtrlConfig)
+```
+
+## Bus interconnects
+
+There is three interconnections components :
+
+- AXI4 crossbar
+- AXI4 to APB3 bridge
+- APB3 decoder
+
+### AXI4 to APB3 bridge
+
+This bridge will be used to connect low bandwidth peripherals to the AXI crossbar.
+
+```scala
+val apbBridge = Axi4SharedToApb3Bridge(
+  addressWidth = 20,
+  dataWidth    = 32,
+  idWidth      = 4
+)
 ```
 
 ### AXI4 crossbar
@@ -293,7 +398,7 @@ axiCrossbar.addConnections(
   core.io.i       -> List(ram.io.axi, sdramCtrl.io.axi),
   core.io.d       -> List(ram.io.axi, sdramCtrl.io.axi, apbBridge.io.axi),
   jtagCtrl.io.axi -> List(ram.io.axi, sdramCtrl.io.axi, apbBridge.io.axi),
-  vgaCtrl.io.axi  -> List(                        sdramCtrl.io.axi)
+  vgaCtrl.io.axi  -> List(                              sdramCtrl.io.axi)
 )
 ```
 
@@ -334,4 +439,29 @@ val apbDecoder = Apb3Decoder(
     core.io.debugBus -> (0xF0000, 4 kB)
   )
 )
+```
+
+## Misc
+
+To connect all toplevel IO to components, the following code is required :
+
+```scala
+io.gpioA <> axi.gpioACtrl.io.gpio
+io.gpioB <> axi.gpioBCtrl.io.gpio
+io.jtag  <> axi.jtagCtrl.io.jtag
+io.uart  <> axi.uartCtrl.io.uart
+io.sdram <> axi.sdramCtrl.io.sdram
+io.vga   <> axi.vgaCtrl.io.vga
+```
+
+And finally some connections between components are required like interrupts and core debug module resets
+
+```scala
+core.io.interrupt(0) := uartCtrl.io.interrupt
+core.io.interrupt(1) := timerCtrl.io.interrupt
+
+core.io.debugResetIn := resetCtrl.axiReset
+when(core.io.debugResetOut){
+  resetCtrl.coreResetUnbuffered := True
+}
 ```

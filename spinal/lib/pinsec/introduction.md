@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Spinal lib components
+title: Pinsec introduction
 description: "This pages describes the lib components of Spinal"
 tags: [components, intro]
 categories: [intro]
@@ -16,6 +16,7 @@ Pinsec is the name of a little FPGA SoC fully written in SpinalHDL. Goals of thi
 - Show advantage of SpinalHDL meta-hardware description capabilities in a concrete project.
 - Provide a fully open source SoC.
 
+<br>
 Pinsec has followings hardware features:
 
 - AXI4 interconnect for high speed busses
@@ -28,3 +29,5 @@ Pinsec has followings hardware features:
 - One VGA controller
 - Some timer module
 - Some GPIO
+
+The toplevel code explanation could be find [there](/SpinalDoc/spinal/lib/pinsec/hardware_toplevel/)
