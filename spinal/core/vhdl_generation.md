@@ -10,7 +10,7 @@ permalink: /spinal/core/vhdl_generation/
 
 
 ## Generate VHDL and Verilog from an Spinal Component
-To generate the VHDL from an Spinal component you just need to call `SpinalVhdl(new YourComponent[, args])` in a Scala `main`.
+To generate the VHDL from an Spinal component you just need to call `SpinalVhdl(new YourComponent)` in a Scala `main`.
 
 To generate the Verilog, it's exactly the same, but with `SpinalVerilog` in place of `SpinalVHDL`
 
