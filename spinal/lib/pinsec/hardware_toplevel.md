@@ -242,6 +242,7 @@ object IS42x320D {
 ```
 
 Then you can used those definition to parametrize the SDRAM controller instantiation.
+
 ```scala
 val sdramCtrl = Axi4SharedSdramCtrl(
   axiDataWidth = 32,
