@@ -403,7 +403,7 @@ axiCrossbar.addConnections(
 )
 ```
 
-Then to reduce combinatorial path length and have a good design FMax, you can ask the factory insert pipelining stages between itself a given master or slave :
+Then to reduce combinatorial path length and have a good design FMax, you can ask the factory to insert pipelining stages between itself a given master or slave :
 
 ```scala
 //Pipeline the connection between the crossbar and the apbBridge.io.axi

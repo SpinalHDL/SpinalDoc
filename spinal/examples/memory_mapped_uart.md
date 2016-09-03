@@ -12,7 +12,7 @@ permalink: /spinal/examples/memory_mapped_uart/
 This example will take the UartCtrl implemented in the precedent [example](/SpinalDoc/spinal/examples/uart/) to create a memory mapped UART controller.
 
 ## Specification
-The implementation will by based on the Avalon bus with a RX FIFO.
+The implementation will by based on the APB3 bus with a RX FIFO.
 
 There is the register mapping table :
 
@@ -22,27 +22,30 @@ There is the register mapping table :
 | frame | UartCtrlFrameConfig | RW  | 4 | Set the dataLength, the parity and the stop bit configuration |
 | writeCmd | Bits | W | 8 | Send a write command to the UartCtrl  |
 | writeBusy | Bool | R | 8 | Bit 0 => zero when a new writeCmd could be sent |
-| read | Bool / Bits | R | 12 | Bit 7 downto 0 => rx payload <br> Bit 31 => rx payload valid |
+| read | Bool / Bits | R | 12 | Bits 7 downto 0 => rx payload <br> Bit 31 => rx payload valid |
 
 ## Implementation
-For this implemention, the AvalonMMSlaveFactory tool will be used. It allow to define a Avalon slave with a smooth syntax. You can find the documentation of it this tool [there](/SpinalDoc/spinal/lib/bus_slave_factory/).
+For this implementation, the Apb3SlaveFactory tool will be used. It allow to define a APB3 slave with a smooth syntax. You can find the documentation of it this tool [there](/SpinalDoc/spinal/lib/bus_slave_factory/).
 
-First, we just need to define the AvalonMMConfig that will be used for the controller.
+First, we just need to define the Apb3Config that will be used for the controller. It is defined into an scala object as a function to be able to get it from everywhere.
 
 ```scala
-object AvalonUartCtrl{
-  def getAvalonMMConfig = AvalonMMSlaveFactory.getAvalonConfig(addressWidth = 4, dataWidth = 32)
+object Apb3UartCtrl{
+  def getApb3Config = Apb3Config(
+    addressWidth = 4,
+    dataWidth    = 32
+  )
 }
 ```
 
-Then we can define a `AvalonUartCtrl` which instanciate the UartCtrl and create the memory mapping logic between it and the Avalon bus :
+Then we can define a `Apb3UartCtrl` which instantiate the UartCtrl and create the memory mapping logic between it and the APB3 bus :
 
-<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/cacb6e086ff635ca93def01e31aee2da582d991a/asset/picture/memory_mapped_uart.svg"  align="middle" width="300">
+<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/b488520ea0ea5352c59c6e7269ca1d8d92207821/asset/picture/memory_mapped_uart.svg"  align="middle" width="300">
 
 ```scala
-class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) extends Component{
+class Apb3UartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) extends Component{
   val io = new Bundle{
-    val bus =  slave(AvalonMM(AvalonMMUartCtrl.getAvalonMMConfig))
+    val bus =  slave(Apb3(Apb3UartCtrl.getApb3Config))
     val uart = master(Uart())
   }
 
@@ -50,8 +53,8 @@ class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) exten
   val uartCtrl = new UartCtrl(uartCtrlConfig)
   io.uart <> uartCtrl.io.uart
 
-  // Create an instance of the AvalonMMSlaveFactory that will then be used as a slave factory drived by io.bus
-  val busCtrl = AvalonMMSlaveFactory(io.bus)
+  // Create an instance of the Apb3SlaveFactory that will then be used as a slave factory drived by io.bus
+  val busCtrl = Apb3SlaveFactory(io.bus)
 
   // Ask the busCtrl to create a readable/writable register at the address 0
   // and drive uartCtrl.io.config.clockDivider with this register
@@ -76,21 +79,4 @@ class AvalonUartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) exten
 }
 ```
 
-{% include important.html content="Yes, that's all. It's also synthesizable and it work in real world (tested on FPGA).<br><br> The AvalonMMSlaveFactory tool is not something hard-coded into the Spinal compiler. It's something implemented with Spinal regular hardware description syntax." %}
-
-## Bonus : Altera QSys
-To generate the QSys IP of this component it's very simple :
-
-```scala
-object QSysifyAvalonUartCtrl{
-  def main(args: Array[String]) {
-    val report = SpinalVhdl(new AvalonUartCtrl(UartCtrlGenerics(),64))
-    val toplevel = report.toplevel
-
-    toplevel.io.bus.addTag(ClockDomainTag(toplevel.clockDomain))
-    QSysify(toplevel)
-  }
-}
-```
-
-Then if you add the path of you Spinal project to QSys libraries, you will the the AvalonUartCtrl component in the GUI !
+{% include important.html content="Yes, that's all. It's also synthesizable.<br><br> The Apb3SlaveFactory tool is not something hard-coded into the Spinal compiler. It's something implemented with SpinalHDL regular hardware description syntax." %}
