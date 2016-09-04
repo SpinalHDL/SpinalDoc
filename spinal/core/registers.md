@@ -19,13 +19,16 @@ This difference against traditional event driven HDL has a big impact :
 The way how clock and reset wire are managed are explained in the [Clock domain](/SpinalDoc/spinal/core/clock_domain/) chapter.
 
 ## Instantiation
+There is 4 ways to Instantiate a register :
 
 | Syntax | Description |
 | ------- | ---- |
 | Reg(type : Data) | Register of the given type |
-| RegInit(reset_value : Data) | Register loaded with the given reset value when a reset occur. Next value must be assigned using the := operator |
-| RegNext(value : Data) | Register that sample the given value each cycle |
-| RegNextWhen(value : Data, cond : Bool) | Register that sample the given value when a condition occurs |
+| RegInit(resetValue : Data) | Register loaded with the given `resetValue` when a reset occur |
+| RegNext(nextValue : Data) | Register that sample the given `nextValue` each cycle |
+| RegNextWhen(nextValue : Data, cond : Bool) | Register that sample the given `nextValue` when a condition occurs |
+
+There is some usage examples :
 
 ```scala
 //UInt register of 4 bits    
@@ -36,6 +39,7 @@ val reg2 = RegNext(reg1 + 1)
 
 //UInt register of 4 bits initialized with 0 when the reset occur
 val reg3 = RegInit(U"0000")
+reg3 := reg2
 when(reg2 === 5){
   reg3 := 0xF
 }
@@ -44,8 +48,11 @@ when(reg2 === 5){
 val reg4 = RegNextWhen(reg3,cond)
 ```
 
-Will infer the following logic :<br>
-<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/76b539ab6570ed109e8d1804de4c1308b4fff89f/asset/picture/register.svg"  align="middle" width="300">
+The upper code will infer the following logic :<br>
+<img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/c7decc7420d1e790aba7c14d8bdc898aa6046869/asset/picture/register.svg"  align="middle" width="300">
+
+{% include note.html content="The reg3 example show how you can assign the value of a RegInit register. But this it's also right to use the same syntax for all others (Reg,RegNext,RegNextWhen).<br> As for combinatorial assignments, the rule is 'Last assignment win', but if no assignment is done, the register keep its value." %}
+
 
 ## Reset value
 In addition of the `RegInit(value : Data)` syntax which directly create the register with a reset logic,
@@ -68,7 +75,7 @@ val reg = Reg(ValidRGB())
 reg.valid init(False)  //Only the valid of that register bundle will have an reset value.
 ```
 
-## Initialization  value
+## Initialization value for simulation purposes
 For register that doesn't need a reset value in RTL, but need an initialization value for simulation (avoid x-propagation), you can ask for an initialization random value by calling the `randBoot()` function.
 
 ```scala
