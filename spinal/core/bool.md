@@ -2,7 +2,7 @@
 layout: page
 title: Boolean (Bool)
 description: "Describes Bool data type"
-tags: [Bool boolean]
+tags: [datatype]
 categories: [documentation, types, Bool]
 permalink: /spinal/core/types/Bool
 sidebar: spinal_sidebar

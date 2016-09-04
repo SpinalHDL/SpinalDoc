@@ -2,7 +2,7 @@
 layout: page
 title: Vector (Vec)
 description: "Describes Vec data type"
-tags: [Vec vector]
+tags: [datatype]
 categories: [documentation, types, Vec]
 permalink: /spinal/core/types/Vector
 sidebar: spinal_sidebar
