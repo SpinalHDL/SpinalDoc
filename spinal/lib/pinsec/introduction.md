@@ -31,3 +31,7 @@ Pinsec has followings hardware features:
 - Some GPIO
 
 The toplevel code explanation could be find [there](/SpinalDoc/spinal/lib/pinsec/hardware_toplevel/)
+
+## Board support
+
+A DE1-SOC FPGA project can be find [there](https://drive.google.com/folderview?id=0B-CqLXDTaMbKOGhIU0JGdHVVSk0&usp=sharing) with some demo binaries.
