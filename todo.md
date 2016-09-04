@@ -1,2 +1,1 @@
-Add scala page
-Add coding guildline
+Add hierarchy diagram

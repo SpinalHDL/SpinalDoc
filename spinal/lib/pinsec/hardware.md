@@ -8,12 +8,12 @@ sidebar: spinal_sidebar
 permalink: /spinal/lib/pinsec/hardware/
 ---
 
-## Hardware
+## Introduction
 
 There is the Pinsec toplevel hardware diagram :
 <img src="http://cdn.rawgit.com/SpinalHDL/SpinalDoc/dd17971aa549ccb99168afd55aad274bbdff1e88/asset/picture/pinsec_hardware.svg"   align="middle" width="300">
 
-### RISCV
+## RISCV
 
 The RISCV is a 5 stage pipelined CPU with following features :
 
@@ -24,7 +24,7 @@ The RISCV is a 5 stage pipelined CPU with following features :
 - Dynamic branch prediction
 - Debug port
 
-### AXI4
+## AXI4
 
 As previously said, Pinsec integrate an AXI4 bus fabric. AXI4 is not the easiest bus on the Earth but has many advantages like :
 
@@ -44,10 +44,35 @@ From an Area utilization perspective, AXI4 is for sure not the lightest solution
 
 The Pinsec interconnect doesn't introduce latency cycles.
 
-### APB3
+## APB3
 
 In Pinsec, all peripherals implement an APB3 bus to be interfaced. The APB3 choice was motivated by following reasons :
 
 - Very simple bus (no burst)
 - Use very few resources
 - Standard used by many IP
+
+## Generate the RTL
+
+To generate the RTL, you have multiple solutions :
+
+You can download the SpinalHDL source code, and then run :
+
+```sbt
+sbt "project SpinalHDL-lib" "run-main spinal.lib.soc.pinsec.Pinsec"
+```
+
+Or you can create your own main into your own SBT project and then run it :
+
+```scala
+import spinal.lib.soc.pinsec._
+
+object PinsecMain{
+  def main(args: Array[String]) {
+    SpinalVhdl(new Pinsec(100 MHz))
+    SpinalVerilog(new Pinsec(100 MHz))
+  }
+}
+```
+
+{% include note.html content="Currently, only the verilog version was tested in simulation and in FPGA because the last release of GHDL is not compatible with cocotb." %}
