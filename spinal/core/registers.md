@@ -23,7 +23,7 @@ The way how clock and reset wire are managed are explained in the [Clock domain]
 | Syntax | Description |
 | ------- | ---- |
 | Reg(type : Data) | Register of the given type |
-| RegInit(value : Data) | Register with the given value when a reset occur |
+| RegInit(reset_value : Data) | Register loaded with the given reset value when a reset occur. Next value must be assigned using the := operator |
 | RegNext(value : Data) | Register that sample the given value each cycle |
 | RegNextWhen(value : Data, cond : Bool) | Register that sample the given value when a condition occurs |
 
