@@ -344,6 +344,6 @@ class AvalonMMSlaveFactory(bus : AvalonMM) extends BusSlaveFactoryDelayed{
 ```
 
 ## Conclusion
-That's all, you can check one example that use this `AvalonMMSlaveFactory` to create an `AvalonMMUartCtrl` [there](/SpinalDoc/spinal/examples/memory_mapped_uart/).
+That's all, you can check one example that use this `Apb3SlaveFactory` to create an Apb3UartCtrl` [there](/SpinalDoc/spinal/examples/memory_mapped_uart/).
 
-If you want to add the support of a new memory bus, it's very simple you just need to implement another variation of the `BusSlaveFactoryDelayed` trait. The `AvalonMMSlaveFactory` is probably a good starting point :D
+If you want to add the support of a new memory bus, it's very simple you just need to implement another variation of the `BusSlaveFactoryDelayed` trait. The `Apb3SlaveFactory` is probably a good starting point :D

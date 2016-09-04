@@ -25,15 +25,3 @@ Then, by using these features, you can of course define your digital hardware, b
 One example of that is the [Spinal lib](/SpinalDoc/spinal/lib/introduction/) which add many utils, tools, buses and methodology.
 
 To use features introduced in followings chapter you need to `import spinal.core._` in your sources.
-
-## Documentation grammar
-In following pages the following grammar is used to express the syntax of Spinal :
-
-| Notation | Description |
-|--------|--------------|
-| [...] | optional |
-| * | repetition |
-
-## Misc
-
-[There](/SpinalDoc/spinal/core/vhdl_perspective/) is a small VHDL developper guide

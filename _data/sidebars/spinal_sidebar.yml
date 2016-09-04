@@ -3,7 +3,7 @@
 entries:
 - title: Sidebar
   product: SpinalHDL documentation
-  version: v0.9.3
+  version: v0.10.0
   folders:
   - title: What is SpinalHDL ?
     output: web
@@ -21,6 +21,23 @@ entries:
 
     - title: Presentation (PDF)
       url: /presentation/
+      output: web
+
+
+  - title: Scala guide
+    output: web
+    folderitems:
+      
+    - title: Introduction
+      url: /scala/introduction/
+      output: web
+
+    - title: Basics
+      url: /scala/basics/
+      output: web
+
+    - title: Coding conventions
+      url: /scala/coding_conventions/
       output: web
 
   - title: Built-in types
@@ -157,6 +174,24 @@ entries:
         url: /spinal/lib/riscv/
         output: web
 
+
+        subfolders:
+          - title: Pinsec SoC
+            output: web
+            subfolderitems:
+            - title: Introduction
+              url: /spinal/lib/pinsec/introduction/
+              output: web
+
+            - title: Hardware
+              url: /spinal/lib/pinsec/hardware/
+              output: web
+
+            - title: Software
+              url: /spinal/lib/pinsec/software/
+              output: web
+
+
   - title: Examples
     output: web
     folderitems:
@@ -184,6 +219,11 @@ entries:
       - title: JTAG TAP
         url: /spinal/examples/jtag/
         output: web
+
+      - title: SoC toplevel (Pinsec)
+        url: /spinal/lib/pinsec/hardware_toplevel/
+        output: web
+
 
   - title: Developers area
     output: web
