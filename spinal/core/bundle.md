@@ -2,7 +2,7 @@
 layout: page
 title: Bundle (Bundle)
 description: "Describes Bundle data type"
-tags: [Bundle struct]
+tags: [datatype]
 categories: [documentation, types, Bundle]
 permalink: /spinal/core/types/Bundle
 sidebar: spinal_sidebar

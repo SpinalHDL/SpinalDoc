@@ -2,7 +2,7 @@
 layout: page
 title: Integer (UInt and SInt)
 description: "Integer data type"
-tags: [UInt SInt unsigned signed integer]
+tags: [datatype]
 categories: [documentation, types, UInt, unsigned, SInt, signed integer]
 permalink: /spinal/core/types/Int
 sidebar: spinal_sidebar

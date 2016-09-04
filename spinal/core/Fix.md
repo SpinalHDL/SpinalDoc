@@ -2,7 +2,7 @@
 layout: page
 title: Fixed Point (UFix and SFix)
 description: "Fixed point data type"
-tags: [UFix SFix fixed point]
+tags: [datatype]
 categories: [documentation, types, UFix, SFix, unsigned, signed, fixed point]
 permalink: /spinal/core/types/Fix
 sidebar: spinal_sidebar

@@ -2,7 +2,7 @@
 layout: page
 title: Bit vector (Bits)
 description: "Describes bit vector data type"
-tags: [Bits bit vector]
+tags: [datatype]
 categories: [documentation, types, Bits, bit, vector]
 permalink: /spinal/core/types/Bits
 sidebar: spinal_sidebar
