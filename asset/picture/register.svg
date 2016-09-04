@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<svg version="1.2" baseProfile="tiny" width="130.95mm" height="36.63mm" viewBox="-19301 -7415 13095 3663" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+<svg version="1.2" baseProfile="tiny" width="131.11mm" height="46.51mm" viewBox="-19301 -6779 13111 4651" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
  <defs>
   <font id="EmbeddedFont_1" horiz-adv-x="2048">
    <font-face font-family="Arial embedded" units-per-em="2048" font-weight="normal" font-style="normal" ascent="1842" descent="445"/>
@@ -128,94 +128,85 @@
    <g id="DrawingGroup_2">
     <g id="DrawingGroup_3">
      <g>
-      <path fill="rgb(255,255,255)" stroke="none" d="M -10085,-4943 L -10585,-4943 -10585,-6690 -9585,-6690 -9585,-4943 -10085,-4943 Z"/>
-      <path fill="none" stroke="rgb(0,0,0)" id="Drawing_1_0" stroke-width="81" stroke-linejoin="round" d="M -10085,-4943 L -10585,-4943 -10585,-6690 -9585,-6690 -9585,-4943 -10085,-4943 Z"/>
+      <path fill="rgb(255,255,255)" stroke="none" d="M -10069,-3319 L -10569,-3319 -10569,-5066 -9569,-5066 -9569,-3319 -10069,-3319 Z"/>
+      <path fill="none" stroke="rgb(0,0,0)" id="Drawing_1_0" stroke-width="81" stroke-linejoin="round" d="M -10069,-3319 L -10569,-3319 -10569,-5066 -9569,-5066 -9569,-3319 -10069,-3319 Z"/>
      </g>
      <g>
-      <path fill="rgb(255,255,255)" stroke="none" d="M -10285,-5443 L -10586,-5292 -10586,-5593 -10285,-5443 Z"/>
-      <path fill="none" stroke="rgb(0,0,0)" id="Drawing_2_0" stroke-width="81" stroke-linejoin="round" d="M -10285,-5443 L -10586,-5292 -10586,-5593 -10285,-5443 Z"/>
-      <rect fill="none" stroke="none" x="-10585" y="-5593" width="302" height="302"/>
+      <path fill="rgb(255,255,255)" stroke="none" d="M -10269,-3819 L -10570,-3668 -10570,-3969 -10269,-3819 Z"/>
+      <path fill="none" stroke="rgb(0,0,0)" id="Drawing_2_0" stroke-width="81" stroke-linejoin="round" d="M -10269,-3819 L -10570,-3668 -10570,-3969 -10269,-3819 Z"/>
+      <rect fill="none" stroke="none" x="-10569" y="-3969" width="302" height="302"/>
      </g>
     </g>
     <g id="Drawing_3">
-     <rect fill="none" stroke="none" x="-10742" y="-6668" width="808" height="726"/>
+     <rect fill="none" stroke="none" x="-10726" y="-5044" width="808" height="726"/>
      <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-      <text x="-10491" y="-6162">D</text>
+      <text x="-10475" y="-4538">D</text>
      </g>
     </g>
     <g id="Drawing_4">
-     <rect fill="none" stroke="none" x="-10241" y="-6667" width="833" height="726"/>
+     <rect fill="none" stroke="none" x="-10225" y="-5043" width="833" height="726"/>
      <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-      <text x="-9990" y="-6161">Q</text>
+      <text x="-9974" y="-4537">Q</text>
      </g>
     </g>
    </g>
    <g id="Drawing_5">
-    <rect fill="none" stroke="none" x="-10685" y="-5489" width="1206" height="726"/>
+    <rect fill="none" stroke="none" x="-10669" y="-3865" width="1206" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="353" font-style="normal" font-weight="400">
-     <text x="-10434" y="-5008">
-      <tspan x="-10434 -10180 -9985">CLR</tspan></text>
+     <text x="-10418" y="-3384">
+      <tspan x="-10418 -10164 -9969">CLR</tspan></text>
     </g>
    </g>
   </g>
   <g id="Drawing_6">
-   <rect fill="none" stroke="none" x="-11823" y="-5811" width="1282" height="726"/>
+   <rect fill="none" stroke="none" x="-11807" y="-4187" width="1282" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-    <text x="-11440" y="-5305">
-     <tspan x="-11440 -11228 -11135">clk</tspan></text>
+    <text x="-11424" y="-3681">
+     <tspan x="-11424 -11212 -11119">clk</tspan></text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_7_0" stroke-width="80" stroke-linejoin="round" d="M -10859,-5465 L -10578,-5465"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_7_0" stroke-width="80" stroke-linejoin="round" d="M -10843,-3841 L -10562,-3841"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_8_0" stroke-width="80" stroke-linejoin="round" d="M -10074,-4943 L -10074,-4414"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_8_0" stroke-width="80" stroke-linejoin="round" d="M -10058,-3319 L -10058,-2790"/>
   </g>
   <g id="Drawing_9">
-   <rect fill="none" stroke="none" x="-10826" y="-4477" width="1447" height="726"/>
+   <rect fill="none" stroke="none" x="-10810" y="-2853" width="1447" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-    <text x="-10575" y="-3971">
-     <tspan x="-10575 -10435 -10198 -9987 -9749">reset</tspan></text>
-   </g>
-  </g>
-  <g id="Drawing_10">
-   <rect fill="none" stroke="none" x="-10757" y="-6214" width="787" height="726"/>
-   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-    <text x="-10506" y="-5708">E</text>
+    <text x="-10559" y="-2347">
+     <tspan x="-10559 -10419 -10182 -9971 -9733">reset</tspan></text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_11_0" stroke-width="80" stroke-linejoin="round" d="M -11823,-5868 L -10600,-5868"/>
-  </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_12_0" stroke-width="80" stroke-linejoin="round" d="M -10585,-6329 L -10757,-6329"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_10_0" stroke-width="80" stroke-linejoin="round" d="M -11391,-4406 L -11563,-4406"/>
   </g>
   <g id="DrawingGroup_4">
    <g id="DrawingGroup_5">
     <g>
      <path fill="rgb(255,255,255)" stroke="none" d="M -17521,-4085 L -18021,-4085 -18021,-5832 -17021,-5832 -17021,-4085 -17521,-4085 Z"/>
-     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_13_0" stroke-width="81" stroke-linejoin="round" d="M -17521,-4085 L -18021,-4085 -18021,-5832 -17021,-5832 -17021,-4085 -17521,-4085 Z"/>
+     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_11_0" stroke-width="81" stroke-linejoin="round" d="M -17521,-4085 L -18021,-4085 -18021,-5832 -17021,-5832 -17021,-4085 -17521,-4085 Z"/>
     </g>
     <g>
      <path fill="rgb(255,255,255)" stroke="none" d="M -17721,-4485 L -18022,-4334 -18022,-4635 -17721,-4485 Z"/>
-     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_14_0" stroke-width="81" stroke-linejoin="round" d="M -17721,-4485 L -18022,-4334 -18022,-4635 -17721,-4485 Z"/>
+     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_12_0" stroke-width="81" stroke-linejoin="round" d="M -17721,-4485 L -18022,-4334 -18022,-4635 -17721,-4485 Z"/>
      <rect fill="none" stroke="none" x="-18021" y="-4635" width="302" height="302"/>
     </g>
    </g>
-   <g id="Drawing_15">
+   <g id="Drawing_13">
     <rect fill="none" stroke="none" x="-18178" y="-5810" width="808" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
      <text x="-17927" y="-5304">D</text>
     </g>
    </g>
-   <g id="Drawing_16">
+   <g id="Drawing_14">
     <rect fill="none" stroke="none" x="-17677" y="-5809" width="833" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
      <text x="-17426" y="-5303">Q</text>
     </g>
    </g>
   </g>
-  <g id="Drawing_17">
+  <g id="Drawing_15">
    <rect fill="none" stroke="none" x="-18178" y="-6557" width="1350" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
     <text x="-17927" y="-6051">
@@ -226,28 +217,28 @@
    <g id="DrawingGroup_7">
     <g>
      <path fill="rgb(255,255,255)" stroke="none" d="M -17520,-4084 L -18020,-4084 -18020,-5831 -17020,-5831 -17020,-4084 -17520,-4084 Z"/>
-     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_18_0" stroke-width="81" stroke-linejoin="round" d="M -17520,-4084 L -18020,-4084 -18020,-5831 -17020,-5831 -17020,-4084 -17520,-4084 Z"/>
+     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_16_0" stroke-width="81" stroke-linejoin="round" d="M -17520,-4084 L -18020,-4084 -18020,-5831 -17020,-5831 -17020,-4084 -17520,-4084 Z"/>
     </g>
     <g>
      <path fill="rgb(255,255,255)" stroke="none" d="M -17720,-4484 L -18021,-4333 -18021,-4634 -17720,-4484 Z"/>
-     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_19_0" stroke-width="81" stroke-linejoin="round" d="M -17720,-4484 L -18021,-4333 -18021,-4634 -17720,-4484 Z"/>
+     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_17_0" stroke-width="81" stroke-linejoin="round" d="M -17720,-4484 L -18021,-4333 -18021,-4634 -17720,-4484 Z"/>
      <rect fill="none" stroke="none" x="-18020" y="-4634" width="302" height="302"/>
     </g>
    </g>
-   <g id="Drawing_20">
+   <g id="Drawing_18">
     <rect fill="none" stroke="none" x="-18177" y="-5809" width="808" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
      <text x="-17926" y="-5303">D</text>
     </g>
    </g>
-   <g id="Drawing_21">
+   <g id="Drawing_19">
     <rect fill="none" stroke="none" x="-17676" y="-5808" width="833" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
      <text x="-17425" y="-5302">Q</text>
     </g>
    </g>
   </g>
-  <g id="Drawing_22">
+  <g id="Drawing_20">
    <rect fill="none" stroke="none" x="-19301" y="-4825" width="1282" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
     <text x="-18918" y="-4319">
@@ -255,67 +246,67 @@
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_23_0" stroke-width="80" stroke-linejoin="round" d="M -18301,-4479 L -18020,-4479"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_21_0" stroke-width="80" stroke-linejoin="round" d="M -18301,-4479 L -18020,-4479"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_24_0" stroke-width="80" stroke-linejoin="round" d="M -18635,-5435 L -18020,-5435"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_22_0" stroke-width="80" stroke-linejoin="round" d="M -18635,-5435 L -18020,-5435"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_25_0" stroke-width="80" stroke-linejoin="round" d="M -18384,-5259 L -18203,-5620"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_23_0" stroke-width="80" stroke-linejoin="round" d="M -18384,-5259 L -18203,-5620"/>
   </g>
-  <g id="Drawing_26">
+  <g id="Drawing_24">
    <rect fill="none" stroke="none" x="-18958" y="-5360" width="1282" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
     <text x="-18436" y="-4854">4</text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_27_0" stroke-width="80" stroke-linejoin="round" d="M -18634,-5434 L -18019,-5434"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_25_0" stroke-width="80" stroke-linejoin="round" d="M -18634,-5434 L -18019,-5434"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_28_0" stroke-width="80" stroke-linejoin="round" d="M -18383,-5258 L -18202,-5619"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_26_0" stroke-width="80" stroke-linejoin="round" d="M -18383,-5258 L -18202,-5619"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_29_0" stroke-width="80" stroke-linejoin="round" d="M -16783,-5278 L -16602,-5639"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_27_0" stroke-width="80" stroke-linejoin="round" d="M -16783,-5278 L -16602,-5639"/>
   </g>
-  <g id="Drawing_30">
+  <g id="Drawing_28">
    <rect fill="none" stroke="none" x="-17357" y="-5379" width="1282" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
     <text x="-16835" y="-4873">4</text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_31_0" stroke-width="80" stroke-linejoin="round" d="M -17033,-5453 L -16063,-5453"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_29_0" stroke-width="80" stroke-linejoin="round" d="M -17033,-5453 L -16063,-5453"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_32_0" stroke-width="80" stroke-linejoin="round" d="M -16782,-5277 L -16601,-5638"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_30_0" stroke-width="80" stroke-linejoin="round" d="M -16782,-5277 L -16601,-5638"/>
   </g>
   <g id="DrawingGroup_8">
    <g id="DrawingGroup_9">
     <g>
      <path fill="rgb(255,255,255)" stroke="none" d="M -13896,-4307 L -14396,-4307 -14396,-6054 -13396,-6054 -13396,-4307 -13896,-4307 Z"/>
-     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_33_0" stroke-width="81" stroke-linejoin="round" d="M -13896,-4307 L -14396,-4307 -14396,-6054 -13396,-6054 -13396,-4307 -13896,-4307 Z"/>
+     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_31_0" stroke-width="81" stroke-linejoin="round" d="M -13896,-4307 L -14396,-4307 -14396,-6054 -13396,-6054 -13396,-4307 -13896,-4307 Z"/>
     </g>
     <g>
      <path fill="rgb(255,255,255)" stroke="none" d="M -14096,-4707 L -14397,-4556 -14397,-4857 -14096,-4707 Z"/>
-     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_34_0" stroke-width="81" stroke-linejoin="round" d="M -14096,-4707 L -14397,-4556 -14397,-4857 -14096,-4707 Z"/>
+     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_32_0" stroke-width="81" stroke-linejoin="round" d="M -14096,-4707 L -14397,-4556 -14397,-4857 -14096,-4707 Z"/>
      <rect fill="none" stroke="none" x="-14396" y="-4857" width="302" height="302"/>
     </g>
    </g>
-   <g id="Drawing_35">
+   <g id="Drawing_33">
     <rect fill="none" stroke="none" x="-14553" y="-6032" width="808" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
      <text x="-14302" y="-5526">D</text>
     </g>
    </g>
-   <g id="Drawing_36">
+   <g id="Drawing_34">
     <rect fill="none" stroke="none" x="-14052" y="-6031" width="833" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
      <text x="-13801" y="-5525">Q</text>
     </g>
    </g>
   </g>
-  <g id="Drawing_37">
+  <g id="Drawing_35">
    <rect fill="none" stroke="none" x="-14553" y="-6779" width="1350" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
     <text x="-14302" y="-6273">
@@ -326,28 +317,28 @@
    <g id="DrawingGroup_11">
     <g>
      <path fill="rgb(255,255,255)" stroke="none" d="M -13895,-4306 L -14395,-4306 -14395,-6053 -13395,-6053 -13395,-4306 -13895,-4306 Z"/>
-     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_38_0" stroke-width="81" stroke-linejoin="round" d="M -13895,-4306 L -14395,-4306 -14395,-6053 -13395,-6053 -13395,-4306 -13895,-4306 Z"/>
+     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_36_0" stroke-width="81" stroke-linejoin="round" d="M -13895,-4306 L -14395,-4306 -14395,-6053 -13395,-6053 -13395,-4306 -13895,-4306 Z"/>
     </g>
     <g>
      <path fill="rgb(255,255,255)" stroke="none" d="M -14095,-4706 L -14396,-4555 -14396,-4856 -14095,-4706 Z"/>
-     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_39_0" stroke-width="81" stroke-linejoin="round" d="M -14095,-4706 L -14396,-4555 -14396,-4856 -14095,-4706 Z"/>
+     <path fill="none" stroke="rgb(0,0,0)" id="Drawing_37_0" stroke-width="81" stroke-linejoin="round" d="M -14095,-4706 L -14396,-4555 -14396,-4856 -14095,-4706 Z"/>
      <rect fill="none" stroke="none" x="-14395" y="-4856" width="302" height="302"/>
     </g>
    </g>
-   <g id="Drawing_40">
+   <g id="Drawing_38">
     <rect fill="none" stroke="none" x="-14552" y="-6031" width="808" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
      <text x="-14301" y="-5525">D</text>
     </g>
    </g>
-   <g id="Drawing_41">
+   <g id="Drawing_39">
     <rect fill="none" stroke="none" x="-14051" y="-6030" width="833" height="726"/>
     <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
      <text x="-13800" y="-5524">Q</text>
     </g>
    </g>
   </g>
-  <g id="Drawing_42">
+  <g id="Drawing_40">
    <rect fill="none" stroke="none" x="-15657" y="-5066" width="1282" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
     <text x="-15274" y="-4560">
@@ -355,27 +346,27 @@
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_43_0" stroke-width="80" stroke-linejoin="round" d="M -14676,-4701 L -14395,-4701"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_41_0" stroke-width="80" stroke-linejoin="round" d="M -14676,-4701 L -14395,-4701"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_44_0" stroke-width="80" stroke-linejoin="round" d="M -15010,-5657 L -14395,-5657"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_42_0" stroke-width="80" stroke-linejoin="round" d="M -15010,-5657 L -14395,-5657"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_45_0" stroke-width="80" stroke-linejoin="round" d="M -14759,-5481 L -14578,-5842"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_43_0" stroke-width="80" stroke-linejoin="round" d="M -14759,-5481 L -14578,-5842"/>
   </g>
-  <g id="Drawing_46">
+  <g id="Drawing_44">
    <rect fill="none" stroke="none" x="-15333" y="-5582" width="1282" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
     <text x="-14811" y="-5076">4</text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_47_0" stroke-width="80" stroke-linejoin="round" d="M -15370,-5656 L -14394,-5656"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_45_0" stroke-width="80" stroke-linejoin="round" d="M -15370,-5656 L -14394,-5656"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_48_0" stroke-width="80" stroke-linejoin="round" d="M -14758,-5480 L -14577,-5841"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_46_0" stroke-width="80" stroke-linejoin="round" d="M -14758,-5480 L -14577,-5841"/>
   </g>
-  <g id="Drawing_49">
+  <g id="Drawing_47">
    <path fill="rgb(255,255,255)" stroke="none" d="M -15745,-6003 C -15532,-6003 -15370,-5841 -15370,-5628 -15370,-5415 -15532,-5253 -15745,-5253 -15958,-5253 -16120,-5415 -16120,-5628 -16120,-5841 -15958,-6003 -15745,-6003 Z"/>
    <path fill="none" stroke="rgb(0,0,0)" stroke-width="80" stroke-linejoin="round" d="M -15745,-6003 C -15532,-6003 -15370,-5841 -15370,-5628 -15370,-5415 -15532,-5253 -15745,-5253 -15958,-5253 -16120,-5415 -16120,-5628 -16120,-5841 -15958,-6003 -15745,-6003 Z"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
@@ -383,30 +374,30 @@
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_50_0" stroke-width="80" stroke-linejoin="round" d="M -16026,-5885 L -16276,-5885"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_48_0" stroke-width="80" stroke-linejoin="round" d="M -16026,-5885 L -16276,-5885"/>
   </g>
-  <g id="Drawing_51">
+  <g id="Drawing_49">
    <rect fill="none" stroke="none" x="-17052" y="-6247" width="1282" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
     <text x="-16530" y="-5741">1</text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_52_0" stroke-width="80" stroke-linejoin="round" d="M -13184,-5519 L -13003,-5880"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_50_0" stroke-width="80" stroke-linejoin="round" d="M -13184,-5519 L -13003,-5880"/>
   </g>
-  <g id="Drawing_53">
+  <g id="Drawing_51">
    <rect fill="none" stroke="none" x="-13758" y="-5620" width="1282" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
     <text x="-13236" y="-5114">4</text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_54_0" stroke-width="80" stroke-linejoin="round" d="M -13434,-5694 L -12464,-5694"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_52_0" stroke-width="80" stroke-linejoin="round" d="M -13434,-5694 L -12464,-5694"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_55_0" stroke-width="80" stroke-linejoin="round" d="M -13183,-5518 L -13002,-5879"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_53_0" stroke-width="80" stroke-linejoin="round" d="M -13183,-5518 L -13002,-5879"/>
   </g>
-  <g id="Drawing_56">
+  <g id="Drawing_54">
    <path fill="rgb(255,255,255)" stroke="none" d="M -12146,-6244 C -11933,-6244 -11771,-6082 -11771,-5869 -11771,-5656 -11933,-5494 -12146,-5494 -12359,-5494 -12521,-5656 -12521,-5869 -12521,-6082 -12359,-6244 -12146,-6244 Z"/>
    <path fill="none" stroke="rgb(0,0,0)" stroke-width="80" stroke-linejoin="round" d="M -12146,-6244 C -11933,-6244 -11771,-6082 -11771,-5869 -11771,-5656 -11933,-5494 -12146,-5494 -12359,-5494 -12521,-5656 -12521,-5869 -12521,-6082 -12359,-6244 -12146,-6244 Z"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="635" font-style="normal" font-weight="400">
@@ -414,105 +405,125 @@
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_57_0" stroke-width="80" stroke-linejoin="round" d="M -12427,-6126 L -12677,-6126"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_55_0" stroke-width="80" stroke-linejoin="round" d="M -12427,-6126 L -12677,-6126"/>
   </g>
-  <g id="Drawing_58">
+  <g id="Drawing_56">
    <rect fill="none" stroke="none" x="-13453" y="-6488" width="1282" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
     <text x="-12931" y="-5982">5</text>
    </g>
   </g>
-  <g id="Drawing_59">
-   <rect fill="none" stroke="none" x="-11822" y="-6690" width="1282" height="726"/>
+  <g id="Drawing_57">
+   <rect fill="none" stroke="none" x="-12590" y="-4767" width="1206" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-    <text x="-11533" y="-6184">
-     <tspan x="-11533 -11296 -11088">0xF</tspan></text>
+    <text x="-12339" y="-4261">
+     <tspan x="-12339 -12102 -11894">0xF</tspan></text>
    </g>
   </g>
-  <g id="Drawing_60">
-   <rect fill="none" stroke="none" x="-10742" y="-7415" width="1350" height="726"/>
+  <g id="Drawing_58">
+   <rect fill="none" stroke="none" x="-10726" y="-5791" width="1350" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-    <text x="-10491" y="-6909">
-     <tspan x="-10491 -10351 -10114 -9881">reg3</tspan></text>
+    <text x="-10475" y="-5285">
+     <tspan x="-10475 -10335 -10098 -9865">reg3</tspan></text>
    </g>
   </g>
   <g id="DrawingGroup_12">
    <g id="DrawingGroup_13">
     <g id="DrawingGroup_14">
      <g>
-      <path fill="rgb(255,255,255)" stroke="none" d="M -7637,-4922 L -8137,-4922 -8137,-6669 -7137,-6669 -7137,-4922 -7637,-4922 Z"/>
-      <path fill="none" stroke="rgb(0,0,0)" id="Drawing_61_0" stroke-width="81" stroke-linejoin="round" d="M -7637,-4922 L -8137,-4922 -8137,-6669 -7137,-6669 -7137,-4922 -7637,-4922 Z"/>
+      <path fill="rgb(255,255,255)" stroke="none" d="M -7621,-3298 L -8121,-3298 -8121,-5045 -7121,-5045 -7121,-3298 -7621,-3298 Z"/>
+      <path fill="none" stroke="rgb(0,0,0)" id="Drawing_59_0" stroke-width="81" stroke-linejoin="round" d="M -7621,-3298 L -8121,-3298 -8121,-5045 -7121,-5045 -7121,-3298 -7621,-3298 Z"/>
      </g>
      <g>
-      <path fill="rgb(255,255,255)" stroke="none" d="M -7837,-5422 L -8138,-5271 -8138,-5572 -7837,-5422 Z"/>
-      <path fill="none" stroke="rgb(0,0,0)" id="Drawing_62_0" stroke-width="81" stroke-linejoin="round" d="M -7837,-5422 L -8138,-5271 -8138,-5572 -7837,-5422 Z"/>
-      <rect fill="none" stroke="none" x="-8137" y="-5572" width="302" height="302"/>
+      <path fill="rgb(255,255,255)" stroke="none" d="M -7821,-3798 L -8122,-3647 -8122,-3948 -7821,-3798 Z"/>
+      <path fill="none" stroke="rgb(0,0,0)" id="Drawing_60_0" stroke-width="81" stroke-linejoin="round" d="M -7821,-3798 L -8122,-3647 -8122,-3948 -7821,-3798 Z"/>
+      <rect fill="none" stroke="none" x="-8121" y="-3948" width="302" height="302"/>
      </g>
     </g>
-    <g id="Drawing_63">
-     <rect fill="none" stroke="none" x="-8294" y="-6647" width="808" height="726"/>
+    <g id="Drawing_61">
+     <rect fill="none" stroke="none" x="-8278" y="-5023" width="808" height="726"/>
      <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-      <text x="-8043" y="-6141">D</text>
+      <text x="-8027" y="-4517">D</text>
      </g>
     </g>
-    <g id="Drawing_64">
-     <rect fill="none" stroke="none" x="-7793" y="-6646" width="833" height="726"/>
+    <g id="Drawing_62">
+     <rect fill="none" stroke="none" x="-7777" y="-5022" width="833" height="726"/>
      <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-      <text x="-7542" y="-6140">Q</text>
+      <text x="-7526" y="-4516">Q</text>
      </g>
     </g>
    </g>
+  </g>
+  <g id="Drawing_63">
+   <rect fill="none" stroke="none" x="-9359" y="-4166" width="1282" height="726"/>
+   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
+    <text x="-8976" y="-3660">
+     <tspan x="-8976 -8764 -8671">clk</tspan></text>
+   </g>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_64_0" stroke-width="80" stroke-linejoin="round" d="M -8395,-3820 L -8114,-3820"/>
   </g>
   <g id="Drawing_65">
-   <rect fill="none" stroke="none" x="-9375" y="-5790" width="1282" height="726"/>
+   <rect fill="none" stroke="none" x="-8293" y="-4569" width="787" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-    <text x="-8992" y="-5284">
-     <tspan x="-8992 -8780 -8687">clk</tspan></text>
+    <text x="-8042" y="-4063">E</text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_66_0" stroke-width="80" stroke-linejoin="round" d="M -8411,-5444 L -8130,-5444"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_66_0" stroke-width="80" stroke-linejoin="round" d="M -8121,-4684 L -9604,-4684"/>
   </g>
   <g id="Drawing_67">
-   <rect fill="none" stroke="none" x="-8309" y="-6193" width="787" height="726"/>
+   <rect fill="none" stroke="none" x="-8278" y="-5770" width="1350" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-    <text x="-8058" y="-5687">E</text>
+    <text x="-8027" y="-5264">
+     <tspan x="-8027 -7887 -7650 -7417">reg4</tspan></text>
+   </g>
+  </g>
+  <g id="Drawing_68">
+   <rect fill="none" stroke="none" x="-9604" y="-4589" width="1426" height="726"/>
+   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
+    <text x="-9353" y="-4083">
+     <tspan x="-9353 -9141 -8904 -8667">cond</tspan></text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_68_0" stroke-width="80" stroke-linejoin="round" d="M -8137,-6308 L -9620,-6308"/>
-  </g>
-  <g id="Drawing_69">
-   <rect fill="none" stroke="none" x="-8294" y="-7394" width="1350" height="726"/>
-   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-    <text x="-8043" y="-6888">
-     <tspan x="-8043 -7903 -7666 -7433">reg4</tspan></text>
-   </g>
-  </g>
-  <g id="Drawing_70">
-   <rect fill="none" stroke="none" x="-9620" y="-6213" width="1426" height="726"/>
-   <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-    <text x="-9369" y="-5707">
-     <tspan x="-9369 -9157 -8920 -8683">cond</tspan></text>
-   </g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_69_0" stroke-width="80" stroke-linejoin="round" d="M -8392,-4219 L -8111,-4219"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_71_0" stroke-width="80" stroke-linejoin="round" d="M -8408,-5843 L -8127,-5843"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_70_0" stroke-width="80" stroke-linejoin="round" d="M -7148,-4644 L -6533,-4644"/>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_72_0" stroke-width="80" stroke-linejoin="round" d="M -7164,-6268 L -6549,-6268"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_71_0" stroke-width="80" stroke-linejoin="round" d="M -6897,-4468 L -6716,-4829"/>
   </g>
-  <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_73_0" stroke-width="80" stroke-linejoin="round" d="M -6913,-6092 L -6732,-6453"/>
-  </g>
-  <g id="Drawing_74">
-   <rect fill="none" stroke="none" x="-7487" y="-6193" width="1282" height="726"/>
+  <g id="Drawing_72">
+   <rect fill="none" stroke="none" x="-7471" y="-4569" width="1282" height="726"/>
    <g fill="rgb(0,0,0)" stroke="none" font-family="Arial embedded" font-size="423" font-style="normal" font-weight="400">
-    <text x="-6965" y="-5687">4</text>
+    <text x="-6949" y="-4063">4</text>
    </g>
   </g>
   <g>
-   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_75_0" stroke-width="80" stroke-linejoin="round" d="M -6912,-6091 L -6731,-6452"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_73_0" stroke-width="80" stroke-linejoin="round" d="M -6896,-4467 L -6715,-4828"/>
+  </g>
+  <g>
+   <path fill="rgb(255,255,255)" stroke="none" d="M -11348,-4024 L -11348,-5468 -10926,-5107 -10926,-4385 -11348,-4024 Z"/>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_74_0" stroke-width="80" stroke-linejoin="round" d="M -11348,-4024 L -11348,-5468 -10926,-5107 -10926,-4385 -11348,-4024 Z"/>
+   <rect fill="none" stroke="none" x="-11348" y="-5468" width="423" height="1445"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_75_0" stroke-width="80" stroke-linejoin="round" d="M -11126,-5269 L -11126,-5869"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_76_0" stroke-width="80" stroke-linejoin="round" d="M -10926,-4727 L -10569,-4727"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_77_0" stroke-width="80" stroke-linejoin="round" d="M -11771,-5869 L -11126,-5869"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_78_0" stroke-width="80" stroke-linejoin="round" d="M -12770,-5177 L -11347,-5177"/>
+  </g>
+  <g>
+   <path fill="none" stroke="rgb(0,0,0)" id="Drawing_79_0" stroke-width="80" stroke-linejoin="round" d="M -12750,-5149 L -12750,-5722"/>
   </g>
  </g>
 </svg>
