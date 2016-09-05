@@ -169,10 +169,6 @@ entries:
         url: /spinal/lib/fsm/
         output: web
 
-      - title: Bus Slave Factory <i class="fa fa-bolt"></i>
-        url: /spinal/lib/bus_slave_factory/
-        output: web
-
       - title: RISCV CPU
         url: /spinal/lib/riscv/
         output: web
@@ -234,6 +230,10 @@ entries:
 
     - title: Types
       url: /spinal/core/types/
+      output: web
+
+    - title: Bus Slave Factory
+      url: /spinal/lib/bus_slave_factory/
       output: web
 
 #  - title: Bus

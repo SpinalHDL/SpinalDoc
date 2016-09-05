@@ -15,8 +15,6 @@ This page will document it but also explain how it's implemented.
 
 To see capabilities of the tool, an simple example use the AvalonMMSlaveFactory variation [there](/SpinalDoc/spinal/examples/memory_mapped_uart/).
 
-{% include warning.html content="This page will mix many abstract concepts (Class inheritance, Abstract class, hardware generation)" %}
-
 ## Specification
 The class diagram is the following :
 <img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/d0af059a9b5a00e53acbe50a2e7d1e28ccfdfd9c/asset/picture/bus_slave_factory_classes.svg"  align="middle" width="300">
