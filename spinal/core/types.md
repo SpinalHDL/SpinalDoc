@@ -34,7 +34,7 @@ The syntax to declare such as value is as follows:
 | False  | Create a Bool assigned with `false`| Bool |
 | Bool(value : Boolean) | Create a Bool assigned with a Scala Boolean | Bool |
 
-Using this type into Spinal yields:
+Using this type into SpinalHDL yields:
 
 ```scala
 val myBool = Bool()
@@ -406,7 +406,7 @@ class APB(val config: APBConfig) extends Bundle with IMasterSlave {
 
 ## Enum
 
-Spinal support enumeration with some encodings :
+SpinalHDL support enumeration with some encodings :
 
 | Encoding | Bit width | Description |
 | ------- | ---- | --- |

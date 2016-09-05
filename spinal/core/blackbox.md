@@ -9,9 +9,9 @@ permalink: /spinal/core/blackbox/
 ---
 
 ## Instanciate VHDL and Verilog IP inside Spinal
- In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a Spinal design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.
+ In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a SpinalHDL design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.
 
- The example below instanciate a VHDL or a Verilog RAM into a Spinal design. 
+ The example below instanciate a VHDL or a Verilog RAM into a SpinalHDL design. 
 
 ```scala
 // Define a Ram as a BlackBox

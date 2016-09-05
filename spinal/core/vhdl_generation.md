@@ -9,8 +9,8 @@ permalink: /spinal/core/vhdl_generation/
 ---
 
 
-## Generate VHDL and Verilog from an Spinal Component
-To generate the VHDL from an Spinal component you just need to call `SpinalVhdl(new YourComponent)` in a Scala `main`.
+## Generate VHDL and Verilog from an SpinalHDL Component
+To generate the VHDL from an SpinalHDL component you just need to call `SpinalVhdl(new YourComponent)` in a Scala `main`.
 
 To generate the Verilog, it's exactly the same, but with `SpinalVerilog` in place of `SpinalVHDL`
 
@@ -48,7 +48,7 @@ object MyMain {
 
 | Argument name | Type | Default | Description|
 | ------- | ---- | ------------------------- |
-| mode | SpinalMode | null | Set the Spinal mode.<br> Could be set to `VHDL` or `Verilog` |
+| mode | SpinalMode | null | Set the SpinalHDL mode.<br> Could be set to `VHDL` or `Verilog` |
 | defaultConfigForClockDomains | ClockDomainConfig | RisingEdgeClock <br> AsynchronousReset <br> ResetActiveHigh <br> ClockEnableActiveHigh |  Set the clock configuration that will be use as default for all new `ClockDomain`.  |
 | onlyStdLogicVectorAtTopLevelIo | Boolean | false | Change all unsigned/signed toplevel io into std_logic_vector.|
 | defaultClockDomainFrequency    | IClockDomainFrequency | UnknownFrequency | Default clock frequency |
@@ -92,7 +92,7 @@ Usage: SpinalCore [options]
 ```
 
 ## Generated VHDL and Verilog
-The way how a Spinal HDL RTL description is translated into VHDL and Verilog is important :
+The way how a SpinalHDL HDL RTL description is translated into VHDL and Verilog is important :
 
 - Names in Scala are preserved in VHDL and Verilog.
 - `Component` hierarchy in Scala is preserved in VHDL and Verilog.

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Spinal main components
+title: SpinalHDL main components
 description: "This pages describes the main components of Spinal"
 tags: [components, intro]
 categories: [intro]
@@ -9,7 +9,7 @@ permalink: /spinal_core_components/
 ---
 
 # The `spinal.core` components
-The core components of the language are described in this document. It is part of the general [Spinal user guide](userGuide/).
+The core components of the language are described in this document. It is part of the general [SpinalHDL user guide](userGuide/).
 
 The core language components are as follows:
 
@@ -115,7 +115,7 @@ class ExternalClockExample extends Component {
 ```
 
 ### Cross Clock Domain
-Spinal checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another `ClockDomain` area, you should add the `crossClockDomain` tag to the destination signal as depicted in the following example:
+SpinalHDL checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another `ClockDomain` area, you should add the `crossClockDomain` tag to the destination signal as depicted in the following example:
 
 ```scala
 val asynchronousSignal = UInt(8 bit)
@@ -156,7 +156,7 @@ y := x      //y read x with the value 0
 x \= x + 1
 z := x      //z read x with the value 1
 ```
-Spinal check that bitcount of left and right assignment side match. There is multiple ways to adapt bitcount of BitVector (Bits, UInt, SInt) :
+SpinalHDL check that bitcount of left and right assignment side match. There is multiple ways to adapt bitcount of BitVector (Bits, UInt, SInt) :
 
 | Resizing ways | Description|
 | ------- | ---- |
@@ -165,10 +165,10 @@ Spinal check that bitcount of left and right assignment side match. There is mul
 
 There are 2 cases where spinal automaticly resize things :
 
-| Assignement | Problem | Spinal action|
+| Assignement | Problem | SpinalHDL action|
 | ------- | ---- |
-| myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don't match with left side  | Because  U(3) is a "weak" bit inferred signal, Spinal resize it automatically |
-| myUIntOf_8bit := U(2 -> False default -> true) | The right part infer a 3 bit UInt, which doesn't match with the left part | Spinal reapply the default value to bit that are missing |
+| myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don't match with left side  | Because  U(3) is a "weak" bit inferred signal, SpinalHDL resize it automatically |
+| myUIntOf_8bit := U(2 -> False default -> true) | The right part infer a 3 bit UInt, which doesn't match with the left part | SpinalHDL reapply the default value to bit that are missing |
 
 ## When / Switch
 As VHDL and Verilog, wire and register can be conditionally assigned by using when and switch syntaxes
@@ -375,7 +375,7 @@ object MyMain {
 | mem.readSync(address,enable) | Synchronous read | T|
  
 ## Instanciate VHDL and Verilog IP
- In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a Spinal design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.
+ In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a SpinalHDL design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.
  
 ```scala
 class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
@@ -404,7 +404,7 @@ class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
 ```
 
 ## Utils
-The Spinal core contain some utils :
+The SpinalHDL core contain some utils :
 
 | Syntax | Description| Return |
 | ------- | ---- | --- |

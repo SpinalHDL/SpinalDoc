@@ -10,7 +10,7 @@ permalink: /spinal_getting_started/
 *Spinal* is an hardware description language written in [Scala](http://scala-lang.org/), a static-type functional language using the Java virtual machine (JVM). In order to start programming with *Spinal*, you must have a JVM as well as the Scala compiler. In the next section, we will explain how to download those tools if you don't have them already.
 
 # Requirements / Things to download to get started {#requirements}
-Before you download the Spinal tools, you need to install :
+Before you download the SpinalHDL tools, you need to install :
 
 - A Java JDK, which can be downloaded for instance [here](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 - A Scala distribution, which can be downloaded [here](http://scala-lang.org/download/).
@@ -19,7 +19,7 @@ Before you download the Spinal tools, you need to install :
 Optionally, if you need an IDE (which is not compulsory) we advise you to get IntelliJ 14.1.
 
 ## How to start programming with Spinal
-Once you have downloaded all the requirements, there are two ways to get started with Spinal programming.
+Once you have downloaded all the requirements, there are two ways to get started with SpinalHDL programming.
 
 1. [*The SBT way*](#sbtWay) : if you already are familiar with the SBT build system and/or if you don't need an IDE.
 1. [*The IDE way*](#ideWay) : get a project already setup for you in an IDE and start programming right away.
@@ -30,7 +30,7 @@ We have prepared a ready to go project for you on Github.
 - Either clone or [download](https://github.com/SpinalHDL/SpinalBaseProject/archive/master.zip) the ["getting started" repository](https://github.com/SpinalHDL/SpinalBaseProject.git).
 - Open a terminal in the root of it and run `sbt run`. When you execute it for the first time, the process could take some time as it will download all the dependencies required to run *Spinal*.
 
-Normally, this command must generate an output file `MyTopLevel.vhd` which corresponds to the top level *Spinal* code defined in `src\main\scala\MyCode.scala` which corresponds to the [most simple Spinal example](#example).
+Normally, this command must generate an output file `MyTopLevel.vhd` which corresponds to the top level *Spinal* code defined in `src\main\scala\MyCode.scala` which corresponds to the [most simple SpinalHDL example](#example).
 
 From a clean Debian distribution you can type followings commands in the shell. It will install java, scala, sbt, download the base project and generate the corresponding VHDL file. Don't worry if it take time the first time that you run it.
 
@@ -57,9 +57,9 @@ And do the following :
 - In addition, you might need to specify some path like where you installed the JDK to *IntelliJ*.
 - In the project (Intellij project GUI), right click on `src/main/scala/MyCode/TopLevel.scala` and select "Run MyTopLevel"
 
-Normally, this must generate the output file `MyTopLevel.vhd` in the project directory which corresponds to the most [most simple Spinal example](#example).
+Normally, this must generate the output file `MyTopLevel.vhd` in the project directory which corresponds to the most [most simple SpinalHDL example](#example).
 
-## A very simple Spinal example {#example}
+## A very simple SpinalHDL example {#example}
 The following code generates an `and` gate between two one bit inputs.
 
 ```scala
@@ -89,7 +89,7 @@ The following code generates an `and` gate between two one bit inputs.
  }
 ```
 
-As you can see, the first lin e you have to write in Spinal is `import spinal.core._` which indicates that we are using the *Spinal* components in the file.
+As you can see, the first lin e you have to write in SpinalHDL is `import spinal.core._` which indicates that we are using the *Spinal* components in the file.
 
 ### Generated code
 Once you have successfully compiled your code, the compiler should have emit the following VHDL code :
@@ -129,4 +129,4 @@ end arch;
 ```
 
 ## What to do next ?
-It's up to you, but why not have a look at what the [types](types/) are in Spinal or discover what [primitives]() the language provides to describe hardware components? You could also have a look at our [examples](examples/) to see some samples of what you could do next.
+It's up to you, but why not have a look at what the [types](types/) are in SpinalHDL or discover what [primitives]() the language provides to describe hardware components? You could also have a look at our [examples](examples/) to see some samples of what you could do next.

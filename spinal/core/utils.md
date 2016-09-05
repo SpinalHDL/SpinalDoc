@@ -9,7 +9,7 @@ permalink: /spinal/core/utils/
 ---
 
 ## General
-Many tools and utilities are present in [spinal.lib](/SpinalDoc/spinal/lib/utils/) but some are already present in Spinal Core.
+Many tools and utilities are present in [spinal.lib](/SpinalDoc/spinal/lib/utils/) but some are already present in SpinalHDL Core.
 
 | Syntax |  Return | Description|
 | ------- | ---- | --- |
@@ -19,7 +19,7 @@ Many tools and utilities are present in [spinal.lib](/SpinalDoc/spinal/lib/utils
 | Cat(x : Data*) | Bits | Concatenate all arguments, the first in MSB, the last in LSB |
 
 ## Frequency and time
-Spinal HDL has a little syntax to have a smooth declaration of frequency and time value :
+SpinalHDL HDL has a little syntax to have a smooth declaration of frequency and time value :
 
 ```scala
 val frequency = 100 MHz

@@ -16,7 +16,7 @@ The ones that use traditional implementation approaches and doesn't asks many ef
 - [VGA controller](/SpinalDoc/spinal/examples/vga/)
 - [UART controller](/SpinalDoc/spinal/examples/uart/)
 
-The ones that mix programming paradigms and asks to be comfortable with Spinal and software programming to be correctly understood :
+The ones that mix programming paradigms and asks to be comfortable with SpinalHDL and software programming to be correctly understood :
 
 - [Memory mapped UART controller](/SpinalDoc/spinal/examples/memory_mapped_uart/)
 - [JTAG controller](/SpinalDoc/spinal/examples/jtag/)

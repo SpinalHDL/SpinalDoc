@@ -39,7 +39,7 @@ uartCtrl.io.uart <> io.uart
 
 ## Width checking
 
-Spinal check that bitcount of left and right assignment side match. There is multiple ways to adapt the width of a given BitVector (Bits, UInt, SInt) :
+SpinalHDL check that bitcount of left and right assignment side match. There is multiple ways to adapt the width of a given BitVector (Bits, UInt, SInt) :
 
 | Resizing ways | Description|
 | ------- | ---- |
@@ -49,11 +49,11 @@ Spinal check that bitcount of left and right assignment side match. There is mul
 There are 2 cases where spinal automatically resize things :
 
 
-| Assignement | Problem | Spinal action |
+| Assignement | Problem | SpinalHDL action |
 | ------- | ---- | ---- |
-| myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don't match with left side  | Because  U(3) is a "weak" bit inferred signal, Spinal resize it automatically |
-| myUIntOf_8bit := U(2 -> false default -> true) | The right part infer a 3 bit UInt, which doesn't match with the left part | Spinal reapply the default value to bit that are missing |
+| myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don't match with left side  | Because  U(3) is a "weak" bit inferred signal, SpinalHDL resize it automatically |
+| myUIntOf_8bit := U(2 -> false default -> true) | The right part infer a 3 bit UInt, which doesn't match with the left part | SpinalHDL reapply the default value to bit that are missing |
 
 ## Combinatorial loops
 
-Spinal check that there is no combinatorial loops (latch) in your design. If one is detected, it rise an error and Spinal will print you the path of the loop.
+SpinalHDL check that there is no combinatorial loops (latch) in your design. If one is detected, it rise an error and SpinalHDL will print you the path of the loop.

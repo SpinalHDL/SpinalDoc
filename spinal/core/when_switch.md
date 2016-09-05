@@ -52,7 +52,7 @@ when(cond){
 }
 ```
 
-{% include note.html content="Spinal check that signals defined into a scope are only assigned inside this one." %}
+{% include note.html content="SpinalHDL check that signals defined into a scope are only assigned inside this one." %}
 
 ## Mux
 
@@ -71,7 +71,7 @@ val muxOutput  = Mux(cond,whenTrue,whenFalse)
 val muxOutput2 = cond ? whenTrue | whenFalse
 ```
 
-Sometime we need kind of "switch mux", like you can do with the VHDL `when` syntax. Spinal offer something similar by using the `mux` function :
+Sometime we need kind of "switch mux", like you can do with the VHDL `when` syntax. SpinalHDL offer something similar by using the `mux` function :
 
 ```scala
 val bitwiseSelect = UInt(2 bits)

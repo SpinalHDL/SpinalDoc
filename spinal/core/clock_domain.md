@@ -136,7 +136,7 @@ Then the returned instance (which is a ClockDomain one) as following functions t
 | isClockEnableActive |  Return True when the clock enable has effect | Bool |
 
 ## Clock domain crossing
-Spinal checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another `ClockDomain` area, you should add the `crossClockDomain` tag to the destination signal as depicted in the following example:
+SpinalHDL checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another `ClockDomain` area, you should add the `crossClockDomain` tag to the destination signal as depicted in the following example:
 
 
 ```scala
@@ -199,7 +199,7 @@ class CrossingExample(clkA : ClockDomain,clkB : ClockDomain) extends Component {
 }
 ```
 
-Even shorter by importing the lib `import spinal.lib._` Spinal offers a cross clock domain buffer `BufferCC(input: T, init: T = null, bufferDepth: Int = 2)` to avoid metastability issues.
+Even shorter by importing the lib `import spinal.lib._` SpinalHDL offers a cross clock domain buffer `BufferCC(input: T, init: T = null, bufferDepth: Int = 2)` to avoid metastability issues.
 
 ```scala
 class CrossingExample(clkA : ClockDomain,clkB : ClockDomain) extends Component {
