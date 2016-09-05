@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Spinal main components
-description: "This pages describes the main components of Spinal"
+title: SpinalHDL main components
+description: "This pages describes the main components of SpinalHDL"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
@@ -9,7 +9,7 @@ permalink: /spinal_core_components/
 ---
 
 # The `spinal.core` components
-The core components of the language are described in this document. It is part of the general [Spinal user guide](userGuide/).
+The core components of the language are described in this document. It is part of the general [SpinalHDL user guide](userGuide/).
 
 The core language components are as follows:
 
@@ -115,7 +115,7 @@ class ExternalClockExample extends Component {
 ```
 
 ### Cross Clock Domain
-Spinal checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another `ClockDomain` area, you should add the `crossClockDomain` tag to the destination signal as depicted in the following example:
+SpinalHDL checks at compile time that there is no unwanted/unspecified cross clock domain signal reads. If you want to read a signal that is emitted by another `ClockDomain` area, you should add the `crossClockDomain` tag to the destination signal as depicted in the following example:
 
 ```scala
 val asynchronousSignal = UInt(8 bit)
@@ -129,7 +129,7 @@ buffer1 := buffer0   // Second register stage to be avoid metastability issues
 ```scala
 // Or in less lines:
 val buffer0 = RegNext(asynchronousSignal).addTag(crossClockDomain)
-val buffer1 = RegNext(buffer0) 
+val buffer1 = RegNext(buffer0)
 ```
 
 ## Assignments
@@ -156,7 +156,7 @@ y := x      //y read x with the value 0
 x \= x + 1
 z := x      //z read x with the value 1
 ```
-Spinal check that bitcount of left and right assignment side match. There is multiple ways to adapt bitcount of BitVector (Bits, UInt, SInt) :
+SpinalHDL check that bitcount of left and right assignment side match. There is multiple ways to adapt bitcount of BitVector (Bits, UInt, SInt) :
 
 | Resizing ways | Description|
 | ------- | ---- |
@@ -165,10 +165,10 @@ Spinal check that bitcount of left and right assignment side match. There is mul
 
 There are 2 cases where spinal automaticly resize things :
 
-| Assignement | Problem | Spinal action|
+| Assignement | Problem | SpinalHDL action|
 | ------- | ---- |
-| myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don't match with left side  | Because  U(3) is a "weak" bit inferred signal, Spinal resize it automatically |
-| myUIntOf_8bit := U(2 -> False default -> true) | The right part infer a 3 bit UInt, which doesn't match with the left part | Spinal reapply the default value to bit that are missing |
+| myUIntOf_8bit := U(3) | U(3) create an UInt of 2 bits, which don't match with left side  | Because  U(3) is a "weak" bit inferred signal, SpinalHDL resize it automatically |
+| myUIntOf_8bit := U(2 -> False default -> true) | The right part infer a 3 bit UInt, which doesn't match with the left part | SpinalHDL reapply the default value to bit that are missing |
 
 ## When / Switch
 As VHDL and Verilog, wire and register can be conditionally assigned by using when and switch syntaxes
@@ -217,7 +217,7 @@ Like in VHDL and Verilog, you can define components that could be used to build 
 ```scala
 class AdderCell extends Component {
   //Declaring all in/out in an io Bundle is probably a good practice
-  val io = new Bundle { 
+  val io = new Bundle {
     val a, b, cin = in Bool
     val sum, cout = out Bool
   }
@@ -233,7 +233,7 @@ class Adder(width: Int) extends Component {
   val cell1 = new AdderCell
   cell1.io.cin := cell0.io.cout //Connect carrys
   ...
-  val cellArray = Array.fill(width)(new AdderCell) 
+  val cellArray = Array.fill(width)(new AdderCell)
   ...
 }
 ```
@@ -295,7 +295,7 @@ For example if you want to convert a Red/Green/Blue color into a gray one by usi
 
 ```scala
 // Input RGB color
-val r,g,b = UInt(8 bits) 
+val r,g,b = UInt(8 bits)
 
 // Define a function to multiply a UInt by a scala Float value.
 def coef(value : UInt,by : Float) : UInt = (value * U((255*by).toInt,8 bits) >> 8)
@@ -315,14 +315,14 @@ class MyBus(payloadWidth:  Int) extends Bundle {
   val valid = Bool
   val ready = Bool
   val payload = Bits(payloadWidth bits)
-  
+
   //connect that to this
   def <<(that: MyBus) : Unit = {
     this.valid := that.valid
     that.ready := this.ready
     this.payload := that.payload
   }
-  
+
   // Connect this to the FIFO input, return the fifo output
   def queue(size: Int): MyBus = {
     val fifo = new Fifo(payloadWidth, size)
@@ -373,10 +373,10 @@ object MyMain {
 | mem(x) |  Asynchronous read | T |
 | mem(x) := y |  Synchronous write | |
 | mem.readSync(address,enable) | Synchronous read | T|
- 
+
 ## Instanciate VHDL and Verilog IP
- In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a Spinal design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.
- 
+ In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a SpinalHDL design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.
+
 ```scala
 class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
   val generic = new Generic {
@@ -404,7 +404,7 @@ class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
 ```
 
 ## Utils
-The Spinal core contain some utils :
+The SpinalHDL core contain some utils :
 
 | Syntax | Description| Return |
 | ------- | ---- | --- |

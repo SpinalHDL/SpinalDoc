@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Spinal lib components
+title: SpinalHDL lib components
 description: "This pages describes the lib components of Spinal"
 tags: [components, intro]
 categories: [intro]

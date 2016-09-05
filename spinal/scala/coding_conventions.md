@@ -9,7 +9,7 @@ permalink: /scala/coding_conventions/
 ---
 
 ## Introduction
-The coding conventions used in Spinal is the same than the one documented in the [scala doc](http://docs.scala-lang.org/style/).
+The coding conventions used in SpinalHDL is the same than the one documented in the [scala doc](http://docs.scala-lang.org/style/).
 
 Then some additional practice and practical cases are explained in next chapters.
 
@@ -19,7 +19,7 @@ When you need to define a Bundle or a Component, have a preference to declare th
 Reasons are :
 
 - It avoid the use of the new keywords. Never having to use it is better than sometime in some condition.
-- The case class provide an clone function. This is useful when Spinal need to clone one Bundle. For example when you define a new Reg or a new Stream of something.
+- The case class provide an clone function. This is useful when SpinalHDL need to clone one Bundle. For example when you define a new Reg or a new Stream of something.
 - Construction parameters are directly visible from outside.
 
 ### [case] class
@@ -81,7 +81,7 @@ val buffer = Reg(Bits(8 bits))
 ```
 
 ### if / when
-Scala `if` and Spinal `when` should normally be written by the following way :
+Scala `if` and SpinalHDL `when` should normally be written by the following way :
 
 ```scala
 if(cond){
@@ -107,7 +107,7 @@ Exceptions could be :
 - It's fine to compress a whole `if`/`when` statements on a single line if it make the code more readable
 
 ### switch
-Spinal switch should normally be written by the following way :
+SpinalHDL switch should normally be written by the following way :
 
 ```scala
 switch(value){

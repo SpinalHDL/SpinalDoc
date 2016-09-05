@@ -1,16 +1,16 @@
 ---
 layout: page
 title: When and Switch in Spinal
-description: "TODO"
+description: "When, switch and muxes"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
 permalink: /spinal/core/when_switch/
 ---
 
+## When
 
-## When / Switch
-As VHDL and Verilog, wire and register can be conditionally assigned by using when and switch syntaxes
+As VHDL and Verilog, signals can be conditionally assigned when a special condition is met.
 
 ```scala
 when(cond1){
@@ -20,7 +20,12 @@ when(cond1){
 }.otherwise{
   //execute when (not cond1) and (not cond2)
 }
+```
 
+## Switch
+As VHDL and Verilog, signals can be conditionally assigned when a signal has a defined value.
+
+```scala
 switch(x){
   is(value1){
     //execute when x === value1
@@ -36,42 +41,46 @@ switch(x){
 
 ## Local declaration
 
-You can also define new signals into a when/switch statement. It's useful if you want to calculate an intermediate value.
+It's possible to define new signals into a when/switch statement.
 
 ```scala
-val toto,titi = UInt(4 bits)
+val x,y = UInt(4 bits)
 val a,b = UInt(4 bits)
 
 when(cond){
   val tmp = a + b
-  toto := tmp
-  titi := tmp + 1
+  x := tmp
+  y := tmp + 1
 } otherwise {
-  toto := 0
-  titi := 0
+  x := 0
+  y := 0
 }
 ```
 
-{% include note.html content="Spinal check that signals defined into a scope are only assigned inside this one." %}
+{% include note.html content="SpinalHDL check that signals defined into a scope are only assigned inside this one." %}
 
 ## Mux
 
-If you just need a mux with a Bool selection signal, there is two syntax :
+If you just need a Mux with a Bool selection signal, there is two equivalent syntaxes :
 
 | Syntax | Return | Description |
 | ------- | ---- | --- |
-| Mux(cond,whenTrue,whenFalse) | T | Return `whenTrue` when `cond` is True, `whenFalse` otherwise |
+| Mux(cond, whenTrue, whenFalse) | T | Return `whenTrue` when `cond` is True, `whenFalse` otherwise |
 | cond ? whenTrue \| whenFalse | T | Return `whenTrue` when `cond` is True, `whenFalse` otherwise |
 
 
 ```scala
 val cond = Bool
-val whenTrue,whenFalse = UInt(8 bits)
-val muxOutput  = Mux(cond,whenTrue,whenFalse)
+val whenTrue, whenFalse = UInt(8 bits)
+val muxOutput  = Mux(cond, whenTrue, whenFalse)
 val muxOutput2 = cond ? whenTrue | whenFalse
 ```
 
-Sometime we need kind of "switch mux", like you can do with the VHDL `when` syntax. Spinal offer something similar by using the `mux` function :
+## Bitwise selection
+
+A bitwise selection looks like the VHDL `when` syntax.
+
+### Example
 
 ```scala
 val bitwiseSelect = UInt(2 bits)

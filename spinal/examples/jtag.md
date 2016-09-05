@@ -15,7 +15,7 @@ permalink: /spinal/examples/jtag/
 
 {% include important.html content="This page will not explains how JTAG work. A good tutorial could be find [there](http://www.fpga4fun.com/JTAG.html)." %}
 
-One big difference between commonly used HDL and Spinal, is the fact that Spinal allow you to define hardware generators/builders. It's very different than describing hardware.
+One big difference between commonly used HDL and Spinal, is the fact that SpinalHDL allow you to define hardware generators/builders. It's very different than describing hardware.
 Let's take a look into the example bellow because the difference between generate/build/describing could seem "playing with word" or could be interpreted differently.
 
 The example bellow is a JTAG TAP which allow the JTAG master to read `switchs`/`keys` inputs and write `leds` outputs. This TAP could also be recognized by a master by using the UID 0x87654321.

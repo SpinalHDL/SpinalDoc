@@ -58,7 +58,7 @@ You can specify ports that interface the memory with a data width of a power of 
 {% include important.html content="As for Read under write policy, to use this feature you need to enable the automatic memory blackboxing, because there is no universal VHDL/Verilog language template to infer mixed width ram." %}
 
 ## Automatic blackboxing
-Because it's impossible to infer all ram kinds by using regular VHDL/Verilog, Spinal integrate an optional automatic blackboxing system. This system look all Mem present in your RTL netlist and replace them by using BlackBox. Then the generated code will rely third party IP to provide memories features like read during write policy and mixed width ports.
+Because it's impossible to infer all ram kinds by using regular VHDL/Verilog, SpinalHDL integrate an optional automatic blackboxing system. This system look all Mem present in your RTL netlist and replace them by using BlackBox. Then the generated code will rely third party IP to provide memories features like read during write policy and mixed width ports.
 
 There is an example to enable the default automatic blackboxing.
 

@@ -79,4 +79,4 @@ class Apb3UartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) extends
 }
 ```
 
-{% include important.html content="Yes, that's all. It's also synthesizable.<br><br> The Apb3SlaveFactory tool is not something hard-coded into the Spinal compiler. It's something implemented with SpinalHDL regular hardware description syntax." %}
+{% include important.html content="Yes, that's all. It's also synthesizable.<br><br> The Apb3SlaveFactory tool is not something hard-coded into the SpinalHDL compiler. It's something implemented with SpinalHDL regular hardware description syntax." %}

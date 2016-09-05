@@ -14,5 +14,5 @@ Things that could be done
 - [ ] Moyen - Plusieurs niveau de verbosité dans le progress, avec un disclaimer
 - [ ] Moyen - Packer le langage dans un JAR exécutable ? Pourrait être utile pour faire du batch build
 - [ ] ?? - Gestion des erreurs et des messages d'erreur (là par exemple, sortie pas connectée donne des trucs bizzares / pas cools)
- 	`Spinal restart it with scala trace to help you to find the problem`
+ 	`SpinalHDL restart it with scala trace to help you to find the problem`
  

@@ -8,7 +8,7 @@ sidebar: spinal_sidebar
 permalink: /spinal/examples/simple_ones/
 ---
 
-## Some Spinal code examples
+## Some SpinalHDL code examples
 
 All example assume that you have on the top of your scala file the following imports :
 

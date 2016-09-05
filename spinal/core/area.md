@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Area in Spinal
+title: Area
 description: "TODO"
 tags: [components, intro]
 categories: [intro]

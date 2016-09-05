@@ -9,7 +9,7 @@ permalink: /spinal/lib/fsm/
 ---
 
 ## Introduction
-In Spinal you can define your state machine like in VHDL/Verilog, by using enumerations and switch cases statements. But in Spinal you can also use a dedicated syntax.
+In SpinalHDL you can define your state machine like in VHDL/Verilog, by using enumerations and switch cases statements. But in SpinalHDL you can also use a dedicated syntax.
 
 The following state machine is implemented in following examples :
 
@@ -124,7 +124,7 @@ In each of them you have access the following utilities :
 | goto(nextState)                                   | Set the state of the state machine by nextState |
 | exit()                                            | Set the state of the state machine to the boot one |
 
-For example, the following state could be defined in Spinal by using the following syntax :
+For example, the following state could be defined in SpinalHDL by using the following syntax :
 
 <img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/078d8598cd84600cf83dab86a45a7c5c986706e1/asset/picture/fsm_stateb.svg"  align="middle" width="100">
 

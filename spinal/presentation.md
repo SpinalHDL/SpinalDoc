@@ -1,6 +1,6 @@
 ---
 type: homepage
-title: "Spinal user guide"
+title: "SpinalHDL user guide"
 tags: [user guide]
 keywords: spinal, user guide
 last_updated: Apr 19, 2016

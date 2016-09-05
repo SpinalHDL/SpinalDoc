@@ -84,7 +84,7 @@ defaults:
 # these are defaults used for the frontmatter for these file types
 
 
-description: "This is the host site for the Spinal programming language documentation. Spinal is a high-level hardware description language that can be used as an alternative to HVDL or Verilog whislt being compatible with standard EDA tools because it generates syntheizable VHDL.."
+description: "This is the host site for the SpinalHDL programming language documentation. SpinalHDL is a high-level hardware description language that can be used as an alternative to HVDL or Verilog whislt being compatible with standard EDA tools because it generates syntheizable VHDL.."
 # the description is used in the feed.xml file
 
 #gems:
