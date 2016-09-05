@@ -5,7 +5,7 @@ entries:
   product: SpinalHDL documentation
   version: v0.10.0
   folders:
-  - title: About SpinalHDL ?
+  - title: About SpinalHDL
     output: web
     folderitems:
     - title: Introduction
