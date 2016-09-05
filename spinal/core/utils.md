@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Core's utils
+title: Core functions
 description: "TODO"
 tags: [components, intro]
 categories: [intro]

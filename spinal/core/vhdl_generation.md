@@ -92,7 +92,7 @@ Usage: SpinalCore [options]
 ```
 
 ## Generated VHDL and Verilog
-The way how a SpinalHDL HDL RTL description is translated into VHDL and Verilog is important :
+The way how a SpinalHDL RTL description is translated into VHDL and Verilog is important :
 
 - Names in Scala are preserved in VHDL and Verilog.
 - `Component` hierarchy in Scala is preserved in VHDL and Verilog.
