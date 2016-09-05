@@ -5,11 +5,15 @@ entries:
   product: SpinalHDL documentation
   version: v0.10.0
   folders:
-  - title: What is SpinalHDL ?
+  - title: About SpinalHDL ?
     output: web
     folderitems:
     - title: Introduction
       url: /
+      output: web
+
+    - title: SpinalHDL users
+      url: /users
       output: web
 
   - title: Getting Started
@@ -23,11 +27,10 @@ entries:
       url: /presentation/
       output: web
 
-
   - title: Scala guide
     output: web
     folderitems:
-      
+
     - title: Introduction
       url: /scala/introduction/
       output: web
