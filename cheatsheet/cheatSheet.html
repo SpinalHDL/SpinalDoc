@@ -253,7 +253,7 @@
                                         <td><cScala>val</cScala> size:BigInt = 4MB </td>                    
                                     </tr>
                                     <tr class="code borderBottom"> 
-                                        <td>Bits, Bit</td>                  
+                                        <td>bits, bit</td>                  
                                         <td><cScala>val</cScala> myBits:BitCount = 3 bits</td>                 
                                     </tr>   
                                     <tr class="code borderBottom"> 
@@ -282,7 +282,7 @@
                                         <td>    
                                             x + y <br>
                                             x - y <br>
-                                            x * x
+                                            x * y
                                         </td>
                                         <td>
                                             x &lt; y <br>
@@ -413,7 +413,7 @@
                                             }
                                         </td>              
                                     </tr>
-                                    <tr class="code borderBottom">
+                                    <tr class="code">
                                         <td colspan="2">
                                             <cScala>class</cScala> Bus(val config: BusConfig) <cScala>extends</cScala> Bundle { <br>
                                               <tab1><cScala>val</cScala> addr     = UInt(config.addrWidth bits)  </tab1><br>
@@ -431,50 +431,45 @@
                                             } <br>
                                             <cComment>!! Thanks to the Lib this code can be written different (cf master/slave interface on Lib Sheet) !! </cComment>
                                         </td>
-                                    </tr>
-                                    <tr class="code">
-                                        <td colspan="2">
-                                            in/out Bool, in/out Bits/UInt/SInt[(x bits)], in/out(T) <cComment> // Create input/output </cComment> <br>
-                                            master/slave Stream/Flow[T], master/slave(T) <cComment> // Provide by the spinal.lib </cComment>
-
-                                        </td>                                        
-                                    </tr>
+                                    </tr>          
                                 </table> <!-- End Table Bundle -->
 
-                                <!-- Area -->
-                                <table id="core_area"  style="width:40%" class="tableSectionCore">
-                                    <tr class="titleSectionCore">
-                                        <td>Area</td>
-                                    </tr>               
-                                    <tr class="code ">  
-                                        <td>
-                                            <cScala>val</cScala> myCounter = <cScala>new</cScala> Area{ <br>
-                                                <tab1><cScala>val</cScala> tick = Bool </tab1><br>
-                                                <tab2>... </tab2><br>
-                                            <tab1>} </tab1><br>
-                                            io.output := myCounter.tick                                                 
-                                        </td>                   
-                                    </tr>
-                                </table> <!-- End Table Area -->   
-                                
+                                <div style="width:97%">
+                                    <!-- Area -->
+                                    <table id="core_area"  style="width:37%" class="tableSectionCore">
+                                        <tr class="titleSectionCore">
+                                            <td>Area</td>
+                                        </tr>               
+                                        <tr class="code ">  
+                                            <td>
+                                                <cScala>val</cScala> myCounter = <cScala>new</cScala> Area{ <br>
+                                                    <tab1><cScala>val</cScala> tick = Bool </tab1><br>
+                                                    <tab2>... </tab2><br>
+                                                <tab1>} </tab1><br>
+                                                io.output := myCounter.tick                                                 
+                                            </td>                   
+                                        </tr>
+                                    </table> <!-- End Table Area -->   
+                                    
 
-                                <!-- Component -->
-                                <table id="core_Component" style="width:59%"; class="tableSectionCore">
-                                    <tr class="titleSectionCore">
-                                        <td>Component</td>
-                                    </tr>               
-                                    <tr class="code ">  
-                                        <td>
-                                            <cScala>class</cScala> AndGate(width : <cScala>Int</cScala>) <cScala>extend</cScala> Component{ <br>
-                                                <tab1><cScala>val</cScala> io = <cScala>new</cScala> Bundle{ </tab1><br>
-                                                    <tab2>  <cScala>val</cScala> value = out Bits(width bits) </tab2> <br>
-                                                    <tab2>  <cScala>val</cScala> in1,in2 = in Bits(width bits) </tab2> <br>
-                                                <tab1>} </tab1> <br>
-                                                <tab1> io.value := io.in1 &amp; io.in2</tab1> <br>
-                                            }                                               
-                                        </td>                   
-                                    </tr>
-                                </table> <!-- End Table Component -->    
+                                    <!-- Component -->
+                                    <table id="core_Component" style="width:59%"; class="tableSectionCore">
+                                        <tr class="titleSectionCore">
+                                            <td>Component</td>
+                                        </tr>               
+                                        <tr class="code ">  
+                                            <td>
+                                                <cScala>class</cScala> AndGate(width : <cScala>Int</cScala>) <cScala>extend</cScala> Component{ <br>
+                                                    <tab1><cScala>val</cScala> io = <cScala>new</cScala> Bundle{ </tab1><br>
+                                                        <tab2>  <cScala>val</cScala> value = out Bits(width bits) </tab2> <br>
+                                                        <tab2>  <cScala>val</cScala> in1,in2 = in Bits(width bits) </tab2> <br>
+                                                    <tab1>} </tab1> <br>
+                                                    <tab1> io.value := io.in1 &amp; io.in2</tab1> <br>
+                                                }                                               
+                                            </td>                   
+                                        </tr>
+                                    </table> <!-- End Table Component -->    
+                                </div>
 
 
                                 <!-- Clock domain -->
@@ -924,7 +919,7 @@
                                         </td>
                                     </tr>    
                                     <tr class="code borderBottom">
-                                        <td><b>StreamDispatcherSequencial</b></td>
+                                        <td><b>StreamDispatcher Sequencial</b></td>
                                         <td>                                              
                                             <cScala>val</cScala> dispatchedStreams = StreamDispatcherSequencial(input=inputStream, outputCount=3 )
                                         </td>
@@ -942,9 +937,11 @@
                                         </td>
                                     </tr>
                                     <tr class="code">
-                                        <td><b> StreamJoin : translateWith... </b></td>
+                                        <td><b> StreamJoin, translateWith </b></td>
                                         <td>  
-                                            <cScala>val</cScala> ???
+                                            <cScala>val</cScala> writeJoinEvent = StreamJoin.arg(bus.writeCmd,bus.writeData) <br>                                        
+                                            <cScala>val</cScala> writeRsp = AxiLite4B(bus.config) <br>
+                                            bus.writeRsp <-< writeJoinEvent.translateWith(writeRsp)
                                         </td>
                                     </tr>                                       
                                 </table><!-- End Table Stream -->   
@@ -968,7 +965,7 @@
                                     </tr>                                    
                                     <tr class="code borderBottom">
                                         <td> <b> Connection </b> </td>  
-                                        <td> s &lt;&lt; m. m &gt;&gt; s, s &lt;-&lt; m, m &gt;-&gt; s  </td>                               
+                                        <td> s &lt;&lt; m, m &gt;&gt; s, s &lt;-&lt; m, m &gt;-&gt; s  </td>                               
                                     </tr> 
                                     <tr class="code">
                                         <td> <b> Function </b> </td>  
@@ -996,7 +993,7 @@
                                     </tr>                                    
                                     <tr class="code">
                                         <td> <b> Function </b> </td>  
-                                        <td> .first, .tail, .isFirst, .isTail, .isLast, .insterHeader(T) </td>                               
+                                        <td> .first, .tail, .isFirst, .isTail, .isLast, .insertHeader(T) </td>                               
                                     </tr> 
 
                                 </table><!-- End Table Fragment -->     
@@ -1141,7 +1138,7 @@
                                         <td>Bus Slave Factory</td>
                                     </tr> 
                                     <tr class="code borderBottom">
-                                        <td style="text-align:center;">  <img src="busSlaveFactory.svg" alt="Bus Factory" style="width:40mm; "> </td>
+                                        <td style="text-align:center;">  <img src="busSlaveFactory.svg" alt="Bus Factory" style="width:50mm; "> </td>
                                     </tr>          
                                     <tr class="code borderBottom">
                                         <td>
@@ -1180,11 +1177,11 @@
 
                                 <!-- Master/Slave interface -->
                                 <table id="lib_MasterSlaveInterface" class="tableSectionLib" style="width:100%;">
-                                    <tr class="titleSectionLib">
+                                    <tr class="titleSectionLib"">
                                         <td colspan="2">Master/Slave interface</td>
                                     </tr>       
                                     <tr class="code">
-                                        <td>
+                                        <td class="borderRight">
                                             <cScala>class</cScala> Bus(val config: BusConfig) <cScala>extends</cScala> Bundle <cScala>with</cScala> IMasterSlave { <br>
                                               <tab1><cScala>val</cScala> addr     = UInt(config.addrWidth bits)  </tab1><br>
                                               <tab1><cScala>val</cScala> dataWr, dataRd = Bits(config.dataWidth bits) </tab1><br>
