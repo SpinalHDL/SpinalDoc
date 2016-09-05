@@ -53,3 +53,13 @@ There is some rules about component interconnection :
 - Components can read their own outputs ports values (unlike VHDL)
 
 {% include tip.html content="If for some reason, you need to read a signals from far away in the hierarchy (debug, temporal patch) you can do it by using the value returned by some.where.else.theSignal.pull()." %}
+
+<!--
+TODO
+### Input or Output is a basic type
+
+### Input or Output is a bundle type
+
+## Master/Slave interface
+
+-->

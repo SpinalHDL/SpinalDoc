@@ -1,7 +1,7 @@
 ---
 layout: page
 title: SpinalHDL main components
-description: "This pages describes the main components of Spinal"
+description: "This pages describes the main components of SpinalHDL"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
@@ -129,7 +129,7 @@ buffer1 := buffer0   // Second register stage to be avoid metastability issues
 ```scala
 // Or in less lines:
 val buffer0 = RegNext(asynchronousSignal).addTag(crossClockDomain)
-val buffer1 = RegNext(buffer0) 
+val buffer1 = RegNext(buffer0)
 ```
 
 ## Assignments
@@ -217,7 +217,7 @@ Like in VHDL and Verilog, you can define components that could be used to build 
 ```scala
 class AdderCell extends Component {
   //Declaring all in/out in an io Bundle is probably a good practice
-  val io = new Bundle { 
+  val io = new Bundle {
     val a, b, cin = in Bool
     val sum, cout = out Bool
   }
@@ -233,7 +233,7 @@ class Adder(width: Int) extends Component {
   val cell1 = new AdderCell
   cell1.io.cin := cell0.io.cout //Connect carrys
   ...
-  val cellArray = Array.fill(width)(new AdderCell) 
+  val cellArray = Array.fill(width)(new AdderCell)
   ...
 }
 ```
@@ -295,7 +295,7 @@ For example if you want to convert a Red/Green/Blue color into a gray one by usi
 
 ```scala
 // Input RGB color
-val r,g,b = UInt(8 bits) 
+val r,g,b = UInt(8 bits)
 
 // Define a function to multiply a UInt by a scala Float value.
 def coef(value : UInt,by : Float) : UInt = (value * U((255*by).toInt,8 bits) >> 8)
@@ -315,14 +315,14 @@ class MyBus(payloadWidth:  Int) extends Bundle {
   val valid = Bool
   val ready = Bool
   val payload = Bits(payloadWidth bits)
-  
+
   //connect that to this
   def <<(that: MyBus) : Unit = {
     this.valid := that.valid
     that.ready := this.ready
     this.payload := that.payload
   }
-  
+
   // Connect this to the FIFO input, return the fifo output
   def queue(size: Int): MyBus = {
     val fifo = new Fifo(payloadWidth, size)
@@ -373,10 +373,10 @@ object MyMain {
 | mem(x) |  Asynchronous read | T |
 | mem(x) := y |  Synchronous write | |
 | mem.readSync(address,enable) | Synchronous read | T|
- 
+
 ## Instanciate VHDL and Verilog IP
  In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a SpinalHDL design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.
- 
+
 ```scala
 class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
   val generic = new Generic {

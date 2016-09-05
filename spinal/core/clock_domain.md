@@ -11,7 +11,7 @@ permalink: /spinal/core/clock_domain/
 
 
 ## Introduction
-In *Spinal*, clock and reset signals can be combined to create a __clock domain__. Clock domains could be applied to some area of the design and then all synchronous elements instantiated into this area will then __implicitly__ use this clock domain.
+In *SpinalHDL*, clock and reset signals can be combined to create a __clock domain__. Clock domains could be applied to some area of the design and then all synchronous elements instantiated into this area will then __implicitly__ use this clock domain.
 
 Clock domain application work like a stack, which mean, if you are in a given clock domain, you can still apply another clock domain locally.
 

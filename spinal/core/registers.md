@@ -23,9 +23,9 @@ The way how clock and reset wire are managed are explained in the [Clock domain]
 | Syntax | Description |
 | ------- | ---- |
 | Reg(type : Data) | Register of the given type |
-| RegInit(reset_value : Data) | Register loaded with the given reset value when a reset occur. Next value must be assigned using the := operator |
-| RegNext(value : Data) | Register that sample the given value each cycle |
-| RegNextWhen(value : Data, cond : Bool) | Register that sample the given value when a condition occurs |
+| RegInit(resetValue : Data) | Register loaded with the given reset value when a reset occur. Next value must be assigned using the := operator |
+| RegNext(nextValue : Data) | Register that sample the given value each cycle |
+| RegNextWhen(nextValue : Data, updateCondition : Bool) | Register that sample the given value when a condition occurs |
 
 ```scala
 //UInt register of 4 bits    

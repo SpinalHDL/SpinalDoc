@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Assertion in Spinal
+title: Assertions
 description: "TODO"
 tags: [components, intro]
 categories: [intro]

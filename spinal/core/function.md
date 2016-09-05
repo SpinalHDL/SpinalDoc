@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Function in Spinal
+title: Functions
 description: "TODO"
 tags: [components, intro]
 categories: [intro]

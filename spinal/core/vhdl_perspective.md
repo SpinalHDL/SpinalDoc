@@ -1,7 +1,7 @@
 ---
 layout: page
-title: When and Switch in Spinal
-description: "TODO"
+title: SpinalHDL compared to VHDL
+description: "Comparison between SpinalHDL and VHDL"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar

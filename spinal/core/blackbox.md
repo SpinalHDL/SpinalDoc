@@ -8,10 +8,12 @@ sidebar: spinal_sidebar
 permalink: /spinal/core/blackbox/
 ---
 
-## Instanciate VHDL and Verilog IP inside Spinal
- In some cases, it could be usefull to instanciate a VHDL or a Verilog component into a SpinalHDL design. To do that, you need to define BlackBox which is like a Component, but its internal implementation should be provided by a separate VHDL/Verilog file to the simulator/synthesis tool.
+## Description
+A blackbox allows the user to integrate an existing VHDL/Verilog component into the design by just specifying the
+interfaces. It's up to the simulator or synthesizer to do the elaboration correctly.
 
- The example below instanciate a VHDL or a Verilog RAM into a SpinalHDL design. 
+## Instanciate VHDL and Verilog IP inside Spinal
+ The example below instanciates a VHDL or a Verilog RAM into a SpinalHDL design.
 
 ```scala
 // Define a Ram as a BlackBox
@@ -41,7 +43,7 @@ class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
 
 // Create the top level and instanciate the Ram
 class TopLevel extends Component {
-  
+
   val io = new Bundle {    
     val wr = new Bundle {
       val en   = in Bool
@@ -78,7 +80,7 @@ The previous code will generate the VHDL below :
   ram : Ram_1w_1r
     generic map(
       wordCount => 16,
-      wordWidth => 8 
+      wordWidth => 8
     )
     port map (
       io_clk => clk,
@@ -87,7 +89,7 @@ The previous code will generate the VHDL below :
       io_wr_data => io_wr_data,
       io_rd_en => io_rd_en,
       io_rd_addr => io_rd_addr,
-      io_rd_data => io_rd_data 
+      io_rd_data => io_rd_data
     );
     ...
 ```
