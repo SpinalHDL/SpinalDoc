@@ -16,6 +16,10 @@ entries:
       url: /users
       output: web
 
+    - title: FAQ
+      url: /faq/
+      output: web
+
   - title: Getting Started
     output: web
     folderitems:
