@@ -36,21 +36,22 @@ entries:
       url: /presentation/
       output: web
 
-  - title: Scala guide
-    output: web
-    folderitems:
 
-    - title: Introduction
-      url: /scala/introduction/
-      output: web
+      subfolders:
+        - title: Scala guide
+          output: web
+          subfolderitems:
+          - title: Introduction
+            url: /scala/introduction/
+            output: web
 
-    - title: Basics
-      url: /scala/basics/
-      output: web
+          - title: Basics
+            url: /scala/basics/
+            output: web
 
-    - title: Coding conventions
-      url: /scala/coding_conventions/
-      output: web
+          - title: Coding conventions
+            url: /scala/coding_conventions/
+            output: web
 
   - title: Built-in types
     output: web
