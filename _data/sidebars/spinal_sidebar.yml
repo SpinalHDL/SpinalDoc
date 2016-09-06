@@ -249,25 +249,31 @@ entries:
               url: /spinal/examples/simple/rgb_to_gray/
               output: web
 
-      - title: VGA
-        url: /spinal/examples/vga/
-        output: web
+          - title: Standard ones
+            output: web
+            subfolderitems:
+            - title: VGA
+              url: /spinal/examples/vga/
+              output: web
 
-      - title: UART
-        url: /spinal/examples/uart/
-        output: web
+            - title: UART
+              url: /spinal/examples/uart/
+              output: web
 
-      - title: Memory mapped UART
-        url: /spinal/examples/memory_mapped_uart/
-        output: web
+          - title: Advanced ones
+            output: web
+            subfolderitems:
+            - title: Memory mapped UART
+              url: /spinal/examples/memory_mapped_uart/
+              output: web
 
-      - title: JTAG TAP
-        url: /spinal/examples/jtag/
-        output: web
+            - title: JTAG TAP
+              url: /spinal/examples/jtag/
+              output: web
 
-      - title: SoC toplevel (Pinsec)
-        url: /spinal/lib/pinsec/hardware_toplevel/
-        output: web
+            - title: SoC toplevel (Pinsec)
+              url: /spinal/lib/pinsec/hardware_toplevel/
+              output: web
 
 
   - title: Developers area

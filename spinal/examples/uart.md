@@ -105,7 +105,7 @@ case class UartCtrlConfig(g: UartCtrlGenerics) extends Bundle {
 }
 ```
 
-## implementation
+## Implementation
 In the `UartCtrl` 3 things will be instantiated :
 
 - One clock divider that generate a tick pulse at the UART RX sampling rate.

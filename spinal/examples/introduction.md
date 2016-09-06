@@ -8,15 +8,8 @@ sidebar: spinal_sidebar
 permalink: /spinal/examples/introduction/
 ---
 
-Examples could be split in two familly :
+Examples are split in tree kinds:
 
-The ones that use traditional implementation approaches and doesn't asks many effort to be understood :
-
-- [Simple ones](/SpinalDoc/spinal/examples/simple/introduction/)
-- [VGA controller](/SpinalDoc/spinal/examples/vga/)
-- [UART controller](/SpinalDoc/spinal/examples/uart/)
-
-The ones that mix programming paradigms and asks to be comfortable with SpinalHDL and software programming to be correctly understood :
-
-- [Memory mapped UART controller](/SpinalDoc/spinal/examples/memory_mapped_uart/)
-- [JTAG controller](/SpinalDoc/spinal/examples/jtag/)
+- Simples ones, that could be used to get SpinalHDL basics
+- Standards ones, which implements well known components by using an traditional approach
+- Advanced ones, which go further traditional HDL by using object oriented programming, functional programming and meta-hardware description
