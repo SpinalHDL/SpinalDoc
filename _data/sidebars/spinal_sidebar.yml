@@ -225,9 +225,29 @@ entries:
         url: /spinal/examples/introduction/
         output: web
 
-      - title: Simple ones
-        url: /spinal/examples/simple_ones/
-        output: web
+        subfolders:
+          - title: Simple ones
+            output: web
+            subfolderitems:
+            - title: Introduction
+              url: /spinal/examples/simple/introduction/
+              output: web
+
+            - title: Counter with clear
+              url: /spinal/examples/simple/counter_with_clear/
+              output: web
+
+            - title: Carry adder
+              url: /spinal/examples/simple/carry_adder/
+              output: web
+
+            - title: Color summing
+              url: /spinal/examples/simple/color_summing/
+              output: web
+
+            - title: RGB to gray
+              url: /spinal/examples/simple/rgb_to_gray/
+              output: web
 
       - title: VGA
         url: /spinal/examples/vga/

@@ -4,7 +4,7 @@ Things that could be done
 # Documentation
 - [ ] GROS - Documentation à planifier plus
 - [ ] Petit - Plus d'exemples dans le projet de démarrage / IntelliJ ?
-- [ ] Document ´spinal.lib´, notably the *AXI*, *AXILite*, *Avalon* buses, but also the rest
+- [ ] Document ´spinal.lib´
 - [ ] Provide more example
 
 # Code

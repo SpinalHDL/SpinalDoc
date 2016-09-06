@@ -12,7 +12,7 @@ Examples could be split in two familly :
 
 The ones that use traditional implementation approaches and doesn't asks many effort to be understood :
 
-- [Simple ones](/SpinalDoc/spinal/examples/simple_ones/)
+- [Simple ones](/SpinalDoc/spinal/examples/simple/introduction/)
 - [VGA controller](/SpinalDoc/spinal/examples/vga/)
 - [UART controller](/SpinalDoc/spinal/examples/uart/)
 
