@@ -399,7 +399,7 @@ axiCrossbar.addConnections(
   core.io.i       -> List(ram.io.axi, sdramCtrl.io.axi),
   core.io.d       -> List(ram.io.axi, sdramCtrl.io.axi, apbBridge.io.axi),
   jtagCtrl.io.axi -> List(ram.io.axi, sdramCtrl.io.axi, apbBridge.io.axi),
-  vgaCtrl.io.axi  -> List(                              sdramCtrl.io.axi)
+  vgaCtrl.io.axi  -> List(            sdramCtrl.io.axi)
 )
 ```
 

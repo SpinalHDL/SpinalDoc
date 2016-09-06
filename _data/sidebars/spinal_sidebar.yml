@@ -177,8 +177,30 @@ entries:
         url: /spinal/lib/riscv/
         output: web
 
-
         subfolders:
+          - title: Bus
+            output: web
+            subfolderitems:
+#            - title: Introduction
+#              url: /spinal/lib/bus/introduction/
+#              output: web
+
+            - title: APB3
+              url: /spinal/lib/bus/amba3/apb3/
+              output: web
+
+            - title: AHB-Lite3
+              url: /spinal/lib/bus/amba3/ahblite3/
+              output: web
+
+            - title: AXI4
+              url: /spinal/lib/bus/amba4/axi4/
+              output: web
+
+            - title: AvalonMM
+              url: /spinal/lib/bus/avalon/avalonmm/
+              output: web
+
           - title: Pinsec SoC
             output: web
             subfolderitems:

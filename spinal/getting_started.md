@@ -23,6 +23,7 @@ Once you have downloaded all the requirements, there are two ways to get started
 
 1. [*The SBT way*](#sbtWay) : if you already are familiar with the SBT build system and/or if you don't need an IDE.
 1. [*The IDE way*](#ideWay) : get a project already setup for you in an IDE and start programming right away.
+1. [*The Make way*](#makeWay) : if you are used to Makefiles and want to keep SBT for later.
 
 ### The SBT way {#sbtWay}
 We have prepared a ready to go project for you on Github.
@@ -58,6 +59,14 @@ And do the following :
 - In the project (Intellij project GUI), right click on `src/main/scala/MyCode/TopLevel.scala` and select "Run MyTopLevel"
 
 Normally, this must generate the output file `MyTopLevel.vhd` in the project directory which corresponds to the most [most simple SpinalHDL example](#example).
+
+## The Makefile way {#makeWay}
+A template project that can be used via a makefile is available [there](https://github.com/SpinalHDL/SpinalBaseProject/tree/makefile) <br>
+To use it you have to :
+
+- Either clone or download that repository
+- Open a shell in its root
+- Execute the `make run` command
 
 ## A very simple SpinalHDL example {#example}
 The following code generates an `and` gate between two one bit inputs.
