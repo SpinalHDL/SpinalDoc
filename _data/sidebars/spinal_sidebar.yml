@@ -20,6 +20,11 @@ entries:
       url: /faq/
       output: web
 
+
+    - title: Support
+      url: /support/
+      output: web
+
   - title: Getting Started
     output: web
     folderitems:
