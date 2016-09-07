@@ -116,6 +116,28 @@ def sumBiggerThanZero(a : Float,b : Float = 0.0f) = {
 ```
 
 
+### Apply
+Functions named apply are special because you can call them without having to type their name :
+
+```scala
+class Array(){
+  def apply(index : Int) : Int = index + 3
+}
+
+val array = new Array()
+val value = array(4)   //array(4) is interpreted as array.apply(4) and will return 7
+```
+
+This concept is also applicable for scala `object` (static)
+
+```scala
+object MajorityVote{
+  def apply(value : Int) : Int = ...
+}
+
+val value = MajorityVote(4) // Will call MajorityVote.apply(4)
+```
+
 ## Object
 
 In scala, there is no `static` keyword. In place of that, there is `object`. Everything defined into an `object` is static.

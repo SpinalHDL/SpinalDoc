@@ -36,7 +36,6 @@ entries:
       url: /presentation/
       output: web
 
-
       subfolders:
         - title: Scala guide
           output: web
