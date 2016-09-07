@@ -22,5 +22,7 @@ permalink: /spinal/lib/utils/
 | MajorityVote(x : Seq[Bool]) <br> MajorityVote(x : BitVector) | Bool | Return True if the number of bit set is > x.size / 2 |
 | BufferCC(input : T) | T | Return the input signal synchronised with the current clock domain by using 2 flip flop |
 | LatencyAnalysis(paths : Node*) | Int | Return the shortest path,in therm of cycle, that travel through all nodes, <br> from the first one to the last one |
+| Endianness(that: T, cycleCount: Int) | T | Big-Endian <-> Little-Endian |
+| LFSR.fibonacci(that:Bits, xorBits:Seq[Int]) <br> LFSR.galois(that:Bits, xorBits:Seq[Int]) | Bits | Linear feedback shift register (LFSR) |
 
 Some utils are also present in [spinal.core](/SpinalDoc/spinal/core/utils/)
