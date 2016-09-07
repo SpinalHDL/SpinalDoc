@@ -122,3 +122,4 @@ The following operators are available for the `Bits` type
 | x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int | T(width bits) |
 | x.getZero |  Get equivalent type assigned with zero | T |
 | x.resize(y) |  Return a resized copy of x, filled with zero, y : Int  | T(y bits) |
+| x.resized |  Return a version of x which is allowed to be automatically resized were needed   | T(w(x) bits) |
