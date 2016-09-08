@@ -276,6 +276,10 @@ entries:
               url: /spinal/examples/memory_mapped_uart/
               output: web
 
+            - title: Timer
+              url: /spinal/examples/timer/
+              output: web
+
             - title: JTAG TAP
               url: /spinal/examples/jtag/
               output: web
