@@ -399,11 +399,14 @@ axiCrossbar.addConnections(
   core.io.i       -> List(ram.io.axi, sdramCtrl.io.axi),
   core.io.d       -> List(ram.io.axi, sdramCtrl.io.axi, apbBridge.io.axi),
   jtagCtrl.io.axi -> List(ram.io.axi, sdramCtrl.io.axi, apbBridge.io.axi),
-  vgaCtrl.io.axi  -> List(                              sdramCtrl.io.axi)
+  vgaCtrl.io.axi  -> List(            sdramCtrl.io.axi)
 )
 ```
 
 Then to reduce combinatorial path length and have a good design FMax, you can ask the factory to insert pipelining stages between itself a given master or slave :
+
+{% include note.html content="`halfPipe` / >> / << / >/->  in the following code are provided by the Stream bus library. <br>Some documentation could be find [there](/SpinalDoc/spinal/lib/stream/). In short, it's just some pipelining and interconnection stuff." %}
+
 
 ```scala
 //Pipeline the connection between the crossbar and the apbBridge.io.axi

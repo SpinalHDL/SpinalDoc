@@ -16,6 +16,15 @@ entries:
       url: /users
       output: web
 
+    - title: Support
+      url: /support/
+      output: web
+
+    - title: FAQ
+      url: /faq/
+      output: web
+
+
   - title: Getting Started
     output: web
     folderitems:
@@ -27,21 +36,21 @@ entries:
       url: /presentation/
       output: web
 
-  - title: Scala guide
-    output: web
-    folderitems:
+      subfolders:
+        - title: Scala guide
+          output: web
+          subfolderitems:
+          - title: Introduction
+            url: /scala/introduction/
+            output: web
 
-    - title: Introduction
-      url: /scala/introduction/
-      output: web
+          - title: Basics
+            url: /scala/basics/
+            output: web
 
-    - title: Basics
-      url: /scala/basics/
-      output: web
-
-    - title: Coding conventions
-      url: /scala/coding_conventions/
-      output: web
+          - title: Coding conventions
+            url: /scala/coding_conventions/
+            output: web
 
   - title: Built-in types
     output: web
@@ -177,8 +186,30 @@ entries:
         url: /spinal/lib/riscv/
         output: web
 
-
         subfolders:
+          - title: Bus
+            output: web
+            subfolderitems:
+#            - title: Introduction
+#              url: /spinal/lib/bus/introduction/
+#              output: web
+
+            - title: APB3
+              url: /spinal/lib/bus/amba3/apb3/
+              output: web
+
+            - title: AHB-Lite3
+              url: /spinal/lib/bus/amba3/ahblite3/
+              output: web
+
+            - title: AXI4
+              url: /spinal/lib/bus/amba4/axi4/
+              output: web
+
+            - title: AvalonMM
+              url: /spinal/lib/bus/avalon/avalonmm/
+              output: web
+
           - title: Pinsec SoC
             output: web
             subfolderitems:
@@ -203,29 +234,55 @@ entries:
         url: /spinal/examples/introduction/
         output: web
 
-      - title: Simple ones
-        url: /spinal/examples/simple_ones/
-        output: web
+        subfolders:
+          - title: Simple ones
+            output: web
+            subfolderitems:
+            - title: Introduction
+              url: /spinal/examples/simple/introduction/
+              output: web
 
-      - title: VGA
-        url: /spinal/examples/vga/
-        output: web
+            - title: Counter with clear
+              url: /spinal/examples/simple/counter_with_clear/
+              output: web
 
-      - title: UART
-        url: /spinal/examples/uart/
-        output: web
+            - title: Carry adder
+              url: /spinal/examples/simple/carry_adder/
+              output: web
 
-      - title: Memory mapped UART
-        url: /spinal/examples/memory_mapped_uart/
-        output: web
+            - title: Color summing
+              url: /spinal/examples/simple/color_summing/
+              output: web
 
-      - title: JTAG TAP
-        url: /spinal/examples/jtag/
-        output: web
+            - title: RGB to gray
+              url: /spinal/examples/simple/rgb_to_gray/
+              output: web
 
-      - title: SoC toplevel (Pinsec)
-        url: /spinal/lib/pinsec/hardware_toplevel/
-        output: web
+          - title: Standard ones
+            output: web
+            subfolderitems:
+            - title: VGA
+              url: /spinal/examples/vga/
+              output: web
+
+            - title: UART
+              url: /spinal/examples/uart/
+              output: web
+
+          - title: Advanced ones
+            output: web
+            subfolderitems:
+            - title: Memory mapped UART
+              url: /spinal/examples/memory_mapped_uart/
+              output: web
+
+            - title: JTAG TAP
+              url: /spinal/examples/jtag/
+              output: web
+
+            - title: SoC toplevel (Pinsec)
+              url: /spinal/lib/pinsec/hardware_toplevel/
+              output: web
 
 
   - title: Developers area

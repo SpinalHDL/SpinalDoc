@@ -62,9 +62,9 @@ The following operators are available for the `Bits` type
 | x \|\| y |  Logical OR  | Bool |
 | x ^ y | Logical XOR | Bool |
 | ~x |  Bitwise NOT | T(w(x) bits) |
-| x & y |  Bitwise AND | T(max(w(x), w(y) bits) |
-| x \| y |  Bitwise OR  | T(max(w(x), w(y) bits) |
-| x ^ y |  Bitwise XOR | T(max(w(x), w(y) bits) |
+| x & y |  Bitwise AND | T(w(xy) bits) |
+| x \| y |  Bitwise OR  | T(w(xy) bits) |
+| x ^ y |  Bitwise XOR | T(w(xy) bits) |
 | x.xorR |  XOR all bits of x | Bool |
 | x.orR  |  OR all bits of x  | Bool |
 | x.andR |  AND all bits of x | Bool |
@@ -122,3 +122,4 @@ The following operators are available for the `Bits` type
 | x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int | T(width bits) |
 | x.getZero |  Get equivalent type assigned with zero | T |
 | x.resize(y) |  Return a resized copy of x, filled with zero, y : Int  | T(y bits) |
+| x.resized |  Return a version of x which is allowed to be automatically resized were needed   | T(w(x) bits) |
