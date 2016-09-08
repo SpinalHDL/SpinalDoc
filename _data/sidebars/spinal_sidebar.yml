@@ -72,6 +72,10 @@ entries:
       url: /spinal/core/types/Fix
       output: web
 
+    - title: Floating Point (Floating)
+      url: /spinal/core/types/Floating
+      output: web
+
     - title: Enumeration (Enum)
       url: /spinal/core/types/Enum
       output: web
