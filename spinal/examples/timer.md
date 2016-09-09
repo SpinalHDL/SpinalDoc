@@ -123,10 +123,12 @@ There is a demonstration code which is very close to the one used into the Pinse
 Then by using an Apb3SlaveFactory and functions defined inside the Timers, it create a bridging logic between the APB3 bus and all instantiated components.
 
 ```scala
-val apb = Apb3(ApbConfig(addressWidth = 8, dataWidth = 32))
-val external = new Bundle{
-  val tick  = Bool
-  val clear = Bool
+val io = new Bundle{
+  val apb = Apb3(ApbConfig(addressWidth = 8, dataWidth = 32))
+  val external = new Bundle{
+    val tick  = Bool
+    val clear = Bool
+  }
 }
 
 //Prescaler is very similar to the timer, it mainly integrate an auto reload logic.
@@ -147,18 +149,18 @@ val timerABridge = timerA.driveFrom(busCtrl,0x40)(
 
 val timerBBridge = timerB.driveFrom(busCtrl,0x50)(
   //The external.tick could allow to create an impulsion counter mode
-  ticks  = List(True, prescaler.io.overflow, external.tick),  
+  ticks  = List(True, prescaler.io.overflow, io.external.tick),  
   //external.clear could allow to create an timeout mode.
-  clears = List(timerB.io.full, external.clear)          
+  clears = List(timerB.io.full, io.external.clear)          
 )
 
 val timerCBridge = timerC.driveFrom(busCtrl,0x60)(
-  ticks  = List(True, prescaler.io.overflow, external.tick),
-  clears = List(timerC.io.full, external.clear)
+  ticks  = List(True, prescaler.io.overflow, io.external.tick),
+  clears = List(timerC.io.full, io.external.clear)
 )
 
 val timerDBridge = timerD.driveFrom(busCtrl,0x70)(
-  ticks  = List(True, prescaler.io.overflow, external.tick),
-  clears = List(timerD.io.full, external.clear)
+  ticks  = List(True, prescaler.io.overflow, io.external.tick),
+  clears = List(timerD.io.full, io.external.clear)
 )
 ```
