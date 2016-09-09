@@ -68,14 +68,6 @@ entries:
       url: /spinal/core/types/Int
       output: web
 
-    - title: Fixed Point (UFix and SFix)
-      url: /spinal/core/types/Fix
-      output: web
-
-    - title: Floating Point (Floating)
-      url: /spinal/core/types/Floating
-      output: web
-
     - title: Enumeration (Enum)
       url: /spinal/core/types/Enum
       output: web
@@ -86,6 +78,14 @@ entries:
 
     - title: Vector (Vec)
       url: /spinal/core/types/Vector
+      output: web
+
+    - title: Fixed Point (UFix and SFix)
+      url: /spinal/core/types/Fix
+      output: web
+
+    - title: Floating Point (Floating)
+      url: /spinal/core/types/Floating
       output: web
 
   - title: Structuring a design
@@ -256,6 +256,10 @@ entries:
 
             - title: RGB to gray
               url: /spinal/examples/simple/rgb_to_gray/
+              output: web
+
+            - title: APB3 definition
+              url: /spinal/examples/simple/apb3/
               output: web
 
           - title: Standard ones

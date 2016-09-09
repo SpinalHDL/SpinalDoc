@@ -28,7 +28,7 @@ And also some inputs/outputs :
 | tick | in | Bool | When `tick` is True, the timer count up until `limit`. |
 | clear | in | Bool | When `tick` is True, the timer is set to zero. `clear` has the priority over `tick`. |
 | limit | in |  UInt(width bits) | When the timer value is equals to `limit`, the `tick` input is inhibited. |
-| overflow | out | Bool | overflow is high when the timer value is equals to `limit`  |
+| full | out | Bool | full is high when the timer value is equals to `limit`  |
 | value | out | UInt(width bits)  | Wire out the timer counter value. |
 
 ### Implementation
@@ -40,19 +40,19 @@ case class Timer(width : Int) extends Component{
     val clear     = in Bool
     val limit     = in UInt(width bits)
 
-    val overflow  = out Bool
+    val full  = out Bool
     val value     = out UInt(width bits)
   }
 
   val counter = Reg(UInt(width bits))
-  when(io.tick && !io.overflow){
+  when(io.tick && !io.full){
     counter := counter + 1
   }
   when(io.clear){
     counter := 0
   }
 
-  io.overflow := counter === io.limit
+  io.full := counter === io.limit
   io.value := counter
 }
 ```
@@ -141,24 +141,24 @@ val prescalerBridge = prescaler.driveFrom(busCtrl,0x00)
 val timerABridge = timerA.driveFrom(busCtrl,0x40)(
   // The first element is True, which allow to have a mode where the timer is always counting up.
   ticks  = List(True, prescaler.io.overflow),
-  // By looping the timer overflow to the clears, it allow to create an autoreload mode.
-  clears = List(timerA.io.overflow)           
+  // By looping the timer full to the clears, it allow to create an autoreload mode.
+  clears = List(timerA.io.full)           
 )
 
 val timerBBridge = timerB.driveFrom(busCtrl,0x50)(
   //The external.tick could allow to create an impulsion counter mode
   ticks  = List(True, prescaler.io.overflow, external.tick),  
   //external.clear could allow to create an timeout mode.
-  clears = List(timerB.io.overflow, external.clear)          
+  clears = List(timerB.io.full, external.clear)          
 )
 
 val timerCBridge = timerC.driveFrom(busCtrl,0x60)(
   ticks  = List(True, prescaler.io.overflow, external.tick),
-  clears = List(timerC.io.overflow, external.clear)
+  clears = List(timerC.io.full, external.clear)
 )
 
 val timerDBridge = timerD.driveFrom(busCtrl,0x70)(
   ticks  = List(True, prescaler.io.overflow, external.tick),
-  clears = List(timerD.io.overflow, external.clear)
+  clears = List(timerD.io.full, external.clear)
 )
 ```
