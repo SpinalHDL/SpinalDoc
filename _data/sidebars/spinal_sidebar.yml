@@ -262,7 +262,7 @@ entries:
               url: /spinal/examples/simple/apb3/
               output: web
 
-          - title: Standard ones
+          - title: Intermediates ones
             output: web
             subfolderitems:
             - title: VGA
@@ -272,6 +272,12 @@ entries:
             - title: UART
               url: /spinal/examples/uart/
               output: web
+
+            - title: Fractal calculator
+              url: /spinal/examples/fractal/
+              output: web
+
+
 
           - title: Advanced ones
             output: web
