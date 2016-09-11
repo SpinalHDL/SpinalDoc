@@ -197,7 +197,7 @@ val redLevelOfBlue = blue.r
 ### Inheritance
 As an example, imagine you want to define an class Rectangle and a class Square which extends the class Shape :
 
-```class
+```scala
 class Shape{
   def getArea() : Float
 }
@@ -239,10 +239,12 @@ class  Queue[T](){
 }
 ```
 
-If you want to force the `T` type to be a sub class of a given type (for example Shape), you can use the `<: Shape` syntax :
+If you want to restrict the `T` type to be a sub class of a given type (for example Shape), you can use the `<: Shape` syntax :
 
 ```scala
-class Shape() { ... }
+class Shape() {   
+    def getArea() : Float
+}
 class Rectangle() extends Shape { ... }
 
 class  Queue[T <: Shape](){
@@ -254,5 +256,5 @@ class  Queue[T <: Shape](){
 The same is possible for functions :
 
 ```scala
-def doSomething[T <: Shape](value : T) : Something = { ... }
+def doSomething[T <: Shape](shape : T) : Something = {shape.getArea()}
 ```

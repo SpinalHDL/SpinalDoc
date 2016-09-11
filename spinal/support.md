@@ -22,5 +22,5 @@ An google group is also present. Fell free to post whatever subject you want rel
 
 ## Commercial support
 
-If you are interested by an presentation or an workshop, do not hesitate to contact us by email :<br>
+If you are interested by an presentation, an workshop or some consulting, do not hesitate to contact us by email :<br>
 <spinalhdl@gmail.com>

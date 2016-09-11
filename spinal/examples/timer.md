@@ -125,6 +125,7 @@ Then by using an Apb3SlaveFactory and functions defined inside the Timers, it cr
 ```scala
 val io = new Bundle{
   val apb = Apb3(ApbConfig(addressWidth = 8, dataWidth = 32))
+  val interrupt = in Bool
   val external = new Bundle{
     val tick  = Bool
     val clear = Bool
@@ -163,4 +164,12 @@ val timerDBridge = timerD.driveFrom(busCtrl,0x70)(
   ticks  = List(True, prescaler.io.overflow, io.external.tick),
   clears = List(timerD.io.full, io.external.clear)
 )
+
+val interruptCtrl = InterruptCtrl(4)
+val interruptCtrlBridge = interruptCtrl.driveFrom(busCtrl,0x10)
+interruptCtrl.io.inputs(0) := timerA.io.full
+interruptCtrl.io.inputs(1) := timerB.io.full
+interruptCtrl.io.inputs(2) := timerC.io.full
+interruptCtrl.io.inputs(3) := timerD.io.full
+io.interrupt := interruptCtrl.io.pendings.orR
 ```
