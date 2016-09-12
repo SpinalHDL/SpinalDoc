@@ -12,28 +12,28 @@ permalink: /spinal/examples/fractal/
 This example will show a simple implementation (without optimization)  of an Mandelbrot fractal calculator by using data stream and fixed point calculation.
 
 ## Specification
-The component will receive one stream of pixel tasks (which contain the XY coordonate in the mandelbrot space) and will produce one stream of pixel results (which contain the number of iteration done for the corresponding task)
+The component will receive one stream of pixel tasks (which contain the XY coordinates in the mandelbrot space) and will produce one stream of pixel results (which contain the number of iteration done for the corresponding task)
 
 Let's specify the IO of our component :
 
 | IO Name | Direction | Type | Description |
 | ------- | ---- |  --- | --- |
-| cmd | slave | Stream[PixelTask]  | Provide XY coordonate to process |
+| cmd | slave | Stream[PixelTask]  | Provide XY coordinates to process |
 | rsp | master | Stream[PixelResult]  | Return iteration count needed for the corresponding cmd transaction |
 
 Let's specify the PixelTask bundle :
 
 | Element Name | Type | Description |
 | ------- | ---- |  --- |
-| x | SFix | Coordonate in the mandelbrot space |
-| y | SFix | Coordonate in the mandelbrot space |
+| x | SFix | Coordinate in the mandelbrot space |
+| y | SFix | Coordinate in the mandelbrot space |
 
 
 Let's specify the PixelResult bundle :
 
 | Element Name | Type | Description |
 | ------- | ---- |  --- |
-| iteration | UInt | Number of iteration required to solve the mandelbrot coordonate |
+| iteration | UInt | Number of iteration required to solve the mandelbrot coordinates |
 
 ## Elaboration parameters (Generics)
 Let's define the class that will provide construction parameters of our system :

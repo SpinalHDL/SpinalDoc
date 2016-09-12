@@ -73,7 +73,7 @@ This bridging function will take followings parameters :
 | ticks | Seq[Bool] | A list of Bool sources which can be used as a tick signal |
 | clears | Seq[Bool] | A list of Bool sources which can be used as a clear signal|
 
-The register mapping will make the assumption that the bus system is a 32 bits width :
+The register mapping will make the assumption that the bus system is 32 bits width :
 
 | Name | Access | Width | Address offset | Bit offset |  Description |
 | ------- | ---- | --- | --- | --- |
