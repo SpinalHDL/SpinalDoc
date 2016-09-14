@@ -68,6 +68,8 @@ To use it you have to :
 - Open a shell in its root
 - Execute the `make run` command
 
+You can get updated SpinalHDL JAR on sonatype : [SpinalHDL-core](https://oss.sonatype.org/content/groups/public/com/github/spinalhdl/spinalhdl-core_2.11/)  [SpinalHDL-lib](https://oss.sonatype.org/content/groups/public/com/github/spinalhdl/spinalhdl-lib_2.11/)
+
 ## A very simple SpinalHDL example {#example}
 The following code generates an `and` gate between two one bit inputs.
 

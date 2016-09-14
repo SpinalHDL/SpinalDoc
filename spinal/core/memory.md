@@ -8,7 +8,7 @@ sidebar: spinal_sidebar
 permalink: /spinal/core/memory/
 ---
 
-## Introduction
+## Syntax
 To specify memory of your RTL you can use the Mem tool of Spinal. It allow you to define a memory, and than add ports on it.
 
 The following table show how to instantiate a memory :
@@ -33,6 +33,21 @@ The following table show how to add access ports on a memory :
 
 {% include important.html content="Memories ports in SpinalHDL are not inferred but explicitly defined. You should not use coding templates like in VHDL/Verilog to help the synthesis tool to infer memory." %}
 
+There is a example which infer an simple dual port ram (32 bits * 256):
+
+```scala
+val mem = Mem(Bits(32 bits),wordCount = 256)
+mem.write(
+  enable  = io.writeValid,
+  address = io.writeAddress,
+  data    = io.writeData
+)
+
+io.readData := mem.readSync(
+  enable  = io.readValid,
+  address = io.readAddress
+)
+```
 
 ## Read under write policy
 This policy specify how a read is affected when a write occur in the same cycle on the same address.
