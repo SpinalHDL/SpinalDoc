@@ -18,10 +18,10 @@ It could be used for example to push and pop elements into a FIFO, send requests
 | ready| Bool | Slave | When low => transaction are not consumed by the slave | valid is low |
 | payload| T | Master | Content of the transaction | valid is low |
 
-{% include note.html content="Each slave can or can't allow the payload to change when valid is high and ready is low. For examples:<br>
-- An priority arbiter without lock logic can switch from one input to the other (which will change the payload).<br>
-- An UART controller could directly use the write port to drive UART pins and only consume the transaction at the end of the transmission. <br>
- Be careful with that." %}
+There is an example diagram :<br>
+<img src="{{ "/images/stream.png" |  prepend: site.baseurl }}" alt="Company logo"/>
+
+There is some examples of usage in SpinalHDL :
 
 ```scala
 class StreamFifo[T <: Data](dataType: T, depth: Int) extends Component {
@@ -40,6 +40,11 @@ class StreamArbiter[T <: Data](dataType: T,portCount: Int) extends Component {
   ...
 }
 ```
+
+{% include note.html content="Each slave can or can't allow the payload to change when valid is high and ready is low. For examples:<br>
+- An priority arbiter without lock logic can switch from one input to the other (which will change the payload).<br>
+- An UART controller could directly use the write port to drive UART pins and only consume the transaction at the end of the transmission. <br>
+ Be careful with that." %}
 
 ## Functions
 
