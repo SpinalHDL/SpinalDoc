@@ -10,7 +10,7 @@ permalink: /
 ---
 
 ## Site purpose and structure
-This site presents the *SpinalHDL HDL* language and how to use it on concrete examples.
+This site presents the *SpinalHDL* language and how to use it on concrete examples.
 
 If you are learning the language from scratch, [this presentation](/SpinalDoc/presentation/) is probably a good starting point.
 
