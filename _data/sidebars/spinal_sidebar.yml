@@ -36,6 +36,10 @@ entries:
       url: /presentation/
       output: web
 
+    - title: Cheatsheet Core (PDF)
+      url: /cheatsheet_core/
+      output: web
+
       subfolders:
         - title: Scala guide
           output: web
