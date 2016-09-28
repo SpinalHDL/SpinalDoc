@@ -31,7 +31,7 @@ Elements could be defined as follows:
 | x : Range -> y : T  |  Set bits in range x with y|
 | x : Range -> y : String  |  Set bits in range x with y <br> The string format follow same rules than B"xyz" one |
 | x : Range -> y : T  |  Set bits in range x with y|
-| default -> y : Boolean/Bool  |  Set all unconnected bits with the y value.<br> This feature could only be use to do assignments without the B prefix |
+| default -> y : Boolean/Bool  |  Set all unconnected bits with the y value.<br> This feature could only be use to do assignments without the B prefix or with the B prefix combined with the bits specification |
 
 You can define a Range values
 

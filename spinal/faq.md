@@ -24,3 +24,6 @@ Yes, some experiments where done, and it appear that generating hundred of 3KLUT
 
 #### How SpinalHDL grow up
 Between December 2014 and April 2016, it grow up as an personal hobby project. But since April 2016 one person is working full time on it. Some people are also regularly contributing to the project.
+
+#### Why develop a new language while there is Chisel
+It's a very good question ! [This page](/SpinalDoc/chisel/) is dedicated to it.

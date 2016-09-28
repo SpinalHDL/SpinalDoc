@@ -88,6 +88,16 @@ Let's add this bridging function inside the Timer component.
 
 ```scala
 case class Timer(width : Int) extends Component{
+  val io = new Bundle{
+    val tick      = in Bool
+    val clear     = in Bool
+    val limit     = in UInt(width bits)
+
+    val full  = out Bool
+    val value     = out UInt(width bits)
+  }  
+
+  // Logic previously defined
   // ....
 
   // The function prototype use Scala curring funcName(arg1,arg2)(arg3,arg3)

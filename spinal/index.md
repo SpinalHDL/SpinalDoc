@@ -45,8 +45,5 @@ The spinal.core (the compiler) is under the LGPL license, which could be summari
 
 The spinal.lib (a general purpose library of components/tools/interfaces) is under the permissive MIT license.
 
-### Why develop a new language while there is Chisel
-It's a very good question ! [This page](/SpinalDoc/chisel/) is dedicated to it.
-
 ## Getting started
 Want to try it for yourself? Then jump to the [getting started section](/SpinalDoc/spinal_getting_started) and have fun!
