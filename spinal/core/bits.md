@@ -72,7 +72,8 @@ The following operators are available for the `Bits` type
 | x \>\> y |  Logical shift right, y : UInt | T(w(x) bits) |
 | x \<\< y |  Logical shift left, y : Int | T(w(x) + y bits) |
 | x \<\< y |  Logical shift left, y : UInt | T(w(x) + max(y) bits) |
-| x.rotateLeft(y) |  Logical left rotation, y : UInt | T(w(x)) |
+| x.rotateLeft(y) |  Logical left rotation, y : UInt/Int | T(w(x)) |
+| x.rotateRight(y) |  Logical right rotation, y : UInt/Int | T(w(x)) |
 | x.clearAll[()] |  Clear all bits | T |
 | x.setAll[()] |  Set all bits | T |
 | x.setAllTo(value : Boolean) | Set all bits to the given Boolean value | - |
@@ -117,6 +118,8 @@ The following operators are available for the `Bits` type
 | x ## y |  Concatenate, x->high, y->low  | Bits(width(x) + width(y) bits)|
 | Cat(x) |  Concatenate list, first element on lsb, x : Array[Data]  | Bits(sumOfWidth bits)|
 | Mux(cond,x,y) |  if cond ? x : y  | T(max(w(x), w(y) bits)|
+| x.subdivideIn(y slices) |  Subdivide x in y slices, y : Int | Vec(w(x)/y, y) |
+| x.subdivideIn(y bits) | Subdivide x in multiple slices of y bits, y : Int | Vec(y, w(x)/y) |
 | x.assignFromBits(bits) |  Assign from Bits | - |
 | x.assignFromBits(bits,hi,lo) |  Assign bitfield, hi : Int, lo : Int | T(hi-lo+1 bits) |
 | x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int | T(width bits) |

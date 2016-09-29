@@ -16,7 +16,7 @@ The following table show how to instantiate a memory :
 | Syntax | Description|
 | ------- | ---- |
 | Mem(type : Data,size : Int) |  Create a RAM |
-| Mem(type : Data,initialContent : Array[Data]) |  Create a ROM    |
+| Mem(type : Data,initialContent : Array[Data]) |  Create a ROM. If your target is an FPGA, because it can be inferred as a block ram, you can still create write ports on it.  |
 
 The following table show how to add access ports on a memory :
 
