@@ -11,7 +11,7 @@ permalink: /spinal/examples/simple/rgb_to_gray/
 Let's imagine a component which convert a RGB color into a gray one, and then write it into an external memory.
 
 | io name  | Direction | Description |
-| ------- | ---- |
+| ------- | ---- | ---- |
 | clear | in | Clear all internal register |
 | r,g,b | in | Color inputs |
 | wr | out | Memory write |

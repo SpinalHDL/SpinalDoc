@@ -56,6 +56,10 @@ entries:
             url: /scala/coding_conventions/
             output: web
 
+          - title: SpinalHDL interactions
+            url: /scala/interactions/
+            output: web
+
   - title: Built-in types
     output: web
     folderitems:
@@ -146,7 +150,7 @@ entries:
       url: /spinal/core/introduction/
       output: web
 
-    - title: Helper functions
+    - title: Utiles
       url: /spinal/core/utils/
       output: web
 
@@ -166,7 +170,7 @@ entries:
         url: /spinal/lib/introduction/
         output: web
 
-      - title: Utils
+      - title: Utiles
         url: /spinal/lib/utils/
         output: web
 
@@ -270,6 +274,10 @@ entries:
               url: /spinal/examples/simple/apb3/
               output: web
 
+            - title: Sinus rom
+              url: /spinal/examples/simple/sinus_rom/
+              output: web
+
           - title: Intermediates ones
             output: web
             subfolderitems:
@@ -318,35 +326,3 @@ entries:
     - title: Bus Slave Factory implementation
       url: /spinal/lib/bus_slave_factory_impl/
       output: web
-
-#  - title: Bus
-#    output: web
-#    folderitems:
-#    - title: Index
-#      url: /spinal/bus/index/
-#      output: web
-#
-#      subfolders:
-#      - title: Avalon
-#        output: web
-#        subfolderitems:
-#
-#        - title: AvalonMM
-#          url: /spinal/bus/avalon/avalonmm/
-#          output: web
-#
-#      - title: AMBA3
-#        output: web
-#        subfolderitems:
-#
-#        - title: APB3
-#          url: /spinal/bus/amba3/apb3/
-#          output: web
-#
-#      - title: AMBA4
-#        output: web
-#        subfolderitems:
-#
-#        - title: AXILITE-3
-#          url: /spinal/bus/amba4/axilite3/
-#          output: web
