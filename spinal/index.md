@@ -47,3 +47,18 @@ The spinal.lib (a general purpose library of components/tools/interfaces) is und
 
 ## Getting started
 Want to try it for yourself? Then jump to the [getting started section](/SpinalDoc/spinal_getting_started) and have fun!
+
+## Links
+SpinalHDL repository :                     <br> [https://github.com/SpinalHDL/SpinalHDL](https://github.com/SpinalHDL/SpinalHDL)
+
+Presentation of the language :   <br> [http://spinalhdl.github.io/SpinalDoc/presentation/](http://spinalhdl.github.io/SpinalDoc/presentation/)
+
+SBT base project :               <br> [https://github.com/SpinalHDL/SpinalBaseProject](https://github.com/SpinalHDL/SpinalBaseProject)
+
+Workshop :                       <br> [https://github.com/SpinalHDL/SpinalBaseProject/tree/workshop](https://github.com/SpinalHDL/SpinalBaseProject/tree/workshop)
+
+Google group :                   <br> [https://groups.google.com/forum/#!forum/spinalhdl-hardware-description-language](https://groups.google.com/forum/#!forum/spinalhdl-hardware-description-language)
+
+[![Join the chat at https://gitter.im/SpinalHDL/SpinalHDL](https://badges.gitter.im/SpinalHDL/SpinalHDL.svg)](https://gitter.im/SpinalHDL/SpinalHDL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[![Build Status](https://travis-ci.org/SpinalHDL/SpinalHDL.svg?branch=master)](https://travis-ci.org/SpinalHDL/SpinalHDL)

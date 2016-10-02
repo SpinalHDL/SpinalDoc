@@ -18,6 +18,8 @@ The following table show how to instantiate a memory :
 | Mem(type : Data,size : Int) |  Create a RAM |
 | Mem(type : Data,initialContent : Array[Data]) |  Create a ROM. If your target is an FPGA, because it can be inferred as a block ram, you can still create write ports on it.  |
 
+{% include note.html content="If you want to define a ROM, elements of the `initialContent` array should only be literal value (no operator, no resize functions). There is an example [here](/SpinalDoc/spinal/examples/simple/sinus_rom/)." %}
+
 The following table show how to add access ports on a memory :
 
 | Syntax | Description| Return |

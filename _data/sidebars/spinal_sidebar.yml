@@ -202,10 +202,6 @@ entries:
           - title: Bus
             output: web
             subfolderitems:
-#            - title: Introduction
-#              url: /spinal/lib/bus/introduction/
-#              output: web
-
             - title: APB3
               url: /spinal/lib/bus/amba3/apb3/
               output: web
@@ -220,6 +216,13 @@ entries:
 
             - title: AvalonMM
               url: /spinal/lib/bus/avalon/avalonmm/
+              output: web
+
+          - title: Com
+            output: web
+            subfolderitems:
+            - title: UART
+              url: /spinal/lib/bus/uart/
               output: web
 
           - title: Pinsec SoC
