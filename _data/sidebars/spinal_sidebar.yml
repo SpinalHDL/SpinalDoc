@@ -225,6 +225,17 @@ entries:
               url: /spinal/lib/bus/uart/
               output: web
 
+          - title: IO
+            output: web
+            subfolderitems:
+            - title: TriState
+              url: /spinal/lib/io/tristate/
+              output: web
+
+            - title: ReadableOpenDrain
+              url: /spinal/lib/io/readableOpenDrain/
+              output: web
+
           - title: Pinsec SoC
             output: web
             subfolderitems:

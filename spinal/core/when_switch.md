@@ -91,3 +91,15 @@ val bitwiseResult = bitwiseSelect.mux(
   default -> (io.src0)
 )
 ```
+
+Also, if all possible values are covered in your mux, you can omit the default value :
+
+```scala
+val bitwiseSelect = UInt(2 bits)
+val bitwiseResult = bitwiseSelect.mux(
+  0 -> (io.src0 & io.src1),
+  1 -> (io.src0 | io.src1),
+  2 -> (io.src0 ^ io.src1),
+  3 -> (io.src0)
+)
+```
