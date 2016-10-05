@@ -236,6 +236,18 @@ entries:
               url: /spinal/lib/io/readableOpenDrain/
               output: web
 
+          - title: Graphics
+            output: web
+            subfolderitems:
+            - title: Colors
+              url: /spinal/lib/graphic/color/
+              output: web
+
+            - title: VGA
+              url: /spinal/lib/graphic/vga/
+              output: web
+
+
           - title: Pinsec SoC
             output: web
             subfolderitems:
