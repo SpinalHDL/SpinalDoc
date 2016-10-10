@@ -29,9 +29,11 @@ class Adder(width: Int) extends Component {
   //Create 2 AdderCell
   val cell0 = new AdderCell
   val cell1 = new AdderCell
-  cell1.io.cin := cell0.io.cout //Connect carrys
-  ...
+  cell1.io.cin := cell0.io.cout   //Connect cout of cell0 to cin of cell1
+
+  // Another example which create an array of ArrayCell
   val cellArray = Array.fill(width)(new AdderCell)
+  cellArray(1).io.cin := cellArray(0).io.cout   //Connect cout of cell(0) to cin of cell(1)
   ...
 }
 ```
@@ -53,6 +55,63 @@ There is some rules about component interconnection :
 - Components can read their own outputs ports values (unlike VHDL)
 
 {% include tip.html content="If for some reason, you need to read a signals from far away in the hierarchy (debug, temporal patch) you can do it by using the value returned by some.where.else.theSignal.pull()." %}
+
+## Pruned signals
+SpinalHDL only generate things which are required to drive outputs of your toplevel (directly or indirectly).
+
+All other signals (the useless ones) are removed from the RTL generations and are indexed into a list of pruned signals. You can get this list via the `printPruned` and the `printPrunedIo` function on the generated `SpinalReport`.
+
+```scala
+class TopLevel extends Component {
+  val io = new Bundle{
+    val a,b = in UInt(8 bits)
+    val result = out UInt(8 bits)
+  }
+
+  io.result := io.a + io.b
+
+  val unusedSignal = UInt(8 bits)
+  val unusedSignal2 = UInt(8 bits)
+
+  unusedSignal2 := unusedSignal
+}
+
+object Main{
+  def main(args: Array[String]) {
+    SpinalVhdl(new TopLevel).printPruned()
+    //This will report :
+    //  [Warning] Unused wire detected : toplevel/unusedSignal : UInt[8 bits]
+    //  [Warning] Unused wire detected : toplevel/unusedSignal2 : UInt[8 bits]
+  }
+}
+```
+
+If you want to keep a pruned signals into the generated RTL for debug reasons, you can use the `keep` function of that signal :
+
+```scala
+class TopLevel extends Component {
+  val io = new Bundle{
+    val a,b = in UInt(8 bits)
+    val result = out UInt(8 bits)
+  }
+
+  io.result := io.a + io.b
+
+  val unusedSignal = UInt(8 bits)
+  val unusedSignal2 = UInt(8 bits).keep()
+
+  unusedSignal  := 0
+  unusedSignal2 := unusedSignal
+}
+
+object Main{
+  def main(args: Array[String]) {
+    SpinalVhdl(new TopLevel).printPruned()
+    //This will report nothing
+  }
+}
+```
+
 
 <!--
 TODO
