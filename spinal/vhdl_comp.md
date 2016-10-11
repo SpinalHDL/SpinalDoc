@@ -96,6 +96,8 @@ val coreClockDomain = ClockDomain(
 val coreArea = new ClockingArea(coreClockDomain) {
   val myCoreClockedRegister = Reg(UInt(4 bit))
   // ...
+  // coreClockDomain will also be applied to all sub component instantiated in the Area
+  // ... 
 }
 ```
 
@@ -137,6 +139,8 @@ Function and procedure are not used very often in VHDL, probably because they ar
 
 In spinalHDL, all those limitation are removed.
 
+Example that mix combinatorial logic and register in a single function :
+
 ```scala
 def simpleAluPipeline(op : Bits,a : UInt,b : UInt) : UInt = {
   val result = UInt(8 bits)
@@ -148,6 +152,37 @@ def simpleAluPipeline(op : Bits,a : UInt,b : UInt) : UInt = {
   }
 
   return RegNext(result)
+}
+```
+
+Example with the queue function into the Stream Bundle (handshake). This function instantiate an FIFO component :
+
+```scala
+class Stream[T <: Data](dataType:  T) extends Bundle with IMasterSlave with DataCarrier[T] {
+  val valid = Bool
+  val ready = Bool
+  val payload = cloneOf(dataType)
+
+  def queue(size: Int): Stream[T] = {
+    val fifo = new StreamFifo(dataType, size)
+    fifo.io.push <> this
+    fifo.io.pop
+  }
+}
+```
+
+Example were a function assign a signals defined outside itself :
+
+```scala
+val counter = Reg(UInt(8 bits)) init(0)
+counter := counter + 1
+
+def clear() : Unit = {
+  counter := 0
+}
+
+when(counter > 42){
+  clear()
 }
 ```
 

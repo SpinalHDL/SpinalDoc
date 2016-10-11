@@ -60,6 +60,17 @@ entries:
             url: /scala/interactions/
             output: web
 
+        - title: Help for VHDL peoples
+          output: web
+          subfolderitems:
+          - title: VHDL equivalences
+            url: /spinal/core/vhdl_perspective/
+            output: web
+
+          - title: VHDL comparisons
+            url: /vhdl_comp/
+            output: web
+
   - title: Built-in types
     output: web
     folderitems:
