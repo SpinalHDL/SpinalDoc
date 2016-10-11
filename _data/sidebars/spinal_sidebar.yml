@@ -60,7 +60,7 @@ entries:
             url: /scala/interactions/
             output: web
 
-        - title: Help for VHDL peoples
+        - title: Help for VHDL people
           output: web
           subfolderitems:
           - title: VHDL equivalences
