@@ -47,6 +47,8 @@ The following operators are available for the `Bool` type
 
 | Operator | Description | Return type |
 | ------- | ---- | --- |
+| x.edge[()] | Return True when x changes state | Bool |
+| x.edge(initAt : Bool) | Same as x.edge but with a reset value  | Bool |
 | x.rise[()] | Return True when x was low at the last cycle and is now high | Bool |
 | x.rise(initAt : Bool) | Same as x.rise but with a reset value  | Bool |
 | x.fall[()] | Return True when x was high at the last cycle and is now low | Bool |
