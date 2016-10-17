@@ -75,13 +75,15 @@ class CustomClockExample extends Component {
     val result = out UInt (4 bits)
   }
 
-  val myClockDomainConfig = ClockDomainConfig(
-    clockEdge        = RISING,
-    resetKind        = ASYNC,
-    resetActiveLevel = LOW
+  val myClockDomain = ClockDomain(
+    clock = io.clk,
+    reset = io.resetn,
+    config = ClockDomainConfig(
+      clockEdge        = RISING,
+      resetKind        = ASYNC,
+      resetActiveLevel = LOW
+    )
   )
-
-  val myClockDomain = ClockDomain(io.clk,io.resetn,config = myClockDomainConfig)
 
   val myArea = new ClockingArea(myClockDomain){
     val myReg = Reg(UInt(4 bits)) init(7)

@@ -20,6 +20,8 @@ The following table show how to instantiate a memory :
 
 {% include note.html content="If you want to define a ROM, elements of the `initialContent` array should only be literal value (no operator, no resize functions). There is an example [here](/SpinalDoc/spinal/examples/simple/sinus_rom/)." %}
 
+{% include note.html content="To give an initial content to a RAM, you can also use the `init` function." %}
+
 The following table show how to add access ports on a memory :
 
 | Syntax | Description| Return |
