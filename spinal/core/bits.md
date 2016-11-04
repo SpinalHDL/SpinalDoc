@@ -72,6 +72,10 @@ The following operators are available for the `Bits` type
 | x \>\> y |  Logical shift right, y : UInt | T(w(x) bits) |
 | x \<\< y |  Logical shift left, y : Int | T(w(x) + y bits) |
 | x \<\< y |  Logical shift left, y : UInt | T(w(x) + max(y) bits) |
+| x \|\>\> y |  Logical shift right, y : Int | T(w(x) bits) |
+| x \|\>\> y |  Logical shift right, y : UInt | T(w(x) bits) |
+| x \|\<\< y |  Logical shift left, y : Int | T(w(x) bits) |
+| x \|\<\< y |  Logical shift left, y : UInt | T(w(x) bits) |
 | x.rotateLeft(y) |  Logical left rotation, y : UInt/Int | T(w(x)) |
 | x.rotateRight(y) |  Logical right rotation, y : UInt/Int | T(w(x)) |
 | x.clearAll[()] |  Clear all bits | T |
