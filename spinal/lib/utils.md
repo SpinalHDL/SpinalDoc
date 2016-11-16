@@ -20,20 +20,9 @@ Some utils are also present in [spinal.core](/SpinalDoc/spinal/core/utils/)
 | OHToUInt(x : Seq[Bool]) <br> OHToUInt(x : BitVector) | UInt | Return the index of the single bit set (one hot) in `x` |
 | CountOne(x : Seq[Bool]) <br> CountOne(x : BitVector) | UInt | Return the number of bit set in `x` |
 | MajorityVote(x : Seq[Bool]) <br> MajorityVote(x : BitVector) | Bool | Return True if the number of bit set is > x.size / 2 |
-| OHMasking.first(x : Bits) | Bits | Apply a mask on x to only keep the first bit set |
-| OHMasking.last(x : Bits) | Bits | Apply a mask on x to only keep the last bit set |
-| OHMasking.roundRobin(<br>&nbsp;&nbsp;requests : Bits,<br>&nbsp;&nbsp;ohPriority : Bits<br>) | Bits | Apply a mask on x to only keep the bit set from `requests`.<br> it start looking in `requests` from the `ohPriority` position <br>.<br>For example if `requests` is "1001" and `ohPriority` is "0010", the `roundRobin function will start looking in `requests` from its second bit and will return "1000". |
-
-## State full utilities
-
-| Syntax | Return | Description |
-| ------------------------------- | ---- | --- |
-| Delay(that: T, cycleCount: Int) | T | Return `that` delayed by `cycleCount` cycles |
-| History(that: T, length: Int[,when : Bool]) | List[T] | Return a Vec of `length` elements <br> The first element is `that`, the last one is `that` delayed by `length`-1<br> The internal shift register sample when `when` is asserted |
-| BufferCC(input : T) | T | Return the input signal synchronized with the current clock domain by using 2 flip flop |
-
-## Special utilities
-
-| Syntax | Return | Description |
-| ------------------------------- | ---- | --- |
+| BufferCC(input : T) | T | Return the input signal synchronised with the current clock domain by using 2 flip flop |
 | LatencyAnalysis(paths : Node*) | Int | Return the shortest path,in therm of cycle, that travel through all nodes, <br> from the first one to the last one |
+| Endianness(that: T[, base:BitCount]) | T | Big-Endian <-> Little-Endian |
+| LFSR.fibonacci(that:Bits, xorBits:Seq[Int] [, rightLeft:LFSR_SHIFT_DIR]) <br> LFSR.galois(that:Bits, xorBits:Seq[Int] [, rightLeft:LFSR_SHIFT_DIR]) | Bits | Linear feedback shift register (LFSR) |
+
+Some utils are also present in [spinal.core](/SpinalDoc/spinal/core/utils/)
