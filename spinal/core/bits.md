@@ -24,12 +24,6 @@ The syntax to declare a bit vector is as follows:
 | B"[[size']base]value"             |  Create a BitVector assigned with 'value'                                           | Bits  |
 | B([x bits], element, ...)         |  Create a BitVector assigned with the value specified by elements (see table below) | Bits  |
 
-```scala
-val myBits  = Bits()         
-val myBits1 = Bits(32 bits)   
-val myBits2 = B(25, 32 bits)
-val myBits3 = B"32'xFF"
-```
 
 Elements could be defined as follows:
 
@@ -38,18 +32,35 @@ Elements could be defined as follows:
 | x : Int -> y : Boolean/Bool   |  Set bit x with y                                                                    |
 | x : Range -> y : Boolean/Bool |  Set each bits in range x with y                                                     |
 | x : Range -> y : T            |  Set bits in range x with y                                                          |
-| x : Range -> y : String       |  Set bits in range x with y <br> The string format follow same rules than B"xyz" one |
-| x : Range -> y : T            |  Set bits in range x with y                                                          |
+| x : Range -> y : String       |  Set bits in range x with y <br> The string format follow same rules than B"xyz" one |                                                  
 | default -> y : Boolean/Bool   |  Set all unconnected bits with the y value.<br> This feature could only be use to do assignments without the B prefix or with the B prefix combined with the bits specification |
+
 
 You can define a Range values
 
-| Range syntax | Description   | Width  |
-| ------------ | -----------   | -----  |
-| (x downto y) |  [x:y] x >= y | x-y+1  |
-| (x to y)     |  [x:y] x <= y |  y-x+1 |
-| (x until y)  |  [x:y[ x < y  |  y-x   |
+| Range syntax | Description    | Width  |
+| ------------ | -----------    | -----  |
+| (x downto y) |  [x:y], x >= y | x-y+1  |
+| (x to y)     |  [x:y], x <= y | y-x+1  |
+| (x until y)  |  [x:y[, x < y  | y-x    |
 
+#### Example
+
+```scala
+// Declaration
+val myBits  = Bits()         
+val myBits1 = Bits(32 bits)   
+val myBits2 = B(25, 8 bits)
+val myBits3 = B"8'xFF"
+val myBits4 = B"1001"
+
+// Element
+val myBits5 = B(8 bits, default -> True) // "11111111"
+val myBits6 = B(8 bits, (7 downto 5) -> B"101", 4 -> true, 3 -> True, default -> false ) // "10111000"
+
+// Range
+val myBits_8bits = myBits_16bits(7 downto 0)
+```
 
 ### Operators
 The following operators are available for the `Bits` type
@@ -74,10 +85,8 @@ The following operators are available for the `Bits` type
 | x \>\> y                    | Logical shift right, y : UInt           | Bits(w(x) bits)          |
 | x \<\< y                    | Logical shift left, y : Int             | Bits(w(x) + y bits)      |
 | x \<\< y                    | Logical shift left, y : UInt            | Bits(w(x) + max(y) bits) |
-| x \|\>\>                    | Logical shift right, y : Int            | Bits(w(x))               |
-| x \|\>\>                    | Logical shift right, y : UInt           | Bits(w(x))               | 
-| x \|\<\<                    | Logical shift left, y : Int             | Bits(w(x))               |
-| x \|\<\<                    | Logical shift left, y : UInt            | Bits(w(x))               | 
+| x \|\>\> y                  | Logical shift right, y : Int/UInt       | Bits(w(x))               |
+| x \|\<\< y                  | Logical shift left, y : Int/UInt        | Bits(w(x))               |
 | x.rotateLeft(y)             | Logical left rotation, y : UInt/Int     | Bits(w(x))               |
 | x.rotateRight(y)            | Logical right rotation, y : UInt/Int    | Bits(w(x))               |
 | x.clearAll[()]              | Clear all bits                          | -                        |
@@ -131,8 +140,13 @@ The following operators are available for the `Bits` type
 | x.subdivideIn(y slices)             |  Subdivide x in y slices, y : Int                                                | Vec(w(x)/y, y)                 |
 | x.subdivideIn(y bits)               |  Subdivide x in multiple slices of y bits, y : Int                               | Vec(y, w(x)/y)                 |
 | x.assignFromBits(bits)              |  Assign from Bits                                                                | -                              |
-| x.assignFromBits(bits,hi,lo)        |  Assign bitfield, hi : Int, lo : Int                                             | Bits(hi-lo+1 bits)             |
-| x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int                                       | Bits(width bits)               |
+| x.assignFromBits(bits,hi,lo)        |  Assign bitfield, hi : Int, lo : Int                                             | -                              |
+| x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int                                       | -                              |
 | x.getZero                           |  Get equivalent type assigned with zero                                          | Bits                           |
 | x.resize(y)                         |  Return a resized copy of x, filled with zero, y : Int                           | Bits(y bits)                   |
 | x.resized                           |  Return a version of x which is allowed to be automatically resized were needed  | Bits(w(x) bits)                |
+| x.resizeLeft(x)                     |  Resize by keeping MSB at the same place, x:Int                                  | Bits(x bits)                   |
+
+
+
+
