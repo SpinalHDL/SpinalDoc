@@ -21,7 +21,7 @@ The syntax to declare a bit vector is as follows:
 | Bits [()]                         |  Create a BitVector, bits count is inferred                                         | Bits  |
 | Bits(x bits)                      |  Create a BitVector with x bits                                                     | Bits  |
 | B(value : Int[,width : BitCount]) |  Create a BitVector assigned with 'value'                                           | Bits  |
-| B"[[size']base]value"             |  Create a BitVector assigned with 'value'                                           | Bits  |
+| B"[[size']base]value"             |  Create a BitVector assigned with 'value' (Base : 'h', 'd', 'o', 'b')               | Bits  |
 | B([x bits], element, ...)         |  Create a BitVector assigned with the value specified by elements (see table below) | Bits  |
 
 
@@ -52,11 +52,12 @@ val myBits  = Bits()
 val myBits1 = Bits(32 bits)   
 val myBits2 = B(25, 8 bits)
 val myBits3 = B"8'xFF"
-val myBits4 = B"1001"
+val myBits4 = B"1001_0011"  // _ can be used for readability
 
 // Element
 val myBits5 = B(8 bits, default -> True) // "11111111"
 val myBits6 = B(8 bits, (7 downto 5) -> B"101", 4 -> true, 3 -> True, default -> false ) // "10111000"
+val myBits7 = (7 -> true, default -> false) // "10000000" (For assignement purposes, you can omit the B)
 
 // Range
 val myBits_8bits = myBits_16bits(7 downto 0)
@@ -110,7 +111,7 @@ The following operators are available for the `Bits` type
 | x.asBits  |  Binary cast in Bits       | Bits(w(x) bits)    |
 | x.asUInt  |  Binary cast in UInt       | UInt(w(x) bits)    |
 | x.asSInt  |  Binary cast in SInt       | SInt(w(x) bits)    |
-| x.asBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
+| x.asBools |  Cast into a array of Bool | Vec(Bool, w(x))    |
 
 
 #### Bit extraction
@@ -134,7 +135,7 @@ The following operators are available for the `Bits` type
 | x.lsb                               |  Return the least significant bit                                                | Bool                           |
 | x.range                             |  Return the range (x.high downto 0)                                              | Range                          |
 | x.high                              |  Return the upper bound of the type x                                            | Int                            |
-| x ## y                              |  Concatenate, x->high, y->low                                                    | Bits(width(x) + width(y) bits) |
+| x ## y                              |  Concatenate, x->high, y->low                                                    | Bits(w(x) + w(y) bits)         |    
 | Cat(x)                              |  Concatenate list, first element on lsb, x : Array[Data]                         | Bits(sumOfWidth bits)          |
 | Mux(cond,x,y)                       |  if cond ? x : y                                                                 | Bits(max(w(x), w(y) bits)      |
 | x.subdivideIn(y slices)             |  Subdivide x in y slices, y : Int                                                | Vec(w(x)/y, y)                 |
