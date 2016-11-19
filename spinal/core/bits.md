@@ -112,6 +112,7 @@ The following operators are available for the `Bits` type
 | x.asUInt  |  Binary cast in UInt       | UInt(w(x) bits)    |
 | x.asSInt  |  Binary cast in SInt       | SInt(w(x) bits)    |
 | x.asBools |  Cast into a array of Bool | Vec(Bool, w(x))    |
+| B(x: T)   |  Cast a Data into Bits     | Bits(w(x) bits)    | 
 
 
 #### Bit extraction

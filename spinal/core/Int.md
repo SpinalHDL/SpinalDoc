@@ -78,8 +78,8 @@ val myBool := myUInt === U(7 -> true,(6 downto 0) -> false)
 val myBool := myUInt === U(myUInt.range -> true)
 
 // For assignement purposes, you can omit the U/S, which also alow the use of the [default -> ???] feature
-myUInt := (default -> true)                       //Assign myUInt with "11111111"
-myUInt := (myUInt.range -> true)                  //Assign myUInt with "11111111"
+myUInt := (default -> true)                        //Assign myUInt with "11111111"
+myUInt := (myUInt.range -> true)                   //Assign myUInt with "11111111"
 myUInt := (7 -> true, default -> false)            //Assign myUInt with "10000000"
 myUInt := ((4 downto 1) -> true, default -> false) //Assign myUInt with "00011110"
 ```
@@ -148,6 +148,8 @@ The following operators are available for the `UInt` and `SInt` type
 | x.asUInt  |  Binary cast in UInt       | UInt(w(x) bits)    |
 | x.asSInt  |  Binary cast in SInt       | SInt(w(x) bits)    |
 | x.asBools |  Cast into a array of Bool | Vec(Bool, w(x))    |
+| S(x: T)   |  Cast a Data into a SInt   | SInt(w(x) bits)    |
+| U(x: T)   |  Cast a Data into an UInt  | UInt(w(x) bits)    |
 
 
 #### Bit extraction
