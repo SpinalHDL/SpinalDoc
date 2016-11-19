@@ -193,20 +193,28 @@ Let's implement classes that will be used to store primitives :
 ```scala
 trait BusSlaveFactoryElement
 
+// Ask to make `that` readable when a access is done on `address`.
+// bitOffset specify where `that` is placed on the answer
 case class BusSlaveFactoryRead(that : Data,
                                address : BigInt,
                                bitOffset : Int) extends BusSlaveFactoryElement
 
+// Ask to make `that` writable when a access is done on `address`.
+// bitOffset specify where `that` get bits from the request
 case class BusSlaveFactoryWrite(that : Data,
                                 address : BigInt,
                                 bitOffset : Int) extends BusSlaveFactoryElement
 
+// Ask to execute `doThat` when a write access is done on `address`
 case class BusSlaveFactoryOnWrite(address : BigInt,
                                   doThat : () => Unit) extends BusSlaveFactoryElement
 
+// Ask to execute `doThat` when a read access is done on `address`
 case class BusSlaveFactoryOnRead( address : BigInt,
                                   doThat : () => Unit) extends BusSlaveFactoryElement
 
+// Ask to constantly drive `that` with the data bus
+// bitOffset specify where `that` get bits from the request
 case class BusSlaveFactoryNonStopWrite(that : Data,
                                        bitOffset : Int) extends BusSlaveFactoryElement
 ```
@@ -214,10 +222,14 @@ case class BusSlaveFactoryNonStopWrite(that : Data,
 Then let's implement the `BusSlaveFactoryDelayed` itself :
 
 ```scala
-
 trait BusSlaveFactoryDelayed extends BusSlaveFactory{
+  // elements is an array of all BusSlaveFactoryElement requested
   val elements = ArrayBuffer[BusSlaveFactoryElement]()
+
+
+  // elementsPerAddress is more structured than elements, it group all BusSlaveFactoryElement per requested addresses
   val elementsPerAddress = collection.mutable.HashMap[BigInt,ArrayBuffer[BusSlaveFactoryElement]]()
+
   private def addAddressableElement(e : BusSlaveFactoryElement,address : BigInt) = {
     elements += e
     elementsPerAddress.getOrElseUpdate(address, ArrayBuffer[BusSlaveFactoryElement]()) += e
