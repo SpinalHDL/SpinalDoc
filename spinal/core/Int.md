@@ -125,6 +125,8 @@ The following operators are available for the `UInt` type
 | x.asSInt |  Binary cast in SInt | SInt(w(x) bits) |
 | x.asBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
 
+To cast a Bool, a Bits or a SInt into a UInt, you can use `U(something)`. To cast things into a SInt, you have to use `S(something)`
+
 #### Bit extraction
 
 | Operator | Description | Return |
