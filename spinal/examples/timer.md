@@ -28,7 +28,7 @@ And also some inputs/outputs :
 | tick | in | Bool | When `tick` is True, the timer count up until `limit`. |
 | clear | in | Bool | When `tick` is True, the timer is set to zero. `clear` has the priority over `tick`. |
 | limit | in |  UInt(width bits) | When the timer value is equals to `limit`, the `tick` input is inhibited. |
-| full | out | Bool | full is high when the timer value is equals to `limit`  |
+| full | out | Bool | full is high when the timer value is equals to `limit` and tick is high |
 | value | out | UInt(width bits)  | Wire out the timer counter value. |
 
 ### Implementation
@@ -52,7 +52,7 @@ case class Timer(width : Int) extends Component{
     counter := 0
   }
 
-  io.full := counter === io.limit
+  io.full := counter === io.limit && io.tick
   io.value := counter
 }
 ```

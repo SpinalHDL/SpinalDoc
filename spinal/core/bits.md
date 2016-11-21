@@ -68,6 +68,35 @@ The following operators are available for the `Bits` type
 
 #### Logic
 
+<<<<<<< HEAD
+| Operator | Description | Return type |
+| ------- | ---- | --- |
+| !x  |  Logical NOT | Bool |
+| x && y |  Logical AND | Bool |
+| x \|\| y |  Logical OR  | Bool |
+| x ^ y | Logical XOR | Bool |
+| ~x |  Bitwise NOT | T(w(x) bits) |
+| x & y |  Bitwise AND | T(w(xy) bits) |
+| x \| y |  Bitwise OR  | T(w(xy) bits) |
+| x ^ y |  Bitwise XOR | T(w(xy) bits) |
+| x.xorR |  XOR all bits of x | Bool |
+| x.orR  |  OR all bits of x  | Bool |
+| x.andR |  AND all bits of x | Bool |
+| x \>\> y |  Logical shift right, y : Int | T(w(x) - y bits) |
+| x \>\> y |  Logical shift right, y : UInt | T(w(x) bits) |
+| x \<\< y |  Logical shift left, y : Int | T(w(x) + y bits) |
+| x \<\< y |  Logical shift left, y : UInt | T(w(x) + max(y) bits) |
+| x \|\>\> y |  Logical shift right, y : Int | T(w(x) bits) |
+| x \|\>\> y |  Logical shift right, y : UInt | T(w(x) bits) |
+| x \|\<\< y |  Logical shift left, y : Int | T(w(x) bits) |
+| x \|\<\< y |  Logical shift left, y : UInt | T(w(x) bits) |
+| x.rotateLeft(y) |  Logical left rotation, y : UInt/Int | T(w(x)) |
+| x.rotateRight(y) |  Logical right rotation, y : UInt/Int | T(w(x)) |
+| x.clearAll[()] |  Clear all bits | T |
+| x.setAll[()] |  Set all bits | T |
+| x.setAllTo(value : Boolean) | Set all bits to the given Boolean value | - |
+| x.setAllTo(value : Bool) | Set all bits to the given Bool value | - |
+=======
 | Operator                    | Description                             | Return type              |
 | --------------------------  | --------------------------------------- | ------------------------ |
 | !x                          | Logical NOT                             | Bool                     |
@@ -94,6 +123,7 @@ The following operators are available for the `Bits` type
 | x.setAllTo(value : Boolean) | Set all bits to the given Boolean value | -                        |
 | x.setAllTo(value : Bool)    | Set all bits to the given Bool value    | -                        |
 
+>>>>>>> origin/gh-pages
 
 #### Comparison
 
