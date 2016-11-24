@@ -75,6 +75,7 @@ The following operators are available for the `Bool` type
 | x.asUInt(bitCount) | Binary cast in UInt + resize | UInt(bitCount bits) |
 | x.asBits(bitCount) | Binary cast in Bits + resize | Bits(bitCount bits) |
 
+
 #### Misc
 
 | Operator                            | Description                                               | Return                         |

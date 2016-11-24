@@ -17,6 +17,13 @@ The language provides 5 base types and 2 composite types that can be used.
 
 <img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/cacb6e086ff635ca93def01e31aee2da582d991a/asset/picture/types.svg"  align="middle" width="300">
 
-Those types and their usage (with examples) are explained in this Section.
+ 
+In addition to the base types Spinal supports Fixed point that is documented [there](/SpinalDoc/spinal/core/utils/Fix) and floating point that is actually under development [there](/SpinalDoc/spinal/core/utils/Floating).
 
-About the fixed point support it's documented [there](/SpinalDoc/spinal/core/utils/#fixed-point)
+
+Finally, a special type is available for checking equality between a BitVector and a bits constant that contain hole (don't care values). Below, there is an example about how to do that :
+
+```scala
+val myBits  = Bits(8 bits)
+val itMatch = myBits === M"00--10--" // - don't care value
+```

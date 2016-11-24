@@ -113,8 +113,8 @@ The following operators are available for the `UInt` and `SInt` type
 | x \|\<\< y                  | Logical shift left, y : Int/UInt        | T(w(x))               |
 | x.rotateLeft(y)             | Logical left rotation, y : UInt/Int     | T(w(x))               |
 | x.rotateRight(y)            | Logical right rotation, y : UInt/Int    | T(w(x))               |
-| x.clearAll[()]              | Clear all bits                          | T                     |
-| x.setAll[()]                | Set all bits                            | T                     |
+| x.clearAll[()]              | Clear all bits                          | -                     |
+| x.setAll[()]                | Set all bits                            | -                     |
 | x.setAllTo(value : Boolean) | Set all bits to the given Boolean value | -                     |
 | x.setAllTo(value : Bool)    | Set all bits to the given Bool value    | -                     |
 
