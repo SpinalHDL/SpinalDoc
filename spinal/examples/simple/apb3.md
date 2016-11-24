@@ -73,7 +73,7 @@ val io = new Bundle{
   val apb = slave(Apb3(apbConfig))
 }
 
-io.apbBus.PREADY := True
+io.apb.PREADY := True
 when(io.apb.PSEL(0) && io.apb.PENABLE){
   //...
 }

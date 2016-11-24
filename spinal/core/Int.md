@@ -109,10 +109,10 @@ The following operators are available for the `UInt` and `SInt` type
 | x \>\> y                    | Arithmetic shift right, y : UInt        | T(w(x) bits)          |
 | x \<\< y                    | Arithmetic shift left, y : Int          | T(w(x) + y bits)      |
 | x \<\< y                    | Arithmetic shift left, y : UInt         | T(w(x) + max(y) bits) |
-| x \|\>\> y                  | Logical shift right, y : Int/UInt       | T(w(x))               |
-| x \|\<\< y                  | Logical shift left, y : Int/UInt        | T(w(x))               |
-| x.rotateLeft(y)             | Logical left rotation, y : UInt/Int     | T(w(x))               |
-| x.rotateRight(y)            | Logical right rotation, y : UInt/Int    | T(w(x))               |
+| x \|\>\> y                  | Logical shift right, y : Int/UInt       | T(w(x) bits)          |
+| x \|\<\< y                  | Logical shift left, y : Int/UInt        | T(w(x) bits)          |
+| x.rotateLeft(y)             | Logical left rotation, y : UInt/Int     | T(w(x) bits)          |
+| x.rotateRight(y)            | Logical right rotation, y : UInt/Int    | T(w(x) bits)          |
 | x.clearAll[()]              | Clear all bits                          | -                     |
 | x.setAll[()]                | Set all bits                            | -                     |
 | x.setAllTo(value : Boolean) | Set all bits to the given Boolean value | -                     |
@@ -151,6 +151,8 @@ The following operators are available for the `UInt` and `SInt` type
 | S(x: T)   |  Cast a Data into a SInt   | SInt(w(x) bits)    |
 | U(x: T)   |  Cast a Data into an UInt  | UInt(w(x) bits)    |
 
+
+To cast a Bool, a Bits or a SInt into a UInt, you can use `U(something)`. To cast things into a SInt, you have to use `S(something)`
 
 #### Bit extraction
 

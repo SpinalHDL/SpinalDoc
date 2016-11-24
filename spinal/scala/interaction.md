@@ -88,3 +88,20 @@ def myFunction(arg : UInt) new Area{
 val myFunctionCall = myFunction(U"000001")  //Will generate `temp` with `myFunctionCall_temp` as name
 val value = myFunctionCall.temp  + 42
 ```
+
+## Scala is for elaboration, SpinalHDL for hardware description
+For example, if you write a scala for loop to generate some hardware, it will generate the unrooled result in VHDL/Verilog.
+
+Also, you want a constant, you should not use SpinalHDL Hardware literals but the scala ones. For example :
+
+```scala
+//This is wrong, because you can't use an hardware Bool as construction parameter, which will do hierarchy violations.
+class SubComponent(activeHigh : Bool) extends Component{
+  //...
+}
+
+//This is right, you can use all the scala world to parameterize your hardware.
+class SubComponent(activeHigh : Boolean) extends Component{
+  //...
+}
+```

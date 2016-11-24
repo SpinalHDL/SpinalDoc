@@ -86,14 +86,15 @@ The following operators are available for the `Bits` type
 | x \>\> y                    | Logical shift right, y : UInt           | Bits(w(x) bits)          |
 | x \<\< y                    | Logical shift left, y : Int             | Bits(w(x) + y bits)      |
 | x \<\< y                    | Logical shift left, y : UInt            | Bits(w(x) + max(y) bits) |
-| x \|\>\> y                  | Logical shift right, y : Int/UInt       | Bits(w(x))               |
-| x \|\<\< y                  | Logical shift left, y : Int/UInt        | Bits(w(x))               |
-| x.rotateLeft(y)             | Logical left rotation, y : UInt/Int     | Bits(w(x))               |
-| x.rotateRight(y)            | Logical right rotation, y : UInt/Int    | Bits(w(x))               |
+| x \|\>\> y                  | Logical shift right, y : Int/UInt       | Bits(w(x) bits)          |
+| x \|\<\< y                  | Logical shift left, y : Int/UInt        | Bits(w(x) bits)          |
+| x.rotateLeft(y)             | Logical left rotation, y : UInt/Int     | Bits(w(x) bits)          |
+| x.rotateRight(y)            | Logical right rotation, y : UInt/Int    | Bits(w(x) bits)          |
 | x.clearAll[()]              | Clear all bits                          | -                        |
 | x.setAll[()]                | Set all bits                            | -                        |
 | x.setAllTo(value : Boolean) | Set all bits to the given Boolean value | -                        |
 | x.setAllTo(value : Bool)    | Set all bits to the given Bool value    | -                        |
+
 
 
 #### Comparison
@@ -114,6 +115,7 @@ The following operators are available for the `Bits` type
 | x.asBools | Cast into a array of Bool | Vec(Bool, w(x))    |
 | B(x: T)   | Cast a Data into Bits     | Bits(w(x) bits)    | 
 
+To cast a Bool, UInt or a SInt into a Bits, you can use `B(something)`
 
 #### Bit extraction
 
@@ -148,7 +150,3 @@ The following operators are available for the `Bits` type
 | x.resize(y)                         |  Return a resized copy of x, filled with zero, y : Int                           | Bits(y bits)                   |
 | x.resized                           |  Return a version of x which is allowed to be automatically resized were needed  | Bits(w(x) bits)                |
 | x.resizeLeft(x)                     |  Resize by keeping MSB at the same place, x:Int                                  | Bits(x bits)                   |
-
-
-
-

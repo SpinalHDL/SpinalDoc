@@ -13,6 +13,8 @@ In many situation it's needed to implement a bus register bank. The `BusSlaveFac
 
 To see capabilities of the tool, an simple example use the Apb3SlaveFactory variation to implement an [memory mapped UART](/SpinalDoc/spinal/examples/memory_mapped_uart/). There is also another example with an [Timer](/SpinalDoc/spinal/examples/timer/) which contain a memory mapping function.
 
+You can find more documentation about the internal implementation of the `BusSlaveFactory` tool [there](/SpinalDoc/spinal/lib/bus_slave_factory_impl/)
+
 ## Functionality
 
 Currently there is three implementation of the `BusSlaveFactory ` tool : APB3, AXI-lite 3 and Avalon. <br> Each implementation of that tool take as argument one instance of the corresponding bus and then offer following functions to map your hardware into the memory mapping :
