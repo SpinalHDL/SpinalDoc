@@ -21,7 +21,7 @@ The syntax to declare a bit vector is as follows:
 | Bits [()]                         |  Create a BitVector, bits count is inferred                                         | Bits  |
 | Bits(x bits)                      |  Create a BitVector with x bits                                                     | Bits  |
 | B(value : Int[,width : BitCount]) |  Create a BitVector assigned with 'value'                                           | Bits  |
-| B"[[size']base]value"             |  Create a BitVector assigned with 'value'                                           | Bits  |
+| B"[[size']base]value"             |  Create a BitVector assigned with 'value' (Base : 'h', 'd', 'o', 'b')               | Bits  |
 | B([x bits], element, ...)         |  Create a BitVector assigned with the value specified by elements (see table below) | Bits  |
 
 
@@ -52,11 +52,12 @@ val myBits  = Bits()
 val myBits1 = Bits(32 bits)   
 val myBits2 = B(25, 8 bits)
 val myBits3 = B"8'xFF"
-val myBits4 = B"1001"
+val myBits4 = B"1001_0011"  // _ can be used for readability
 
 // Element
 val myBits5 = B(8 bits, default -> True) // "11111111"
 val myBits6 = B(8 bits, (7 downto 5) -> B"101", 4 -> true, 3 -> True, default -> false ) // "10111000"
+val myBits7 = (7 -> true, default -> false) // "10000000" (For assignement purposes, you can omit the B)
 
 // Range
 val myBits_8bits = myBits_16bits(7 downto 0)
@@ -68,35 +69,6 @@ The following operators are available for the `Bits` type
 
 #### Logic
 
-<<<<<<< HEAD
-| Operator | Description | Return type |
-| ------- | ---- | --- |
-| !x  |  Logical NOT | Bool |
-| x && y |  Logical AND | Bool |
-| x \|\| y |  Logical OR  | Bool |
-| x ^ y | Logical XOR | Bool |
-| ~x |  Bitwise NOT | T(w(x) bits) |
-| x & y |  Bitwise AND | T(w(xy) bits) |
-| x \| y |  Bitwise OR  | T(w(xy) bits) |
-| x ^ y |  Bitwise XOR | T(w(xy) bits) |
-| x.xorR |  XOR all bits of x | Bool |
-| x.orR  |  OR all bits of x  | Bool |
-| x.andR |  AND all bits of x | Bool |
-| x \>\> y |  Logical shift right, y : Int | T(w(x) - y bits) |
-| x \>\> y |  Logical shift right, y : UInt | T(w(x) bits) |
-| x \<\< y |  Logical shift left, y : Int | T(w(x) + y bits) |
-| x \<\< y |  Logical shift left, y : UInt | T(w(x) + max(y) bits) |
-| x \|\>\> y |  Logical shift right, y : Int | T(w(x) bits) |
-| x \|\>\> y |  Logical shift right, y : UInt | T(w(x) bits) |
-| x \|\<\< y |  Logical shift left, y : Int | T(w(x) bits) |
-| x \|\<\< y |  Logical shift left, y : UInt | T(w(x) bits) |
-| x.rotateLeft(y) |  Logical left rotation, y : UInt/Int | T(w(x)) |
-| x.rotateRight(y) |  Logical right rotation, y : UInt/Int | T(w(x)) |
-| x.clearAll[()] |  Clear all bits | T |
-| x.setAll[()] |  Set all bits | T |
-| x.setAllTo(value : Boolean) | Set all bits to the given Boolean value | - |
-| x.setAllTo(value : Bool) | Set all bits to the given Bool value | - |
-=======
 | Operator                    | Description                             | Return type              |
 | --------------------------  | --------------------------------------- | ------------------------ |
 | !x                          | Logical NOT                             | Bool                     |
@@ -114,16 +86,16 @@ The following operators are available for the `Bits` type
 | x \>\> y                    | Logical shift right, y : UInt           | Bits(w(x) bits)          |
 | x \<\< y                    | Logical shift left, y : Int             | Bits(w(x) + y bits)      |
 | x \<\< y                    | Logical shift left, y : UInt            | Bits(w(x) + max(y) bits) |
-| x \|\>\> y                  | Logical shift right, y : Int/UInt       | Bits(w(x))               |
-| x \|\<\< y                  | Logical shift left, y : Int/UInt        | Bits(w(x))               |
-| x.rotateLeft(y)             | Logical left rotation, y : UInt/Int     | Bits(w(x))               |
-| x.rotateRight(y)            | Logical right rotation, y : UInt/Int    | Bits(w(x))               |
+| x \|\>\> y                  | Logical shift right, y : Int/UInt       | Bits(w(x) bits)          |
+| x \|\<\< y                  | Logical shift left, y : Int/UInt        | Bits(w(x) bits)          |
+| x.rotateLeft(y)             | Logical left rotation, y : UInt/Int     | Bits(w(x) bits)          |
+| x.rotateRight(y)            | Logical right rotation, y : UInt/Int    | Bits(w(x) bits)          |
 | x.clearAll[()]              | Clear all bits                          | -                        |
 | x.setAll[()]                | Set all bits                            | -                        |
 | x.setAllTo(value : Boolean) | Set all bits to the given Boolean value | -                        |
 | x.setAllTo(value : Bool)    | Set all bits to the given Bool value    | -                        |
 
->>>>>>> origin/gh-pages
+
 
 #### Comparison
 
@@ -135,12 +107,13 @@ The following operators are available for the `Bits` type
 
 #### Type cast
 
-| Operator  | Description                | Return             |
-| -------   | -------------------------- | ------------------ |
-| x.asBits  |  Binary cast in Bits       | Bits(w(x) bits)    |
-| x.asUInt  |  Binary cast in UInt       | UInt(w(x) bits)    |
-| x.asSInt  |  Binary cast in SInt       | SInt(w(x) bits)    |
-| x.asBools |  Cast into a array of Bool | Vec(Bool,width(x)) |
+| Operator  | Description               | Return             |
+| -------   | ------------------------- | ------------------ |
+| x.asBits  | Binary cast in Bits       | Bits(w(x) bits)    |
+| x.asUInt  | Binary cast in UInt       | UInt(w(x) bits)    |
+| x.asSInt  | Binary cast in SInt       | SInt(w(x) bits)    |
+| x.asBools | Cast into a array of Bool | Vec(Bool, w(x))    |
+| B(x: T)   | Cast a Data into Bits     | Bits(w(x) bits)    | 
 
 To cast a Bool, UInt or a SInt into a Bits, you can use `B(something)`
 
@@ -165,7 +138,7 @@ To cast a Bool, UInt or a SInt into a Bits, you can use `B(something)`
 | x.lsb                               |  Return the least significant bit                                                | Bool                           |
 | x.range                             |  Return the range (x.high downto 0)                                              | Range                          |
 | x.high                              |  Return the upper bound of the type x                                            | Int                            |
-| x ## y                              |  Concatenate, x->high, y->low                                                    | Bits(width(x) + width(y) bits) |
+| x ## y                              |  Concatenate, x->high, y->low                                                    | Bits(w(x) + w(y) bits)         |    
 | Cat(x)                              |  Concatenate list, first element on lsb, x : Array[Data]                         | Bits(sumOfWidth bits)          |
 | Mux(cond,x,y)                       |  if cond ? x : y                                                                 | Bits(max(w(x), w(y) bits)      |
 | x.subdivideIn(y slices)             |  Subdivide x in y slices, y : Int                                                | Vec(w(x)/y, y)                 |
