@@ -53,6 +53,18 @@ The code above will infer the following logic :<br>
 
 {% include note.html content="The reg3 example show how you can assign the value of a RegInit register. But this it's also right to use the same syntax for all others (Reg,RegNext,RegNextWhen).<br> As for combinatorial assignments, the rule is 'Last assignment win', but if no assignment is done, the register keep its value." %}
 
+Also, RegNext is an abstraction which is build over the Reg syntax. The two followings sequances of code are strictly equivalents :
+
+```scala
+//Standard way
+val something = Bool
+val value = Reg(Bool)
+value := something
+
+//Short way
+val something = Bool
+val value = RegNext(something)
+```
 
 ## Reset value
 In addition of the `RegInit(value : Data)` syntax which directly create the register with a reset logic,

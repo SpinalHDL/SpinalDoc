@@ -43,7 +43,7 @@ The syntax to declare an integer is as follows:
 Elements could be defined as follows:
 
 | Element syntax                | Description                                                                                                                                                                         |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | 
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | x : Int -> y : Boolean/Bool   | Set bit x with y                                                                                                                                                                    |
 | x : Range -> y : Boolean/Bool | Set each bits in range x with y                                                                                                                                                     |
 | x : Range -> y : T            | Set bits in range x with y                                                                                                                                                          |
@@ -152,7 +152,7 @@ The following operators are available for the `UInt` and `SInt` type
 | U(x: T)   |  Cast a Data into an UInt  | UInt(w(x) bits)    |
 
 
-To cast a Bool, a Bits or a SInt into a UInt, you can use `U(something)`. To cast things into a SInt, you have to use `S(something)`
+To cast a Bool, a Bits or a SInt into a UInt, you can use `U(something)`. To cast things into a SInt, you can use `S(something)`
 
 #### Bit extraction
 
@@ -186,6 +186,3 @@ To cast a Bool, a Bits or a SInt into a UInt, you can use `U(something)`. To cas
 | x.getZero                           |  Get equivalent type assigned with zero                                          | T                              |
 | x.resize(y)                         |  Return a resized copy of x, filled with zero, y : Int                           | T(y bits)                      |
 | x.resized                           |  Return a version of x which is allowed to be automatically resized were needed  | T(w(x) bits)                   |
-
-
-
