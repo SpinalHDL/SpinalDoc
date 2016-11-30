@@ -184,5 +184,5 @@ To cast a Bool, a Bits or a SInt into a UInt, you can use `U(something)`. To cas
 | x.assignFromBits(bits,hi,lo)        |  Assign bitfield, hi : Int, lo : Int                                             | -                              |
 | x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int                                       | -                              |
 | x.getZero                           |  Get equivalent type assigned with zero                                          | T                              |
-| x.resize(y)                         |  Return a resized copy of x, filled with zero, y : Int                           | T(y bits)                      |
+| x.resize(y)                         |  Return a resized copy of x, if enlarged, it is filled with zero for UInt or filled with the sign for SInt, y : Int                           | T(y bits)                      |
 | x.resized                           |  Return a version of x which is allowed to be automatically resized were needed  | T(w(x) bits)                   |

@@ -113,7 +113,7 @@ The following operators are available for the `Bits` type
 | x.asUInt  | Binary cast in UInt       | UInt(w(x) bits)    |
 | x.asSInt  | Binary cast in SInt       | SInt(w(x) bits)    |
 | x.asBools | Cast into a array of Bool | Vec(Bool, w(x))    |
-| B(x: T)   | Cast a Data into Bits     | Bits(w(x) bits)    | 
+| B(x: T)   | Cast a Data into Bits     | Bits(w(x) bits)    |
 
 To cast a Bool, UInt or a SInt into a Bits, you can use `B(something)`
 
@@ -147,6 +147,6 @@ To cast a Bool, UInt or a SInt into a Bits, you can use `B(something)`
 | x.assignFromBits(bits,hi,lo)        |  Assign bitfield, hi : Int, lo : Int                                             | -                              |
 | x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int                                       | -                              |
 | x.getZero                           |  Get equivalent type assigned with zero                                          | Bits                           |
-| x.resize(y)                         |  Return a resized copy of x, filled with zero, y : Int                           | Bits(y bits)                   |
+| x.resize(y)                         |  Return a resized copy of x, if enlarged, it is filled with zero, y : Int                           | Bits(y bits)                   |
 | x.resized                           |  Return a version of x which is allowed to be automatically resized were needed  | Bits(w(x) bits)                |
 | x.resizeLeft(x)                     |  Resize by keeping MSB at the same place, x:Int                                  | Bits(x bits)                   |
