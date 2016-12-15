@@ -34,14 +34,14 @@ As SpinalHDL is based on a high-level language, it provides several advantages t
 1. *Generic design* - There are no restrictions to the genericity of your hardware description by using Scala constructs.
 
 ### License
-SpinalHDL HDL use two licenses, one for the spinal.core, and one for the spinal.lib.
+SpinalHDL use two licenses, one for the spinal.core, and one for the spinal.lib.
 
 The spinal.core (the compiler) is under the LGPL license, which could be summarized with following statements :
 
-- You can make money with your SpinalHDL HDL description and its generated RTL.
-- You don't have to share your SpinalHDL HDL description and its generated RTL.
+- You can make money with your SpinalHDL description and its generated RTL.
+- You don't have to share your SpinalHDL description and its generated RTL.
 - There is no fees, no royalties.
-- If your make improvements on the SpinalHDL HDL core, please, share your modifications to make the tool better for everybody.
+- If your make improvements on the SpinalHDL core, please, share your modifications to make the tool better for everybody.
 
 The spinal.lib (a general purpose library of components/tools/interfaces) is under the permissive MIT license.
 
