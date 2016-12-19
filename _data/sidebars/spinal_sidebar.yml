@@ -130,7 +130,7 @@ entries:
       url: /spinal/core/blackbox/
       output: web
 
-  - title: Combinational logic
+  - title: Semantic
     output: web
     folderitems:
     - title: Assignements
@@ -141,7 +141,9 @@ entries:
       url: /spinal/core/when_switch/
       output: web
 
-
+    - title: Rules
+      url: /spinal/core/semantic/
+      output: web
 
   - title: Sequential logic
     output: web
