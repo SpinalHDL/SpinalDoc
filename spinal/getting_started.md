@@ -140,4 +140,4 @@ end arch;
 ```
 
 ## What to do next ?
-It's up to you, but why not have a look at what the [types](types/) are in SpinalHDL or discover what [primitives]() the language provides to describe hardware components? You could also have a look at our [examples](examples/) to see some samples of what you could do next.
+It's up to you, but why not have a look at what the [types](types/) are in SpinalHDL or discover what [primitives]() the language provides to describe hardware components? You could also have a look at our [examples](/SpinalDoc/spinal/examples/introduction/) to see some samples of what you could do next.
