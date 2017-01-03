@@ -13,10 +13,10 @@ permalink: /spinal_getting_started/
 Before you download the SpinalHDL tools, you need to install :
 
 - A Java JDK, which can be downloaded for instance [here](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
-- A Scala distribution, which can be downloaded [here](http://scala-lang.org/download/).
+- A Scala 2.11.X distribution, which can be downloaded [here](http://scala-lang.org/download/). (Not required if you use SBT)
 - The SBT build tool, which can be downloaded [here](http://www.scala-sbt.org/download.html).
 
-Optionally, if you need an IDE (which is not compulsory) we advise you to get IntelliJ 14.1.
+Optionally, if you want an IDE (which is not compulsory) we advise you to get IntelliJ 14.1.
 
 ## How to start programming with Spinal
 Once you have downloaded all the requirements, there are two ways to get started with SpinalHDL programming.
@@ -60,7 +60,7 @@ And do the following :
 
 Normally, this must generate the output file `MyTopLevel.vhd` in the project directory which corresponds to the most [most simple SpinalHDL example](#example).
 
-## The Makefile way {#makeWay}
+### The Makefile way {#makeWay}
 A template project that can be used via a makefile is available [there](https://github.com/SpinalHDL/SpinalBaseProject/tree/makefile) <br>
 To use it you have to :
 
