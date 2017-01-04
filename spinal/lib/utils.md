@@ -75,7 +75,7 @@ There is an example of different syntaxes which could be used with the Counter t
 ```scala
 val timeout = Timeout(10 ms)  //Timeout who tick after 10 ms
 when(timeout){                //Check if the timeout has tick
-    timeout.clear()           //Clear the timeout flag
+    timeout.clear()           //Ask the timeout to clear its flag
 }
 ```
 

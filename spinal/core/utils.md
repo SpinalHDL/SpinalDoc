@@ -92,21 +92,21 @@ So as you can see, it use an HardType wrapper, which is kind of blueprint defini
 Also this mechanism is completely transparent from the point of view of the user, an hardware data type could be implicitly converted into an HardType.
 
 ## Frequency and time
-SpinalHDL HDL has a little syntax to have a smooth declaration of frequency and time value :
+SpinalHDL HDL has a dedicated syntax to defne frequencies and times value :
 
 ```scala
 val frequency = 100 MHz
-val timeoutLimit = 3 mn
+val timeoutLimit = 3 ms
 val period = 100 us
 
 val periodCycles = frequency*period
 val timeoutCycles = frequency*timeoutLimit
 ```
 
-For time definition you can use following postfixes :<br>
+For time definition you can use following postfixes to get an `TimeNumber`:<br>
 fs, ps, ns, us, ms, sec, mn, hr
 
-For time definition you can use following postfixes :<br>
+For time definition you can use following postfixes to get an `HertzNumber` :<br>
 Hz, KHz, MHz, HHz, THz
 
-By postfixing an Int or an Double value, you will get an BigDecimal value with the corresponding scale.
+`TimeNumber` and `HertzNumber` are based on the `PhysicalNumber` class which use  scala `BigDecimal` to store numbers.
