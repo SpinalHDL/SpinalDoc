@@ -34,6 +34,53 @@ Some utils are also present in [spinal.core](/SpinalDoc/spinal/core/utils/)
 | BufferCC(input : T) | T | Return the input signal synchronized with the current clock domain by using 2 flip flop |
 | LFSR.fibonacci(that:Bits, xorBits:Seq[Int] [, rightLeft:LFSR_SHIFT_DIR]) <br> LFSR.galois(that:Bits, xorBits:Seq[Int] [, rightLeft:LFSR_SHIFT_DIR]) | Bits | Linear feedback shift register (LFSR) |
 
+### Counter
+
+The Counter tool can be used to easly instanciate an hardware counter.
+
+| Instanciation syntax | Notes |
+| ------------------------------- | ---- |
+| Counter(start: BigInt, end: BigInt[, inc : Bool]) | - |
+| Counter(range : Ranget[, inc : Bool]) | Compatible with the  `x to y` `x until y` syntaxes|
+| Counter(stateCount: BigInt[, inc : Bool]) | Start at zero and finish at `stateCount - 1`|
+
+
+There is an example of different syntaxes which could be used with the Counter tool
+
+```scala
+val counter = Counter(2 to 9)  //Create a counter of 10 states (2 to 9)
+counter.clear()            //When called it ask to reset the counter.
+counter.increment()        //When called it ask to increment the counter.
+counter.value              //current value
+counter.valueNext          //Next value
+counter.willOverflow       //Flag that indicate if the counter overflow this cycle
+counter.willOverflowIfInc  //Flag that indicate if the counter overflow this cycle if an increment is done
+when(counter === 5){ ... }
+```
+
+{% include note.html content="Currently, only up counter are supported." %}
+
+
+### Timeout
+The Timeout tool can be used to easly instanciate an hardware timeout.
+
+| Instanciation syntax | Notes |
+| ------------------------------- | ---- |
+| Timeout(cycles : BigInt) | Tick after `cycles` clocks |
+| Timeout(time : TimeNumber) | Tick after a `time` duration |
+| Timeout(frequency : HertzNumber) |  Tick at an `frequency` rate |
+
+There is an example of different syntaxes which could be used with the Counter tool
+
+```scala
+val timeout = Timeout(10 ms)  //Timeout who tick after 10 ms
+when(timeout){                //Check if the timeout has tick
+    timeout.clear()           //Clear the timeout flag
+}
+```
+
+{% include note.html content="If you instanciate an `Timeout` with an time or frequancy setup, the implicit `ClockDomain` should have an frequency setting." %}
+
 ## Special utilities
 
 | Syntax | Return | Description |
