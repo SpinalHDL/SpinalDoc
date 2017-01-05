@@ -43,6 +43,7 @@ The Counter tool can be used to easly instanciate an hardware counter.
 | Counter(start: BigInt, end: BigInt[, inc : Bool]) | - |
 | Counter(range : Ranget[, inc : Bool]) | Compatible with the  `x to y` `x until y` syntaxes|
 | Counter(stateCount: BigInt[, inc : Bool]) | Start at zero and finish at `stateCount - 1`|
+| Counter(bitCount: BitCount[, inc : Bool]) | Start at zero and finish at `(1 << bitCount) - 1`|
 
 
 There is an example of different syntaxes which could be used with the Counter tool
@@ -57,6 +58,8 @@ counter.willOverflow       //Flag that indicate if the counter overflow this cyc
 counter.willOverflowIfInc  //Flag that indicate if the counter overflow this cycle if an increment is done
 when(counter === 5){ ... }
 ```
+
+When a `Counter` overflow its end value, it restart to its start value.
 
 {% include note.html content="Currently, only up counter are supported." %}
 

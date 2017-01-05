@@ -107,6 +107,6 @@ For time definition you can use following postfixes to get an `TimeNumber`:<br>
 fs, ps, ns, us, ms, sec, mn, hr
 
 For time definition you can use following postfixes to get an `HertzNumber` :<br>
-Hz, KHz, MHz, HHz, THz
+Hz, KHz, MHz, GHz, THz
 
 `TimeNumber` and `HertzNumber` are based on the `PhysicalNumber` class which use  scala `BigDecimal` to store numbers.
