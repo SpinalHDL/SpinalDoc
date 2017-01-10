@@ -8,12 +8,17 @@ sidebar: spinal_sidebar
 permalink: /spinal/core/blackbox/
 ---
 
+
 ## Description
+
 A blackbox allows the user to integrate an existing VHDL/Verilog component into the design by just specifying the
 interfaces. It's up to the simulator or synthesizer to do the elaboration correctly.
 
+
 ## Defining an blackbox
+
  The example show how to define an blackbox.
+
 
 ```scala
 // Define a Ram as a BlackBox
@@ -48,7 +53,17 @@ class Ram_1w_1r(wordWidth: Int, wordCount: Int) extends BlackBox {
 }
 ```
 
+Bool type will be translated into std_logic and Bits into std_logic_vector. If you want to get std_ulogic, you have to use a BlackBoxULogic instead of BlackBox. 
+
+```scala
+class Ram_1w_1r(wordWidth: Int, wordCount: Int) extends BlackBoxULogic {
+  ...
+}
+```
+
+
 ## Instantiating a blackbox
+
 To instantiate an blackbox, it's the same than for Component :
 
 ```scala
@@ -86,7 +101,9 @@ object Main {
 }
 ```
 
+
 ### Generated code
+
 The previous code will instantiate the blackbox as following in the generated VHDL :
 
 ```vhdl
@@ -108,15 +125,17 @@ The previous code will instantiate the blackbox as following in the generated VH
     ...
 ```
 
+
 ## Clock and reset mapping
+
 In your blackbox definition you have to explicitly define clock and reset wires. To map signals of a ClockDomain to corresponding inputs of the blackbox you can use the `mapClockDomain` function. This function as following parameters :
 
-| name | type | default |description |
-| ------ | ----------- | ------ | ------ |
-| clockDomain | ClockDomain | ClockDomain.current | Specify the clockDomain which provide signals |
-| clock | Bool | Nothing | Blackbox input which should be connected to the clockDomain clock |
-| reset | Bool | Nothing | Blackbox input which should be connected to the clockDomain reset |
-| enable | Bool | Nothing | Blackbox input which should be connected to the clockDomain enable |
+| name        | type        | default             |description                                                         |
+| ------      | ----------- | ------              | ------                                                             |
+| clockDomain | ClockDomain | ClockDomain.current | Specify the clockDomain which provide signals                      |
+| clock       | Bool        | Nothing             | Blackbox input which should be connected to the clockDomain clock  |
+| reset       | Bool        | Nothing             | Blackbox input which should be connected to the clockDomain reset  |
+| enable      | Bool        | Nothing             | Blackbox input which should be connected to the clockDomain enable |
 
 For example :
 

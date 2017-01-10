@@ -75,6 +75,10 @@ entries:
     output: web
     folderitems:
 
+    - title  : Types introduction
+      url    : /spinal/core/types/TypeIntroduction
+      output : web
+
     - title: Boolean (Bool)
       url: /spinal/core/types/Bool
       output: web
