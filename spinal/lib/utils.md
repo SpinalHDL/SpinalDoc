@@ -20,7 +20,7 @@ Some utils are also present in [spinal.core](/SpinalDoc/spinal/core/utils/)
 | OHToUInt(x : Seq[Bool]) <br> OHToUInt(x : BitVector) | UInt | Return the index of the single bit set (one hot) in `x` |
 | CountOne(x : Seq[Bool]) <br> CountOne(x : BitVector) | UInt | Return the number of bit set in `x` |
 | MajorityVote(x : Seq[Bool]) <br> MajorityVote(x : BitVector) | Bool | Return True if the number of bit set is > x.size / 2 |
-| Endianness(that: T[, base:BitCount]) | T | Big-Endian <-> Little-Endian |
+| EndiannessSwap(that: T[, base:BitCount]) | T | Big-Endian <-> Little-Endian |
 | OHMasking.first(x : Bits) | Bits | Apply a mask on x to only keep the first bit set |
 | OHMasking.last(x : Bits) | Bits | Apply a mask on x to only keep the last bit set |
 | OHMasking.roundRobin(<br>&nbsp;&nbsp;requests : Bits,<br>&nbsp;&nbsp;ohPriority : Bits<br>) | Bits | Apply a mask on x to only keep the bit set from `requests`.<br> it start looking in `requests` from the `ohPriority` position <br>.<br>For example if `requests` is "1001" and `ohPriority` is "0010", the `roundRobin function will start looking in `requests` from its second bit and will return "1000". |
