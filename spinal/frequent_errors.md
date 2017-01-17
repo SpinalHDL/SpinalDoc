@@ -63,7 +63,7 @@ class ComponentY extends Component{
 ```scala
 class ComponentX extends Component{
   val io = new Bundle{
-    val X = Bool
+    val X = Bool   //Forgot to specify an in/out direction
   }
   ...
 }
@@ -72,7 +72,7 @@ class ComponentY extends Component{
   ...
   val componentX = new ComponentX
   val Y = Bool
-  componentX.io.X := Y //This assignement is not legal
+  componentX.io.X := Y //This assignement will be detected as not legal
   ...
 }
 ```
