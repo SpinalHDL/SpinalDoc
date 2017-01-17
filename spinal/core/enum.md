@@ -57,7 +57,7 @@ Custom encoding can be performed in two different ways: static or dynamic.
 /* 
  * Static encoding 
  */
-object MyEnumStaic extends SpinalEnum{
+object MyEnumStatic extends SpinalEnum{
   val e0, e1, e2, e3 = new Element()
   defaultEncoding = SpinalEnumEncoding("staticEncoding")(
     e0 -> 0,

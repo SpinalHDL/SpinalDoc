@@ -38,7 +38,7 @@ class Adder(width: Int) extends Component {
   ...
 }
 ```
-
+{% include tip.html content="val io = new Bundle{ ... } <br> Declaring all in/out in a Bundle named io is probably a good pratice. If you call your bundle io, Spinal will check that all elements are defined as input or output" %}
 
 ## Input / output definition
 
