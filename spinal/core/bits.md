@@ -57,7 +57,8 @@ val myBits4 = B"1001_0011"  // _ can be used for readability
 // Element
 val myBits5 = B(8 bits, default -> True) // "11111111"
 val myBits6 = B(8 bits, (7 downto 5) -> B"101", 4 -> true, 3 -> True, default -> false ) // "10111000"
-val myBits7 = (7 -> true, default -> false) // "10000000" (For assignement purposes, you can omit the B)
+val myBits7 = Bits(8 bits)
+myBits7 := (7 -> true, default -> false) // "10000000" (For assignement purposes, you can omit the B)
 
 // Range
 val myBits_8bits = myBits_16bits(7 downto 0)
