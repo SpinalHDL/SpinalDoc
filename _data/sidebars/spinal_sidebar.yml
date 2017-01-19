@@ -325,6 +325,10 @@ entries:
               url: /spinal/examples/simple/sinus_rom/
               output: web
 
+            - title: PLL BlackBox and reset controller
+              url: /spinal/examples/simple/pll_resetctrl/
+              output: web
+              
           - title: Intermediates ones
             output: web
             subfolderitems:

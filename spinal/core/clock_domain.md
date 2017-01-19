@@ -100,6 +100,48 @@ By default, a ClockDomain is applied to the whole design. The configuration of t
 - reset: asynchronous, active high
 - no enable signal
 
+### Internal clock
+An alternative syntax to create a clock domain the following : `ClockDomain.internal("myClockName")`<br>
+It's advantage is to create clock and reset signals with a specified name inplace of an inherited one. Then you have to assign those ClockDomain's signals as for instance in the example bellow :
+
+```scala
+class InternalClockWithPllExample extends Component {
+  val io = new Bundle {
+    val clk100M = in Bool
+    val aReset  = in Bool
+    val result  = out UInt (4 bits)
+  }
+  //myClockDomain.clock will be named myClockName_clk
+  //myClockDomain.reset will be named myClockName_reset
+  val myClockDomain = ClockDomain.internal("myClockName")
+
+  //Instanciate a PLL (probably a BlackBox)
+  val pll = new Pll()
+  pll.io.clkIn := io.clk100M
+
+  //Assign myClockDomain signals with something
+  myClockDomain.clock := pll.io.clockOut
+  myClockDomain.reset := io.aReset || !pll.io.
+
+  //Do whatever you want with myClockDomain
+  val myArea = new ClockingArea(myClockDomain){
+    val myReg = Reg(UInt(4 bits)) init(7)
+    myReg := myReg + 1
+
+    io.result := myReg
+  }
+}
+```
+
+| Argument name | Type | Description |
+| ------- | ---- | ---- |
+| `name` | String | Prefix what will be applied to clocks, resets,softResets signals name |
+| `config`| ClockDomainConfig | (default=defaultSetting) |
+| `withReset`| Boolean | (default=true) |
+| `withSoftReset`| Boolean | (default=false) |
+| `withClockEnable`| Boolean | (default=false) |
+| `frequency`| IClockDomainFrequency | (default=UnknownFrequency) |
+
 ### External clock
 You can define everywhere a clock domain which is driven by the outside. It will then automatically add clock and reset wire from the top level inputs to all synchronous elements.
 
@@ -117,6 +159,8 @@ class ExternalClockExample extends Component {
   }
 }
 ```
+
+Arguments of the `ClockDomain.external` function are exactly the sames than for the`ClockDomain.internal` one.
 
 ### Context
 At any moment you can retrieve in which clock domain you are by calling `ClockDomain.current`.
