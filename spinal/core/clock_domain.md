@@ -136,11 +136,11 @@ class InternalClockWithPllExample extends Component {
 | Argument name | Type | Description |
 | ------- | ---- | ---- |
 | `name` | String | Prefix what will be applied to clocks, resets,softResets signals name |
-| `config`| ClockDomainConfig | - |
-| `withReset`| Boolean | - |
-| `withSoftReset`| Boolean | - |
-| `withClockEnable`| Boolean | - |
-| `frequency`| IClockDomainFrequency | - |
+| `config`| ClockDomainConfig | (default=defaultSetting) |
+| `withReset`| Boolean | (default=true) |
+| `withSoftReset`| Boolean | (default=false) |
+| `withClockEnable`| Boolean | (default=false) |
+| `frequency`| IClockDomainFrequency | (default=UnknownFrequency) |
 
 ### External clock
 You can define everywhere a clock domain which is driven by the outside. It will then automatically add clock and reset wire from the top level inputs to all synchronous elements.
