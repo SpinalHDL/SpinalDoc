@@ -71,9 +71,17 @@ entries:
             url: /vhdl_comp/
             output: web
 
+    - title: Frequent errors
+      url: /frequent_errors/
+      output: web
+
   - title: Built-in types
     output: web
     folderitems:
+
+    - title  : Types introduction
+      url    : /spinal/core/types/TypeIntroduction
+      output : web
 
     - title: Boolean (Bool)
       url: /spinal/core/types/Bool

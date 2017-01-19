@@ -10,6 +10,7 @@ permalink: /spinal/core/components_hierarchy/
 
 
 ## Introduction
+
 Like in VHDL and Verilog, you can define components that could be used to build a design hierarchy.  But unlike them, you don't need to bind them at instantiation.
 
 ```scala
@@ -37,17 +38,18 @@ class Adder(width: Int) extends Component {
   ...
 }
 ```
+{% include tip.html content="val io = new Bundle{ ... } <br> Declaring all in/out in a Bundle named io is probably a good pratice. If you call your bundle io, Spinal will check that all elements are defined as input or output" %}
 
 ## Input / output definition
 
 Syntax to define in/out is the following :
 
-| Syntax | Description| Return
-| ------- | ---- | --- |
-| in/out Bool | Create an input/output Bool | Bool |
-| in/out Bits/UInt/SInt[(x bit)]| Create an input/output of the corresponding type | T |
-| in/out(T)| For all other data types, you should add the brackets around it.<br> Sorry this is a Scala limitation. | T |
-| master/slave(T)| This syntax is provided by the spinal.lib. T should extends IMasterSlave<br> Some documentation is available [here](/SpinalDoc/spinal/core/types/#interface-example-apb) | T |
+| Syntax                         | Description                                                                                                                                                              | Return |
+| -------                        | ----                                                                                                                                                                     | ---    |
+| in/out Bool                    | Create an input/output Bool                                                                                                                                              | Bool   |
+| in/out Bits/UInt/SInt[(x bit)] | Create an input/output of the corresponding type                                                                                                                         | T      |
+| in/out(T)                      | For all other data types, you should add the brackets around it.<br> Sorry this is a Scala limitation.                                                                   | T      |
+| master/slave(T)                | This syntax is provided by the spinal.lib. T should extends IMasterSlave<br> Some documentation is available [here](/SpinalDoc/spinal/core/types/#interface-example-apb) | T      |
 
 There is some rules about component interconnection :
 
@@ -56,7 +58,9 @@ There is some rules about component interconnection :
 
 {% include tip.html content="If for some reason, you need to read a signals from far away in the hierarchy (debug, temporal patch) you can do it by using the value returned by some.where.else.theSignal.pull()." %}
 
+
 ## Pruned signals
+
 SpinalHDL only generate things which are required to drive outputs of your toplevel (directly or indirectly).
 
 All other signals (the useless ones) are removed from the RTL generations and are indexed into a list of pruned signals. You can get this list via the `printPruned` and the `printPrunedIo` function on the generated `SpinalReport`.
@@ -111,6 +115,42 @@ object Main{
   }
 }
 ```
+
+
+## Generic(VHDL) / Parameter(Verilog)
+
+If you want to parameterize your component, you can give parameters to the constructor of the component as follow :  
+
+```scala
+class MyAdder(width: BitCount) extends Component {
+  val io = new Bundle{
+    val a,b    = in UInt(width)
+    val result = out UInt(width)
+  }
+  io.result := io.a + io.b
+}
+
+object Main{
+  def main(args: Array[String]) {
+    SpinalVhdl(new MyAdder(32 bits))
+  }
+}
+```
+
+I you have several parameters, it is a good practice to give a specific configuration class as follow :
+
+
+```scala
+case class MySocConfig(axiFrequency  : HertzNumber,
+                       onChipRamSize : BigInt, 
+                       cpu           : RiscCoreConfig,
+                       iCache        : InstructionCacheConfig)
+                            
+class MySoc(config: MySocConfig) extends Component {
+    ...
+}
+```
+
 
 
 <!--

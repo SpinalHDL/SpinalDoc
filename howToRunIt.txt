@@ -1,3 +1,8 @@
 windows => 
 http://railsinstaller.org/en
 run.bat
+
+Install ruby 2.2.5 (2.4.0 failed)
+gem install bundler
+bundler install    (in the repo root)
+./run.sh
