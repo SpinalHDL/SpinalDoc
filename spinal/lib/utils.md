@@ -84,6 +84,22 @@ when(timeout){                //Check if the timeout has tick
 
 {% include note.html content="If you instanciate an `Timeout` with an time or frequancy setup, the implicit `ClockDomain` should have an frequency setting." %}
 
+### ResetCtrl
+The ResetCtrl provide some utilities to manage resets.
+
+#### asyncAssertSyncDeassert
+You can filter an asynchronous reset by using an asynchronously asserted synchronously deaserted logic. To do it you can use the `ResetCtrl.asyncAssertSyncDeassert` function which will return you the filtred value.
+
+| Argument name | Type | Description |
+| ------------------------------- | ---- | ---- |
+| input           | Bool  | Signal that should be filtered |
+| clockDomain     | ClockDomain | ClockDomain which will use the filtred value |
+| inputPolarity   | Polarity | HIGH/LOW (default=HIGH)|
+| outputPolarity  | Polarity | HIGH/LOW (default=clockDomain.config.resetActiveLevel)|
+| bufferDepth     | Int | Number of register stages used to avoid metastability (default=2) |
+
+There is also an `ResetCtrl.asyncAssertSyncDeassertDrive` version of tool which directly assign the `clockDomain` reset with the filtred value.
+
 ## Special utilities
 
 | Syntax | Return | Description |
