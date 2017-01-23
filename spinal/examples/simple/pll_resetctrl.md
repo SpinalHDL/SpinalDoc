@@ -10,6 +10,13 @@ permalink: /spinal/examples/simple/pll_resetctrl/
 
 Let's imagine you want to define a TopLevel component which instanciate an PLL BlackBox and create a new clock domain from it which will be used by your core logic. Let's also imagine that you want to adapt an external asynchronous reset into this core clock domain as an synchronous reset source.
 
+The following imports will be used in codes of this page :
+
+```scala
+import spinal.core._
+import spinal.lib._
+```
+
 ## The PLL BlackBox definition
 There is how to define the PLL BlackBox :
 
@@ -55,7 +62,10 @@ class TopLevel extends Component{
     pll.io.clkIn := io.clk100Mhz
 
     //Create a new clock domain named 'core'
-    val coreClockDomain = ClockDomain.internal("core")
+    val coreClockDomain = ClockDomain.internal(
+      name = "core",
+      frequency = FixedFrequency(200 MHz)  // This frequency specification can be used
+    )                                      // by coreClockDomain users to do some calculation
 
     //Drive clock and reset signals of the coreClockDomain previously created
     coreClockDomain.clock := pll.io.clkOut
