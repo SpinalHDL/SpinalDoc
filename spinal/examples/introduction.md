@@ -15,3 +15,6 @@ Examples are split in tree kinds:
 - Advanced ones, which go further traditional HDL by using object oriented programming, functional programming and meta-hardware description
 
 They are all accessible in the sidebar under corresponding sections.
+
+{% include note.html content="You can also find a list of repostitories using SpinalHDL [there](/SpinalDoc/users#repositories)
+" %}
