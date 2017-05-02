@@ -63,10 +63,10 @@ when(cond){
 
 If you just need a Mux with a Bool selection signal, there is two equivalent syntaxes :
 
-| Syntax | Return | Description |
-| ------- | ---- | --- |
-| Mux(cond, whenTrue, whenFalse) | T | Return `whenTrue` when `cond` is True, `whenFalse` otherwise |
-| cond ? whenTrue \| whenFalse | T | Return `whenTrue` when `cond` is True, `whenFalse` otherwise |
+| Syntax                         | Return | Description                                                  |
+| ------------------------------ | ------ | ------------------------------------------------------------ |
+| Mux(cond, whenTrue, whenFalse) | T      | Return `whenTrue` when `cond` is True, `whenFalse` otherwise |
+| cond ? whenTrue \| whenFalse   | T      | Return `whenTrue` when `cond` is True, `whenFalse` otherwise |
 
 
 ```scala
@@ -102,4 +102,16 @@ val bitwiseResult = bitwiseSelect.mux(
   2 -> (io.src0 ^ io.src1),
   3 -> (io.src0)
 )
+```
+
+`muxLists(...)` is another bitwise selection which take as input a sequence of tuple. Below an example of dividing a Bits of 128 bits into 32 bits :
+
+<center><img src="/SpinalDoc/images/MuxList.png" style="width: 300px;"></center>
+
+```scala
+val sel  = UInt(2 bits)
+val data = Bits(128 bits)
+
+val dataWord = sel.muxList(for(index <- 0 until 4) yield (index, data(index*32+32-1 downto index*32)))
+
 ```
