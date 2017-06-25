@@ -1,0 +1,132 @@
+table{
+  border-spacing:0mm; 
+}
+
+.tableSectionCore, .tableSectionLib, .tableSectionTricks{
+  margin-top:0mm;
+}
+
+#core_Basictype, #core_literals, #core_range, #core_assignement, #core_register,
+#core_conditional, #core_Assertion, #core_operator, #core_ClockDomain, #core_Bundle,
+#core_FixPoint, #core_HDLGeneration, #core_RAM,  #core_Unit, #core_Function,
+#core_utils, #core_Template, #lib_Flow, #lib_Stream, #lib_Fragment, #lib_StateMachine,
+#core_InOut, #core_BlackBox, #tips_Miscellaneous, #tips_Scala {
+  width:97%; 
+}
+
+
+.borderRight > td {
+  border-right: 1px solid #D3D3D3;
+  text-align: center;
+}
+
+
+#core_area{
+  float: right;
+}
+
+.headerTitle{
+  font: 3mm "Comic Sans MS";
+  font-weight: bold;
+  padding-left:2mm
+}
+
+.titleSectionCore, .titleSectionLib, .titleSectionTricks{
+  font: 2.5mm "DaunPenh";
+  font-weight: bold;
+  text-align:right;
+  line-height: 2mm;   
+}
+
+.titleSectionCore > td{
+  border-bottom: 0.4mm solid #FFA500;
+}
+
+.titleSectionLib > td{
+  border-bottom: 0.4mm solid #0000ff; 
+}
+
+.titleSectionTricks > td{
+  border-bottom: 0.4mm solid #009900;   
+}
+
+.code{
+   font: 1.7mm "DaunPenh";
+   line-height: 2.3mm;     
+   margin: 0;
+}
+
+.code > td{
+  //padding-top: 0.5mm;
+  padding-top: 0mm;
+  //border: 1px solid black;
+ // padding-bottom: 0mm;
+}
+
+
+
+.borderBottom > td{
+  border-bottom: 1px solid #D3D3D3;
+}
+
+.borderRight{
+  border-right: 1px solid #D3D3D3;
+}
+
+.core_operator_ok{
+  font-size: 5pt;
+  text-align: center;
+}
+
+
+#version{
+  display: inline;
+  font: 2mm "DaunPenh";
+}
+
+
+/****************************************************************************** 
+  Layout table for the column 
+*/
+.tableLayout{
+  width:100%; 
+  /*border:1px  solid black;  */
+  height: 100%; 
+  margin:0 auto;
+} 
+
+.columnLayout{
+  //border: 1px solid black; 
+  vertical-align:top;
+  padding-left:2mm;
+}
+
+
+
+
+/****************************************************************************** 
+  Tabulation 
+*/
+tab1{  
+  padding-left: 2mm;
+}
+tab2{
+  padding-left: 4mm;
+}
+tab3{
+  padding-left: 6mm;
+}
+
+
+/****************************************************************************** 
+  Tag color
+*/
+cScala{
+  color:#cc0000;
+}
+cComment{
+  color:green;
+}
+
+
+
