@@ -114,4 +114,6 @@ val data = Bits(128 bits)
 
 val dataWord = sel.muxList(for(index <- 0 until 4) yield (index, data(index*32+32-1 downto index*32)))
 
+// This example can be written shorter.
+val dataWord = data.subdivideIn(32 bits)(sel)
 ```
