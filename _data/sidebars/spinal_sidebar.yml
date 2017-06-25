@@ -1,0 +1,379 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: Sidebar
+  product: SpinalHDL documentation
+  version: v0.10.0
+  folders:
+  - title: About SpinalHDL
+    output: web
+    folderitems:
+    - title: Introduction
+      url: /
+      output: web
+
+    - title: SpinalHDL users
+      url: /users
+      output: web
+
+    - title: Support
+      url: /support/
+      output: web
+
+    - title: FAQ
+      url: /faq/
+      output: web
+
+
+  - title: Getting Started
+    output: web
+    folderitems:
+    - title: Installation
+      url: /spinal_getting_started/
+      output: web
+
+    - title: Presentation (PDF)
+      url: /presentation/
+      output: web
+
+    - title: Cheatsheet Core (PDF)
+      url: /cheatsheet_core/
+      output: web
+
+      subfolders:
+        - title: Scala guide
+          output: web
+          subfolderitems:
+          - title: Introduction
+            url: /scala/introduction/
+            output: web
+
+          - title: Basics
+            url: /scala/basics/
+            output: web
+
+          - title: Coding conventions
+            url: /scala/coding_conventions/
+            output: web
+
+          - title: SpinalHDL interactions
+            url: /scala/interactions/
+            output: web
+
+        - title: Help for VHDL people
+          output: web
+          subfolderitems:
+          - title: VHDL equivalences
+            url: /spinal/core/vhdl_perspective/
+            output: web
+
+          - title: VHDL comparisons
+            url: /vhdl_comp/
+            output: web
+
+    - title: Frequent errors
+      url: /frequent_errors/
+      output: web
+
+  - title: Built-in types
+    output: web
+    folderitems:
+
+    - title  : Types introduction
+      url    : /spinal/core/types/TypeIntroduction
+      output : web
+
+    - title: Boolean (Bool)
+      url: /spinal/core/types/Bool
+      output: web
+
+    - title: Bit Vector (Bits)
+      url: /spinal/core/types/Bits
+      output: web
+
+    - title: Integer (UInt and SInt)
+      url: /spinal/core/types/Int
+      output: web
+
+    - title: Enumeration (Enum)
+      url: /spinal/core/types/Enum
+      output: web
+
+    - title: Bundle (Bundle)
+      url: /spinal/core/types/Bundle
+      output: web
+
+    - title: Vector (Vec)
+      url: /spinal/core/types/Vector
+      output: web
+
+    - title: Fixed Point (UFix and SFix)
+      url: /spinal/core/types/Fix
+      output: web
+
+    - title: Floating Point (Floating)
+      url: /spinal/core/types/Floating
+      output: web
+
+  - title: Structuring a design
+    output: web
+    folderitems:
+    - title: Components and hierarchy
+      url: /spinal/core/components_hierarchy/
+      output: web
+
+    - title: Area
+      url: /spinal/core/area/
+      output: web
+
+    - title: Function
+      url: /spinal/core/function/
+      output: web
+
+    - title: Clock domains
+      url: /spinal/core/clock_domain/
+      output: web
+
+    - title: Instanciate VHDL and Verilog IP
+      url: /spinal/core/blackbox/
+      output: web
+
+  - title: Semantic
+    output: web
+    folderitems:
+    - title: Assignements
+      url: /spinal/core/assignements/
+      output: web
+
+    - title: When / Switch / Mux
+      url: /spinal/core/when_switch/
+      output: web
+
+    - title: Rules
+      url: /spinal/core/semantic/
+      output: web
+
+  - title: Sequential logic
+    output: web
+    folderitems:
+    - title: Registers
+      url: /spinal/core/registers/
+      output: web
+
+    - title: RAM / ROM
+      url: /spinal/core/memory/
+      output: web
+
+  - title: Other language features
+    output: web
+    folderitems:
+    - title: Introduction
+      url: /spinal/core/introduction/
+      output: web
+
+    - title: Utiles
+      url: /spinal/core/utils/
+      output: web
+
+    - title: Assertions
+      url: /spinal/core/assertion/
+      output: web
+
+    - title: VHDL and Verilog generation
+      url: /spinal/core/vhdl_generation/
+      output: web
+
+  - title: Libraries
+    output: web
+    folderitems:
+
+      - title: Introduction
+        url: /spinal/lib/introduction/
+        output: web
+
+      - title: Utiles
+        url: /spinal/lib/utils/
+        output: web
+
+      - title: Stream
+        url: /spinal/lib/stream/
+        output: web
+
+      - title: Flow
+        url: /spinal/lib/flow/
+        output: web
+
+      - title: Fragment
+        url: /spinal/lib/fragment/
+        output: web
+
+      - title: State machine
+        url: /spinal/lib/fsm/
+        output: web
+
+      - title: Bus Slave Factory
+        url: /spinal/lib/bus_slave_factory/
+        output: web
+
+      - title: RISCV CPU
+        url: /spinal/lib/riscv/
+        output: web
+
+        subfolders:
+          - title: Bus
+            output: web
+            subfolderitems:
+            - title: APB3
+              url: /spinal/lib/bus/amba3/apb3/
+              output: web
+
+            - title: AHB-Lite3
+              url: /spinal/lib/bus/amba3/ahblite3/
+              output: web
+
+            - title: AXI4
+              url: /spinal/lib/bus/amba4/axi4/
+              output: web
+
+            - title: AvalonMM
+              url: /spinal/lib/bus/avalon/avalonmm/
+              output: web
+
+          - title: Com
+            output: web
+            subfolderitems:
+            - title: UART
+              url: /spinal/lib/bus/uart/
+              output: web
+
+          - title: IO
+            output: web
+            subfolderitems:
+            - title: TriState
+              url: /spinal/lib/io/tristate/
+              output: web
+
+            - title: ReadableOpenDrain
+              url: /spinal/lib/io/readableOpenDrain/
+              output: web
+
+          - title: Graphics
+            output: web
+            subfolderitems:
+            - title: Colors
+              url: /spinal/lib/graphic/color/
+              output: web
+
+            - title: VGA
+              url: /spinal/lib/graphic/vga/
+              output: web
+
+
+          - title: Pinsec SoC
+            output: web
+            subfolderitems:
+            - title: Introduction
+              url: /spinal/lib/pinsec/introduction/
+              output: web
+
+            - title: Hardware
+              url: /spinal/lib/pinsec/hardware/
+              output: web
+
+            - title: Software
+              url: /spinal/lib/pinsec/software/
+              output: web
+
+
+  - title: Examples
+    output: web
+    folderitems:
+
+      - title: Introduction
+        url: /spinal/examples/introduction/
+        output: web
+
+        subfolders:
+          - title: Simple ones
+            output: web
+            subfolderitems:
+            - title: Introduction
+              url: /spinal/examples/simple/introduction/
+              output: web
+
+            - title: Counter with clear
+              url: /spinal/examples/simple/counter_with_clear/
+              output: web
+
+            - title: Carry adder
+              url: /spinal/examples/simple/carry_adder/
+              output: web
+
+            - title: Color summing
+              url: /spinal/examples/simple/color_summing/
+              output: web
+
+            - title: RGB to gray
+              url: /spinal/examples/simple/rgb_to_gray/
+              output: web
+
+            - title: APB3 definition
+              url: /spinal/examples/simple/apb3/
+              output: web
+
+            - title: Sinus rom
+              url: /spinal/examples/simple/sinus_rom/
+              output: web
+
+            - title: PLL BlackBox and reset controller
+              url: /spinal/examples/simple/pll_resetctrl/
+              output: web
+              
+          - title: Intermediates ones
+            output: web
+            subfolderitems:
+            - title: VGA
+              url: /spinal/examples/vga/
+              output: web
+
+            - title: UART
+              url: /spinal/examples/uart/
+              output: web
+
+            - title: Fractal calculator
+              url: /spinal/examples/fractal/
+              output: web
+
+
+
+          - title: Advanced ones
+            output: web
+            subfolderitems:
+            - title: Memory mapped UART
+              url: /spinal/examples/memory_mapped_uart/
+              output: web
+
+            - title: Timer
+              url: /spinal/examples/timer/
+              output: web
+
+            - title: JTAG TAP
+              url: /spinal/examples/jtag/
+              output: web
+
+            - title: SoC toplevel (Pinsec)
+              url: /spinal/lib/pinsec/hardware_toplevel/
+              output: web
+
+
+  - title: Developers area
+    output: web
+    folderitems:
+
+    - title: Types
+      url: /spinal/core/types/
+      output: web
+
+    - title: Bus Slave Factory implementation
+      url: /spinal/lib/bus_slave_factory_impl/
+      output: web

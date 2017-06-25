@@ -1,3 +1,3 @@
-This is the host of the documentation for the [*SpinalHDL* language](https://github.com/SpinalHDL) user guide. 
+## Jekyll Documentation theme
 
-# [Head for the documentation website](http://spinalhdl.github.io/SpinalDoc)
+This is the readme page of the Jekyll documentation theme.
