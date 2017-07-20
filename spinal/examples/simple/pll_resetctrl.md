@@ -8,9 +8,9 @@ sidebar: spinal_sidebar
 permalink: /spinal/examples/simple/pll_resetctrl/
 ---
 
-Let's imagine you want to define a TopLevel component which instanciate an PLL BlackBox and create a new clock domain from it which will be used by your core logic. Let's also imagine that you want to adapt an external asynchronous reset into this core clock domain as an synchronous reset source.
+Let's imagine you want to define a `TopLevel` component which instantiates a PLL `BlackBox`, and create a new clock domain from it which will be used by your core logic. Let's also imagine that you want to adapt an external asynchronous reset into this core clock domain to a synchronous reset source.
 
-The following imports will be used in codes of this page :
+The following imports will be used in code examples on this page:
 
 ```scala
 import spinal.core._
@@ -18,7 +18,7 @@ import spinal.lib._
 ```
 
 ## The PLL BlackBox definition
-There is how to define the PLL BlackBox :
+This is how to define the PLL `BlackBox`:
 
 ```scala
 class PLL extends BlackBox{
@@ -32,7 +32,7 @@ class PLL extends BlackBox{
 }
 ```
 
-This will correspond to the following VHDL component :
+This will correspond to the following VHDL component:
 
 ```
 component PLL is
@@ -45,7 +45,7 @@ end component;
 ```
 
 ## TopLevel definition
-There is how to define your TopLevel which instanciate the PLL, create the new ClockDomain and also adapt the asynchronous reset input for it :
+This is how to define your `TopLevel` which instantiates the PLL, creates the new `ClockDomain`, and also adapts the asynchronous reset input to a synchronous reset:
 
 ```scala
 class TopLevel extends Component{
@@ -65,7 +65,7 @@ class TopLevel extends Component{
     val coreClockDomain = ClockDomain.internal(
       name = "core",
       frequency = FixedFrequency(200 MHz)  // This frequency specification can be used
-    )                                      // by coreClockDomain users to do some calculation
+    )                                      // by coreClockDomain users to do some calculations
 
     //Drive clock and reset signals of the coreClockDomain previously created
     coreClockDomain.clock := pll.io.clkOut
@@ -75,7 +75,7 @@ class TopLevel extends Component{
     )
   }
 
-  //Create an ClockingArea which will be under the effect of the clkCtrl.coreClockDomain
+  //Create a ClockingArea which will be under the effect of the clkCtrl.coreClockDomain
   val core = new ClockingArea(clkCtrl.coreClockDomain){
     //Do your stuff which use coreClockDomain here
     val counter = Reg(UInt(4 bits)) init(0)
