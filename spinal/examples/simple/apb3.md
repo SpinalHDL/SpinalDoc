@@ -9,10 +9,10 @@ permalink: /spinal/examples/simple/apb3/
 ---
 
 ## Introduction
-This example will show the syntax to define an APB3 Bundle.
+This example will show the syntax to define an APB3 `Bundle`.
 
 ## Specification
-The specification from ARM could be interpreted as following :
+The specification from ARM could be interpreted as follows:
 
 | Signal Name  | Type | Driver side | Comment |
 | ------- | ---- | ---- | ---- |
@@ -26,7 +26,7 @@ The specification from ARM could be interpreted as following :
 | PSLVERROR | Bool | Slave | Optional |
 
 ## Implementation
-This specification show that the APB3 bus has multiple configuration possible. To represent that, we can define an configuration class in Scala :
+This specification shows that the APB3 bus has multiple possible configurations. To represent that, we can define a configuration class in Scala:
 
 ```scala
 case class Apb3Config(
@@ -37,7 +37,7 @@ case class Apb3Config(
 )
 ```
 
-Then we can define the APB3 bundle which will be used to represent the bus in hardware:
+Then we can define the APB3 `Bundle` which will be used to represent the bus in hardware:
 
 ```scala
 case class Apb3(config: Apb3Config) extends Bundle with IMasterSlave {
@@ -59,7 +59,7 @@ case class Apb3(config: Apb3Config) extends Bundle with IMasterSlave {
 ```
 
 ## Usage
-The there is an usage example of those definition :
+Here is a usage example of this definition:
 
 ```scala
 val apbConfig = Apb3Config(
