@@ -10,7 +10,7 @@ permalink: /spinal/examples/simple/color_summing/
 
 
 
-First let's define a Color Bundle with an addition operator.
+First let's define a Color `Bundle` with an addition operator.
 
 ```scala
   case class Color(channelWidth: Int) extends Bundle {
@@ -30,12 +30,12 @@ First let's define a Color Bundle with an addition operator.
       this.r := 0
       this.g := 0
       this.b := 0
-      this        
+      this
     }
   }
 ```
 
-Then let's define a component with the `sources` input which is an vector of colors and output the sum of them on `result`
+Then let's define a component with a `sources` input which is a vector of colors, and a `result` output which is the sum of the `sources` input.
 
 ```scala
   class ColorSumming(sourceCount: Int, channelWidth: Int) extends Component {
