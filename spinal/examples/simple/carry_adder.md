@@ -8,8 +8,8 @@ sidebar: spinal_sidebar
 permalink: /spinal/examples/simple/carry_adder/
 ---
 
-This example define a component with `a` and `b` inputs and a `result` output.
-At any time, result will be the sum of `a` and `b` (combinatorial).
+This example defines a component with inputs `a` and `b`, and a `result` output.
+At any time, `result` will be the sum of `a` and `b` (combinatorial).
 This sum is manualy done by a carry adder logic.
 
 ```scala
