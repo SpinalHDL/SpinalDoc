@@ -8,14 +8,14 @@ sidebar: spinal_sidebar
 permalink: /spinal/examples/simple/introduction/
 ---
 
-All example assume that you have on the top of your scala file the following imports :
+All examples assume that you have the following imports on the top of your scala file:
 
 ```scala
 import spinal.core._
 import spinal.lib._
 ```
 
-To generate the VHDL of a given component you can do the following on the bottom of your scala file :
+To generate VHDL for a given component, you can place the following at the bottom of your scala file:
 
 ```scala
 object MyMainObject {
