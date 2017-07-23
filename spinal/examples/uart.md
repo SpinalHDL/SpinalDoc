@@ -9,39 +9,39 @@ permalink: /spinal/examples/uart/
 ---
 
 ## Specification
-This UART controller tutorial is based on [this](https://github.com/SpinalHDL/SpinalHDL/tree/master/lib/src/main/scala/spinal/lib/com/uart) implementation
+This UART controller tutorial is based on [this](https://github.com/SpinalHDL/SpinalHDL/tree/master/lib/src/main/scala/spinal/lib/com/uart) implementation.
 
-This implementation is characterized by :
+This implementation is characterized by:
 
-- ClockDivider/Parity/StopBit/DataLength configs are set by the component inputs
-- RXD input is filtered by using a sampling windows of N samples and a majority vote
+- ClockDivider/Parity/StopBit/DataLength configs are set by the component inputs.
+- RXD input is filtered by using a sampling window of N samples and a majority vote.
 
 <br>
-Interfaces of this UartCtrl are :
+Interfaces of this UartCtrl are:
 
 | Name | Type |Description|
 | ------- | ---- | --- |
 | config | UartCtrlConfig | Give all configurations to the controller |
 | write | Stream[Bits] | Port used by the system to give transmission order to the controller |
 | read | Flow[Bits] | Port used by the controller to notify the system about a successfully received frame |
-| uart | Uart | Uart interface with rxd/tdx |
+| uart | Uart | Uart interface with rxd / txd |
 
 ## Data structures
-Before implementing the controller itself we need to define some data structures
+Before implementing the controller itself we need to define some data structures.
 
 ### Controller construction parameters
 
 | Name | Type |Description|
 | ------- | ---- | --- |
-| dataWidthMax | Int | Maximum number of data bits that could be send into a single UART frame |
-| clockDividerWidth | Int | Number of bit that the clock divider has |
-| preSamplingSize | Int | Number of samples drop at the beginning of the sampling window  |
+| dataWidthMax | Int | Maximum number of data bits that could be sent using a single UART frame |
+| clockDividerWidth | Int | Number of bits that the clock divider has |
+| preSamplingSize | Int | Number of samples to drop at the beginning of the sampling window  |
 | samplingSize | Int | Number of samples use at the middle of the window to get the filtered RXD value |
-| postSamplingSize | Int | Number of samples drop at the end of the sampling window |
+| postSamplingSize | Int | Number of samples to drop at the end of the sampling window |
 
 To make the implementation easier let's assume that `preSamplingSize + samplingSize + postSamplingSize` is always a power of two.
 
-In place to add to the UartCtrl each construction parameters (generics) one by one, we can group them inside an class that will be used as single parameter of UartCtrl.
+Instead of adding each construction parameters (generics) to `UartCtrl` one by one, we can group them inside a class that will be used as single parameter of `UartCtrl`.
 
 ```scala
 case class UartCtrlGenerics( dataWidthMax: Int = 8,
@@ -57,7 +57,7 @@ case class UartCtrlGenerics( dataWidthMax: Int = 8,
 ```
 
 ### UART bus
-Let's define an UART bus without flow control.
+Let's define a UART bus without flow control.
 
 ```scala
 case class Uart() extends Bundle with IMasterSlave {
@@ -72,7 +72,7 @@ case class Uart() extends Bundle with IMasterSlave {
 ```
 
 ### UART configuration enums
-Let's define parity and stop bit enumerations
+Let's define parity and stop bit enumerations.
 
 ```scala
 object UartParityType extends SpinalEnum(sequancial) {
@@ -86,7 +86,7 @@ object UartStopType extends SpinalEnum(sequancial) {
 ```
 
 ### UartCtrl configuration Bundles
-Let's define Bundles that will be used as IO element to setup the UartCtrl.
+Let's define `Bundle`s that will be used as IO elements to setup `UartCtrl`.
 
 ```scala
 case class UartCtrlFrameConfig(g: UartCtrlGenerics) extends Bundle {
@@ -106,25 +106,25 @@ case class UartCtrlConfig(g: UartCtrlGenerics) extends Bundle {
 ```
 
 ## Implementation
-In the `UartCtrl` 3 things will be instantiated :
+In `UartCtrl`, 3 things will be instantiated:
 
-- One clock divider that generate a tick pulse at the UART RX sampling rate.
-- One UartCtrlTx Component
-- One UartCtrlRx Component
+- One clock divider that generates a tick pulse at the UART RX sampling rate.
+- One `UartCtrlTx` `Component`
+- One `UartCtrlRx` `Component`
 
 
 ### UartCtrlTx
 
-The interfaces of this Component is the following :
+The interfaces of this `Component` are the following :
 
 | Name | Type |Description|
 | ------- | ---- | --- |
-| configFrame | UartCtrlFrameConfig | Give data bits count and party/stop bits configurations  |
-| samplingTick  | Bool | Time reference that pulse `rxSamplePerBit` time per UART baud  |
-| write | Stream[Bits] | Port used by the system to give transmission order to the controller |
-| txd | Bool | Uart txd pin |
+| configFrame | UartCtrlFrameConfig | Containts data bit width count and party/stop bits configurations |
+| samplingTick  | Bool | Time reference that pulses `rxSamplePerBit` times per UART baud |
+| write | Stream[Bits] | Port used by the system to give transmission orders to the controller |
+| txd | Bool | UART txd pin |
 
-Let's define the enumeration that will be used to store the state of the UartCtrlTx :
+Let's define the enumeration that will be used to store the state of `UartCtrlTx`:
 
 ```scala
 object UartCtrlTxState extends SpinalEnum {
@@ -132,7 +132,7 @@ object UartCtrlTxState extends SpinalEnum {
 }
 ```
 
-Let's define the skeleton of the UartCtrlTx :
+Let's define the skeleton of `UartCtrlTx`:
 
 
 ```scala
@@ -146,7 +146,7 @@ class UartCtrlTx(g : UartCtrlGenerics) extends Component {
     val txd          = out Bool
   }
 
-  // Provide one clockDivider.tick each rxSamplePerBit pulse of io.samplingTick
+  // Provide one clockDivider.tick each rxSamplePerBit pulses of io.samplingTick
   // Used by the stateMachine as a baud rate time reference
   val clockDivider = new Area {
     val counter = Reg(UInt(log2Up(rxSamplePerBit) bits)) init(0)
@@ -177,7 +177,7 @@ class UartCtrlTx(g : UartCtrlGenerics) extends Component {
 }
 ```
 
-And there is the complete implementation :
+And here is the complete implementation:
 
 ```scala
 class UartCtrlTx(g : UartCtrlGenerics) extends Component {
@@ -273,16 +273,16 @@ class UartCtrlTx(g : UartCtrlGenerics) extends Component {
 ```
 
 ### UartCtrlRx
-The interfaces of this Component is the following :
+The interfaces of this `Component` are the following:
 
 | Name | Type |Description|
 | ------- | ---- | --- |
-| configFrame | UartCtrlFrameConfig | Give data bits count and party/stop bits configurations  |
-| samplingTick  | Bool | Time reference that pulse `rxSamplePerBit` time per UART baud  |
+| configFrame | UartCtrlFrameConfig | Contains data bit width and party/stop bits configurations |
+| samplingTick  | Bool | Time reference that pulses `rxSamplePerBit` times per UART baud |
 | read | Flow[Bits] | Port used by the controller to notify the system about a successfully received frame |
-| rxd | Bool | Uart rxd pin, not synchronized with the current clock domain |
+| rxd | Bool | UART rxd pin, not synchronized with the current clock domain |
 
-Let's define the enumeration that will be used to store the state of the UartCtrlTx :
+Let's define the enumeration that will be used to store the state of `UartCtrlTx`:
 
 ```scala
 object UartCtrlRxState extends SpinalEnum {
@@ -342,7 +342,7 @@ class UartCtrlRx(g : UartCtrlGenerics) extends Component {
 }
 ```
 
-And there is the complete implementation :
+And here is the complete implementation:
 
 ```scala
 class UartCtrlRx(g : UartCtrlGenerics) extends Component {
@@ -457,7 +457,7 @@ class UartCtrlRx(g : UartCtrlGenerics) extends Component {
 ```
 
 ### UartCtrl
-Let's write the UartCtrl that instanciate the `UartCtrlRx` and `UartCtrlTx` parts, generate the clock divider logic, and wire all that stuff.
+Let's write `UartCtrl` that instantiates the `UartCtrlRx` and `UartCtrlTx` parts, generate the clock divider logic, and connect them to each other.
 
 ```scala
 class UartCtrl(g : UartCtrlGenerics = UartCtrlGenerics()) extends Component {
@@ -497,11 +497,11 @@ class UartCtrl(g : UartCtrlGenerics = UartCtrlGenerics()) extends Component {
 ```
 
 ## Example with test bench
-There is an top level example that do the followings things :
+Here is a top level example that does the followings things:
 
-- Instanciate the `UartCtrl` and fix its configuration to 921600 baud/s, no parity, 1 stop bit.
-- Each time a byte is received from the uart it write it on the leds output.
-- Each 2000 cycle, it send the switchs input value on the uart.
+- Instantiate `UartCtrl` and set its configuration to 921600 baud/s, no parity, 1 stop bit.
+- Each time a byte is received from the UART, it writes it on the leds output.
+- Every 2000 cycles, it sends the switches input value to the UART.
 
 ```scala
 class UartCtrlUsageExample extends Component{
@@ -536,7 +536,7 @@ object UartCtrlUsageExample{
 }
 ```
 
-The following example is just a "mad one" but if you want to send an 0x55 header before sending the value of switches, you can replace the write generator of the precedent example by :
+The following example is just a "mad one" but if you want to send a 0x55 header before sending the value of switches, you can replace the write generator of the preceding example by:
 
 ```scala
   val write = Stream(Fragment(Bits(8 bits)))
@@ -548,15 +548,15 @@ The following example is just a "mad one" but if you want to send an 0x55 header
 
 [Here](https://github.com/SpinalHDL/SpinalHDL/blob/master/tester/src/test/resources/UartCtrlUsageExample_tb.vhd) you can get a simple VHDL testbench for this small `UartCtrlUsageExample`.
 
-## Bonus : Having fun with Stream
-If you want to queue data received from the UART :
+## Bonus: Having fun with Stream
+If you want to queue data received from the UART:
 
 ```scala
 val uartCtrl = new UartCtrl()
 val queuedReads = uartCtrl.io.read.toStream.queue(16)
 ```
 
-If you want to add a queue on the write interface and do some flow control :
+If you want to add a queue on the write interface and do some flow control:
 
 ```scala
 val uartCtrl = new UartCtrl()

@@ -10,9 +10,9 @@ permalink: /spinal/core/vhdl_perspective/
 
 
 ## Entity and architecture
-In SpinalHDL, VHDL entity and architecture are both defined inside a `Component`.
+In SpinalHDL, a VHDL entity and architecture are both defined inside a `Component`.
 
-There is an example of a component which has 3 inputs (a,b,c) and an output (result). This component also has a `offset` construction parameter (Like VHDL generic)
+Here is an example of a component which has 3 inputs (a,b,c) and an output (result). This component also has an `offset` construction parameter (like a VHDL generic)
 
 ```scala
 case class MyComponent(offset : Int) extends Component{
@@ -24,7 +24,7 @@ case class MyComponent(offset : Int) extends Component{
 }
 ```
 
-Then to instantiate that component instantiate, you don't need to bind it :
+Then to instantiate that component, you don't need to bind it:
 
 ```scala
 case class TopLevel extends Component{
@@ -43,7 +43,7 @@ case class TopLevel extends Component{
 ```
 
 ## Data types
-SpinalHDL data types are similar to the VHDL ones :
+SpinalHDL data types are similar to the VHDL ones:
 
 | VHDL | SpinalHDL |
 | --- | --- |
@@ -52,7 +52,7 @@ SpinalHDL data types are similar to the VHDL ones :
 | unsigned | UInt |
 | signed | SInt |
 
-While for defining a 8 bits unsigned in VHDL you have to give the range of bits : unsigned(7 downto 0),<br> in SpinalHDL you directly give the number of bits : UInt(8 bits)
+While for defining an 8 bit `unsigned` in VHDL you have to give the range of bits `unsigned(7 downto 0)`,<br> in SpinalHDL you simply supply the number of bits `UInt(8 bits)`.
 
 | VHDL | SpinalHDL |
 | --- | --- |
@@ -60,7 +60,7 @@ While for defining a 8 bits unsigned in VHDL you have to give the range of bits 
 | array | Vec |
 | enum | SpinalEnum |
 
-There is an example of SpinalHDL Bundle definition. `channelWidth` is a construction parameter, like VHDL generics, but for data structure
+Here is an example of the SpinalHDL Bundle definition. `channelWidth` is a construction parameter, like VHDL generics, but for data structures:
 
 ```scala
 case class RGB(channelWidth : Int) extends Bundle{
@@ -68,10 +68,10 @@ case class RGB(channelWidth : Int) extends Bundle{
 }
 ```
 
-Then to instantiate a Bundle, you need for example to write `val myColor = RGB(channelWidth=8)`
+Then for example, to instantiate a Bundle, you need to write `val myColor = RGB(channelWidth=8)`.
 
 ## Signal
-There is an example about signal instantiation :
+Here is an example about signal instantiations:
 
 ```scala
 case class MyComponent(offset : Int) extends Component{
@@ -82,20 +82,20 @@ case class MyComponent(offset : Int) extends Component{
   val ab = UInt(8 bits)
   ab := a + b
 
-  val abc = ab + c            //You can define a signals directly by its value
+  val abc = ab + c            //You can define a signal directly with its value
   io.result := abc + offset
 }
 ```
 
 ## Assignements
-In SpinalHDL, the `:=` assignement operator is equivalent to VHDL signal assignement (<=)
+In SpinalHDL, the `:=` assignment operator is equivalent to the VHDL signal assignment (<=):
 
 ```scala
 val myUInt = UInt(8 bits)
 myUInt := 6
 ```
 
-Conditional assignments are done like in VHDL by using if/case statments :
+Conditional assignments are done like in VHDL by using `if/case` statements:
 
 ```scala
 val clear  = Bool
@@ -120,7 +120,7 @@ switch(counter){
 ```
 
 ## Literals
-Literals are a little bit different than the VHDL ones :
+Literals are a little bit different than in VHDL:
 
 ```scala
 val myBool = Bool
@@ -139,18 +139,18 @@ when(myUInt === U(myUInt.range -> true)){
 }
 ```
 
-## Register
-In SpinalHDL register are explicitly specified while in VHDL it's inferred. There is an example of SpinalHDL register :
+## Registers
+In SpinalHDL, registers are explicitly specified while in VHDL it's inferred. Here is an example of SpinalHDL registers:
 
 ```scala
 val counter = Reg(UInt(8 bits))  init(0)  
 counter := counter + 1   //Count up each cycle
 
-//init(0) mean that the register should be initialized to zero when a reset occur
+//init(0) means that the register should be initialized to zero when a reset occurs
 ```
 
 ## Process blocks
-This simulation feature is unnecessary to design RTL, it's why SpinalHDL doesn't contains any feature analog to process blocks, you can assign what you want where you want.
+Process blocks are a simulation feature that is unnecessary to design RTL. It's why SpinalHDL doesn't contain any feature analog to process blocks, and you can assign what you want where you want.
 
 ```scala
 val cond = Bool

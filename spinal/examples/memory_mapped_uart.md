@@ -9,25 +9,25 @@ permalink: /spinal/examples/memory_mapped_uart/
 ---
 
 ## Introduction
-This example will take the UartCtrl implemented in the precedent [example](/SpinalDoc/spinal/examples/uart/) to create a memory mapped UART controller.
+This example will take the `UartCtrl` component implemented in the previous [example](/SpinalDoc/spinal/examples/uart/) to create a memory mapped UART controller.
 
 ## Specification
-The implementation will by based on the APB3 bus with a RX FIFO.
+The implementation will be based on the APB3 bus with a RX FIFO.
 
-There is the register mapping table :
+Here is the register mapping table:
 
 | Name | Type | Access | Address | Description |
 | ------- | ---- | --- | --- | --- |
 | clockDivider | UInt | RW | 0 | Set the UartCtrl clock divider |
 | frame | UartCtrlFrameConfig | RW  | 4 | Set the dataLength, the parity and the stop bit configuration |
-| writeCmd | Bits | W | 8 | Send a write command to the UartCtrl  |
-| writeBusy | Bool | R | 8 | Bit 0 => zero when a new writeCmd could be sent |
+| writeCmd | Bits | W | 8 | Send a write command to UartCtrl |
+| writeBusy | Bool | R | 8 | Bit 0 => zero when a new writeCmd can be sent |
 | read | Bool / Bits | R | 12 | Bits 7 downto 0 => rx payload <br> Bit 31 => rx payload valid |
 
 ## Implementation
-For this implementation, the Apb3SlaveFactory tool will be used. It allow to define a APB3 slave with a smooth syntax. You can find the documentation of it this tool [there](/SpinalDoc/spinal/lib/bus_slave_factory/).
+For this implementation, the Apb3SlaveFactory tool will be used. It allows you to define a APB3 slave with a nice syntax. You can find the documentation of this tool [there](/SpinalDoc/spinal/lib/bus_slave_factory/).
 
-First, we just need to define the Apb3Config that will be used for the controller. It is defined into an scala object as a function to be able to get it from everywhere.
+First, we just need to define the `Apb3Config` that will be used for the controller. It is defined in a Scala object as a function to be able to get it from everywhere.
 
 ```scala
 object Apb3UartCtrl{
@@ -38,7 +38,7 @@ object Apb3UartCtrl{
 }
 ```
 
-Then we can define a `Apb3UartCtrl` which instantiate the UartCtrl and create the memory mapping logic between it and the APB3 bus :
+Then we can define a `Apb3UartCtrl` component which instantiates a `UartCtrl` and creates the memory mapping logic between it and the APB3 bus:
 
 <img src="https://cdn.rawgit.com/SpinalHDL/SpinalDoc/b488520ea0ea5352c59c6e7269ca1d8d92207821/asset/picture/memory_mapped_uart.svg"  align="middle" width="300">
 
@@ -79,4 +79,4 @@ class Apb3UartCtrl(uartCtrlConfig : UartCtrlGenerics, rxFifoDepth : Int) extends
 }
 ```
 
-{% include important.html content="Yes, that's all. It's also synthesizable.<br><br> The Apb3SlaveFactory tool is not something hard-coded into the SpinalHDL compiler. It's something implemented with SpinalHDL regular hardware description syntax." %}
+{% include important.html content="Yes, that's all it takes. It's also synthesizable.<br><br> The Apb3SlaveFactory tool is not something hard-coded into the SpinalHDL compiler. It's something implemented with SpinalHDL regular hardware description syntax." %}

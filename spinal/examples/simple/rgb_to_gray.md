@@ -8,11 +8,11 @@ sidebar: spinal_sidebar
 permalink: /spinal/examples/simple/rgb_to_gray/
 ---
 
-Let's imagine a component which convert a RGB color into a gray one, and then write it into an external memory.
+Let's imagine a component that converts an RGB color into a gray one, and then writes it into external memory.
 
 | io name  | Direction | Description |
 | ------- | ---- | ---- |
-| clear | in | Clear all internal register |
+| clear | in | Clear all internal registers |
 | r,g,b | in | Color inputs |
 | wr | out | Memory write |
 | address | out | Memory address, incrementing each cycle |

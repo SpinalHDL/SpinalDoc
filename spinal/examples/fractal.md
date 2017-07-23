@@ -9,34 +9,34 @@ permalink: /spinal/examples/fractal/
 ---
 
 ## Introduction
-This example will show a simple implementation (without optimization)  of an Mandelbrot fractal calculator by using data stream and fixed point calculation.
+This example will show a simple implementation (without optimization) of a Mandelbrot fractal calculator by using data streams and fixed point calculations.
 
 ## Specification
-The component will receive one stream of pixel tasks (which contain the XY coordinates in the mandelbrot space) and will produce one stream of pixel results (which contain the number of iteration done for the corresponding task)
+The component will receive one `Stream` of pixel tasks (which contain the XY coordinates in the Mandelbrot space) and will produce one `Stream` of pixel results (which contain the number of iterations done for the corresponding task).
 
-Let's specify the IO of our component :
+Let's specify the IO of our component:
 
 | IO Name | Direction | Type | Description |
 | ------- | ---- |  --- | --- |
 | cmd | slave | Stream[PixelTask]  | Provide XY coordinates to process |
 | rsp | master | Stream[PixelResult]  | Return iteration count needed for the corresponding cmd transaction |
 
-Let's specify the PixelTask bundle :
+Let's specify the PixelTask `Bundle`:
 
 | Element Name | Type | Description |
 | ------- | ---- |  --- |
-| x | SFix | Coordinate in the mandelbrot space |
-| y | SFix | Coordinate in the mandelbrot space |
+| x | SFix | Coordinate in the Mandelbrot space |
+| y | SFix | Coordinate in the Mandelbrot space |
 
 
-Let's specify the PixelResult bundle :
+Let's specify the PixelResult `Bundle`:
 
 | Element Name | Type | Description |
 | ------- | ---- |  --- |
-| iteration | UInt | Number of iteration required to solve the mandelbrot coordinates |
+| iteration | UInt | Number of iterations required to solve the Mandelbrot coordinates |
 
 ## Elaboration parameters (Generics)
-Let's define the class that will provide construction parameters of our system :
+Let's define the class that will provide construction parameters of our system:
 
 ```scala
 case class PixelSolverGenerics(fixAmplitude : Int,
@@ -51,7 +51,7 @@ case class PixelSolverGenerics(fixAmplitude : Int,
 }
 ```
 
-{% include note.html content="iterationType and fixType are function that you can call to instantiate new signals. It's like an typedef in C." %}
+{% include note.html content="iterationType and fixType are functions that you can call to instantiate new signals. It's like a typedef in C." %}
 
 ## Bundle definition
 
@@ -66,7 +66,7 @@ case class PixelResult(g : PixelSolverGenerics) extends Bundle{
 ```
 
 ## Component implementation
-And now the implementation. The one bellow is a very simple one without pipelining / multi-threading.
+And now the implementation. The one below is a very simple one without pipelining / multi-threading.
 
 
 ```scala

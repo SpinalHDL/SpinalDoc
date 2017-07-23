@@ -9,16 +9,16 @@ permalink: /vhdl_comp/
 ---
 
 ## Introduction
-This page will show main differences between VHDL and SpinalHDL. Things will not be explained in depth.
+This page will show the main differences between VHDL and SpinalHDL. Things will not be explained in depth.
 
 ## Process
-Process have no senses when you define RTL, worst than that, they are very annoying and force you to split your code and duplicate things.
+Processes have no senses when you define RTL, and worst than that, they are very annoying and force you to split your code and duplicate things.
 
-To produce the following RTL :
+To produce the following RTL:
 
 <img src="{{ "/images/process_rtl.svg" |  prepend: site.baseurl }}" alt="Company logo"/>
 
-You will have to write the following VHDL :
+You will have to write the following VHDL:
 
 ```ada
   signal mySignal : std_logic;
@@ -55,7 +55,7 @@ begin
 ```
 
 
-While in SpinalHDL, it's :
+While in SpinalHDL, it's:
 
 ```scala
 val mySignal = Bool
@@ -72,16 +72,16 @@ when(cond) {
 
 
 ## Implicit vs explicit definitions
-In VHDL, when you declare a signals you don't specify if this is a combinatorial one or a register one. It's where you assign it that will decide things.
+In VHDL, when you declare a signal, you don't specify if this is a combinatorial signal or a register. Where and how you assign to it decides whether it is combinatorial or registered.
 
-In SpinalHDL this kind of things are explicit. Register are defined as register directly in their declaration.
+In SpinalHDL these kinds of things are explicit. Registers are defined as registers directly in their declaration.
 
 ## Clock domains
-In VHDL, every time you want to define a bunch of register, you need the carry the clock and the reset wire until that place. In addition, you have to hardcode everywhere how those clock and reset signals should be used (Clock edge, reset polarity, reset nature (async, sync)).
+In VHDL, every time you want to define a bunch of registers, you need the carry the clock and the reset wire to them. In addition, you have to hardcode everywhere how those clock and reset signals should be used (clock edge, reset polarity, reset nature (async, sync)).
 
-In SpinalHDL you can define some ClockDomain, and then define area of your hardware that use them.
+In SpinalHDL you can define a ClockDomain, and then define the area of your hardware that uses it.
 
-For example :
+For example:
 
 ```scala
 val coreClockDomain = ClockDomain(
@@ -96,15 +96,15 @@ val coreClockDomain = ClockDomain(
 val coreArea = new ClockingArea(coreClockDomain) {
   val myCoreClockedRegister = Reg(UInt(4 bit))
   // ...
-  // coreClockDomain will also be applied to all sub component instantiated in the Area
+  // coreClockDomain will also be applied to all sub components instantiated in the Area
   // ... 
 }
 ```
 
 ## Component's internal organization
-In VHDL, you have the `block` features that allow you to define sub area of logic inside you component. But in fact, nobody use them, because most of people don't know about them, and also because all signals defined inside them are not readable from the outside.
+In VHDL, you have the `block` features that allow you to define sub areas of logic inside your component. But in fact, nobody uses them, because most people don't know about them, and also because all signals defined inside them are not readable from the outside.
 
-In SpinalHDL you have an `Area` feature that do it right :
+In SpinalHDL you have an `Area` feature that does it correctly:
 
 ```scala
 val timeout = new Area{
@@ -125,21 +125,21 @@ val core = new Area{
 ```
 
 ## Safety
-In VHDL as in SpinalHDL, it's easy to write combinatorial loops, or to infer a latch by forgetting to drive in all condition an combinatorial signals.
+In VHDL as in SpinalHDL, it's easy to write combinatorial loops, or to infer a latch by forgetting to drive a signal in paths of a process.
 
-Then, to detect those issues, you can use some `lint` tools that will analyses your VHDL, but those tools aren't free. In SpinalHDL the `lint` process in integrated inside the compiler, it won't generate the RTL code until everything is fine. It also check clock domain crossing.
+Then, to detect those issues, you can use some `lint` tools that will analyse your VHDL, but those tools aren't free. In SpinalHDL the `lint` process in integrated inside the compiler, and it won't generate the RTL code until everything is fine. It also checks clock domain crossing.
 
-## Functions and procedure
-Function and procedure are not used very often in VHDL, probably because they are very limited :
+## Functions and procedures
+Function and procedures are not used very often in VHDL, probably because they are very limited:
 
-- You can only define a chunk of combinatorial hardware, or only a chunk of registers (if you call the function/procedure inside a clocked process)
-- You can't define a process inside them
-- You can't instantiate a component inside them
-- The scope of what you can read/write inside those are limited.
+- You can only define a chunk of combinatorial hardware, or only a chunk of registers (if you call the function/procedure inside a clocked process).
+- You can't define a process inside them.
+- You can't instantiate a component inside them.
+- The scope of what you can read/write inside them are limited.
 
 In spinalHDL, all those limitation are removed.
 
-Example that mix combinatorial logic and register in a single function :
+An example that mixes combinatorial logic and a register in a single function:
 
 ```scala
 def simpleAluPipeline(op : Bits,a : UInt,b : UInt) : UInt = {
@@ -155,7 +155,7 @@ def simpleAluPipeline(op : Bits,a : UInt,b : UInt) : UInt = {
 }
 ```
 
-Example with the queue function into the Stream Bundle (handshake). This function instantiate an FIFO component :
+An example with the queue function inside the Stream Bundle (handshake). This function instantiates a FIFO component:
 
 ```scala
 class Stream[T <: Data](dataType:  T) extends Bundle with IMasterSlave with DataCarrier[T] {
@@ -171,7 +171,7 @@ class Stream[T <: Data](dataType:  T) extends Bundle with IMasterSlave with Data
 }
 ```
 
-Example were a function assign a signals defined outside itself :
+An example where a function assigns a signal defined outside itself:
 
 ```scala
 val counter = Reg(UInt(8 bits)) init(0)
@@ -187,9 +187,9 @@ when(counter > 42){
 ```
 
 ## Buses and Interfaces
-VHDL is very borring about that part. With it you have two options :
+VHDL is very boring when it comes to buses and interfaces. You have two options:
 
-1) Define buses and interface wire by wire each time and everywhere :
+1) Define buses and interfaces wire by wire, each time and everywhere:
 
 ```ada
 PADDR   : in unsigned(addressWidth-1 downto 0);
@@ -201,20 +201,20 @@ PWDATA  : in std_logic_vector(dataWidth-1 downto 0);
 PRDATA  : out std_logic_vector(dataWidth-1 downto 0);
 ```
 
-2) Using records but losing parameterization (statically fixed in package) and having to define one for each directions.
+2) Use records but lose parameterization (statically fixed in package), and you have to define one for each directions:
 
 ```ada
 P_m : in APB_M;
 P_s : out APB_S;
 ```
 
-SpinalHDL has a very strong support of buses and interfaces declaration with limitless parameterization :
+SpinalHDL has very strong support for bus and interface declarations with limitless parameterizations:
 
 ```scala
 val P = slave(Apb3(addressWidth, dataWidth))
 ```
 
-You can also use object oriented programming to define configuration objects :
+You can also use object oriented programming to define configuration objects:
 
 ```scala
 val coreConfig = CoreConfig(
@@ -232,8 +232,8 @@ val coreConfig = CoreConfig(
   dynamicBranchPredictorCacheSizeLog2 = 7
 )
 
-//The CPU has a systems of plugin which allow to add new feature into the core.
-//Those extension are not directly implemented into the core, but are kind of additive logic patch defined in a separated area.
+//The CPU has a system of plugins which allows adding new features into the core.
+//Those extensions are not directly implemented into the core, but are kind of an additive logic patch defined in a separated area.
 coreConfig.add(new MulExtension)
 coreConfig.add(new DivExtension)
 coreConfig.add(new BarrelShifterFullExtension)
@@ -257,42 +257,42 @@ new RiscvCoreAxi4(
 )
 ```
 
-## Signals declaration
-VHDL force you to define all signals on the top of your architecture, which is a annoying.
+## Signal declaration
+VHDL forces you to define all signals on the top of your architecture, which is annoying.
 
 ```VHDL
   ..
-  .. (many signals declaration)
+  .. (many signal declarations)
   ..
   signal a : std_logic;
   ..
-  .. (many signals declaration)
+  .. (many signal declarations)
   ..
 begin
   ..
-  .. (many logic definition)
+  .. (many logic definitions)
   ..
   a <= x & y
   ..
-  .. (many logic definition)
+  .. (many logic definitions)
   ..
 ```
 
-SpinalHDL is flexible about that.
+SpinalHDL is flexible when it comes to signal declarations.
 
 ```scala
 val a = Bool
 a := x & y
 ```
 
-It also allow you to define and assign a signals in a single line.
+It also allows you to define and assign signals in a single line.
 
 ```scala
 val a = x & y
 ```
 
 ## Component instantiation
-VHDL is very verbose about that part, you have to redefine all signals of your sub component entity, and then bind them one by one when you instantiate your component.
+VHDL is very verbose about this as you have to redefine all signals of your sub component entity, and then bind them one by one when you instantiate your component.
 
 ```VHDL
 divider_cmd_valid : in std_logic;
@@ -319,48 +319,48 @@ divider : entity work.UnsignedDivider
   );
 ```
 
-SpinalHDL remove that, and allow you to access IO of sub component by an object oriented way.
+SpinalHDL removes that, and allows you to access the IO of sub components in an object oriented way.
 
 ```scala
 val divider = new UnsignedDivider()
 
-//And then if you want to access an IO signals of that divider :
+//And then if you want to access IO signals of that divider:
 divider.io.cmd.valid := True
 divider.io.cmd.numerator := 42
 ```
 
 ## Casting
-There is two annoying casting in VHDL :
+There are two annoying casting methods in VHDL:
 
-- boolean <> std_logic (ex: To assign a signals from a condition, mySignal <= myValue < 10 is not legals)
-- unsigned <> integer  (ex: To access array)
+- boolean <> std_logic (ex: To assign a signal using a condition such as `mySignal <= myValue < 10` is not legal)
+- unsigned <> integer  (ex: To access an array)
 
-SpinalHDL remove those casting by unifying things.
+SpinalHDL removes these casts by unifying things.
 
-About boolean/std_logic :
+boolean/std_logic:
 
 ```scala
 val value = UInt(8 bits)
 val valueBiggerThanTwo = Bool
-valueBiggerThanTwo := value > 2  //value > 2 return an Bool
+valueBiggerThanTwo := value > 2  //value > 2 return a Bool
 ```
 
-About unsigned/integer :
+unsigned/integer:
 
 ```scala
 val array = Vec(UInt(4 bits),8)
 val sel = UInt(3 bits)
-val arraySel = array(sel) //Array are indexed directly by using UInt
+val arraySel = array(sel) //Arrays are indexed directly by using UInt
 ```
 
 ## Resizing
-The fact that VHDL is strict about bits size is probably a good things.
+The fact that VHDL is strict about bit size is probably a good thing.
 
 ```ada
 my8BitsSignal <= resize(my4BitsSignal,8);
 ```
 
-In SpinalHDL you have two ways to do the same :
+In SpinalHDL you have two ways to do the same:
 
 ```scala
 //The traditional way
@@ -371,12 +371,12 @@ my8BitsSignal := my4BitsSignal.resized
 ```
 
 ## Parameterization
-VHDL prior to the 2008 revision has many issues with generics. For example, you can't parameterize records, you can't parameterize array in the entity, you can't have types parameters. <br>
-Then VHDL 2008 come and fix those issues. But tools support for RTL is really weak depending the vendor.
+VHDL prior to the 2008 revision has many issues with generics. For example, you can't parameterize records, you can't parameterize arrays in the entity, and you can't have types parameters. <br>
+Then VHDL 2008 came and fixed those issues. But RTL tool support for VHDL 2008 is really weak depending the vendor.
 
-SpinalHDL has a full support of genericity integrated natively in its compiler, it doesn't rely on the VHDL one.
+SpinalHDL has full support of generics integrated natively in its compiler, and it doesn't rely on the VHDL one.
 
-There is an example of parameterized data structures :
+Here is an example of parameterized data structures:
 
 ```scala
 val colorStream = Stream(Color(5,6,5)))
@@ -384,7 +384,7 @@ val colorFifo   = StreamFifo(Color(5,6,5),depth = 128)
 colorFifo.io.push <> colorStream
 ```
 
-There is an example of parameterized component :
+Here is an example of a parameterized component:
 
 ```scala
 class Arbiter[T <: Data](payloadType: T, portCount: Int) extends Component {
@@ -398,8 +398,8 @@ class Arbiter[T <: Data](payloadType: T, portCount: Int) extends Component {
 
 
 ## Meta hardware description
-VHDL is kind of closed syntax. You can't add abstraction layers on the top of it.
+VHDL has kind of a closed syntax. You can't add abstraction layers on top of it.
 
-SpinalHDL, because it's come on the top of Scala, is very flexible on that side, and allow you to define new abstractions layer very easily.
+SpinalHDL, because it's built on top of Scala, is very flexible, and allows you to define new abstraction layers very easily.
 
-Some example of that are the [FSM](/SpinalDoc/spinal/lib/fsm/) tool, the [BusSlaveFactory](/SpinalDoc/spinal/lib/bus_slave_factory/) tool, and also the [JTAG](/SpinalDoc/spinal/examples/jtag/) tool.
+Some examples of that are the [FSM](/SpinalDoc/spinal/lib/fsm/) tool, the [BusSlaveFactory](/SpinalDoc/spinal/lib/bus_slave_factory/) tool, and also the [JTAG](/SpinalDoc/spinal/examples/jtag/) tool.
