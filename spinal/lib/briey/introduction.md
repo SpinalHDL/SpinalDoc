@@ -5,15 +5,12 @@ description: "This pages describes the lib components of Spinal"
 tags: [components, intro]
 categories: [intro]
 sidebar: spinal_sidebar
-permalink: /spinal/lib/pinsec/introduction/
+permalink: /spinal/lib/briey/introduction/
 ---
-
-{% include warning.html content="This page document the SoC implemented with the first RISC-V cpu iteration done in SpinalHDL. The second iteration of this SoC (and CPU) is available [there](https://github.com/SpinalHDL/VexRiscv) and already offer better perforance/area/features." %}
-
 
 ## Introduction
 
-Pinsec is the name of a little FPGA SoC fully written in SpinalHDL. Goals of this project are multiple :
+Briey is the name of a little FPGA SoC fully written in SpinalHDL. Goals of this project are multiple :
 
 - Prove that SpinalHDL is a viable HDL alternative in non-trivial projects.
 - Show advantage of SpinalHDL meta-hardware description capabilities in a concrete project.
