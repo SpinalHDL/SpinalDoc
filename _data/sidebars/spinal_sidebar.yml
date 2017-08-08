@@ -269,6 +269,13 @@ entries:
               url: /spinal/lib/graphic/vga/
               output: web
 
+          - title: EDA
+            output: web
+            subfolderitems:
+            - title: QSysify
+              url: /spinal/lib/eda/qsysify/
+              output: web
+
 
   - title: Examples
     output: web
