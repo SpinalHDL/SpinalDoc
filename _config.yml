@@ -25,6 +25,7 @@ exclude:
   - _site
   - _drafts/
   - .idea/
+  - vendor/
 # these are the files and directories that jekyll will exclude from the build
 
 feedback_email: spinalhdl@gmail.com
