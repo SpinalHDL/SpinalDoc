@@ -105,3 +105,40 @@ class SubComponent(activeHigh : Boolean) extends Component{
   //...
 }
 ```
+
+## Scala elaboration capabilities (if, for, functional programming)
+All the scala syntax could be used to elaborate the hardware, as instance a scala if statement could be used to enable or disable the generation of a given hardware :
+
+```scala
+val counter = Reg(UInt(8 bits))
+counter := counter + 1
+if(generateAClearWhenHit42){  //Elaboration test, like an if generate in vhdl
+  when(counter === 42){       //Hardware test
+    counter := 0
+  }
+}
+```
+
+The same is true for scala for loops :
+
+```scala
+val value = Reg(Bits(8 bits))
+when(something){
+  //Set all bits of value by using a scala for loop (evaluated during the hardware elaboration)
+  for(idx <- 0 to 7){
+    value(idx) := True
+  }
+}
+```
+
+Also, all the functionnal programming stuff of SpinalHDL can be used :
+
+```scala
+val values = Vec(Bits(8 bits),4)
+
+val valuesAre42 = vecOfBits.map(_ === 42)
+val valuesAreAll42 = valuesAre42.reduce(_ && _)
+
+val valuesAreEqualsToTheirIndex = vecOfBits.zipWithIndex.map{case (value, i) => value === i}
+
+```
