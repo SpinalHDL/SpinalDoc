@@ -16,7 +16,7 @@ Before you download the SpinalHDL tools, you need to install:
 - A Scala 2.11.X distribution, which can be downloaded [here](http://scala-lang.org/download/) (not required if you use SBT).
 - The SBT build tool, which can be downloaded [here](http://www.scala-sbt.org/download.html).
 
-Optionally, if you want an IDE (which is not compulsory) we advise you to get IntelliJ 14.1.
+Optionally, if you want an IDE (which is not compulsory) we advise you to get IntelliJ with its scala plugin.
 
 ## How to start programming with SpinalHDL
 Once you have downloaded all the requirements, there are two ways to get started with SpinalHDL programming.
