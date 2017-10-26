@@ -32,7 +32,7 @@ Some utils are also present in [spinal.core](/SpinalDoc/spinal/core/utils/)
 | Delay(that: T, cycleCount: Int) | T | Return `that` delayed by `cycleCount` cycles |
 | History(that: T, length: Int[,when : Bool]) | List[T] | Return a Vec of `length` elements <br> The first element is `that`, the last one is `that` delayed by `length`-1<br> The internal shift register sample when `when` is asserted |
 | BufferCC(input : T) | T | Return the input signal synchronized with the current clock domain by using 2 flip flop |
-| LFSR.fibonacci(that:Bits, xorBits:Seq[Int] [, rightLeft:LFSR_SHIFT_DIR]) <br> LFSR.galois(that:Bits, xorBits:Seq[Int] [, rightLeft:LFSR_SHIFT_DIR]) | Bits | Linear feedback shift register (LFSR) |
+
 
 ### Counter
 
