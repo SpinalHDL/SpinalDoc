@@ -75,7 +75,7 @@ entries:
       url: /frequent_errors/
       output: web
 
-  - title: Built-in types
+  - title: Data types
     output: web
     folderitems:
 
@@ -83,39 +83,39 @@ entries:
       url    : /spinal/core/types/TypeIntroduction
       output : web
 
-    - title: Boolean (Bool)
+    - title: Bool
       url: /spinal/core/types/Bool
       output: web
 
-    - title: Bit Vector (Bits)
+    - title: Bits
       url: /spinal/core/types/Bits
       output: web
 
-    - title: Integer (UInt and SInt)
+    - title: UInt / SInt
       url: /spinal/core/types/Int
       output: web
 
-    - title: Enumeration (Enum)
+    - title: SpinalEnum
       url: /spinal/core/types/Enum
       output: web
 
-    - title: Bundle (Bundle)
+    - title: Bundle
       url: /spinal/core/types/Bundle
       output: web
 
-    - title: Vector (Vec)
+    - title: Vec
       url: /spinal/core/types/Vector
       output: web
 
-    - title: Fixed Point (UFix and SFix)
+    - title: UFix / SFix
       url: /spinal/core/types/Fix
       output: web
 
-    - title: Floating Point (Floating)
+    - title: Floating
       url: /spinal/core/types/Floating
       output: web
 
-  - title: Structuring a design
+  - title: Structuring
     output: web
     folderitems:
     - title: Components and hierarchy
