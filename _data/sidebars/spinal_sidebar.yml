@@ -32,6 +32,10 @@ entries:
       url: /spinal_getting_started/
       output: web
 
+    - title: Motivation (PDF)
+      url: /motivation/
+      output: web
+
     - title: Presentation (PDF)
       url: /presentation/
       output: web

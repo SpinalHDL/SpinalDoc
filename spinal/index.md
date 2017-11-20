@@ -51,7 +51,10 @@ Want to try it for yourself? Then jump to the [getting started section](/SpinalD
 ## Links
 SpinalHDL repository:                     <br> [https://github.com/SpinalHDL/SpinalHDL](https://github.com/SpinalHDL/SpinalHDL)
 
-Presentation of the language:   <br> [http://spinalhdl.github.io/SpinalDoc/presentation/](http://spinalhdl.github.io/SpinalDoc/presentation/)
+A short show case (PDF): <br>
+[http://spinalhdl.github.io/SpinalDoc/motivation/](http://spinalhdl.github.io/SpinalDoc/motivation/)
+
+Presentation of the language (PDF):   <br> [http://spinalhdl.github.io/SpinalDoc/presentation/](http://spinalhdl.github.io/SpinalDoc/presentation/)
 
 SBT base project:               <br> [https://github.com/SpinalHDL/SpinalBaseProject](https://github.com/SpinalHDL/SpinalBaseProject)
 
