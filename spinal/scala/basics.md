@@ -14,13 +14,13 @@ permalink: /scala/basics/
 
 In Scala, there is 5 major types
 
-| Type | Literal | Description |
-| ------- | ---- | ---- |
-| Boolean | true, false  | - |
-| Int | 3, 0x32 | 32 bits integer |
-| Float | 3.14f | 32 bits floating point |
-| Double | 3.14 | 64 bits floating point |
-| String | "Hello world" | UTF-16 string |
+| Type    | Literal       | Description              |
+| ------- | ------------- | ------------------------ |
+| Boolean | true, false   | -                        |
+| Int     | 3, 0x32       | 32 bits integer          |
+| Float   | 3.14f         | 32 bits floating point   |
+| Double  | 3.14          |  64 bits floating point  |
+| String  | "Hello world" | UTF-16 string            |
 
 
 ## Variable
@@ -51,7 +51,7 @@ val six   = two * three
 For example, if you want to define a function which return true if the sum of its two arguments is bigger than zero, you can do as following :
 
 ```scala
-def sumBiggerThanZero(a : Float,b : Float) : Boolean = {
+def sumBiggerThanZero(a: Float, b: Float): Boolean = {
   return (a + b) > 0
 }
 ```
@@ -75,7 +75,7 @@ sumBiggerThanZero(
 The return keyword is not necessary. In absence of it, Scala take the last statement of your function as returned value.
 
 ```scala
-def sumBiggerThanZero(a : Float,b : Float) : Boolean = {
+def sumBiggerThanZero(a: Float, b: Float): Boolean = {
   (a + b) > 0
 }
 ```
@@ -84,7 +84,7 @@ def sumBiggerThanZero(a : Float,b : Float) : Boolean = {
 Scala is able to automatically infer the return type. You don't need to specify it :
 
 ```scala
-def sumBiggerThanZero(a : Float,b : Float) = {
+def sumBiggerThanZero(a: Float, b: Float) = {
   (a + b) > 0
 }
 ```
@@ -93,14 +93,14 @@ def sumBiggerThanZero(a : Float,b : Float) = {
 Scala function doesn't require to have curly braces if your function contain only one statement :
 
 ```scala
-def sumBiggerThanZero(a : Float,b : Float) = (a + b) > 0
+def sumBiggerThanZero(a: Float, b: Float) = (a + b) > 0
 ```
 
 ### Function that return nothing
 If you want a function to return nothing, the return type should be set to `Unit`. It's equivalent to the C/C++ void.
 
 ```scala
-def printer() : Unit = {
+def printer(): Unit = {
   println("1234")
   println("5678")
 }
@@ -110,7 +110,7 @@ def printer() : Unit = {
 You can specify a default value to each arguements of a function :
 
 ```scala
-def sumBiggerThanZero(a : Float,b : Float = 0.0f) = {
+def sumBiggerThanZero(a: Float, b: Float = 0.0f) = {
   (a + b) > 0
 }
 ```
@@ -121,7 +121,7 @@ Functions named apply are special because you can call them without having to ty
 
 ```scala
 class Array(){
-  def apply(index : Int) : Int = index + 3
+  def apply(index: Int): Int = index + 3
 }
 
 val array = new Array()
@@ -132,7 +132,7 @@ This concept is also applicable for scala `object` (static)
 
 ```scala
 object MajorityVote{
-  def apply(value : Int) : Int = ...
+  def apply(value: Int): Int = ...
 }
 
 val value = MajorityVote(4) // Will call MajorityVote.apply(4)
@@ -146,7 +146,7 @@ The following example define a static function named pow2 which take as paramete
 
 ```scala
 object MathUtils{
-  def pow2(value : Float) : Float = value*value
+  def pow2(value: Float): Float = value*value
 }
 ```
 
@@ -173,24 +173,24 @@ object MyTopLevelMain{
 The class syntax is very similar to the Java one. Imagine you want to define an Color class which take as construction parameter three Float value (r,g,b) :
 
 ```scala
-class Color(r : Float,g : Float,b : Float){
-  def getGrayLevel() : Float = r * 0.3f + g * 0.4f + b *0.4f
+class Color(r: Float, g: Float, b: Float){
+  def getGrayLevel(): Float = r * 0.3f + g * 0.4f + b *0.4f
 }
 ```
 
 Then to instantiate a the class from the previous example and use its gray function :
 
 ```scala
-val blue = new Color(0,0,1)
+val blue = new Color(0, 0, 1)
 val grayLevelOfBlue = blue.getGrayLevel()
 ```
 
 Be careful, if you want to access a construction parameter of the class from the outside, this construction parameter should be defined as a val :
 
 ```scala
-class Color(val r : Float, val g : Float,val b : Float){ ... }
+class Color(valr : Float, val g: Float, val b: Float){ ... }
 ...
-val blue = new Color(0,0,1)
+val blue = new Color(0, 0, 1)
 val redLevelOfBlue = blue.r
 ```
 
@@ -199,14 +199,14 @@ As an example, imagine you want to define an class Rectangle and a class Square 
 
 ```scala
 class Shape{
-  def getArea() : Float
+  def getArea(): Float
 }
 
-class Square(sideLength : Float) extends Shape{
+class Square(sideLength: Float) extends Shape {
   override def getArea() = sideLength * sideLength
 }
 
-class Rectangle(width : Float, height : Float) extends Shape{
+class Rectangle(width: Float, height: Float) extends Shape {
   override def getArea() = width * height
 }
 ```
@@ -216,7 +216,7 @@ class Rectangle(width : Float, height : Float) extends Shape{
 Case class is an alternative way of declaring classes.
 
 ```scala
-case class Rectangle(width : Float, height : Float) extends Shape{
+case class Rectangle(width: Float, height: Float) extends Shape {
   override def getArea() = width * height
 }
 ```
@@ -234,8 +234,8 @@ Imagine you want to design a class which is a queue of a given datatype, in that
 
 ```scala
 class  Queue[T](){
-  def push(that : T) : Unit = ...
-  def pop() : T = ...
+  def push(that: T) : Unit = ...
+  def pop(): T = ...
 }
 ```
 
@@ -243,18 +243,18 @@ If you want to restrict the `T` type to be a sub class of a given type (for exam
 
 ```scala
 class Shape() {   
-    def getArea() : Float
+    def getArea(): Float
 }
 class Rectangle() extends Shape { ... }
 
 class  Queue[T <: Shape](){
-  def push(that : T) : Unit = ...
-  def pop() : T = ...
+  def push(that: T): Unit = ...
+  def pop(): T = ...
 }
 ```
 
 The same is possible for functions :
 
 ```scala
-def doSomething[T <: Shape](shape : T) : Something = {shape.getArea()}
+def doSomething[T <: Shape](shape: T): Something = { shape.getArea() }
 ```

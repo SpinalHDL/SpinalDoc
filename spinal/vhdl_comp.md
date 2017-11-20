@@ -107,7 +107,7 @@ In VHDL, you have the `block` features that allow you to define sub areas of log
 In SpinalHDL you have an `Area` feature that does it correctly:
 
 ```scala
-val timeout = new Area{
+val timeout = new Area {
   val counter = Reg(UInt(8 bits)) init(0)
   val overflow = False
   when(counter =/= 100){
@@ -117,7 +117,7 @@ val timeout = new Area{
   }
 }
 
-val core = new Area{
+val core = new Area {
   when(timeout.overflow){
     timeout.counter := 0
   }
@@ -142,7 +142,7 @@ In spinalHDL, all those limitation are removed.
 An example that mixes combinatorial logic and a register in a single function:
 
 ```scala
-def simpleAluPipeline(op : Bits,a : UInt,b : UInt) : UInt = {
+def simpleAluPipeline(op: Bits, a: UInt, b: UInt): UInt = {
   val result = UInt(8 bits)
 
   switch(op){
@@ -379,8 +379,8 @@ SpinalHDL has full support of generics integrated natively in its compiler, and 
 Here is an example of parameterized data structures:
 
 ```scala
-val colorStream = Stream(Color(5,6,5)))
-val colorFifo   = StreamFifo(Color(5,6,5),depth = 128)
+val colorStream = Stream(Color(5, 6, 5)))
+val colorFifo   = StreamFifo(Color(5, 6, 5),depth = 128)
 colorFifo.io.push <> colorStream
 ```
 

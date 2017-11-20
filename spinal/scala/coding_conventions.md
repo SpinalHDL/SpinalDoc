@@ -30,7 +30,7 @@ class Fifo extends Component {
 
 }
 
-class Counter extends Area{
+class Counter extends Area {
 
 }
 
@@ -43,12 +43,12 @@ case class Color extends Bundle {
 Companion object should start with a upper case letter.
 
 ```scala
-object Fifo{
-  def apply(that : Stream[Bits]) : Stream[Bits] = {...}
+object Fifo {
+  def apply(that: Stream[Bits]): Stream[Bits] = {...}
 }
 
-object MajorityVote{
-  def apply(that : Bits) : UInt = {...}
+object MajorityVote {
+  def apply(that: Bits): UInt = {...}
 }
 ```
 
@@ -56,7 +56,7 @@ A exception to this rule is be when the compagnion object is used as a function 
 
 ```scala
 object log2{
-  def apply(value : Int) : Int = {...}
+  def apply(value: Int): Int = {...}
 }
 ```
 
@@ -66,7 +66,7 @@ Function should always start with a lower case letter :
 ```scala
 def sinTable = (0 until sampleCount).map(sampleIndex => {
   val sinValue = Math.sin(2 * Math.PI * sampleIndex / sampleCount)
-  S((sinValue * ((1<<resolutionWidth)/2-1)).toInt,resolutionWidth bits)
+  S((sinValue * ((1 << resolutionWidth) / 2 - 1)).toInt, resolutionWidth bits)
 })
 
 val rom =  Mem(SInt(resolutionWidth bit),initialContent = sinTable)
@@ -76,7 +76,7 @@ val rom =  Mem(SInt(resolutionWidth bit),initialContent = sinTable)
 Instances of classes should always start with lower case letter :
 
 ```scala
-val fifo = new Fifo
+val fifo   = new Fifo()
 val buffer = Reg(Bits(8 bits))
 ```
 
@@ -132,11 +132,11 @@ Grouping parameters of a component/bundle inside a case class is in general welc
 - Better maintainability
 
 ```scala
-case class RgbConfig(rWidth : Int,gWidth : Int,bWidth : Int){
+case class RgbConfig(rWidth: Int, gWidth: Int, bWidth: Int){
   def getWidth = rWidth + gWidth + bWidth
 }
 
-case class Rgb(c: RgbConfig) extends Bundle{
+case class Rgb(c: RgbConfig) extends Bundle {
   val r = UInt(c.rWidth bit)
   val g = UInt(c.gWidth bit)
   val b = UInt(c.bWidth bit)

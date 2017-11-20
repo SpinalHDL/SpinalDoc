@@ -16,7 +16,10 @@ Before you download the SpinalHDL tools, you need to install:
 - A Scala 2.11.X distribution, which can be downloaded [here](http://scala-lang.org/download/) (not required if you use SBT).
 - The SBT build tool, which can be downloaded [here](http://www.scala-sbt.org/download.html).
 
-Optionally, if you want an IDE (which is not compulsory) we advise you to get IntelliJ with its scala plugin.
+Optionally:
+
+- An IDE (which is not compulsory) we advise you to get [IntelliJ](https://www.jetbrains.com/idea/) with its scala plugin.
+- [Git](https://git-scm.com/) tool (version control).
 
 ## How to start programming with SpinalHDL
 Once you have downloaded all the requirements, there are two ways to get started with SpinalHDL programming.
@@ -146,5 +149,7 @@ begin
 end arch;
 ```
 
+
 ## What to do next?
-It's up to you, but why not have a look at what the [types](types/) are in SpinalHDL or discover what [primitives]() the language provides to describe hardware components? You could also have a look at our [examples](/SpinalDoc/spinal/examples/introduction/) to see some samples of what you could do next.
+
+It's up to you, but why not have a look at what the [types](/SpinalDoc/spinal/core/types/TypeIntroduction) are in SpinalHDL or discover what primitives the language provides to describe hardware components? You could also have a look at our [examples](/SpinalDoc/spinal/examples/introduction/) to see some samples of what you could do next.

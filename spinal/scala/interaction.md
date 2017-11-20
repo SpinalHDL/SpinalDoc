@@ -34,7 +34,7 @@ For example `Bits(8 bits)` is the combination of the Scala type Bits and its 8 b
 Let's take an Rgb bundle class as example :
 
 ```scala
-case class Rgb(rWidth : Int,gWidth : Int,bWidth : Int) extends Bundle{
+case class Rgb(rWidth: Int, gWidth: Int, bWidth: Int) extends Bundle {
   val r = UInt(rWidth bits)
   val g = UInt(gWidth bits)
   val b = UInt(bWidth bits)
@@ -47,7 +47,7 @@ There is some example of usage :
 
 ```scala
 //Define a Rgb signal
-val myRgbSignal = Rgb(5,6,5)               
+val myRgbSignal = Rgb(5, 6, 5)               
 
 //Define another Rgb signal of the same data type as the precedent one
 val myRgbCloned = cloneOf(myRgbSignal)    
@@ -57,7 +57,7 @@ You can also use functions to define kind of type factory (typedef) :
 
 ```scala
 //Define a type factory function
-def myRgbTypeDef = Rgb(5,6,5)
+def myRgbTypeDef = Rgb(5, 6, 5)
 
 //Use that type factory to create a Rgb signal
 val myRgbFromTypeDef = myRgbTypeDef
@@ -69,7 +69,7 @@ To name signals in the generated RTL, SpinalHDL use Java reflections to walk thr
 It's why, if you define a function, all signal's names inside the function are lost :
 
 ```scala
-def myFunction(arg : UInt){
+def myFunction(arg: UInt){
   val temp = arg + 1  //You will not retrieve the `temp` signal in the generated RTL
   return temp
 }
@@ -81,7 +81,7 @@ One solution if you want to keep function's internal variable's names in the gen
 
 
 ```scala
-def myFunction(arg : UInt) new Area{
+def myFunction(arg: UInt) new Area {
   val temp = arg + 1  //You will not retrieve the temp signal in the generated RTL
 }
 
@@ -96,12 +96,12 @@ Also, you want a constant, you should not use SpinalHDL Hardware literals but th
 
 ```scala
 //This is wrong, because you can't use an hardware Bool as construction parameter, which will do hierarchy violations.
-class SubComponent(activeHigh : Bool) extends Component{
+class SubComponent(activeHigh: Bool) extends Component { 
   //...
 }
 
 //This is right, you can use all the scala world to parameterize your hardware.
-class SubComponent(activeHigh : Boolean) extends Component{
+class SubComponent(activeHigh: Boolean) extends Component {
   //...
 }
 ```
@@ -136,7 +136,7 @@ Also, all the functionnal programming stuff of SpinalHDL can be used :
 ```scala
 val values = Vec(Bits(8 bits),4)
 
-val valuesAre42 = vecOfBits.map(_ === 42)
+val valuesAre42    = vecOfBits.map(_ === 42)
 val valuesAreAll42 = valuesAre42.reduce(_ && _)
 
 val valuesAreEqualsToTheirIndex = vecOfBits.zipWithIndex.map{case (value, i) => value === i}

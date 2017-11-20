@@ -15,7 +15,7 @@ In SpinalHDL, a VHDL entity and architecture are both defined inside a `Componen
 Here is an example of a component which has 3 inputs (a,b,c) and an output (result). This component also has an `offset` construction parameter (like a VHDL generic)
 
 ```scala
-case class MyComponent(offset : Int) extends Component{
+case class MyComponent(offset: Int) extends Component {
   val io = new Bundle{
     val a,b,c  = in UInt(8 bits)
     val result = out UInt(8 bits)
@@ -45,25 +45,25 @@ case class TopLevel extends Component{
 ## Data types
 SpinalHDL data types are similar to the VHDL ones:
 
-| VHDL | SpinalHDL |
-| --- | --- |
-| std_logic | Bool |
-| std_logic_vector | Bits |
-| unsigned | UInt |
-| signed | SInt |
+| VHDL              | SpinalHDL |
+| ----------------- | --------- |
+| std_logic         | Bool      |
+| std_logic_vector  | Bits      |
+| unsigned          | UInt      |
+| signed            | SInt      |
 
 While for defining an 8 bit `unsigned` in VHDL you have to give the range of bits `unsigned(7 downto 0)`,<br> in SpinalHDL you simply supply the number of bits `UInt(8 bits)`.
 
-| VHDL | SpinalHDL |
-| --- | --- |
-| records | Bundle |
-| array | Vec |
-| enum | SpinalEnum |
+| VHDL    | SpinalHDL  |
+| ------- | ---------- |
+| records | Bundle     |
+| array   | Vec        | 
+| enum    | SpinalEnum |
 
 Here is an example of the SpinalHDL Bundle definition. `channelWidth` is a construction parameter, like VHDL generics, but for data structures:
 
 ```scala
-case class RGB(channelWidth : Int) extends Bundle{
+case class RGB(channelWidth: Int) extends Bundle {
   val r,g,b = UInt(channelWidth bits)
 }
 ```
@@ -74,7 +74,7 @@ Then for example, to instantiate a Bundle, you need to write `val myColor = RGB(
 Here is an example about signal instantiations:
 
 ```scala
-case class MyComponent(offset : Int) extends Component{
+case class MyComponent(offset: Int) extends Component {
   val io = new Bundle{
     val a,b,c  = UInt(8 bits)
     val result = UInt(8 bits)
@@ -98,7 +98,7 @@ myUInt := 6
 Conditional assignments are done like in VHDL by using `if/case` statements:
 
 ```scala
-val clear  = Bool
+val clear   = Bool
 val counter = Reg(UInt(8 bits))
 
 when(clear){
