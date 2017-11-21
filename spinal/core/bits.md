@@ -17,38 +17,16 @@ The `Bits` type corresponds to a vector of bits that does not convey any arithme
 
 ### Declaration
 
-The syntax to declare a bit vector is as follows: (everything between [] are optional)
+The syntax to declare a bit vector is as follows: (everything between [] is optional)
 
 | Syntax                            | Description                                                                         | Return|
 | --------------------------------- | ----------------------------------------------------------------------------------- | ----- |
 | Bits [()]                         |  Create a BitVector, bits count is inferred                                         | Bits  |
 | Bits(x bits)                      |  Create a BitVector with x bits                                                     | Bits  |
-| B(value: Int[, width: BitCount])  |  Create a BitVector assigned with 'value'                                           | Bits  |
+| B(value: Int[, x bits])           |  Create a BitVector with x bits assigned with 'value'                               | Bits  |
 | B"[[size']base]value"             |  Create a BitVector assigned with 'value' (Base : 'h', 'd', 'o', 'b')               | Bits  |
-| B([x bits,] element, ...)         |  Create a BitVector assigned with the value specified by elements (see table below) | Bits  |
+| B([x bits,] [element](/SpinalDoc/spinal/core/types/elements/#element), ...)         |  Create a BitVector assigned with the value specified by elements  | Bits  |
 
-
-Elements could be defined as follows:
-
-| Element syntax                | Description                                                                          |
-| ----------------------------- | ------------------------------------------------------------------------------------ |
-| x : Int -> y : Boolean/Bool   |  Set bit x with y                                                                    |
-| x : Range -> y : Boolean/Bool |  Set each bits in range x with y                                                     |
-| x : Range -> y : T            |  Set bits in range x with y                                                          |
-| x : Range -> y : String       |  Set bits in range x with y <br> The string format follow same rules than B"xyz" one |                                                  
-| default -> y : Boolean/Bool   |  Set all unconnected bits with the y value.<br> This feature could only be use to do assignments without the B prefix or with the B prefix combined with the bits specification |
-
-
-You can define a Range values
-
-| Range syntax | Description    | Width  |
-| ------------ | -----------    | -----  |
-| (x downto y) |  [x:y], x >= y | x-y+1  |
-| (x to y)     |  [x:y], x <= y | y-x+1  |
-| (x until y)  |  [x:y[, x < y  | y-x    |
-
-
-#### Example
 
 ```scala
 // Declaration
@@ -66,11 +44,6 @@ val myBits5 = B(8 bits, default -> True) // "11111111"
 val myBits6 = B(8 bits, (7 downto 5) -> B"101", 4 -> true, 3 -> True, default -> false ) // "10111000"
 val myBits7 = Bits(8 bits)
 myBits7 := (7 -> true, default -> false) // "10000000" (For assignement purposes, you can omit the B)
-
-// Range
-val myBits_8bits = myBits_16bits(7 downto 0)
-val myBits_7bits = myBits_16bits(0 to 6)
-val myBits_6bits = myBits_16Bits(0 until 6)
 ```
 
 
@@ -121,7 +94,7 @@ val myBits = bits_8bits.rotateLeft(3) // left bit rotation
 // Set/clear
 val a = B"8'x42"
 when(cond){
-	a.setAll() // set all bits to True when cond is True
+  a.setAll() // set all bits to True when cond is True
 }
 ```
 
@@ -175,9 +148,11 @@ val myBits = B(mySInt)
 | x(y)                  |  Readbit, y : Int/UInt                     | Bool               |
 | x(hi,lo)              |  Read bitfield, hi : Int, lo : Int         | Bits(hi-lo+1 bits) |
 | x(offset,width)       |  Read bitfield, offset: UInt, width: Int   | Bits(width bits)   |
+| x([range](/SpinalDoc/spinal/core/types/elements#range))              |  Read a range of bit                       | Bits(range)        |
 | x(y) := z             |  Assign bits, y : Int/UInt                 | Bool               |
 | x(hi,lo) := z         |  Assign bitfield, hi : Int, lo : Int       | Bits(hi-lo+1 bits) |
 | x(offset, width) := z |  Assign bitfield, offset: UInt, width: Int | Bits(width bits)   |
+| x([range](/SpinalDoc/spinal/core/types/elements#range)) := z         |  Assign a range of bit                     | Bits(range)        |
 
 
 ```scala
@@ -186,6 +161,13 @@ val myBool = myBits(4)
 
 // assign 
 myBits(1) := True
+
+// Range
+val myBits_8bits = myBits_16bits(7 downto 0)
+val myBits_7bits = myBits_16bits(0 to 6)
+val myBits_6bits = myBits_16Bits(0 until 6)
+
+myBits_8bits(3 downto 0) := myBits_4bits
 ```
 
 
