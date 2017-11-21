@@ -16,7 +16,7 @@ The `Bool` type corresponds to a boolean value (True or False).
 
 ### Declaration
 
-The syntax to declare a boolean value is as follows:
+The syntax to declare a boolean value is as follows: (everything between [] are optional)
 
 | Syntax                | Description                                              | Return |
 | --------------------- | -------------------------------------------------------- | ------ |
@@ -25,8 +25,6 @@ The syntax to declare a boolean value is as follows:
 | False                 | Create a Bool assigned with `false`                      | Bool   |
 | Bool(value: Boolean)  | Create a Bool assigned with a Scala Boolean(true, false) | Bool   |
 
-
-#### Examples
 
 ```scala
 val myBool_1 = Bool          // Create a Bool 
