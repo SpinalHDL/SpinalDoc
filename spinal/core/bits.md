@@ -25,7 +25,7 @@ The syntax to declare a bit vector is as follows: (everything between [] is opti
 | Bits(x bits)                      |  Create a BitVector with x bits                                                     | Bits  |
 | B(value: Int[, x bits])           |  Create a BitVector with x bits assigned with 'value'                               | Bits  |
 | B"[[size']base]value"             |  Create a BitVector assigned with 'value' (Base : 'h', 'd', 'o', 'b')               | Bits  |
-| B([x bits,] [element](/SpinalDoc/spinal/core/types/elements/#element), ...)         |  Create a BitVector assigned with the value specified by elements  | Bits  |
+| B([x bits,] [element](/SpinalDoc/spinal/core/types/elements#element), ...)         |  Create a BitVector assigned with the value specified by elements  | Bits  |
 
 
 ```scala
@@ -181,6 +181,8 @@ myBits_8bits(3 downto 0) := myBits_4bits
 | x.msb                               |  Return the most significant bit                                                 | Bool                           |
 | x.lsb                               |  Return the least significant bit                                                | Bool                           |
 | x ## y                              |  Concatenate, x->high, y->low                                                    | Bits(w(x) + w(y) bits)         |    
+| x.subdivideIn(y slices)             |  Subdivide x in y slices, y: Int                                                 | Vec(Bits, y)                   |
+| x.subdivideIn(y bits)               |  Subdivide x in multiple slices of y bits, y: Int                                | Vec(Bits, w(x)/y)              |
 | x.resize(y)                         |  Return a resized copy of x, if enlarged, it is filled with zero, y : Int        | Bits(y bits)                   |
 | x.resized                           |  Return a version of x which is allowed to be automatically resized were needed  | Bits(w(x) bits)                |
 | x.resizeLeft(x)                     |  Resize by keeping MSB at the same place, x:Int                                  | Bits(x bits)                   |
@@ -193,6 +195,18 @@ myBool := myBits.lsb  // equivalent to myBits(0)
 
 // concatenation
 myBits_24bits := bits_8bits_1 ## bits_8bits_2 ## bits_8bits_3
+
+// Subdivide 
+val sel = UInt(2 bits)
+val myBitsWord = myBits_128bits.subdivideIn(32 bits)(sel) 
+    // sel = 0 => myBitsWord = myBits_128bits(127 downto 96)
+    // sel = 1 => myBitsWord = myBits_128bits( 95 downto 64)
+    // sel = 2 => myBitsWord = myBits_128bits( 63 downto 32)
+    // sel = 3 => myBitsWord = myBits_128bits( 31 downto  0)
+
+ // if you want to access in a reverse order you can do 
+ val myVector   = myBits_128bits.subdivideIn(32 bits).reverse
+ val myBitsWord = myVector(sel)
 
 // Resize
 myBits_32bits := B"32'x112233344"

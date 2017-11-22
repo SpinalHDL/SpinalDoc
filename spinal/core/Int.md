@@ -14,52 +14,18 @@ The `UInt`/`SInt` type corresponds to a vector of bits that can be used for sign
 
 ### Declaration
 
-The syntax to declare an integer is as follows:
+The syntax to declare an integer is as follows:  (everything between [] is optional)
 
-#### Unsigned Integer
 
 | Syntax                            | Description                                                                                 | Return |
 | --------------------------------- | ------------------------------------------------------------------------------------------- | ------ |
-| UInt[()]                          |  Create an unsigned integer, bits count is inferred                                         | UInt   |
-| UInt(x bits)                      |  Create an unsigned integer with x bits                                                     | UInt   |
-| U(value: Int[,width: BitCount])   |  Create an unsigned integer assigned with 'value'                                           | UInt   |
-| U"[[size']base]value"             |  Create an unsigned integer assigned with 'value' (Base : 'h', 'd', 'o', 'b')               | UInt   |
-| U([x bits], element, ...)         |  Create an unsigned integer assigned with the value specified by elements (see table below) | UInt   |
+| UInt[()]  <br>  SInt[()]          |  Create an unsigned/signed integer, bits count is inferred                                  | UInt <br> SInt   |
+| UInt(x bits) <br> SInt(x bits)    |  Create an unsigned/signed integer with x bits                                              | UInt <br> SInt   |
+| U(value: Int[,x bits]) <br> S(value: Int[,x bits])    |  Create an unsigned/signed integer assigned with 'value'                | UInt <br> SInt   |
+| U"[[size']base]value" <br> S"[[size']base]value"      |  Create an unsigned/signed integer assigned with 'value' (Base : 'h', 'd', 'o', 'b')               | UInt <br> SInt   |
+| U([x bits], [element](/SpinalDoc/spinal/core/types/elements#element), ...)  <br> S([x bits], [element](/SpinalDoc/spinal/core/types/elements#element), ...)          |  Create an unsigned integer assigned with the value specified by elements | UInt <br> SInt   |
 
 
-#### Signed Integer
-
-| Syntax                            | Description                                                                               | Return |
-| --------------------------------- | ----------------------------------------------------------------------------------------- | ------ |
-| SInt[()]                          |  Create an signed integer, bits count is inferred                                         | SInt   |
-| SInt(x bits)                      |  Create an signed integer with x bits                                                     | SInt   |
-| S(value: Int[,width: BitCount])   |  Create an signed integer assigned with 'value'                                           | SInt   |
-| S"[[size']base]value"             |  Create an signed integer assigned with 'value' (Base : 'h', 'd', 'o', 'b')               | SInt   |
-| S([x bits], element, ...)         |  Create an signed integer assigned with the value specified by elements (see table below) | SInt   |
-
-
-#### Elements
-
-Elements could be defined as follows:
-
-| Element syntax                | Description                                                                                                                                                                         |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| x : Int -> y : Boolean/Bool   | Set bit x with y                                                                                                                                                                    |
-| x : Range -> y : Boolean/Bool | Set each bits in range x with y                                                                                                                                                     |
-| x : Range -> y : T            | Set bits in range x with y                                                                                                                                                          |
-| x : Range -> y : String       | Set bits in range x with y <br> The string format follow same rules than B"xyz" one                                                                                                 |
-| default -> y : Boolean/Bool   | Set all unconnected bits with the y value.<br> This feature could only be use to do assignments without the U/S prefix or with the U/S prefix combined with the bits specification  |
-
-You can define a Range values
-
-| Range syntax  | Description   | Width |
-| ------------- | ------------- | ----- |
-| (x downto y)  |  [x:y] x >= y | x-y+1 |
-| (x to y)      |  [x:y] x <= y | y-x+1 |
-| (x until y)   |  [x:y[ x < y  | y-x   |
-
-
-#### Examples
 
 ```scala
 val myUInt = UInt(8 bits)
@@ -94,9 +60,6 @@ The following operators are available for the `UInt` and `SInt` type
 
 | Operator                    | Description                             | Return type           |
 | --------------------------- | --------------------------------------- | --------------------- |
-| !x                          | Logical NOT                             | Bool                  |
-| x && y                      | Logical AND                             | Bool                  |
-| x \|\| y                    | Logical OR                              | Bool                  |
 | x ^ y                       | Logical XOR                             | Bool                  |
 | ~x                          | Bitwise NOT                             | T(w(x) bits)          |
 | x & y                       | Bitwise AND                             | T(max(w(xy) bits)     |
@@ -118,6 +81,27 @@ The following operators are available for the `UInt` and `SInt` type
 | x.setAllTo(value : Boolean) | Set all bits to the given Boolean value | -                     |
 | x.setAllTo(value : Bool)    | Set all bits to the given Bool value    | -                     |
 
+```scala
+// Bitwise operator
+val a, b, c = SInt(32 bits)
+c := ~(a & b) //  Inverse(a AND b)
+
+val all_1 = a.andR // Check that all bit are equal to 1 
+
+// Logical shift 
+val uint_10bits = uint_8bits << 2  // shift left (result on 10 bits)
+val shift_8bits = uint_8bits |<< 2 // shift left (result on 8 bits)
+
+// Logical rotation 
+val myBits = uint_8bits.rotateLeft(3) // left bit rotation 
+
+// Set/clear
+val a = B"8'x42"
+when(cond){
+  a.setAll() // set all bits to True when cond is True
+}
+```
+
 
 #### Arithmetic
 
@@ -126,6 +110,11 @@ The following operators are available for the `UInt` and `SInt` type
 | x + y    |  Addition       | T(max(w(x), w(y) bits) |
 | x - y    |  Subtraction    | T(max(w(x), w(y) bits) |
 | x * y    |  Multiplication | T(w(x) + w(y) bits)    |
+
+```scala
+// Addition 
+val res = mySInt_1 + mySInt_2 
+```
 
 
 #### Comparison
@@ -138,6 +127,18 @@ The following operators are available for the `UInt` and `SInt` type
 | x >= y   |  Greater than or equal | Bool        |
 | x > y    |  Less than             | Bool        |
 | x >= y   |  Less than or equal    | Bool        |
+
+```scala
+// Comparaison between two SInt 
+myBool := mySInt_1 > mySInt_2 
+
+// Comparaison between UInt and a literal 
+myBool := myUInt_8bits >= U(3, 8 bits)
+
+when(myUInt_8bits === 3){
+
+}
+```
 
 
 #### Type cast
@@ -154,16 +155,45 @@ The following operators are available for the `UInt` and `SInt` type
 
 To cast a Bool, a Bits or a SInt into a UInt, you can use `U(something)`. To cast things into a SInt, you can use `S(something)`
 
+```scala
+// cast a SInt to Bits
+val myBits = mySInt.asBits 
+
+// create a Vector of bool
+val myVec = myUInt.asBools 
+
+// Cast a Bits to SInt
+val mySInt = S(myBits)
+```
+
+
 #### Bit extraction
 
-| Operator             | Description                                | Return          |
-| -------------------- | ------------------------------------------ | --------------- |
-| x(y)                 |  Readbit, y : Int/UInt                     | Bool            |
-| x(hi,lo)             |  Read bitfield, hi : Int, lo : Int         | T(hi-lo+1 bits) |
-| x(offset,width)      |  Read bitfield, offset: UInt, width: Int   | T(width bits)   |
-| x(y) := z            |  Assign bits, y : Int/UInt                 | Bool            |
-| x(hi,lo) := z        |  Assign bitfield, hi : Int, lo : Int       | T(hi-lo+1 bits) |
-| x(offset,width) := z |  Assign bitfield, offset: UInt, width: Int | T(width bits)   |
+| Operator              | Description                                | Return          |
+| --------------------  | ------------------------------------------ | --------------- |
+| x(y)                  |  Readbit, y : Int/UInt                     | Bool            |
+| x(hi,lo)              |  Read bitfield, hi : Int, lo : Int         | T(hi-lo+1 bits) |
+| x(offset, width)      |  Read bitfield, offset: UInt, width: Int   | T(width bits)   |
+| x([range](/SpinalDoc/spinal/core/types/elements#range))              |  Read a range of bit    | T(range)        |
+| x(y) := z             |  Assign bits, y : Int/UInt                 | Bool            |
+| x(hi,lo) := z         |  Assign bitfield, hi : Int, lo : Int       | T(hi-lo+1 bits) |
+| x(offset, width) := z |  Assign bitfield, offset: UInt, width: Int | T(width bits)   |
+| x([range](/SpinalDoc/spinal/core/types/elements#range)) := z         |  Assign a range of bit   | T(range)        |
+
+```scala
+// get the element at the index 4
+val myBool = myUInt(4)
+
+// assign 
+mySInt(1) := True
+
+// Range
+val myUInt_8bits = myUInt_16bits(7 downto 0)
+val myUInt_7bits = myUInt_16bits(0 to 6)
+val myUInt_6bits = myUInt_16Bits(0 until 6)
+
+mySInt_8bits(3 downto 0) := mySInt_4bits
+```
 
 
 #### Misc
@@ -176,13 +206,34 @@ To cast a Bool, a Bits or a SInt into a UInt, you can use `U(something)`. To cas
 | x.range                             |  Return the range (x.high downto 0)                                              | Range                          |
 | x.high                              |  Return the upper bound of the type x                                            | Int                            |
 | x ## y                              |  Concatenate, x->high, y->low                                                    | Bits(w(x) + w(y) bits)         |
-| Cat(x)                              |  Concatenate list, first element on lsb, x : Array[Data]                         | Bits(sumOfWidth bits)          |
-| Mux(cond,x,y)                       |  if cond ? x : y                                                                 | T(max(w(x), w(y) bits)         |
-| x.subdivideIn(y slices)             |  Subdivide x in y slices, y : Int                                                | Vec(w(x)/y, y)                 |
-| x.subdivideIn(y bits)               | Subdivide x in multiple slices of y bits, y : Int                                | Vec(y, w(x)/y)                 |
-| x.assignFromBits(bits)              |  Assign from Bits                                                                | -                              |
-| x.assignFromBits(bits,hi,lo)        |  Assign bitfield, hi : Int, lo : Int                                             | -                              |
-| x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int                                       | -                              |
-| x.getZero                           |  Get equivalent type assigned with zero                                          | T                              |
-| x.resize(y)                         |  Return a resized copy of x, if enlarged, it is filled with zero for UInt or filled with the sign for SInt, y : Int                           | T(y bits)                      |
+| x @@ y                              |  Concatenate x:T with y:Bool/SInt/UInt                                           | T(w(x) + w(y) bits)            |
+| x.subdivideIn(y slices)             |  Subdivide x in y slices, y: Int                                                 | Vec(T,  y)                     |
+| x.subdivideIn(y bits)               |  Subdivide x in multiple slices of y bits, y: Int                                | Vec(T, w(x)/y)                 |
+| x.resize(y)                         |  Return a resized copy of x, if enlarged, it is filled with zero for UInt or filled with the sign for SInt, y: Int | T(y bits)                      |
 | x.resized                           |  Return a version of x which is allowed to be automatically resized were needed  | T(w(x) bits)                   |
+
+
+```scala
+myBool := mySInt.lsb  // equivalent to myBits(0)
+
+// Concatenation 
+val mySInt = mySInt_1 @@ mySInt_1 @@ myBool   
+val myBits = mySInt_1 ## mySInt_1 ## myBool   
+
+// Subdivide 
+val sel = UInt(2 bits)
+val mySIntWord = mySInt_128bits.subdivideIn(32 bits)(sel) 
+    // sel = 0 => mySIntWord = mySInt_128bits(127 downto 96)
+    // sel = 1 => mySIntWord = mySInt_128bits( 95 downto 64)
+    // sel = 2 => mySIntWord = mySInt_128bits( 63 downto 32)
+    // sel = 3 => mySIntWord = mySInt_128bits( 31 downto  0)
+
+ // if you want to access in a reverse order you can do 
+ val myVector   = mySInt_128bits.subdivideIn(32 bits).reverse
+ val mySIntWord = myVector(sel)
+
+// Resize
+myUInt_32bits := U"32'x112233344"
+myUInt_8bits  := myUInt_32bits.resized       // automatic resize (myUInt_8bits = 0x44)
+myUInt_8bits  := myUInt_32bits.resize(8)     // resize to 8 bits (myUInt_8bits = 0x44)
+```
