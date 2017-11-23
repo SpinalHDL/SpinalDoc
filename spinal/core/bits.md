@@ -24,7 +24,7 @@ The syntax to declare a bit vector is as follows: (everything between [] is opti
 | Bits [()]                         |  Create a BitVector, bits count is inferred                                         | Bits  |
 | Bits(x bits)                      |  Create a BitVector with x bits                                                     | Bits  |
 | B(value: Int[, x bits])           |  Create a BitVector with x bits assigned with 'value'                               | Bits  |
-| B"[[size']base]value"             |  Create a BitVector assigned with 'value' (Base : 'h', 'd', 'o', 'b')               | Bits  |
+| B"[[size']base]value"             |  Create a BitVector assigned with 'value' (Base: 'h', 'd', 'o', 'b')               | Bits  |
 | B([x bits,] [element](/SpinalDoc/spinal/core/types/elements#element), ...)         |  Create a BitVector assigned with the value specified by elements  | Bits  |
 
 
@@ -145,14 +145,14 @@ val myBits = B(mySInt)
 
 | Operator              | Description                                | Return             |
 | --------------------  | ------------------------------------------ | ------------------ |
-| x(y)                  |  Readbit, y : Int/UInt                     | Bool               |
-| x(hi,lo)              |  Read bitfield, hi : Int, lo : Int         | Bits(hi-lo+1 bits) |
+| x(y)                  |  Readbit, y: Int/UInt                      | Bool               |
+| x(hi,lo)              |  Read bitfield, hi: Int, lo: Int           | Bits(hi-lo+1 bits) |
 | x(offset,width)       |  Read bitfield, offset: UInt, width: Int   | Bits(width bits)   |
-| x([range](/SpinalDoc/spinal/core/types/elements#range))              |  Read a range of bit                       | Bits(range)        |
-| x(y) := z             |  Assign bits, y : Int/UInt                 | Bool               |
-| x(hi,lo) := z         |  Assign bitfield, hi : Int, lo : Int       | Bits(hi-lo+1 bits) |
+| x([range](/SpinalDoc/spinal/core/types/elements#range))            | Read a range of bit      | Bits(range)        |
+| x(y) := z             |  Assign bits, y: Int/UInt                  | Bool               |
+| x(hi,lo) := z         |  Assign bitfield, hi: Int, lo: Int         | Bits(hi-lo+1 bits) |
 | x(offset, width) := z |  Assign bitfield, offset: UInt, width: Int | Bits(width bits)   |
-| x([range](/SpinalDoc/spinal/core/types/elements#range)) := z         |  Assign a range of bit                     | Bits(range)        |
+| x([range](/SpinalDoc/spinal/core/types/elements#range)) := z       |  Assign a range of bit  | Bits(range)        |
 
 
 ```scala
@@ -183,7 +183,7 @@ myBits_8bits(3 downto 0) := myBits_4bits
 | x ## y                              |  Concatenate, x->high, y->low                                                    | Bits(w(x) + w(y) bits)         |    
 | x.subdivideIn(y slices)             |  Subdivide x in y slices, y: Int                                                 | Vec(Bits, y)                   |
 | x.subdivideIn(y bits)               |  Subdivide x in multiple slices of y bits, y: Int                                | Vec(Bits, w(x)/y)              |
-| x.resize(y)                         |  Return a resized copy of x, if enlarged, it is filled with zero, y : Int        | Bits(y bits)                   |
+| x.resize(y)                         |  Return a resized copy of x, if enlarged, it is filled with zero, y: Int         | Bits(y bits)                   |
 | x.resized                           |  Return a version of x which is allowed to be automatically resized were needed  | Bits(w(x) bits)                |
 | x.resizeLeft(x)                     |  Resize by keeping MSB at the same place, x:Int                                  | Bits(x bits)                   |
 

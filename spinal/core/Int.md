@@ -23,7 +23,7 @@ The syntax to declare an integer is as follows:  (everything between [] is optio
 | UInt(x bits) <br> SInt(x bits)    |  Create an unsigned/signed integer with x bits                                              | UInt <br> SInt   |
 | U(value: Int[,x bits]) <br> S(value: Int[,x bits])    |  Create an unsigned/signed integer assigned with 'value'                | UInt <br> SInt   |
 | U"[[size']base]value" <br> S"[[size']base]value"      |  Create an unsigned/signed integer assigned with 'value' (Base : 'h', 'd', 'o', 'b')               | UInt <br> SInt   |
-| U([x bits], [element](/SpinalDoc/spinal/core/types/elements#element), ...)  <br> S([x bits], [element](/SpinalDoc/spinal/core/types/elements#element), ...)          |  Create an unsigned integer assigned with the value specified by elements | UInt <br> SInt   |
+| U([x bits,] [element](/SpinalDoc/spinal/core/types/elements#element), ...)  <br> S([x bits,] [element](/SpinalDoc/spinal/core/types/elements#element), ...)          |  Create an unsigned integer assigned with the value specified by elements | UInt <br> SInt   |
 
 
 
@@ -110,6 +110,8 @@ when(cond){
 | x + y    |  Addition       | T(max(w(x), w(y) bits) |
 | x - y    |  Subtraction    | T(max(w(x), w(y) bits) |
 | x * y    |  Multiplication | T(w(x) + w(y) bits)    |
+| x / y    |  Division       | T(w(x) bits)           |
+| x % y    |  Modulo         | T(w(x) bits)           |
 
 ```scala
 // Addition 
@@ -209,12 +211,15 @@ mySInt_8bits(3 downto 0) := mySInt_4bits
 | x @@ y                              |  Concatenate x:T with y:Bool/SInt/UInt                                           | T(w(x) + w(y) bits)            |
 | x.subdivideIn(y slices)             |  Subdivide x in y slices, y: Int                                                 | Vec(T,  y)                     |
 | x.subdivideIn(y bits)               |  Subdivide x in multiple slices of y bits, y: Int                                | Vec(T, w(x)/y)                 |
-| x.resize(y)                         |  Return a resized copy of x, if enlarged, it is filled with zero for UInt or filled with the sign for SInt, y: Int | T(y bits)                      |
-| x.resized                           |  Return a version of x which is allowed to be automatically resized were needed  | T(w(x) bits)                   |
+| x.resize(y)                         |  Return a resized copy of x, if enlarged, it is filled with zero <br> for UInt or filled with the sign for SInt, y: Int | T(y bits)                      |
+| x.resized                           |  Return a version of x which is allowed to be automatically <br> resized were needed  | T(w(x) bits)                   |
+| myUInt.twoComplement(en: Bool)      |  Use the two's complement to transform an UInt into an SInt                      | SInt(w(myUInt) + 1)            |
+| mySInt.abs                          |  Return the absolute value of the SInt value                                     | SInt(w(mySInt))                |
+| mySInt.abs(en: Bool)                |  Return the absolute value of the SInt value when en is True                     | SInt(w(mySInt))                |
 
 
 ```scala
-myBool := mySInt.lsb  // equivalent to myBits(0)
+myBool := mySInt.lsb  // equivalent to mySInt(0)
 
 // Concatenation 
 val mySInt = mySInt_1 @@ mySInt_1 @@ myBool   
@@ -236,4 +241,10 @@ val mySIntWord = mySInt_128bits.subdivideIn(32 bits)(sel)
 myUInt_32bits := U"32'x112233344"
 myUInt_8bits  := myUInt_32bits.resized       // automatic resize (myUInt_8bits = 0x44)
 myUInt_8bits  := myUInt_32bits.resize(8)     // resize to 8 bits (myUInt_8bits = 0x44)
+
+// Two's complement 
+mySInt := myUInt.twoComplement(myBool)
+
+// Absolute value 
+mySInt_abs := mySInt.abs 
 ```

@@ -122,6 +122,25 @@ when(!myBool){ // Equivalent to when(myBool === False)
 ```
 
 
+#### Type cast		
+  		  
+ -| Operator           | Description                  | Return              |		 
+ -| ------------------ | ---------------------------- | ------------------- |		 
+ -| x.asBits           | Binary cast in Bits          | Bits(w(x) bits)     |		 
+ -| x.asUInt           | Binary cast in UInt          | UInt(w(x) bits)     |		 
+ -| x.asSInt           | Binary cast in SInt          | SInt(w(x) bits)     |		 
+ -| x.asUInt(bitCount) | Binary cast in UInt + resize | UInt(bitCount bits) |		 
+ -| x.asBits(bitCount) | Binary cast in Bits + resize | Bits(bitCount bits) |
+
+
+```scala
+// Add the carry to an SInt value
+val carry = Bool 
+val res = mySInt + carry.asSInt 
+```
+
+
+
 #### Misc
 
 | Operator                            | Description                                               | Return                         |
