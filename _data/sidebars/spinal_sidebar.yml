@@ -168,6 +168,70 @@ entries:
       url: /spinal/core/memory/
       output: web
 
+  - title: Design errors
+    output: web
+    folderitems:
+    - title: Introduction
+      url: /spinal/core/checks/introduction/
+      output: web
+
+    - title: IO BUNDLE ERROR
+      url: /spinal/core/checks/iobundle/
+      output: web
+
+    - title: HIERARCHY VIOLATION
+      url: /spinal/core/checks/hierarchy_violation/
+      output: web
+
+    - title: SCOPE VIOLATION
+      url: /spinal/core/checks/scope_violation/
+      output: web
+
+    - title: REGISTER DEFINED AS COMPONENT INPUT
+      url: /spinal/core/checks/register_defined_as_component_input/
+      output: web
+
+    - title: WIDTH MISMATCH
+      url: /spinal/core/checks/width_mismatch/
+      output: web
+
+    - title: UNREACHABLE IS STATEMENT
+      url: /spinal/core/checks/unreachable_is_statement/
+      output: web
+
+    - title: ASSIGNMENT OVERLAP
+      url: /spinal/core/checks/assignment_overlap/
+      output: web
+
+    - title: NO DRIVER ON
+      url: /spinal/core/checks/no_driver_on/
+      output: web
+
+    - title: UNASSIGNED REGISTER
+      url: /spinal/core/checks/unassigned_register/
+      output: web
+
+    - title: LATCH DETECTED
+      url: /spinal/core/checks/latch_detected/
+      output: web
+
+    - title: COMBINATORIAL LOOP
+      url: /spinal/core/checks/combinatorial_loop/
+      output: web
+
+    - title: CLOCK CROSSING VIOLATION
+      url: /spinal/core/checks/clock_crossing_violation/
+      output: web
+
+    - title: NullPointerException
+      url: /spinal/core/checks/nullpointerexception/
+      output: web
+
+    - title: Spinal can't clone class
+      url: /spinal/core/checks/spinal_cant_clone/
+      output: web
+
+
   - title: Other language features
     output: web
     folderitems:
@@ -181,6 +245,10 @@ entries:
 
     - title: Assertions
       url: /spinal/core/assertion/
+      output: web
+
+    - title: Analog and inout
+      url: /spinal/core/analog_inout/
       output: web
 
     - title: VHDL and Verilog generation
