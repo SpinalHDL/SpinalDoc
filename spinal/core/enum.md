@@ -113,6 +113,28 @@ The following operators are available for the `Enumeration` type
 | x =/= y  |  Inequality | Bool        |
 
 
+```scala
+import UartCtrlTxState._
+
+val stateNext = UartCtrlTxState()
+stateNext := sIdle
+
+when(stateNext === sStart){
+
+}
+
+switch(stateNext){
+  is(sIdle){
+
+  }
+  is(sStart){
+
+  }
+  ...
+}
+```
+
+
 #### Type cast
 
 | Operator | Description          | Return          |
@@ -122,17 +144,9 @@ The following operators are available for the `Enumeration` type
 | x.asSInt |  Binary cast in SInt | SInt(w(x) bits) |
 
 
-#### Misc
+```scala
+import UartCtrlTxState._
 
-| Operator                            | Description                                               | Return                        |
-| -------                             | ----                                                      | ---                           |
-| x.getWidth                          |  Return bitcount                                          | Int                           |
-| x ## y                              |  Concatenate, x->high, y->low                             | Bits(width(x) + width(y) bits)|
-| Cat(x)                              |  Concatenate list, first element on lsb, x : Array[Data]  | Bits(sumOfWidth bits)         |
-| Mux(cond,x,y)                       |  if cond ? x : y                                          | T(max(w(x), w(y) bits)        |
-| x.assignFromBits(bits)              |  Assign from Bits                                         | -                             |
-| x.assignFromBits(bits,hi,lo)        |  Assign bitfield, hi : Int, lo : Int                      | -                             |
-| x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int                | -                             |
-| x.getZero                           |  Get equivalent type assigned with zero                   | T                             |
-
-
+val stateNext = UartCtrlTxState()
+myBits := sIdle.asBits 
+```

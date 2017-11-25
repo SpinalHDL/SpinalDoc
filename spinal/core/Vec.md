@@ -20,7 +20,7 @@ The syntax to declare a vector is as follows:
 
 | Declaration                  | Description                                                                                                |
 | -------                      | ----                                                                                                       |
-| Vec(type : Data, size : Int) | Create a vector of size time the given type                                                                |
+| Vec(type: Data, size: Int)   | Create a vector of size time the given type                                                                |
 | Vec(x,y,..)                  | Create a vector where indexes point to given elements. <br> this construct support mixed element width     |
 
 
@@ -62,6 +62,14 @@ The following operators are available for the `Bundle` type
 | x === y  |  Equality   | Bool        |
 | x =/= y  |  Inequality | Bool        |
 
+```scala
+// Create a vector of 2 signed integers
+val vec2 = Vec(SInt(8 bits), 2)
+val vec1 = Vec(SInt(8 bits), 2)
+
+myBool := vec2 === vec1 // compare all elemenets 
+```
+
 
 #### Type cast
 
@@ -70,15 +78,23 @@ The following operators are available for the `Bundle` type
 | x.asBits |  Binary cast in Bits | Bits(w(x) bits) |
 
 
+```scala
+// Create a vector of 2 signed integers
+val vec1 = Vec(SInt(8 bits), 2)
+
+myBits_16bits := vec1.asBits 
+```
+
 #### Misc
 
 | Operator                            | Description                                               | Return                        |
 | -------                             | ----                                                      |  ---                          |
-| x.getWidth                          |  Return bitcount                                          | Int                           |
-| x ## y                              |  Concatenate, x->high, y->low                             | Bits(width(x) + width(y) bits)|
-| Cat(x)                              |  Concatenate list, first element on lsb, x : Array[Data]  | Bits(sumOfWidth bits)         |
-| Mux(cond,x,y)                       |  if cond ? x : y                                          | T(max(w(x), w(y) bits)        |
-| x.assignFromBits(bits)              |  Assign from Bits                                         | -                             |
-| x.assignFromBits(bits,hi,lo)        |  Assign bitfield, hi : Int, lo : Int                      | -                             |
-| x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int                | -                             |
-| x.getZero                           |  Get equivalent type assigned with zero                   | T                             |
+| x.getBitsWidth                      |  Return the full size of the Vec                          | Int                           |
+
+
+```scala
+// Create a vector of 2 signed integers
+val vec1 = Vec(SInt(8 bits), 2)
+
+println(vec1.getBitsWidth) // 16
+```

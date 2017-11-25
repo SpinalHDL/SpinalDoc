@@ -22,17 +22,17 @@ The Bundle can be used to model data structures, buses and interfaces.
 The syntax to declare a bundle is as follows:
 
 ```scala
-case class myBundle extends Bundle{
-  val bundleItem0   = AnyType
-  val bundleItem1   = AnyType
-  val bundleItemN   = AnyType
+case class myBundle extends Bundle {
+  val bundleItem0 = AnyType
+  val bundleItem1 = AnyType
+  val bundleItemN = AnyType
 }
 ```
 
 For example, an Color Bundle could be :
 
 ```scala
-case class Color(channelWidth : Int) extends Bundle{
+case class Color(channelWidth: Int) extends Bundle {
   val r,g,b = UInt(channelWidth bits)
 }
 ```
@@ -53,6 +53,21 @@ The following operators are available for the `Bundle` type
 | x =/= y  |  Inequality | Bool        |
 
 
+```scala
+val color1 = Color(8)
+color1.r := 0 
+color1.g := 0 
+color1.b := 0
+
+val color2 = Color(8)
+color2.r := 0
+color2.g := 0 
+color2.b := 0
+
+
+myBool := color1 === color2
+```
+
 #### Type cast
 
 | Operator | Description          | Return          |
@@ -60,18 +75,11 @@ The following operators are available for the `Bundle` type
 | x.asBits |  Binary cast in Bits | Bits(w(x) bits) |
 
 
-#### Misc
+```scala
+val color1 = Color(8)
+val myBits := color1.asBits 
+```
 
-| Operator                            | Description                                               | Return                        |
-| -------                             | ----                                                      | ---                           |
-| x.getWidth                          |  Return bitcount                                          | Int                           |
-| x ## y                              |  Concatenate, x->high, y->low                             | Bits(width(x) + width(y) bits)|
-| Cat(x)                              |  Concatenate list, first element on lsb, x : Array[Data]  | Bits(sumOfWidth bits)         |
-| Mux(cond,x,y)                       |  if cond ? x : y                                          | T(max(w(x), w(y) bits)        |
-| x.assignFromBits(bits)              |  Assign from Bits                                         | -                             |
-| x.assignFromBits(bits,hi,lo)        |  Assign bitfield, hi : Int, lo : Int                      | -                             |
-| x.assignFromBits(bits,offset,width) |  Assign bitfield, offset: UInt, width: Int                | -                             |
-| x.getZero                           |  Get equivalent type assigned with zero                   | T                             |
 
 ### Elements direction
 
@@ -79,7 +87,7 @@ When you define an Bundle inside the IO definition of your component, you need t
 
 #### in/out
 
-If all elements of you bundle go in the same direction you can use in(MyBundle()) or out(MyBundle()).
+If all elements of your bundle go in the same direction you can use in(MyBundle()) or out(MyBundle()).
 
 For example :
 
@@ -92,16 +100,14 @@ val io = new Bundle{
 
 #### master/slave
 
-If your interface obey to an master/slave topology, you can use the IMasterSlave trait.
-
-If your class extends Bundle with IMasterSlave, then you have to implement the directionality of each elements from an master perspective. Then you can use the `master(MyBundle())` and `slave(MyBundle())` syntax in the IO defintion.
+If your interface obey to an master/slave topology, you can use the `IMasterSlave` trait. Then you have to implement the function `def asMaster(): Unit` to set the direction of each elements from an master perspective. Then you can use the `master(MyBundle())` and `slave(MyBundle())` syntax in the IO defintion.
 
 For example :
 
 ```scala
-case class HandShake(payloadWidth : Int) extends Bundle with IMasterSlave{
-  val valid = Bool
-  val ready = Bool
+case class HandShake(payloadWidth: Int) extends Bundle with IMasterSlave {
+  val valid   = Bool
+  val ready   = Bool
   val payload = Bits(payloadWidth bits)
 
   //You have to implement this asMaster function.
