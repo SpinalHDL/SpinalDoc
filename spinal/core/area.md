@@ -10,6 +10,7 @@ permalink: /spinal/core/area/
 
 
 ## Area
+
 Sometime, creating a `Component` to define some logic is overkill :
 
 - Need to define all construction parameters and IO (verbosity, duplication)
@@ -28,6 +29,7 @@ class UartCtrl extends Component {
       counter := 100
     }
   }
+
   val tickCounter = new Area {
     val value = Reg(UInt(3 bit))
     val reset = False
@@ -38,6 +40,7 @@ class UartCtrl extends Component {
       value := 0
     }
   }
+  
   val stateMachine = new Area {
     ...
   }

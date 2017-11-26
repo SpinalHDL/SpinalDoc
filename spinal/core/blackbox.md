@@ -53,11 +53,32 @@ class Ram_1w_1r(wordWidth: Int, wordCount: Int) extends BlackBox {
 }
 ```
 
-Bool type will be translated into std_logic and Bits into std_logic_vector. If you want to get std_ulogic, you have to use a BlackBoxULogic instead of BlackBox. 
+In VHDL, Bool type will be translated into std_logic and Bits into std_logic_vector. If you want to get std_ulogic, you have to use a BlackBoxULogic instead of BlackBox.  <br>
+In Verilog, BlackBoxUlogic has no effect. 
 
 ```scala
 class Ram_1w_1r(wordWidth: Int, wordCount: Int) extends BlackBoxULogic {
   ...
+}
+```
+
+
+## Generics
+
+There are two different ways to declare generic : 
+
+```scala
+class Ram(wordWidth: Int, wordCount: Int) extends BlackBox {
+
+    val generic = new Generic {
+      val wordCount = Ram.this.wordCount
+      val wordWidth = Ram.this.wordWidth
+    }
+
+    // OR 
+
+    addGeneric("wordCount", wordWidth)
+    addGeneric("wordWidth", wordWidth)
 }
 ```
 
@@ -102,69 +123,50 @@ object Main {
 ```
 
 
-### Generated code
-
-The previous code will instantiate the blackbox as following in the generated VHDL :
-
-```vhdl
-  ...
-  ram : Ram_1w_1r
-    generic map(
-      wordCount => 16,
-      wordWidth => 8
-    )
-    port map (
-      io_clk => clk,
-      io_wr_en => io_wr_en,
-      io_wr_addr => io_wr_addr,
-      io_wr_data => io_wr_data,
-      io_rd_en => io_rd_en,
-      io_rd_addr => io_rd_addr,
-      io_rd_data => io_rd_data
-    );
-    ...
-```
-
-
 ## Clock and reset mapping
 
-In your blackbox definition you have to explicitly define clock and reset wires. To map signals of a ClockDomain to corresponding inputs of the blackbox you can use the `mapClockDomain` function. This function as following parameters :
+In your blackbox definition you have to explicitly define clock and reset wires. To map signals of a ClockDomain to corresponding inputs of the blackbox you can use the `mapClockDomain` or `mapCurrentClockDomain` function. `mapClockDomain` has the following parameters :
 
-| name        | type        | default             |description                                                         |
+| name        | type        | default             | description                                                        |
 | ------      | ----------- | ------              | ------                                                             |
 | clockDomain | ClockDomain | ClockDomain.current | Specify the clockDomain which provide signals                      |
 | clock       | Bool        | Nothing             | Blackbox input which should be connected to the clockDomain clock  |
 | reset       | Bool        | Nothing             | Blackbox input which should be connected to the clockDomain reset  |
 | enable      | Bool        | Nothing             | Blackbox input which should be connected to the clockDomain enable |
 
+`mapCurrentClockDomain` has almost the same parameters than the `mapClockDomain` but without the clockDomain.
+
 For example :
 
 ```scala
-mapClockDomain(
-  clockDomain = clockDomainA,
-  clock       = io.clkA,
-  reset       = io.resetA
-)
+class MyRam(clkDomain: ClockDomain) extends BlackBox {
 
-mapClockDomain(
-  clockDomain = clockDomainB,
-  clock       = io.clkB,
-  reset       = io.resetB
-)
+  val io = new Bundle {
+    val clkA = in Bool     
+    .. 
+    val clkB = in Bool 
+    ...
+  }
+
+  // Clock A is map on a specific clock Domain 
+  mapClockDomain(clkDomain, io.clkA)
+  // Clock B is map on the current clock domain 
+  mapCurrentClockDomain(io.clkB)
+}
 ```
 
 
 ## io prefix
 
-In order to avoid the prefix "io_" on each IOs of the blackbox, you can use the function `setName()` as shown below :
+In order to avoid the prefix "io_" on each IOs of the blackbox, you can use the function `noIoPrefix()` as shown below :
 
 ```scala
 // Define the Ram as a BlackBox
-class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
+class Ram_1w_1r(wordWidth: Int, wordCount: Int) extends BlackBox {
 
   val generic = new Generic {
-    val wordCount = _wordCount
-    val wordWidth = _wordWidth
+    val wordCount = Ram_1w_1r.this.wordCount
+    val wordWidth = Ram_1w_1r.this.wordWidth
   }
 
   val io = new Bundle {
@@ -180,8 +182,57 @@ class Ram_1w_1r(_wordWidth: Int, _wordCount: Int) extends BlackBox {
       val addr = in UInt (log2Up(_wordCount) bit)
       val data = out Bits (_wordWidth bit)
     }
-  }.setName("")
+  }
 
-  mapClockDomain(clock=io.clk)
+  noIoPrefix()
+
+  mapCurrentClockDomain(clock=io.clk)
 }
 ```
+
+
+## Rename all io of a blackbox
+
+```scala
+class MyRam() extends Blackbox {
+
+  val io = new Bundle {
+    val clk = in Bool 
+    val portA = new Bundle{
+      val cs   = in Bool 
+      val rwn  = in Bool 
+      val dIn  = in Bits(32 bits)
+      val dOut = out Bits(32 bits)
+    }
+    val portB = new Bundle{
+      val cs   = in Bool 
+      val rwn  = in Bool 
+      val dIn  = in Bits(32 bits)
+      val dOut = out Bits(32 bits)
+    }
+  }
+
+  // Map the clk 
+  mapCurrentClockDomain(io.clk)
+
+  // Remove io_ prefix 
+  noIoPrefix() 
+
+  // Function used to rename all signals of the blackbox 
+  private def renameIO(): Unit = {
+    io.flatten.foreach(bt => {
+      if(bt.getName().contains("portA")) bt.setName(bt.getName().repalce("portA_", "") + "_A") 
+      if(bt.getName().contains("portB")) bt.setName(bt.getName().repalce("portB_", "") + "_B") 
+    })
+  }
+
+  // Execute the function renameIO after the creation of the component 
+  addPrePostTask(() => renameIO())
+}
+
+// This code generate those names :
+//    clk 
+//    cs_A, rwn_A, dIn_A, dOut_A
+//    cs_B, rwn_B, dIn_B, dOut_B
+
+``` 
