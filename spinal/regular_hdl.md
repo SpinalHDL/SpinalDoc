@@ -227,4 +227,4 @@ val fsm = new StateMachine{
 
 Also imagine you want to generate the instruction decoding of your CPU, it could require some fancy elaboration time algorithms to generate the less logic possible. But in VHDL/Verilog/SystemVerilog, your only option to do this kind of things is to write a script which generates the .vhd .v that you want.
 
-There realy much to say about meta-hardware-description, but the only true way to understand it and get it's realy taste is to experiment it. The goal with it is stopping playing with wires and gates as monkeys, starting taking some distance with that low level stuff, thinking big and reusable.
+There is realy much to say about meta-hardware-description, but the only true way to understand it and get it's realy taste is to experiment it. The goal with it is stopping playing with wires and gates as monkeys, starting taking some distance with that low level stuff, thinking big and reusable.
