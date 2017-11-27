@@ -88,7 +88,7 @@ See VHDL 2008 parameterized packages and unconstrained records, sure it allow to
 And still those revisions doesn't change the heart of those HDL issues: They are based on a event driven paradigm which doesn't make sense to describe digital hardware.
 
 ## VHDL records, Verilog struct are broken (SystemVerilog is good on this, if you can use it)
-You can't use them to define a interface, because you can't define their internal signal directions. Even worst, you can't give them construction parameters! So, define your RGB record/struct once, and hope you never have to use it with bigger/smaller color channels ...
+You can't use them to define an interface, because you can't define their internal signal directions. Even worst, you can't give them construction parameters! So, define your RGB record/struct once, and hope you never have to use it with bigger/smaller color channels ...
 
 Also a fancy thing with VHDL is the fact that if you want to add an array of something into a component entity, you have to define the type of this array into a package ... which can't be parameterized...
 
@@ -160,7 +160,7 @@ val apbDecoder = Apb3Decoder(
 )
 ```
 
-And done, that's all, you don't have to bind each signal one by one when you instantiate a module/component because au can access their interfaces in a object oriented manner.
+And done, that's all, you don't have to bind each signal one by one when you instantiate a module/component because you can access their interfaces in a object oriented manner.
 
 Also about VHDL/Verilog struct/records, i would just say that they are really dirty tricks, without true parameterization and reusability capabilities, some crutch which try to hide the fact that those languages were poorly designed.
 
