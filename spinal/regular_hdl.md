@@ -124,6 +124,45 @@ case class Apb3(config: Apb3Config) extends Bundle with IMasterSlave {
 
 Then about the VHDL 2008 partial solution and the SystemVerilog interface/modport, lucky you are if your EDA tools / company flow / company policy allow you to use them.
 
+## VHDL and Verilog are so verbose
+Realy, with VHDL and Verilog, when it start to be about component instanciation interconnection, the copypast good need to be invocated.
+
+To understand it more deeply, there is an SpinalHDL example which do some peripherals instanciation and add the APB3 decoder required to access them.
+
+```scala
+//Instanciate an AXI4 to APB3 bridge
+val apbBridge = Axi4ToApb3Bridge(
+  addressWidth = 20,
+  dataWidth    = 32,
+  idWidth      = 4
+)
+
+//Instanciate some APB3 peripherals
+val gpioACtrl = Apb3Gpio(gpioWidth = 32)
+val gpioBCtrl = Apb3Gpio(gpioWidth = 32)
+val timerCtrl = PinsecTimerCtrl()
+val uartCtrl = Apb3UartCtrl(uartCtrlConfig)
+val vgaCtrl = Axi4VgaCtrl(vgaCtrlConfig)
+
+//Instanciate an APB3 decoder
+//- Drived by the apbBridge
+//- Map each peripherals in a memory region
+val apbDecoder = Apb3Decoder(
+  master = apbBridge.io.apb,
+  slaves = List(
+    gpioACtrl.io.apb -> (0x00000, 4 kB),
+    gpioBCtrl.io.apb -> (0x01000, 4 kB),
+    uartCtrl.io.apb  -> (0x10000, 4 kB),
+    timerCtrl.io.apb -> (0x20000, 4 kB),
+    vgaCtrl.io.apb   -> (0x30000, 4 kB)
+  )
+)
+```
+
+And done, that's all, you don't have to bind each signal one by one when you instantiate a module/component because au can access their interfaces in a object oriented manner.
+
+Also about VHDL/Verilog struct/records, i would just say that they are really dirty tricks, without true parameterization and reusability capabilities, some crutch which try to hide the fact that those languages were poorly designed.
+
 ## Meta Hardware Description capabilities
 Ok, this is a big chunk. Basically VHDL/Verilog/SystemVerilog will give you some elaboration tools which aren't directly mapped into hardware as loops / generate statements / macro / function / procedure / task. But that's all.
 
@@ -187,3 +226,5 @@ val fsm = new StateMachine{
 ```
 
 Also imagine you want to generate the instruction decoding of your CPU, it could require some fancy elaboration time algorithms to generate the less logic possible. But in VHDL/Verilog/SystemVerilog, your only option to do this kind of things is to write a script which generates the .vhd .v that you want.
+
+There realy much to say about meta-hardware-description, but the only true way to understand it and get it's realy taste is to experiment it. The goal with it is stopping playing with wires and gates as monkeys, starting taking some distance with that low level stuff, thinking big and reusable.
