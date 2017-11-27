@@ -28,7 +28,7 @@ class CarryAdder(size : Int) extends Component{
 
     //The carry adder's asynchronous logic
     io.result(i) := a ^ b ^ c
-    c = (a & b) | (a & c) | (b & c);    //variable assignment
+    c \= (a & b) | (a & c) | (b & c);    //variable assignment
   }
 }
 

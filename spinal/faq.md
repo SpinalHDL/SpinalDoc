@@ -25,5 +25,8 @@ Yes, some experiments were done, and it appears that generating hundreds of 3KLU
 #### How SpinalHDL came to be
 Between December 2014 and April 2016, it was as a personal hobby project. But since April 2016 one person is working full time on it. Some people are also regularly contributing to the project.
 
+#### Why develop a new language when there is VHDL/Verilog/SystemVerilog
+[This page](/SpinalDoc/regular_hdl/) is dedicated to this topic.
+
 #### Why develop a new language when there is Chisel
-It's a very good question! [This page](/SpinalDoc/chisel/) is dedicated to it.
+[This page](/SpinalDoc/chisel/) is dedicated to this topic.

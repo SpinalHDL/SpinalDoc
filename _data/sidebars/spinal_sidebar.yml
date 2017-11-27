@@ -75,10 +75,6 @@ entries:
             url: /vhdl_comp/
             output: web
 
-    - title: Frequent errors
-      url: /frequent_errors/
-      output: web
-
   - title: Data types
     output: web
     folderitems:

@@ -40,3 +40,7 @@ class TopLevel extends Component {
   a := 42
 }
 ```
+
+<b>Issue explanation : </b><br>
+<br>
+SpinalHDL is not a language, it is an Scala library, which mean, it obey to the same rules than the Scala general purpose programming language. When you run your SpinalHDL hardware description to generate the corresponding VHDL/Verilog RTL, your SpinalHDL hardware description will be executed as a Scala programm, and `a` will be a null reference until the programm execution come to that line, and it’s why you can’t use it before.
