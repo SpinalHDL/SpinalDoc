@@ -82,14 +82,14 @@ The following operators are available for the `Bits` type
 val a, b, c = Bits(32 bits)
 c := ~(a & b) //  Inverse(a AND b)
 
-val all_1 = a.andR // Check that all bit are equal to 1 
+val all_1 = a.andR // Check that all bit are equal to 1
 
-// Logical shift 
+// Logical shift
 val bits_10bits = bits_8bits << 2  // shift left (result on 10 bits)
 val shift_8bits = bits_8bits |<< 2 // shift left (result on 8 bits)
 
-// Logical rotation 
-val myBits = bits_8bits.rotateLeft(3) // left bit rotation 
+// Logical rotation
+val myBits = bits_8bits.rotateLeft(3) // left bit rotation
 
 // Set/clear
 val a = B"8'x42"
@@ -130,10 +130,10 @@ To cast a Bool, UInt or a SInt into a Bits, you can use `B(something)`
 
 ```scala
 // cast a Bits to SInt
-val mySInt = myBits.asSInt 
+val mySInt = myBits.asSInt
 
 // create a Vector of bool
-val myVec = myBits.asBools 
+val myVec = myBits.asBools
 
 // Cast a SInt to Bits
 val myBits = B(mySInt)
@@ -147,19 +147,18 @@ val myBits = B(mySInt)
 | --------------------  | ------------------------------------------ | ------------------ |
 | x(y)                  |  Readbit, y: Int/UInt                      | Bool               |
 | x(hi,lo)              |  Read bitfield, hi: Int, lo: Int           | Bits(hi-lo+1 bits) |
-| x(offset,width)       |  Read bitfield, offset: UInt, width: Int   | Bits(width bits)   |
-| x([range](/SpinalDoc/spinal/core/types/elements#range))            | Read a range of bit      | Bits(range)        |
+| x(offset,width bits)       |  Read bitfield, offset: UInt, width: Int   | Bits(width bits)   |
+| x([range](/SpinalDoc/spinal/core/types/elements#range))            | Read a range of bit. Ex : myBits(4 downto 2)   | Bits(range bits)        |
 | x(y) := z             |  Assign bits, y: Int/UInt                  | Bool               |
-| x(hi,lo) := z         |  Assign bitfield, hi: Int, lo: Int         | Bits(hi-lo+1 bits) |
-| x(offset, width) := z |  Assign bitfield, offset: UInt, width: Int | Bits(width bits)   |
-| x([range](/SpinalDoc/spinal/core/types/elements#range)) := z       |  Assign a range of bit  | Bits(range)        |
+| x(offset, width bits) := z |  Assign bitfield, offset: UInt, width: Int | Bits(width bits)   |
+| x([range](/SpinalDoc/spinal/core/types/elements#range)) := z       |  Assign a range of bit. Ex : myBits(4 downto 2) := B"010"  | Bits(range bits)        |
 
 
 ```scala
 // get the element at the index 4
 val myBool = myBits(4)
 
-// assign 
+// assign
 myBits(1) := True
 
 // Range
@@ -189,22 +188,22 @@ myBits_8bits(3 downto 0) := myBits_4bits
 
 
 ```scala
-println(myBits_32bits.getWidth) // 32 
+println(myBits_32bits.getWidth) // 32
 
 myBool := myBits.lsb  // equivalent to myBits(0)
 
 // concatenation
 myBits_24bits := bits_8bits_1 ## bits_8bits_2 ## bits_8bits_3
 
-// Subdivide 
+// Subdivide
 val sel = UInt(2 bits)
-val myBitsWord = myBits_128bits.subdivideIn(32 bits)(sel) 
+val myBitsWord = myBits_128bits.subdivideIn(32 bits)(sel)
     // sel = 0 => myBitsWord = myBits_128bits(127 downto 96)
     // sel = 1 => myBitsWord = myBits_128bits( 95 downto 64)
     // sel = 2 => myBitsWord = myBits_128bits( 63 downto 32)
     // sel = 3 => myBitsWord = myBits_128bits( 31 downto  0)
 
- // if you want to access in a reverse order you can do 
+ // if you want to access in a reverse order you can do
  val myVector   = myBits_128bits.subdivideIn(32 bits).reverse
  val myBitsWord = myVector(sel)
 

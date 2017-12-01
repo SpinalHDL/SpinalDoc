@@ -86,14 +86,14 @@ The following operators are available for the `UInt` and `SInt` type
 val a, b, c = SInt(32 bits)
 c := ~(a & b) //  Inverse(a AND b)
 
-val all_1 = a.andR // Check that all bit are equal to 1 
+val all_1 = a.andR // Check that all bit are equal to 1
 
-// Logical shift 
+// Logical shift
 val uint_10bits = uint_8bits << 2  // shift left (result on 10 bits)
 val shift_8bits = uint_8bits |<< 2 // shift left (result on 8 bits)
 
-// Logical rotation 
-val myBits = uint_8bits.rotateLeft(3) // left bit rotation 
+// Logical rotation
+val myBits = uint_8bits.rotateLeft(3) // left bit rotation
 
 // Set/clear
 val a = B"8'x42"
@@ -114,8 +114,8 @@ when(cond){
 | x % y    |  Modulo         | T(w(x) bits)           |
 
 ```scala
-// Addition 
-val res = mySInt_1 + mySInt_2 
+// Addition
+val res = mySInt_1 + mySInt_2
 ```
 
 
@@ -131,10 +131,10 @@ val res = mySInt_1 + mySInt_2
 | x >= y   |  Less than or equal    | Bool        |
 
 ```scala
-// Comparaison between two SInt 
-myBool := mySInt_1 > mySInt_2 
+// Comparaison between two SInt
+myBool := mySInt_1 > mySInt_2
 
-// Comparaison between UInt and a literal 
+// Comparaison between UInt and a literal
 myBool := myUInt_8bits >= U(3, 8 bits)
 
 when(myUInt_8bits === 3){
@@ -159,10 +159,10 @@ To cast a Bool, a Bits or a SInt into a UInt, you can use `U(something)`. To cas
 
 ```scala
 // cast a SInt to Bits
-val myBits = mySInt.asBits 
+val myBits = mySInt.asBits
 
 // create a Vector of bool
-val myVec = myUInt.asBools 
+val myVec = myUInt.asBools
 
 // Cast a Bits to SInt
 val mySInt = S(myBits)
@@ -174,19 +174,17 @@ val mySInt = S(myBits)
 | Operator              | Description                                | Return          |
 | --------------------  | ------------------------------------------ | --------------- |
 | x(y)                  |  Readbit, y : Int/UInt                     | Bool            |
-| x(hi,lo)              |  Read bitfield, hi : Int, lo : Int         | T(hi-lo+1 bits) |
 | x(offset, width)      |  Read bitfield, offset: UInt, width: Int   | T(width bits)   |
-| x([range](/SpinalDoc/spinal/core/types/elements#range))              |  Read a range of bit    | T(range)        |
+| x([range](/SpinalDoc/spinal/core/types/elements#range))              |  Read a range of bit. Ex : myBits(4 downto 2)    | T(range bits)        |
 | x(y) := z             |  Assign bits, y : Int/UInt                 | Bool            |
-| x(hi,lo) := z         |  Assign bitfield, hi : Int, lo : Int       | T(hi-lo+1 bits) |
 | x(offset, width) := z |  Assign bitfield, offset: UInt, width: Int | T(width bits)   |
-| x([range](/SpinalDoc/spinal/core/types/elements#range)) := z         |  Assign a range of bit   | T(range)        |
+| x([range](/SpinalDoc/spinal/core/types/elements#range)) := z         |  Assign a range of bit. Ex : myBits(4 downto 2) := U"010"   | T(range bits)        |
 
 ```scala
 // get the element at the index 4
 val myBool = myUInt(4)
 
-// assign 
+// assign
 mySInt(1) := True
 
 // Range
@@ -221,19 +219,19 @@ mySInt_8bits(3 downto 0) := mySInt_4bits
 ```scala
 myBool := mySInt.lsb  // equivalent to mySInt(0)
 
-// Concatenation 
+// Concatenation
 val mySInt = mySInt_1 @@ mySInt_1 @@ myBool   
 val myBits = mySInt_1 ## mySInt_1 ## myBool   
 
-// Subdivide 
+// Subdivide
 val sel = UInt(2 bits)
-val mySIntWord = mySInt_128bits.subdivideIn(32 bits)(sel) 
+val mySIntWord = mySInt_128bits.subdivideIn(32 bits)(sel)
     // sel = 0 => mySIntWord = mySInt_128bits(127 downto 96)
     // sel = 1 => mySIntWord = mySInt_128bits( 95 downto 64)
     // sel = 2 => mySIntWord = mySInt_128bits( 63 downto 32)
     // sel = 3 => mySIntWord = mySInt_128bits( 31 downto  0)
 
- // if you want to access in a reverse order you can do 
+ // if you want to access in a reverse order you can do
  val myVector   = mySInt_128bits.subdivideIn(32 bits).reverse
  val mySIntWord = myVector(sel)
 
@@ -242,9 +240,9 @@ myUInt_32bits := U"32'x112233344"
 myUInt_8bits  := myUInt_32bits.resized       // automatic resize (myUInt_8bits = 0x44)
 myUInt_8bits  := myUInt_32bits.resize(8)     // resize to 8 bits (myUInt_8bits = 0x44)
 
-// Two's complement 
+// Two's complement
 mySInt := myUInt.twoComplement(myBool)
 
-// Absolute value 
-mySInt_abs := mySInt.abs 
+// Absolute value
+mySInt_abs := mySInt.abs
 ```
