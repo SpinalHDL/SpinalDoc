@@ -8,7 +8,7 @@ sidebar: spinal_sidebar
 permalink: /spinal/lib/pinsec/introduction/
 ---
 
-{% include warning.html content="This page document the SoC implemented with the first RISC-V cpu iteration done in SpinalHDL. The second iteration of this SoC (and CPU) is available [there](https://github.com/SpinalHDL/VexRiscv) and already offer better perforance/area/features." %}
+{% include note.html content="This page document the SoC implemented with the first RISC-V cpu iteration done in SpinalHDL. The second iteration of this SoC (and CPU) is available [there](https://github.com/SpinalHDL/VexRiscv) and offer better perforance/area/features." %}
 
 
 ## Introduction

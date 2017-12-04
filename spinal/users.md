@@ -14,3 +14,4 @@ permalink: /users
 
 ## Repositories
 [J1Sc Stack CPU](https://github.com/SteffenReith/J1Sc)
+[VexRiscv CPU and SoC](https://github.com/SpinalHDL/VexRiscv)
