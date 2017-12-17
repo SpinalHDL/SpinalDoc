@@ -361,7 +361,7 @@ entries:
         output: web
 
 
-      - title: Scala continuation
+      - title: Scala continuation (cps)
         url: /spinal/sim/continuation/
         output: web
 

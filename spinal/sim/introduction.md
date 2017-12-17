@@ -11,7 +11,7 @@ permalink: /spinal/sim/introduction/
 
 ## Introduction
 
-Since SpinalHDL 1.0.0 the language integrate an API to simulate your synthetisable hardware. This API provide the capaibilities to read and write the DUT signals, fork and join simulation processes, sleep and wait until a given condition is filled.
+As always you can use your standard simulation tools to simulate the VHDL/Verilog generated out from SpinalHDL, but since SpinalHDL 1.0.0 the language integrate an API to write testbenches and test your hardware directly in Scala. This API provide the capabilities to read and write the DUT signals, fork and join simulation processes, sleep and wait until a given condition is filled.
 
 Important :<br>
 Don't forget to add the following in your build.sbt file
