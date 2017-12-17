@@ -3,7 +3,7 @@
 entries:
 - title: Sidebar
   product: SpinalHDL documentation
-  version: v0.11.4
+  version: v1.0.0
   folders:
   - title: About SpinalHDL
     output: web
@@ -342,6 +342,50 @@ entries:
             subfolderitems:
             - title: QSysify
               url: /spinal/lib/eda/qsysify/
+              output: web
+
+  - title: Simulation
+    output: web
+    folderitems:
+
+      - title: Introduction
+        url: /spinal/sim/introduction/
+        output: web
+
+      - title: Boot a simulation
+        url: /spinal/sim/bootstraps/
+        output: web
+
+      - title: API
+        url: /spinal/sim/api/
+        output: web
+
+
+      - title: Scala continuation
+        url: /spinal/sim/continuation
+        output: web
+
+
+
+
+        subfolders:
+          - title: Examples
+            output: web
+            subfolderitems:
+            - title: Asynchronous adder
+              url: /spinal/sim/example/asynchronous
+              output: web
+
+            - title: Synchronous adder
+              url: /spinal/sim/example/synchronous
+              output: web
+
+            - title: Uart decoder
+              url: /spinal/sim/example/uart_decoder
+              output: web
+
+            - title: Uart encoder
+              url: /spinal/sim/example/uart_encoder
               output: web
 
 
