@@ -6,7 +6,7 @@ keywords: spinal, user guide
 last_updated: Apr 19, 2016
 sidebar: spinal_sidebar
 toc: false
-permalink: /spinal/sim/example/uart_decoder
+permalink: /spinal/sim/example/uart_decoder/
 ---
 
 

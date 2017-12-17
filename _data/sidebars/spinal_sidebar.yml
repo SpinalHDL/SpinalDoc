@@ -362,7 +362,7 @@ entries:
 
 
       - title: Scala continuation
-        url: /spinal/sim/continuation
+        url: /spinal/sim/continuation/
         output: web
 
 
@@ -373,19 +373,19 @@ entries:
             output: web
             subfolderitems:
             - title: Asynchronous adder
-              url: /spinal/sim/example/asynchronous
+              url: /spinal/sim/example/asynchronous/
               output: web
 
             - title: Synchronous adder
-              url: /spinal/sim/example/synchronous
+              url: /spinal/sim/example/synchronous/
               output: web
 
             - title: Uart decoder
-              url: /spinal/sim/example/uart_decoder
+              url: /spinal/sim/example/uart_decoder/
               output: web
 
             - title: Uart encoder
-              url: /spinal/sim/example/uart_encoder
+              url: /spinal/sim/example/uart_encoder/
               output: web
 
 
