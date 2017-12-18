@@ -48,7 +48,7 @@ And you will always need the following imports in your Scala testbench :
 ```scala
 import spinal.sim._
 import spinal.core._
-import spinal.core.SimManagedApi._
+import spinal.core.sim._
 ```
 
 You will also need a recent version of Verilator installed :

@@ -17,7 +17,7 @@ Don't forget the following imports :
 
 ```scala
 import spinal.sim._
-import spinal.core.SimManagedApi._
+import spinal.core.sim._
 ```
 
 ## Read and write signals

@@ -3,7 +3,7 @@
 entries:
 - title: Sidebar
   product: SpinalHDL documentation
-  version: v1.0.0
+  version: v1.0.2
   folders:
   - title: About SpinalHDL
     output: web
