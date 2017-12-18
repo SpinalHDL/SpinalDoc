@@ -52,7 +52,7 @@ There is an example of a top level which generate an Altera QSys component that 
 
 https://github.com/SpinalHDL/SpinalHDL/blob/master/lib/src/main/scala/spinal/lib/cpu/riscv/impl/CoreQSysAvalon.scala#L97
 
-If you want to generate it, the easiest way is to get the https://github.com/SpinalHDL/SpinalBaseProject and call `QSysAvalonCore.main(null)` from your main function.
+If you want to generate it, the easiest way is to get the https://github.com/SpinalHDL/SpinalTemplateSbt and call `QSysAvalonCore.main(null)` from your main function.
 
 ## How to debug
 You can find the openOCD fork there :

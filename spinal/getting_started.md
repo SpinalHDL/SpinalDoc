@@ -31,7 +31,7 @@ Once you have downloaded all the requirements, there are two ways to get started
 ### The SBT way {#sbtWay}
 We have prepared a ready to go project for you on Github.
 
-- Either clone or [download](https://github.com/SpinalHDL/SpinalBaseProject/archive/master.zip) the ["getting started" repository](https://github.com/SpinalHDL/SpinalBaseProject.git).
+- Either clone or [download](https://github.com/SpinalHDL/SpinalTemplateSbt/archive/master.zip) the ["getting started" repository](https://github.com/SpinalHDL/SpinalTemplateSbt.git).
 - Open a terminal in the root of it and run `sbt run`. When you execute it for the first time, the process could take some time as it will download all the dependencies required to run *SpinalHDL*.
 
 Normally, this command must generate an output file `MyTopLevel.vhd`, which corresponds to the top level *SpinalHDL* code defined in `src\main\scala\MyCode.scala`, which corresponds to the [most simple SpinalHDL example](#example).
@@ -45,7 +45,7 @@ echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.li
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
 sudo apt-get update
 sudo apt-get install sbt
-git clone https://github.com/SpinalHDL/SpinalBaseProject.git
+git clone https://github.com/SpinalHDL/SpinalTemplateSbt.git
 cd SpinalBaseProject/
 sbt run
 ls MyTopLevel.vhd
@@ -56,7 +56,7 @@ In addition to the aforementioned [requirements](#requirements), you also need t
 
 And do the following :
 
-- Either clone or [download](https://github.com/SpinalHDL/SpinalBaseProject/archive/master.zip) the ["getting started" repository](https://github.com/SpinalHDL/SpinalBaseProject.git).
+- Either clone or [download](https://github.com/SpinalHDL/SpinalTemplateSbt/archive/master.zip) the ["getting started" repository](https://github.com/SpinalHDL/SpinalTemplateSbt.git).
 - In *Intellij IDEA*, "import project" with the root of this repository, the choose the *Import project from external model SBT* and be sure to check all boxes.
 - In addition, you might need to specify some path like where you installed the JDK to *IntelliJ*.
 - In the project (Intellij project GUI), right click on `src/main/scala/MyCode/TopLevel.scala` and select "Run MyTopLevel".
@@ -64,7 +64,7 @@ And do the following :
 Normally, this must generate the output file `MyTopLevel.vhd` in the project directory which corresponds to the most [most simple SpinalHDL example](#example).
 
 ### The Makefile way {#makeWay}
-A template project that can be used via a makefile is available [there](https://github.com/SpinalHDL/SpinalBaseProject/tree/makefile) <br>
+A template project that can be used via a makefile is available [there](https://github.com/SpinalHDL/SpinalTemplateSbt/tree/makefile) <br>
 To use it you have to :
 
 - Either clone or download that repository.
@@ -72,7 +72,7 @@ To use it you have to :
 - Execute the `make run` command.
 
 ```sh
-git clone https://github.com/SpinalHDL/SpinalBaseProject.git
+git clone https://github.com/SpinalHDL/SpinalTemplateSbt.git
 cd SpinalBaseProject
 git checkout makefile
 make run

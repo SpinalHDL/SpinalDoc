@@ -56,9 +56,9 @@ A short show case (PDF): <br>
 
 Presentation of the language (PDF):   <br> [http://spinalhdl.github.io/SpinalDoc/presentation/](http://spinalhdl.github.io/SpinalDoc/presentation/)
 
-SBT base project:               <br> [https://github.com/SpinalHDL/SpinalBaseProject](https://github.com/SpinalHDL/SpinalBaseProject)
+SBT base project:               <br> [https://github.com/SpinalHDL/SpinalTemplateSbt](https://github.com/SpinalHDL/SpinalTemplateSbt)
 
-Workshop:                       <br> [https://github.com/SpinalHDL/SpinalBaseProject/tree/workshop](https://github.com/SpinalHDL/SpinalBaseProject/tree/workshop)
+Workshop:                       <br> [https://github.com/SpinalHDL/SpinalWorkshop](https://github.com/SpinalHDL/SpinalWorkshop)
 
 StackOverflow (tag: SpinalHDL) :    <br> [StackOverflow](https://stackoverflow.com/)
 

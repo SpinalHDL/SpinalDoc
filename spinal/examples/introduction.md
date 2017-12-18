@@ -16,7 +16,7 @@ Examples are split in tree kinds:
 
 They are all accessible in the sidebar under the corresponding sections.
 
-{% include important.html content="The SpinalHDL workshop contains many labs with their solutions. See [here](https://github.com/SpinalHDL/SpinalBaseProject/tree/workshop).
+{% include important.html content="The SpinalHDL workshop contains many labs with their solutions. See [here](https://github.com/SpinalHDL/SpinalWorkshop).
 " %}
 
 {% include note.html content="You can also find a list of repostitories using SpinalHDL [there](/SpinalDoc/users#repositories)
