@@ -28,17 +28,7 @@ object SimSynchronouExample {
 
   def main(args: Array[String]): Unit = {
     SimConfig(rtl = new Dut).withWave.doManagedSim{ dut =>
-      fork{
-        dut.clockDomain.assertReset()
-        dut.clockDomain.fallingEdge()
-        sleep(10)
-        dut.clockDomain.disassertReset()
-        sleep(10)
-        while(true){
-          dut.clockDomain.clockToggle()
-          sleep(5)
-        }
-      }
+      dut.clockDomain.forkStimulus(period = 10)
 
       var idx = 0
       while(idx < 100) {

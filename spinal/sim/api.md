@@ -92,17 +92,32 @@ dut.clockDomain.waitRisingEdge()
 
 There is a list of ClockDomain simulation functionalities :
 
-| Syntax                            | Description                                                                         |
+| ClockDomain stimulus functions             | Description                                                                         |
 | --------------------------------- | ----------------------------------------------------------------------------------- |
-| clockToggle             |    |
-| fallingEdge             |    |
-| risingEdge             |    |
-| waitRisingEdge         |    |
-| waitFallingEdge         |    |
-| waitActiveEdge         |    |
-| assertReset       |    |
-| disassertReset       |    |
-| assertClockEnable       |    |
-| disassertClockEnable       |    |
-| assertSoftReset       |    |
-| disassertSoftReset       |    |
+| forkStimulus(period)  | Fork a simulation process to generate the clockdomain simulus (clock, reset, softReset, clockEnable signals)  |
+| clockToggle()             |  Toggle the clock signal  |
+| fallingEdge()             |  Clear the clock signal  |
+| risingEdge()             |  Set the clock signal  |
+| assertReset()       | Set the reset signal to its active level  |
+| disassertReset()       |   Set the reset signal to its inactive level   |
+| assertClockEnable()       |   Set the clockEnable signal to its active level   |
+| disassertClockEnable()       | Set the clockEnable signal to its active level    |
+| assertSoftReset()       |   Set the softReset signal to its active level   |
+| disassertSoftReset()       |  Set the softReset signal to its active level   |
+
+
+| ClockDomain monitoring functions                            | Description                                                                         |
+| --------------------------------- | ----------------------------------------------------------------------------------- |
+| waitRisingEdge([cyclesCount])         |  Wait cyclesCount rising edges on the clock, if not cycleCount isn't specified => 1 cycle, cyclesCount = 0 is legal, not sensitive to reset/softReset/clockEnable |
+| waitFallingEdge([cyclesCount])         |  Same as waitRisingEdge but for the falling edge |
+| waitActiveEdge([cyclesCount])         |  Same as waitRisingEdge but for the edge level specified by the ClockDomainConfig  |
+| waitRisingEdgeWhere(condition)        | As waitRisingEdge, but to exit, the boolean `condition` must be true when the rising edge occure |
+| waitFallingEdgeWhere(condition)          |  Same as waitRisingEdgeWhere but for the falling edge |
+| waitActiveEdgeWhere(condition)          |  Same as waitRisingEdgeWhere but for the edge level specified by the ClockDomainConfig  |
+
+Note that if you toplevel define some clock and reset inputs which aren't directly integrated into their clockdomain, you can define their corresponding clockdomain directly in the testbench :
+
+```scala
+//In the testbench
+ClockDomain(dut.io.coreClk, dut.io.coreReset).forkStimulus(10)
+```

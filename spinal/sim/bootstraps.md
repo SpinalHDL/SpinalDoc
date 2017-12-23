@@ -11,7 +11,7 @@ permalink: /spinal/sim/bootstraps/
 
 ## Introduction
 
-There is multiple ways to run a simulation :
+There is an example hardware defintion + testbench :
 
 ```scala
 //Your hardware toplevel
@@ -42,6 +42,7 @@ SimConfig(xxx) will returnn your a SimConfig class on which you can call multipl
 | withWave                          |  Enable the simulation wave capture                                         |
 | withConfig(SpinalConfig)          |  Specify the SpinalConfig that should be use to generate the hardware                       |
 | allOptimisation                   |  Enable all the RTL compilation optimisation to reduce simulation time (will increase compilation time)              |
+| workspacePath(path)               | Change the folder where the sim files are generated |
 
 For example :
 
@@ -52,10 +53,13 @@ SimConfig(new TopLevel)
   .withConfig(spinalConfig)
   .withWave
   .allOptimisation
+  .workspacePath("~/tmp")
   .doManagedSim{ dut =>
   //Simulation code here
 }
 ```
+
+Note that by default, the simulation will work into the simWorkspace/xxx folders. You can override the simWorkspace location by setting the SPINALSIM_WORKSPACE environnement variable.
 
 ## Running multiple tests on the same hardware
 
