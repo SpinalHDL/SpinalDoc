@@ -28,7 +28,7 @@ object SimAsynchronousExample {
   }
 
   def main(args: Array[String]): Unit = {
-    SimConfig(rtl = new Dut).withWave.doManagedSim{ dut =>
+    SimConfig.withWave.compile(new Dut).doSim{ dut =>
       var idx = 0
       while(idx < 100){
         val a, b, c = Random.nextInt(256)

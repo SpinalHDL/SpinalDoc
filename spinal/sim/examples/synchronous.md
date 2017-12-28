@@ -17,7 +17,7 @@ import spinal.core.sim._
 
 import scala.util.Random
 
-object SimSynchronouExample {
+object SimSynchronousExample {
   class Dut extends Component {
     val io = new Bundle {
       val a, b, c = in UInt (8 bits)
@@ -27,7 +27,7 @@ object SimSynchronouExample {
   }
 
   def main(args: Array[String]): Unit = {
-    SimConfig(rtl = new Dut).withWave.doManagedSim{ dut =>
+    SimConfig.withWave.compile(new Dut).doSim{ dut =>
       dut.clockDomain.forkStimulus(period = 10)
 
       var idx = 0

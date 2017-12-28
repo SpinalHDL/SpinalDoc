@@ -26,7 +26,7 @@ import spinal.core.sim._
 
 object DutTests {
   def main(args: Array[String]): Unit = {
-    SimConfig(new TopLevel).withWave.doManagedSim{ dut =>
+    SimConfig.withWave.compile(new TopLevel).doSim{ dut =>
       //Simulation code here
     }
   }
@@ -49,12 +49,13 @@ For example :
 ```scala
 val spinalConfig = SpinalConfig(defaultClockDomainFrequency = FixedFrequency(10 MHz))
 
-SimConfig(new TopLevel)
+SimConfig
   .withConfig(spinalConfig)
   .withWave
   .allOptimisation
   .workspacePath("~/tmp")
-  .doManagedSim{ dut =>
+  .compile(new TopLevel)
+  .doSim{ dut =>
   //Simulation code here
 }
 ```
@@ -64,13 +65,13 @@ Note that by default, the simulation will work into the simWorkspace/xxx folders
 ## Running multiple tests on the same hardware
 
 ```scala
- val compiled = SimConfig(new Dut).withWave.compile()
+ val compiled = SimConfig.withWave.compile(new Dut)
 
- compiled.doManagedSim("testA"){ dut =>
+ compiled.doSim("testA"){ dut =>
     //Simulation code here
  }
 
- compiled.doManagedSim("testB"){ dut =>
+ compiled.doSim("testB"){ dut =>
     //Simulation code here
  }
 ```
