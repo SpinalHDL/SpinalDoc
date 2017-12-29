@@ -84,6 +84,12 @@ fork{
 }
 ```
 
+But you can also directly fork a standard reset/clock process :
+
+```scala
+dut.clockDomain.forkStimulus(period = 10)
+```
+
 And there is an example of how to wait for a rising edge on the clock :
 
 ```scala
@@ -95,6 +101,7 @@ There is a list of ClockDomain simulation functionalities :
 | ClockDomain stimulus functions             | Description                                                                         |
 | --------------------------------- | ----------------------------------------------------------------------------------- |
 | forkStimulus(period)  | Fork a simulation process to generate the clockdomain simulus (clock, reset, softReset, clockEnable signals)  |
+| forkSimSpeedPrinter(printPeriod)             |  Fork a simulation process which will periodicaly print the simulation speed in kcycles per real time second. `printPeriod` is in realtime second  |
 | clockToggle()             |  Toggle the clock signal  |
 | fallingEdge()             |  Clear the clock signal  |
 | risingEdge()             |  Set the clock signal  |
@@ -108,6 +115,7 @@ There is a list of ClockDomain simulation functionalities :
 
 | ClockDomain monitoring functions                            | Description                                                                         |
 | --------------------------------- | ----------------------------------------------------------------------------------- |
+| waitSampling([cyclesCount])   |  Wait until the ClockDomain made a sampling, (Active clock edge && disassertReset && assertClockEnable) |
 | waitRisingEdge([cyclesCount])         |  Wait cyclesCount rising edges on the clock, if not cycleCount isn't specified => 1 cycle, cyclesCount = 0 is legal, not sensitive to reset/softReset/clockEnable |
 | waitFallingEdge([cyclesCount])         |  Same as waitRisingEdge but for the falling edge |
 | waitActiveEdge([cyclesCount])         |  Same as waitRisingEdge but for the edge level specified by the ClockDomainConfig  |
