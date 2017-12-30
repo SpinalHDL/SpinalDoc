@@ -3,7 +3,7 @@
 entries:
 - title: Sidebar
   product: SpinalHDL documentation
-  version: v1.1.0
+  version: v1.1.1
   folders:
   - title: About SpinalHDL
     output: web
@@ -388,6 +388,13 @@ entries:
               url: /spinal/sim/example/uart_encoder/
               output: web
 
+            - title: Single clock fifo
+              url: /spinal/sim/example/single_clock_fifo/
+              output: web
+
+            - title: Dual clock fifo
+              url: /spinal/sim/example/dual_clock_fifo/
+              output: web
 
   - title: Examples
     output: web

@@ -35,6 +35,10 @@ As verilator is currently the simulation backend, the simulation speed is realy 
 
 ## Setup
 
+The SpinalSim with Verilator as backend is supported on both Linux and Windows plateforms.
+
+### Scala
+
 Don't forget to add the following in your build.sbt file
 
 ```scala
@@ -51,6 +55,8 @@ import spinal.sim._
 import spinal.core._
 import spinal.core.sim._
 ```
+
+### Linux
 
 You will also need a recent version of Verilator installed :
 
@@ -69,4 +75,22 @@ sudo make install
 echo "DONE"
 ```
 
-And finaly, it is currently a linux only feature.
+### Windows
+
+In order to get SpinalSim + Verilator working on windows, you have to do the following :
+
+- Install MSYS2
+- Via MSYS2 get gcc/g++/verilator (for verilator you can compile it from the sources)
+- Add bin and usr\\bin of MSYS2 into your windows PATH (ie : C:\\msys64\\usr\\bin;C:\\msys64\\mingw64\\bin)
+
+Then you should be able to run SpinalSim + verilator from your Scala project without having to use MSYS2 anymore.
+
+Note : You will may have to set the following environnement variable inside MSYS2 to succesffuly compile verilator :
+
+```sh
+export CPLUS_INCLUDE_PATH=/usr/include:$CPLUS_INCLUDE_PATH
+export PATH=/usr/bin/core_perl:$PATH
+```
+
+
+{% include important.html content="Adding the MSYS2 bin folders into your windows PATH could potentialy have some side effects. It's why it is safer to add them as last elements of the PATH to reduce their priority." %}
