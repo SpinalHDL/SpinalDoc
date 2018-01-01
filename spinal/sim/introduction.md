@@ -35,7 +35,7 @@ As verilator is currently the simulation backend, the simulation speed is realy 
 
 ## Setup
 
-The SpinalSim with Verilator as backend is supported on both Linux and Windows plateforms.
+The SpinalSim with Verilator as backend is supported on both Linux and Windows platforms.
 
 ### Scala
 
