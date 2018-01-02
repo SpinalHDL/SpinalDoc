@@ -36,13 +36,12 @@ object SimSynchronousExample {
         dut.io.a #= Random.nextInt(256)
         dut.io.b #= Random.nextInt(256)
         dut.io.c #= Random.nextInt(256)
-        dut.clockDomain.waitActiveEdge()
+        dut.clockDomain.waitSampling()
         assert(dut.io.result.toInt == resultModel)
         resultModel = (dut.io.a.toInt + dut.io.b.toInt - dut.io.c.toInt) & 0xFF
         idx += 1
       }
     }
   }
-
 }
 ```
