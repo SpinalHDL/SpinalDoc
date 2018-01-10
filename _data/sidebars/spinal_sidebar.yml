@@ -44,6 +44,10 @@ entries:
       url: /cheatsheet_core/
       output: web
 
+    - title: Cheatsheet Symbolic (PDF)
+      url: /cheatsheet_symbolic/
+      output: web
+
       subfolders:
         - title: Scala guide
           output: web
