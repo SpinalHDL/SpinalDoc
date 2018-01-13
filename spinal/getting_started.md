@@ -26,7 +26,6 @@ Once you have downloaded all the requirements, there are two ways to get started
 
 1. [*The SBT way*](#sbtWay): if you already are familiar with the SBT build system and/or if you don't need an IDE.
 1. [*The IDE way*](#ideWay): get a project already setup for you in an IDE and start programming right away.
-1. [*The Make way*](#makeWay): if you are used to Makefiles and want to keep SBT for later.
 
 ### The SBT way {#sbtWay}
 We have prepared a ready to go project for you on Github.
@@ -51,6 +50,12 @@ sbt run
 ls MyTopLevel.vhd
 ```
 
+#### SBT in a internet environnement isolated from internet
+Basically, SBT use online repositories to download and cache your projects dependancies, this cache is located in your home/.ivy2 folder. The way to setup an internet free environnement is to copy this cache from an internet-full environnement where the cache was already filled once, and copy it on your internet less environnement.
+
+You can get an portable SBT setups there : <br>
+http://www.scala-sbt.org/download.html
+
 ### The IDE way, with IntelliJ IDEA and its Scala plugin {#ideWay}
 In addition to the aforementioned [requirements](#requirements), you also need to download the IntelliJ IDEA (the free *Community edition* is enough). When you have installed IntelliJ, also check that you have enabled its Scala plugin ([install information](https://www.jetbrains.com/help/idea/2016.1/enabling-and-disabling-plugins.html?origin=old_help) can be found here).
 
@@ -62,23 +67,6 @@ And do the following :
 - In the project (Intellij project GUI), right click on `src/main/scala/MyCode/TopLevel.scala` and select "Run MyTopLevel".
 
 Normally, this must generate the output file `MyTopLevel.vhd` in the project directory which corresponds to the most [most simple SpinalHDL example](#example).
-
-### The Makefile way {#makeWay}
-A template project that can be used via a makefile is available [there](https://github.com/SpinalHDL/SpinalTemplateSbt/tree/makefile) <br>
-To use it you have to :
-
-- Either clone or download that repository.
-- Open a shell in its root.
-- Execute the `make run` command.
-
-```sh
-git clone https://github.com/SpinalHDL/SpinalTemplateSbt.git
-cd SpinalBaseProject
-git checkout makefile
-make run
-```
-
-You can get updated SpinalHDL JAR on sonatype : [SpinalHDL-core](https://oss.sonatype.org/content/groups/public/com/github/spinalhdl/spinalhdl-core_2.11/)  [SpinalHDL-lib](https://oss.sonatype.org/content/groups/public/com/github/spinalhdl/spinalhdl-lib_2.11/)
 
 ## A very simple SpinalHDL example {#example}
 The following code generates an `and` gate between two one bit inputs.
