@@ -102,8 +102,8 @@ myUInt := U"h1A"        // Base could be x (base 16)
                         //               h (base 16)
                         //               d (base 10)
                         //               o (base 8)
-                        //               b (base 2)                       
-myUInt := U"8'h1A"       
+                        //               b (base 2)
+myUInt := U"8'h1A"
 myUInt := 2             // You can use scala Int as literal value
 
 val myBool := myUInt === U(7 -> true,(6 downto 0) -> false)
@@ -174,8 +174,8 @@ val itMatch = myBits === M"00--10--"
 | x * y |  Multiplication | T(w(x) + w(y) bits) |
 | x > y |  Greater than  | Bool  |
 | x >= y |  Greater than or equal | Bool  |
-| x > y |  Less than  | Bool |
-| x >= y |  Less than or equal | Bool  |
+| x < y |  Less than  | Bool |
+| x <= y |  Less than or equal | Bool  |
 | x >> y |  Arithmetic shift right, y : Int | T(w(x) - y bits) |
 | x >> y |  Arithmetic shift right, y : UInt | T(w(x) bits) |
 | x << y |  Arithmetic shift left, y : Int | T(w(x) + y bits) |
