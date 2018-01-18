@@ -105,7 +105,7 @@ export PATH=/usr/bin/core_perl:$PATH
 cp /usr/include/FlexLexer.h ./src
 
 make -j$(nproc)
-sudo make install
+make install
 echo "DONE"
 #Add C:\msys64\usr\bin;C:\msys64\mingw64\bin to you windows PATH
 ```
