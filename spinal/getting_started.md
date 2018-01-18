@@ -50,7 +50,7 @@ sbt run
 ls MyTopLevel.vhd
 ```
 
-#### SBT in a internet environnement isolated from internet
+#### SBT in a environnement isolated from internet
 Basically, SBT use online repositories to download and cache your projects dependancies, this cache is located in your home/.ivy2 folder. The way to setup an internet free environnement is to copy this cache from an internet-full environnement where the cache was already filled once, and copy it on your internet less environnement.
 
 You can get an portable SBT setups there : <br>

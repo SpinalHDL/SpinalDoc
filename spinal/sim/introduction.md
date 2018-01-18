@@ -85,6 +85,30 @@ In order to get SpinalSim + Verilator working on windows, you have to do the fol
 
 Then you should be able to run SpinalSim + verilator from your Scala project without having to use MSYS2 anymore.
 
+From a fresh install of MSYS2 MinGW 64-bits, you will have to run the following commands inside the MSYS2 MinGW 64-bits shell (enter commands one by one):
+
+```sh
+pacman -Syuu
+#Close the MSYS2 shell once you're asked to
+pacman -Syuu
+pacman -S --needed base-devel mingw-w64-x86_64-toolchain \
+                   git flex\
+                   mingw-w64-x86_64-cmake
+
+git clone http://git.veripool.org/git/verilator  
+unset VERILATOR_ROOT
+cd verilator
+autoconf      
+./configure
+export CPLUS_INCLUDE_PATH=/usr/include:$CPLUS_INCLUDE_PATH
+export PATH=/usr/bin/core_perl:$PATH
+cp /usr/include/FlexLexer.h ./src
+
+make -j$(nproc)
+sudo make install
+echo "DONE"
+#Add C:\\msys64\\usr\\bin;C:\\msys64\\mingw64\\bin to you windows PATH
+```
 Note : You will may have to set the following environnement variable inside MSYS2 to succesffuly compile verilator :
 
 ```sh
