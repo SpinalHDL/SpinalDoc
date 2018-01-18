@@ -107,7 +107,7 @@ cp /usr/include/FlexLexer.h ./src
 make -j$(nproc)
 sudo make install
 echo "DONE"
-#Add C:\\msys64\\usr\\bin;C:\\msys64\\mingw64\\bin to you windows PATH
+#Add C:\msys64\usr\bin;C:\msys64\mingw64\bin to you windows PATH
 ```
 Note : You will may have to set the following environnement variable inside MSYS2 to succesffuly compile verilator :
 
