@@ -109,12 +109,6 @@ sudo make install
 echo "DONE"
 #Add C:\msys64\usr\bin;C:\msys64\mingw64\bin to you windows PATH
 ```
-Note : You will may have to set the following environnement variable inside MSYS2 to succesffuly compile verilator :
-
-```sh
-export CPLUS_INCLUDE_PATH=/usr/include:$CPLUS_INCLUDE_PATH
-export PATH=/usr/bin/core_perl:$PATH
-```
 
 
 {% include important.html content="Adding the MSYS2 bin folders into your windows PATH could potentialy have some side effects. It's why it is safer to add them as last elements of the PATH to reduce their priority." %}
