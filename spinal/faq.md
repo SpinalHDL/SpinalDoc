@@ -31,7 +31,7 @@ Between December 2014 and April 2016, it was as a personal hobby project. But si
 #### Why develop a new language when there is Chisel
 [This page](/SpinalDoc/chisel/) is dedicated to this topic.
 
-### How to use an unreleased version of SpinalHDL (but commited on git)
+#### How to use an unreleased version of SpinalHDL (but commited on git)
 
 For instance, if you wanna try the `dev` branch, do the following in a dummy folder :
 
