@@ -236,3 +236,74 @@ class MyRam() extends Blackbox {
 //    cs_B, rwn_B, dIn_B, dOut_B
 
 ``` 
+
+
+## Add RTL source 
+
+With the function `addRTLPath()` you can associate your RTL sources with the blackbox. After the generation of your Spinal code you can call the fonction `mergeRTLSource` for merging all sources together. 
+
+
+```scala
+class MyBlackBox() extends Blackbox {
+
+  val io = new Bundle {
+    val clk   = in  Bool 
+    val start = in Bool 
+    val dIn   = in  Bits(32 bits)
+    val dOut  = out Bits(32 bits)    
+    val ready = out Bool 
+  }
+
+  // Map the clk 
+  mapCurrentClockDomain(io.clk)
+
+  // Remove io_ prefix 
+  noIoPrefix() 
+
+  // Add all rtl dependencies
+  addRTLPath("./rtl/RegisterBank.v")                         // Add a verilog file 
+  addRTLPath(s"./rtl/myDesign.vhd")                          // Add a vhdl file 
+  addRTLPath(s"${sys.env("MY_PROJECT")}/myTopLevel.vhd")     // Use an environement variable MY_PROJECT (System.getenv("MY_PROJECT"))
+  
+}
+
+...
+
+val report = SpinalVhdl(new MyBlackBox)
+report.mergeRTLSource("mergeRTL") // merge all rtl sources into mergeRTL.vhd and mergeRTL.v file 
+
+
+``` 
+
+## VHDL - No numeric type 
+
+If you want to get only `std_logic_vector` on your blackbox component, you can add the tag `noNumericType` to the blackbox. 
+
+```scala
+class MyBlackBox() extends BlackBox{
+  val io = new Bundle{
+    val clk       = in  Bool 
+    val increment = in  Bool 
+    val initValue = in  UInt(8 bits)
+    val counter   = out UInt(8 bits)
+  }
+
+  mapCurrentClockDomain(io.clk)
+
+  noIoPrefix()
+
+  addTag(noNumericType)  // only std_logic_vector
+}
+
+// Code generated
+
+component MyBlackBox is
+  port( 
+    clk       : in  std_logic;
+    increment : in  std_logic;
+    initValue : in  std_logic_vector(7 downto 0);
+    counter   : out std_logic_vector(7 downto 0)    
+  );
+end component;
+
+``` 
