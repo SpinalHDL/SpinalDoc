@@ -416,6 +416,10 @@ entries:
               url: /spinal/examples/simple/introduction/
               output: web
 
+            - title: Cheatsheet Symbolic (PDF)
+              url: /cheatsheet_symbolic/
+              output: web
+
             - title: Counter with clear
               url: /spinal/examples/simple/counter_with_clear/
               output: web
