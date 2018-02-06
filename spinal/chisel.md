@@ -8,6 +8,8 @@ sidebar: spinal_sidebar
 permalink: /chisel/
 ---
 
+## Why develop a new language when there is Chisel
+
 [Chisel](https://chisel.eecs.berkeley.edu/) is the project at the origin of Spinal. Chisel also represents a big step forward compared to common HDL. However, this language has show some serious and persistent conception issues :
 
 #### Various issue :
@@ -43,3 +45,13 @@ permalink: /chisel/
 - No "Area" notion to give a better structure to the user code.
 
 For some major issues mentioned here, issues/pull requests were open on github, without effect. In addition, if we consider the age (5.5 years at the time of writing) of Chisel, these issues will probably not disappear and it's why SpinalHDL was created.
+
+## Inspiration and divergences
+
+Yes, Chisel, is from far the main SpinalHDL inspiration, syntacticly speaking they are really close, but toke different directions :
+
+- SpinalHDL is strongly typed (including bit length). Chisel is most of the time weakly typed.
+- SpinalHDL is pushing to provide a strong standard library (spinal.lib), not Chisel.
+- The SpinalHDL library (spinal.lib) is armed with many 'advanced' tools to offer smarter ways to define hardware (See Stream, StateMachine, BusSlaveFactory, ..)
+- The SpinalHDL simulation API is radically different and more capable than the Chisel one
+- Chisel 3.0 now emit it's netlist in a FIRRTL file which then allow to do some custom passes on it, while SpinalHDL allow to add custom passes directly durring the hardware elaboration before the VHDL/Verilog generation.
