@@ -12,7 +12,7 @@ VexRiscv is an fpga friendly RISC-V ISA CPU implementation with following featur
 
 - RV32IM instruction set
 - Pipelined on 5 stages (Fetch, Decode, Execute, Memory, WriteBack)
-- 1.16 DMIPS/Mhz when all features are enabled
+- 1.44 DMIPS/Mhz when all features are enabled
 - Optimized for FPGA
 - Optional MUL/DIV extension
 - Optional instruction and data caches

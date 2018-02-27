@@ -60,6 +60,9 @@ SBT base project:               <br> [https://github.com/SpinalHDL/SpinalTemplat
 
 Workshop:                       <br> [https://github.com/SpinalHDL/SpinalWorkshop](https://github.com/SpinalHDL/SpinalWorkshop)
 
+VexRiscv CPU and SoC: <br>
+[https://github.com/SpinalHDL/VexRiscv](https://github.com/SpinalHDL/VexRiscv)
+
 StackOverflow (tag: SpinalHDL) :    <br> [StackOverflow](https://stackoverflow.com/)
 
 Google group:                   <br> [https://groups.google.com/forum/#!forum/spinalhdl-hardware-description-language](https://groups.google.com/forum/#!forum/spinalhdl-hardware-description-language)
