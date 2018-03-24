@@ -14,6 +14,5 @@ Redirection to https://github.com/SpinalHDL/SpinalDoc/blob/master/cheatsheet/en/
 <head>
    <!-- HTML meta refresh URL redirection -->
    <meta http-equiv="refresh"
-   content="0; url=https://cdn.rawgit.com/SpinalHDL/SpinalDoc/f7e4889eb936ce82107cf117c3f4b3bf43ab5cc7/cheatsheet/cheatSheet_symbolic.pdf">
+   content="0; url=https://cdn.rawgit.com/SpinalHDL/SpinalDoc/0c43de8c952893e6a4735b76f914cbac8ff11757/cheatsheet/cheatSheet_symbolic.pdf">
 </head>
-
