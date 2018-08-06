@@ -127,8 +127,8 @@ val res = mySInt_1 + mySInt_2
 | x =/= y  |  Inequality            | Bool        |
 | x > y    |  Greater than          | Bool        |
 | x >= y   |  Greater than or equal | Bool        |
-| x > y    |  Less than             | Bool        |
-| x >= y   |  Less than or equal    | Bool        |
+| x < y    |  Less than             | Bool        |
+| x <= y   |  Less than or equal    | Bool        |
 
 ```scala
 // Comparaison between two SInt
