@@ -67,7 +67,7 @@ unsetenv VERILATOR_ROOT  # For csh; ignore error if on bash
 unset VERILATOR_ROOT  # For bash
 cd verilator
 git pull        # Make sure we're up-to-date
-git tag         # See what versions exist
+git checkout verilator_3_916
 autoconf        # Create ./configure script
 ./configure
 make -j$(nproc)
@@ -98,6 +98,8 @@ pacman -S --needed base-devel mingw-w64-x86_64-toolchain \
 git clone http://git.veripool.org/git/verilator  
 unset VERILATOR_ROOT
 cd verilator
+git pull        
+git checkout verilator_3_916
 autoconf      
 ./configure
 export CPLUS_INCLUDE_PATH=/usr/include:$CPLUS_INCLUDE_PATH
