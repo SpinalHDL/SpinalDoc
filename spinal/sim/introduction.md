@@ -67,7 +67,7 @@ unsetenv VERILATOR_ROOT  # For csh; ignore error if on bash
 unset VERILATOR_ROOT  # For bash
 cd verilator
 git pull        # Make sure we're up-to-date
-git tag         # See what versions exist
+git checkout verilator_3_916
 autoconf        # Create ./configure script
 ./configure
 make -j$(nproc)
@@ -98,6 +98,8 @@ pacman -S --needed base-devel mingw-w64-x86_64-toolchain \
 git clone http://git.veripool.org/git/verilator  
 unset VERILATOR_ROOT
 cd verilator
+git pull        
+git checkout verilator_3_916
 autoconf      
 ./configure
 export CPLUS_INCLUDE_PATH=/usr/include:$CPLUS_INCLUDE_PATH
@@ -110,5 +112,7 @@ echo "DONE"
 #Add C:\msys64\usr\bin;C:\msys64\mingw64\bin to you windows PATH
 ```
 
+
+{% include important.html content="Be sure that your PATH environnement variable is pointing to the JDK 1.8 and don't contain a JRE installation." %}
 
 {% include important.html content="Adding the MSYS2 bin folders into your windows PATH could potentialy have some side effects. It's why it is safer to add them as last elements of the PATH to reduce their priority." %}
