@@ -23,7 +23,8 @@ when(cond1){
 ```
 
 ## Switch
-As VHDL and Verilog, signals can be conditionally assigned when a signal has a defined value.
+As VHDL and Verilog, signals can be conditionally assigned when a signal has a defined value. Multiple values
+can be given in an is statement.
 
 ```scala
 switch(x){
@@ -32,6 +33,9 @@ switch(x){
   }
   is(value2){
     //execute when x === value2
+  }
+  is(value3, value4, value5){
+    //execute when x === value3 or x === value4 or x === value5
   }
   default{
     //execute if none of precedent condition meet
