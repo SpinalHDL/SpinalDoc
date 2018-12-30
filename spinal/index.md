@@ -6,7 +6,7 @@ keywords: spinal, user guide
 last_updated: Apr 19, 2016
 sidebar: spinal_sidebar
 toc: false
-permalink: /presentation/
+permalink: /
 ---
 
 Redirection to https://spinalhdl.github.io/SpinalDoc-RTD/
