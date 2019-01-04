@@ -249,8 +249,8 @@
                                         <td><cScala>val</cScala> time:BigDecimal = 2 ms </td>                   
                                     </tr>
                                     <tr  class="code borderBottom" > 
-                                        <td>Bytes, kB, MB, GB, TB </td>                 
-                                        <td><cScala>val</cScala> size:BigInt = 4MB </td>                    
+                                        <td>Bytes, Byte, KiB, MiB, GiB, TiB </td>                 
+                                        <td><cScala>val</cScala> size:BigInt = 4 MiB </td>                    
                                     </tr>
                                     <tr class="code borderBottom"> 
                                         <td>bits, bit</td>                  
@@ -511,6 +511,12 @@
                                     </tr>   
 
                                 </table> <!-- End Table Clock Domain -->    
+                                
+                                
+                                
+                            </td> <!-- end Column 2 -->
+
+                            <td class="columnLayout" style="width: 80mm;"> 
 
                                 <!-- Fixed point -->
                                 <table id="core_FixPoint" class="tableSectionCore">
@@ -549,12 +555,6 @@
                                     </tr>   
 
                                 </table> <!-- End Table Fixe point -->
-
-
-
-                            </td> <!-- end Column 2 -->
-
-                            <td class="columnLayout" style="width: 80mm;"> 
 
                                 <table style="width:97%; padding:0mm; margin:0px;">
                                     <tr>    
@@ -692,6 +692,10 @@
                                 </table> <!-- End Table RAM -->
 
 
+                            </td> <!-- End Column 3 -->
+                            
+                            <td class="columnLayout" style="width: 80mm;"> 
+                              
                                 <!-- HDL Generation -->
                                 <table id="core_HDLGeneration" class="tableSectionCore">
                                     <tr class="titleSectionCore">
@@ -765,10 +769,6 @@
                                         </td>                                    
                                     </tr>  
                                 </table> <!-- End Table Template -->
-
-                            </td> <!-- End Column 3 -->
-
-                            <td class="columnLayout" style="width: 80mm;"> 
 
                                 <!-- Utils -->
                                 <table id="core_utils" class="tableSectionCore">
@@ -998,6 +998,12 @@
 
                                 </table><!-- End Table Fragment -->     
 
+                              </td> <!-- End Column 1 -->     
+  
+  
+  
+                              <td class="columnLayout" style="width: 80mm;"> 
+  
 
                                 <!-- State machine  -->
                                 <table id="lib_StateMachine" class="tableSectionLib">
@@ -1075,12 +1081,6 @@
 
                                 </table><!-- End Table State machine  -->                                                                
 
-                            </td> <!-- End Column 1 -->     
-
-
-
-                            <td class="columnLayout" style="width: 80mm;"> 
-
                                 <!-- Utils -->
                                 <table id="lib_Utils" class="tableSectionLib" style="width:100%;">
                                     <tr class="titleSectionLib">
@@ -1131,6 +1131,12 @@
 
                                 </table><!-- End Table Utils -->  
 
+                            </td> <!-- End Column 2 -->     
+  
+  
+  
+                            <td class="columnLayout" style="width: 80mm;"> 
+  
 
                                 <!-- Bus Slave Factory -->
                                 <table id="lib_BusSlaveFactory" class="tableSectionLib" style="width:100%;">
@@ -1177,7 +1183,7 @@
 
                                 <!-- Master/Slave interface -->
                                 <table id="lib_MasterSlaveInterface" class="tableSectionLib" style="width:100%;">
-                                    <tr class="titleSectionLib"">
+                                    <tr class="titleSectionLib">
                                         <td colspan="2">Master/Slave interface</td>
                                     </tr>       
                                     <tr class="code">
