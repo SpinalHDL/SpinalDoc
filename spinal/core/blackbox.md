@@ -227,7 +227,7 @@ class MyRam() extends Blackbox {
   }
 
   // Execute the function renameIO after the creation of the component 
-  addPrePostTask(() => renameIO())
+  addPrePopTask(() => renameIO())
 }
 
 // This code generate those names :
