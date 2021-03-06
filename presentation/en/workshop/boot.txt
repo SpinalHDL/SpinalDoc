@@ -1,0 +1,41 @@
+Slides : 
+  https://github.com/SpinalHDL/SpinalDoc/tree/master/presentation/en/workshop
+Cheat sheets : 
+  https://github.com/SpinalHDL/SpinalDoc/tree/master/cheatsheet
+Labo repository : 
+  https://github.com/SpinalHDL/SpinalWorkshop
+
+Labs :
+  Counter : 
+    src/main/scala/workshop/counter
+  Prime : 
+    src/main/scala/workshop/prime
+  Function : 
+    src/main/scala/workshop/function
+  Timer with BusSlaveFactory : 
+    src/main/scala/workshop/timer
+  SpinalSim : 
+    src/main/scala/workshop/simCounter
+  Stream : 
+    src/main/scala/workshop/stream
+  Mandelbrot : 
+    src/main/scala/workshop/mandelbrot
+  Blackbox and Clockdomain : 
+    src/main/scala/workshop/blackboxAndClock
+
+Each lab has a spec.md to specify its goal
+
+How to run things via SBT
+
+Generate the hardware :
+  sbt
+  runMain workshop.counter.CounterMain
+
+Generated hardware come into the rtl folder
+
+Test the hardware : 
+  sbt
+  testOnly workshop.counter.CounterTester
+
+Simulation wave come in the waves folder
+
