@@ -1,0 +1,6 @@
+
+- Introduction SaxonSoc
+
+- implémentation d'un periphérique sur SaxonSoc, puis intégration et tests en simu
+
+
