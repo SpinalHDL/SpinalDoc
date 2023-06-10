@@ -1,0 +1,2 @@
+- more info about SpinalHDL API and how it work (function / side effect)
+- FPU plugin set ?

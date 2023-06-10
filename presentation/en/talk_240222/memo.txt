@@ -1,0 +1,20 @@
+
+
+demo :
+
+Using unreleased spinalhdl
+git clone https://github.com/SpinalHDL/SpinalHDL
+git clone https://github.com/SpinalHDL/SpinalTemplateSbt
+
+intro intellij
+
+How things are named : 
+- ValCallback
+- Area
+- Composite
+- Manual
+
+Keep the netlist deterministic
+
+Area / Bundle for Slots
+- Slot demo  xx onMask

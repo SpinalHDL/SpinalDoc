@@ -1,0 +1,6 @@
+background
+fpga
+vendor locking
+SpinalHDL
+VexRiscv
+SaxonSoc

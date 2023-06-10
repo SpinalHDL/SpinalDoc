@@ -10,8 +10,6 @@ Labs :
     src/main/scala/workshop/counter
   Prime : 
     src/main/scala/workshop/prime
-  Function : 
-    src/main/scala/workshop/function
   Timer with BusSlaveFactory : 
     src/main/scala/workshop/timer
   SpinalSim : 
